@@ -1,0 +1,72 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.cefetrj.sisgee.control;
+
+import br.cefetrj.sisgee.model.dao.GenericDAO;
+import br.cefetrj.sisgee.model.dao.PersistenceManager;
+import br.cefetrj.sisgee.model.dao.PessoaFisicaDAO;
+import br.cefetrj.sisgee.model.entity.PessoaFisica;
+import java.util.List;
+
+/**
+ *
+ * @author Pirlimpimposo
+ */
+public class PessoaFisicaServices {
+
+    public static List<PessoaFisica> listarConvenios() {
+        GenericDAO<PessoaFisica> pessoaFisicaDAO = PersistenceManager.createGenericDAO(PessoaFisica.class);
+        return pessoaFisicaDAO.buscarTodos();
+    }
+
+    public static PessoaFisica buscarConvenio(PessoaFisica pessoaFisica) {
+        GenericDAO<PessoaFisica> pessoaFisicaDAO = PersistenceManager.createGenericDAO(PessoaFisica.class);
+        return pessoaFisicaDAO.buscar(pessoaFisica.getIdConvenio());
+    }
+
+    public static void incluirConvenio(PessoaFisica pessoaFisica) {
+        GenericDAO<PessoaFisica> pessoaFisicaDAO = PersistenceManager.createGenericDAO(PessoaFisica.class);
+        PersistenceManager.getTransaction().begin();
+        try {
+            pessoaFisicaDAO.incluir(pessoaFisica);
+            PersistenceManager.getTransaction().commit();
+        } catch (Exception e) {
+            PersistenceManager.getTransaction().rollback();
+        }
+    }
+
+    public static PessoaFisica buscarConvenioByNumero(String numero) {
+        PessoaFisicaDAO pessoaFisicaDAO = new PessoaFisicaDAO();
+        try {
+            PessoaFisica c = pessoaFisicaDAO.buscarByNumeroConvenio(numero);
+            return c;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static PessoaFisica buscarConvenioByNome(String nome) {
+        PessoaFisicaDAO pessoaFisicaDAO = new PessoaFisicaDAO();
+        try {
+            PessoaFisica c = pessoaFisicaDAO.buscarByNome(nome);
+            return c;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static PessoaFisica buscarConvenioByCPF(String cpf) {
+        PessoaFisicaDAO pessoaFisicaDao = new PessoaFisicaDAO();
+        try {
+            PessoaFisica c = pessoaFisicaDao.buscarByCPF(cpf);
+            return c;
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+}

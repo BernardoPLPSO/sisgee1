@@ -1,0 +1,39 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.cefetrj.sisgee.model.dao;
+
+import br.cefetrj.sisgee.model.entity.PessoaFisica;
+
+/**
+ *
+ * @author Pirlimpimposo
+ */
+public class PessoaFisicaDAO extends GenericDAO<PessoaFisica> {
+
+    public PessoaFisicaDAO() {
+        super(PessoaFisica.class, PersistenceManager.getEntityManager());
+    }
+
+    public PessoaFisica buscarByNumeroConvenio(String numero) {
+        PessoaFisica f = (PessoaFisica) manager.createQuery("SELECT c FROM PessoaFisica c WHERE c.numeroConvenio LIKE :numero").setParameter("numero", numero).getSingleResult();
+        System.out.println(f);
+        return  f;
+    }
+    
+    public PessoaFisica buscarByNome(String nome) {
+        return (PessoaFisica) manager.createQuery(
+                "SELECT c FROM PessoaFisica c WHERE c.nome LIKE :nome")
+                .setParameter("nome", nome)
+                .getSingleResult();
+    }
+    
+    public PessoaFisica buscarByCPF(String cpf) {
+        return (PessoaFisica) manager.createQuery(
+                "SELECT c FROM PessoaFisica c WHERE c.cpf LIKE :cpf")
+                .setParameter("cpf", cpf)
+                .getSingleResult();
+    }
+}
