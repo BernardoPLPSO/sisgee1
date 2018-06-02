@@ -4,7 +4,6 @@
         <%@include file="import_head.jspf"%>
 
         <style type="text/css">
-
             div.container {
                 margin-bottom: 2em;
             }
@@ -20,7 +19,6 @@
             div.form-row {
                 padding: 0px 15px;
             }
-
         </style>
 
         <title>
@@ -75,75 +73,102 @@
 
                 <fieldset class="form-group" ${ not empty termoEstagio ? 'disabled' : '' }>
                     <legend class="col-form-legend col-lg"><fmt:message key = "br.cefetrj.sisgee.resources.form.dadosEmpresaConveniada"/></legend>
-
-
+                    
+                    
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <label for="isPessoa"><fmt:message key = "br.cefetrj.sisgee.resources.form.convenio.fj"/></label>
+                            <label for="isAgenteIntegracao"><fmt:message key = "br.cefetrj.sisgee.resources.form.convenio.fj"/></label>
+                        </div>
+
+                        <div class="custom-controls-stacked d-block my-3">							
+                            <label class="custom-control custom-radio">
+                                <input id="agenteSim" class="custom-control-input isAgenteChk ${ not empty isAgenteIntegracaoMsg ? 'is-invalid' : '' }" type="radio" name="isPessoa" value="cpf" ${ not empty isAgenteIntegracaoMsg ? '' : param.isAgenteIntegracao == 'cpf' ? 'checked' : '' }> 
+                                <span class="custom-control-indicator"></span> 
+                                <span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.resources.form.pFisica"/></span>
+                            </label>						
+
+                            <label class="custom-control custom-radio">
+                                <input id="agenteNao" class="custom-control-input isAgenteChk ${ not empty isAgenteIntegracaoMsg ? 'is-invalid' : '' }" type="radio" name="isPessoa" value="cnpj" ${ not empty isAgenteIntegracaoMsg ? '' : param.isAgenteIntegracao == 'cnpj' ? 'checked' : '' }> 
+                                <span class="custom-control-indicator"></span> 
+                                <span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.resources.form.pJuridica"/></span>
+                            </label>
+                            <c:if test="${ not empty isAgenteIntegracaoMsg }">
+                                <div class="invalid-feedback">${ isAgenteIntegracaoMsg }</div>
+                            </c:if>
                         </div>
                     </div>
-                    <div class="form-row">
+                            
+
+                    <div class="form-row notAI AI" ${ empty param.isAgenteIntegracao ? "style='display:none'" : param.isAgenteIntegracao == "cpf" ? "style='display:none'" : "" }>
+                        <div class="container">
+                        <div class="form-row">
+                        <div class="form-group col-form-legend">
+					<label for="agenteIntegracao"><fmt:message key="br.cefetrj.sisgee.form_empresa.msg_agente_integracao" /></label>
+                        </div>
+
+				<div class="custom-controls-stacked d-block my-3">
+					<label class="custom-control custom-radio"> 
+						<input id="agenteSim" name="agenteIntegracao" type="radio" class="custom-control-input" required value = "sim" > 
+						<span class="custom-control-indicator"></span> 
+						<span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_sim"/></span>
+					</label> 
+					<label class="custom-control custom-radio"> 
+						<input id="agenteNao" name="agenteIntegracao" type="radio" class="custom-control-input" required value = "nao" > 
+						<span class="custom-control-indicator"></span> 
+						<span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_nao"/></span>
+					</label>
+				</div>					
+			</div>
+                        </div>
+                        
                         <div class="form-group col-md-4">
-                            <label for="numeroConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.numeroConvenio"/></label>
+                            <label for="cnpjConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.cnpj"/></label>
                             <div class="input-group">						  
-                                <input type="text" class="form-control numeroConvenio" placeholder="Digite o Número" id="numeroConvenio" name="numeroConvenio" value="${ param.numeroConvenio }">
+                                <input type="text" class="form-control cnpjEmpresaNotAI cpfConvenio" placeholder="Digite o CNPJ" id="cnpjConvenio" name="cnpjConvenio" value="${ param.cnpjConvenio }">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="button" id="btnBuscarNumeroConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
+                                    <button class="btn btn-primary" type="button" id="btnBuscarEmpresaNotAI"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
                                 </span>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="nomeConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomeConvenio"/></label>
-                            <div class="input-group">						  
-                                <input type="text" class="form-control nomeConvenioNotAI nomeConvenio" placeholder="Digite o Nome" id="nomeConvenio" name="nomeConvenio" value="${ param.nomeConvenio }">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="button" id="btnBuscarNomeConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
-                                </span>
-                                &nbsp;&nbsp;
-                                <button type="button" class="btn btn-primary addEmpresa">+</button>
-                            </div>
+                            <label for="razaoSocial"><fmt:message key = "br.cefetrj.sisgee.resources.form.razaoSocial"/></label>
+                            <input type="text" class="form-control nomeEmpresaNotAI nomeEmpresa" id="razaoSocial" name="razaoSocial" value="${ param.razaoSocial }" readonly>
                         </div>
-
+                        
+                        
+                        
+                        
+                        
+                        <div class="form-group col-md-2" style="padding-top: 1.9em">
+                            <button type="button" class="btn btn-primary addEmpresa">+</button>
+                        </div>
                     </div>
 
-                    <div class="form-row notAI AI" >
+                    <div class="form-row isAI AI" ${ empty param.isAgenteIntegracao ? "style='display:none'" : param.isAgenteIntegracao == "cnpj" ? "style='display:none'" : "" }>
+                        
+                    </div>
+                    <div class="form-row isAI AI" ${ empty param.isAgenteIntegracao ? "style='display:none'" : param.isAgenteIntegracao == "cnpj" ? "style='display:none'" : "" }>
                         <div class="form-group col-md-5">
                             <label for="cpfConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.cpf.pf"/></label>
-                            <input type="text" class="form-control nomeEmpresaIsAI nomePF" id="nomeConvenio" name="nomeConvenio" value="${ param.nomeConvenio }" readonly>
+                            <div class="input-group">
+                                <input type="text" class="form-control cnpjEmpresaIsAI cpfConvenio" placeholder="Digite o CPF" id="cpfConvenio" name="cpfConvenio" value="${ param.cpfConvenio }">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button" id="btnBuscarEmpresaIsAI"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
+                                </span>
+                            </div>
                         </div>
                         <div class="form-group col-md-5">
                             <label for="nomePF"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomePessoaFisica"/></label>
-                            <input type="text" class="form-control nomeEmpresaIsAI nomePF" name="nomeConvenio" value="${ param.nomeConvenio }" readonly>
+                            <input type="text" class="form-control nomeEmpresaIsAI nomePF" name="nomePF" value="${ param.nomePF }" readonly>
                         </div>
-                    </div>
-                    <div class="form-row notAI AI" >
-                        <div class="form-group col-md-5">
-                            <label for="cpfConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.cnpj"/></label>
-                            <input type="text" class="form-control nomeEmpresaIsAI nomePF" name="nomeConvenio" value="${ param.nomeConvenio }" readonly>
+                        <div class="form-group col-md-2" style="padding-top: 1.9em">
+                            <button type="button" class="btn btn-primary addEmpresa">+</button>
                         </div>
-                        <div class="form-group col-md-5">
-                            <label for="nomePF"><fmt:message key = "br.cefetrj.sisgee.resources.form.razaoSocial"/></label>
-                            <input type="text" class="form-control nomeEmpresaIsAI nomePF" name="nomeConvenio" value="${ param.nomeConvenio }" readonly>
-                        </div>
-                    </div>
-                    <div class="custom-controls-stacked d-block my-3">							
-                        <label class="custom-control custom-radio">
-                            <input id="PessoaFisica" class="custom-control-input isJuridicaChk ${not empty isPessoa ? 'is-invalid' : '' }" type="radio" name="tipoPessoa" value="cpf"> 
-                            <span class="custom-control-indicator"></span> 
-                            <span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.resources.form.pFisica"/></span>
-                        </label>						
-                        <label class="custom-control custom-radio"> 
-                            <input id="PessoaJuridica" class="custom-control-input isJuridicaChk ${not empty isPessoa ? 'is-invalid' : '' }" type="radio" name="tipoPessoa" value="cnpj"> 
-                            <span class="custom-control-indicator"></span> 
-                            <span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.resources.form.pJuridica"/></span>
-                        </label>
-                    </div>
+                    </div>							
                 </fieldset>
 
 
-                <fieldset class="form-group dadosAluno" ${ not empty termoEstagio ? 'disabled' :'' }>
-                    <%@include file="import_busca_aluno.jspf"%>
-                </fieldset>
+                
 
 
                 <c:if test="${ not empty periodoMsg }">
@@ -341,15 +366,12 @@
     <%@include file="import_finalbodyscripts.jspf"%>
     <%@include file="import_scripts.jspf"%>
     <script>
-        $(document).ready(function () {
-            $('#cargaHorariaTermoEstagio').mask('9');
-            $('#valorBolsa').mask('000.000,00', {reverse: true});
-            $('#dataInicioTermoEstagio').mask('99/99/9999');
-            $('#dataFimTermoEstagio').mask('99/99/9999');
-            $('#cnpjEmpresa1').mask('99.999.999/9999-99');
-            $('#cnpjEmpresa2').mask('99.999.999/9999-99');
-            $('#cepEnderecoTermoEstagio').mask('99.999-999');
-        });
-    </script>
+            $(document).ready(function(){
+                $('#cnpjConvenio').mask('99.999.999/9999-99');
+                $('#cpfConvenio').mask('999.999.999-99');
+                $('#dataAssinatura').mask('31/12/3000');
+                $('#telefone').mask('(99)99999-9999');
+            });
+        </script>
 </body>
 </html>

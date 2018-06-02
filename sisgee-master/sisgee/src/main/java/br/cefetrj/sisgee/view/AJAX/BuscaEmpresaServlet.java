@@ -51,13 +51,13 @@ public class BuscaEmpresaServlet extends HttpServlet {
                 else if(pf != null){
                     idConvenio = Integer.toString(pf.getIdConvenio());
                     nomeConvenio = pf.getNome();
-                    System.out.println(idConvenio);
                 }
                 else{
                     idConvenio = "";
                     nomeConvenio = "";
                     System.out.println("Não encontrou");
                 }
+                System.out.println(nomeConvenio);
                 
 		
 		//JSON
