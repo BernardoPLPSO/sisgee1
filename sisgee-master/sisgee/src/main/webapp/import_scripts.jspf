@@ -7,6 +7,12 @@
 	    });
 	    
 	    //$('.isAI, .notAI').hide();
+            
+            $('.isPessoaChk').change(function(){
+	    	$('.AI').hide();
+	    	$(".AI input").val("");
+	    	$(this).val() == 'cpf' ? $('.isAI').show("slow") : $('.notAI').show("slow");
+	    });
 	    
 	    
 	    

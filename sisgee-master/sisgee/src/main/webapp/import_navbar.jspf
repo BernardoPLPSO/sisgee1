@@ -36,10 +36,10 @@
 					<fmt:message key = "br.cefetrj.sisgee.resources.form.convenio"/>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-					<a class="dropdown-item" href="ValidaCadastroEmpresaServlet">
+					<a class="dropdown-item" href="form_convenio.jsp">
 						<fmt:message key = "br.cefetrj.sisgee.resources.form.cadastrarConvenio"/>
 					</a>
-                                        <a class="dropdown-item" href="form_empresa.jsp">
+                                        <a class="dropdown-item" href="form_convenio.jsp">
 						<fmt:message key = "br.cefetrj.sisgee.resources.form.RenovarConvenio"/>
 					</a>
 				</div>
