@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.cefetrj.sisgee.control.AlunoServices;
 import br.cefetrj.sisgee.model.entity.Aluno;
 import br.cefetrj.sisgee.model.entity.TermoEstagio;
+import java.util.ArrayList;
 import java.util.List;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
@@ -44,8 +45,11 @@ public class BuscaAlunoServlet extends HttpServlet {
         String nomeCampus = "";
         String idTermoEstagioAtivo = "";
 
+        
         Aluno aluno = AlunoServices.buscarAlunoByMatricula(matricula.trim());
         if (aluno != null) {
+            List<TermoEstagio> termosAditivos = aluno.getTermoEstagios();
+            request.getServletContext().setAttribute("termosAditivos", termosAditivos);
             idAluno = Integer.toString(aluno.getIdAluno());
             nomeAluno = aluno.getNomeAluno();
             nomeCurso = aluno.getNomeCurso();

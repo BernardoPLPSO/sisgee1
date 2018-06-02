@@ -39,6 +39,7 @@
 		</form>
 		
 		<div class="container">
+
 		<table class = "table table">
 			
 			<thead>		
@@ -53,12 +54,12 @@
 						<tr>
 						<td>
 							<c:url value = "/VerTermoAditivoServlet" var = "verTermoAditivoUrl" scope = "page">
-								<c:param name="idTermoAditivo" value = "${termoAditivo.idTermoAditivo}"/>  
+								<c:param name="idTermoAditivo" value = "${termoAditivo.idTermoEstagio}"/>  
 							</c:url>
 						<a href = "${verTermoAditivoUrl}" >${ termoAditivo.termoEstagio.dataInicioTermoEstagio }</a></td>	
 												
-						<td> ${ termoAditivo.termoEstagio.convenio.empresa.cnpjEmpresa }</td>
-						<td> ${ termoAditivo.termoEstagio.convenio.empresa.nomeEmpresa }</td>						
+						<td> ${ termoAditivo.termoEstagio.convenioPJ.cnpj }</td>
+						<td> ${ termoAditivo.termoEstagio.convenioPJ.razaoSocial }</td>						
 							
 						</tr>
 				</c:forEach>
