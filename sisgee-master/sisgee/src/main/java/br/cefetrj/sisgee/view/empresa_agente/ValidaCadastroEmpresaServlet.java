@@ -236,7 +236,6 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 				else{
 					cpfConvenioMsg = messages.getString(cpfConvenioMsg);
 					request.setAttribute("cpfConvenioMsg", cpfConvenioMsg);
-<<<<<<< HEAD
 					isValid = false;
 				}
 		}
@@ -311,82 +310,6 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 				//TODO Fazer log
 				System.out.println(dataAssinaturaMsg);
 			}
-=======
-					isValid = false;
-				}
-		}
-		else {
-			cpfConvenioMsg = messages.getString(cpfConvenioMsg);
-			request.setAttribute("cpfConvenioMsg", cpfConvenioMsg);
-			isValid = false;
-		}   
-                
-                
-                
-                /**
-		 * Validação do Nome de Pessoa Física usando métodos da Classe ValidaUtils. 
-		 * Campo obrigatório;
-		 * Tamanho máximo de 100 caracteres;
-		 * Nome ja existente.
-		 */
-		String nomePessoaMsg = "";
-		nomePessoaMsg = ValidaUtils.validaObrigatorio("Razão Social", nomePessoa);
-		if (nomePessoaMsg.trim().isEmpty()) {
-			nomePessoaMsg = ValidaUtils.validaTamanho("Razão Social", 100, nomePessoa);
-			if (nomePessoaMsg.trim().isEmpty()) {
-                            
-                                    request.setAttribute("razaoSocial", nomePessoa);
-                                    
-               }else {
-				nomePessoaMsg = ServletUtils.mensagemFormatada(nomePessoaMsg, locale, tamanho);
-				request.setAttribute("razaoSocialMsg", nomePessoaMsg);
-				isValid = false;
-			}
-		}
-		else {
-			nomePessoaMsg = messages.getString(nomePessoaMsg);
-			request.setAttribute("razaoSocialMsg", nomePessoaMsg);
-			isValid = false;
-		}
-                            
-                            
-                }
-                String dataAss = request.getParameter("dataAssinatura");
-                String email = request.getParameter("email");
-                String telefone = request.getParameter("telefone");
-                
-                
-                /**
-		 * Validação da Data de Assinatura do Convênio com métodos da classe ValidaUtils
-		 * 
-                 * Campo obrigatório
-                 * 
-		 */		
-		Date dataAssinatura = null;
-		String dataAssinaturaMsg = "";
-		
-		
-		dataAssinaturaMsg = ValidaUtils.validaObrigatorio("Data Assinatura", dataAss);
-		if (dataAssinaturaMsg.trim().isEmpty()) {
-			dataAssinaturaMsg = ValidaUtils.validaDate("Data Assinatura", dataAss);
-			if (dataAssinaturaMsg.trim().isEmpty()) {				
-				try {
-					SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-					dataAssinatura = format.parse(dataAss);
-					request.setAttribute("dataAssinatura", dataAssinatura);
-				} catch (Exception e) {
-					//TODO trocar saída de console por Log
-					System.out.println("Data em formato incorreto, mesmo após validação na classe ValidaUtils");
-					isValid = false;
-				}
-			}else {
-				dataAssinaturaMsg = messages.getString(dataAssinaturaMsg);
-				request.setAttribute("dataAssinaturaMsg", dataAssinaturaMsg);
-				isValid = false;
-				//TODO Fazer log
-				System.out.println(dataAssinaturaMsg);
-			}
->>>>>>> 8e6fb2a7603e2c511bd9f3cb255a7fd976982e69
 		} else {
 			dataAssinaturaMsg = messages.getString(dataAssinaturaMsg);
 			request.setAttribute("dataAssinaturaMsg", dataAssinaturaMsg);
