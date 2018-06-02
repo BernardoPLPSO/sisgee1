@@ -119,7 +119,7 @@
 					</label>
 				</div>					
 			</div>
-                        </div>
+                       
                         
                         <div class="form-group col-md-4">
                             <label for="cnpjConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.cnpj"/></label>
@@ -132,9 +132,9 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="razaoSocial"><fmt:message key = "br.cefetrj.sisgee.resources.form.razaoSocial"/></label>
-                            <input type="text" class="form-control nomeEmpresaNotAI nomeEmpresa" id="razaoSocial" name="razaoSocial" value="${ param.razaoSocial }" readonly>
+                            <input type="text" class="form-control nomeEmpresaNotAI razaoSocial" id="razaoSocial" name="razaoSocial" value="${ param.razaoSocial }" readonly>
                         </div>
-                        
+                         </div>
                         
                         
                         

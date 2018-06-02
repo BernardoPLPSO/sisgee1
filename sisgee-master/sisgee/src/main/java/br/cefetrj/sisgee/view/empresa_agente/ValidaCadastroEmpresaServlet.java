@@ -46,6 +46,25 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
                 
                 String tipoPessoa = request.getParameter("tipoPessoa");
                 
+                /**
+		 * Validação do campo Tipo Pessoa, usando métodos da Classe
+		 * ValidaUtils.
+		 */
+		String tipoPessoaMsg = "";
+		tipoPessoaMsg = ValidaUtils.validaObrigatorio("Agente Integração", tipoPessoa);
+		if (tipoPessoaMsg.trim().isEmpty()) {
+			
+			
+				request.setAttribute("tipoPessoa", tipoPessoa);
+			 
+		} else {
+			tipoPessoaMsg = messages.getString(tipoPessoaMsg);
+			request.setAttribute("tipoPessoaMsg", tipoPessoaMsg);
+			isValid = false;
+		}
+                
+                if(tipoPessoaMsg.trim().isEmpty()){
+                
                 if(tipoPessoa.equals("cnpj")){
                     String cnpjConvenio = request.getParameter("cnpjConvenio");
                     String razaoSocial = request.getParameter("razaoSocial");
@@ -378,7 +397,7 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 			isValid = false;
 		}
 		
-		
+                }
 		
 		/**
 		 * Teste das variÃ¡veis booleanas apÃ³s validaÃ§Ã£o. Redirecionamento para a
@@ -389,7 +408,7 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 		} else {
 			String msg = messages.getString("br.cefetrj.sisgee.valida_cadastro_empresa_servlet.msg_atencao");
 			request.setAttribute("msg", msg);
-			request.getRequestDispatcher("/form_empresa.jsp").forward(request, response);
+			request.getRequestDispatcher("/form_convenio.jsp").forward(request, response);
                         
 		}
 	}
