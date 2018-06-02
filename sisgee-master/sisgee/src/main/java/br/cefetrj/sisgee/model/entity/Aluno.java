@@ -27,13 +27,13 @@ public class Aluno {
     @Column(length = 100, nullable = false, unique = true)
     private String matricula;
 
-    @Column(length = 100, nullable = false, unique = true)
+    @Column(length = 100, nullable = false, unique = false)
     private String nomeAluno;
 
-    @Column(length = 100, nullable = false, unique = true)
+    @Column(length = 100, nullable = false, unique = false)
     private String nomeCurso;
 
-    @Column(length = 100, nullable = false, unique = true)
+    @Column(length = 100, nullable = false, unique = false)
     private String nomeCampus;
 
     @OneToMany(mappedBy = "aluno")
