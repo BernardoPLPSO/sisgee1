@@ -31,7 +31,7 @@
 				<%@include file="import_busca_aluno.jspf"%>
 				<div class="container">					
 
-                                    <button id="btnListarAditivo" type="submit" class="btn btn-secondary" disabled="true"><fmt:message key = "br.cefetrj.sisgee.resources.form.listarAditivos"/></button>
+                                    <button id="btnListarAditivo" type="submit" class="btn btn-secondary"><fmt:message key = "br.cefetrj.sisgee.resources.form.listarAditivos"/></button>
 
 				</div>				
 				
@@ -146,29 +146,6 @@
 	</div>
 	<%@include file="import_footer.jspf"%>
 	<%@include file="import_finalbodyscripts.jspf"%>
-        <script type="text/javascript">
-            function hablitarButoes(){
-                $("#btnNovoAditivo").prop("disabled", false);
-                $("#btnNovoAditivo").removeClass("btn-secondary");
-                $("#btnNovoAditivo").addClass("btn-primary");
-
-                $("#btnListarAditivo").prop("disabled", false);
-                $("#btnListarAditivo").removeClass("btn-secondary");
-                $("#btnListarAditivo").addClass("btn-primary");
-            }
-            var buscarAlunoCallback = function myCallback(json){
-                if (json != null){
-                    if(json.idTermoEstagioAtivo != null && json.idTermoEstagioAtivo != ""){
-                        //atribui o id do termo de estágio para o campo hidden
-                        
-                        //tem termo de estágio, ativa os botões
-                        hablitarButoes();
-                    }else{
-                        //não tem termo de estágio
-                    }
-                }
-            }
-        </script>
 	<%@include file="import_scripts.jspf"%>
 	<script type="text/javascript">
             
