@@ -14,9 +14,14 @@ import org.apache.log4j.Logger;
 
 import br.cefetrj.sisgee.control.AgenteIntegracaoServices;
 import br.cefetrj.sisgee.control.EmpresaServices;
+import br.cefetrj.sisgee.control.PessoaFisicaServices;
+import br.cefetrj.sisgee.control.PessoaJuridicaServices;
 import br.cefetrj.sisgee.model.entity.AgenteIntegracao;
 import br.cefetrj.sisgee.model.entity.Empresa;
+import br.cefetrj.sisgee.model.entity.PessoaFisica;
+import br.cefetrj.sisgee.model.entity.PessoaJuridica;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
+import java.util.Date;
 
 @WebServlet("/IncluirCadastroEmpresaServlet")
 public class IncluirCadastroEmpresaServlet extends HttpServlet {
@@ -28,23 +33,38 @@ public class IncluirCadastroEmpresaServlet extends HttpServlet {
 
 		Locale locale = ServletUtils.getLocale(request);
 		ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
-		String cnpjEmpresa = request.getParameter("cnpjEmpresa");
-                //remove caracteres especiais antes de salvar o CNPJ
-                cnpjEmpresa = cnpjEmpresa.replaceAll("[.|/|-]", "");
-		String nomeEmpresa = request.getParameter("nomeEmpresa");
-		String agenteIntegracao = request.getParameter("agenteIntegracao");
-
-
-		Empresa empresa = new Empresa(cnpjEmpresa, nomeEmpresa, null);
-		AgenteIntegracao agente = new AgenteIntegracao(nomeEmpresa, cnpjEmpresa);
-		
-
-		if (agenteIntegracao.equals("nao")) {
-			System.out.println(agenteIntegracao);
-			String msg = "";
-			Logger lg = Logger.getLogger(IncluirCadastroEmpresaServlet.class);
-			try {
-				EmpresaServices.incluirEmpresa(empresa);
+                
+                String tipoPessoa = request.getParameter("tipoPessoa");
+                
+                Date dataAssinatura = (Date)request.getAttribute("dataAssinatura");
+                String email = request.getParameter("email");
+                String telefone = request.getParameter("telefone");
+                
+                if(tipoPessoa.equals("cnpj")){
+                    String cnpjConvenio = request.getParameter("cnpjConvenio");
+                    cnpjConvenio = cnpjConvenio.replaceAll("[.|/|-]", "");
+                    String razaoSocial = request.getParameter("razaoSocial");
+                    boolean agenteIntegracao = Boolean.parseBoolean(request.getParameter("agenteIntegracao"));
+                    String pessoaContato = request.getParameter("pessoaContato");
+                    
+                    PessoaJuridica J = new PessoaJuridica(cnpjConvenio, razaoSocial, agenteIntegracao, dataAssinatura);
+                   //// J.setNumeroConvenio(numConvenio);
+                    if(email != null){
+                        J.setEmail(email);
+                    }if(telefone!=null){
+                        J.setTelefone(telefone);
+                    }if(pessoaContato!= null){
+                        J.setPessoaCOntato(pessoaContato);
+                    }
+                    
+                    
+                    
+                    
+                    String msg = "";
+                    Logger lg = Logger.getLogger(IncluirCadastroEmpresaServlet.class);
+                    try {       
+				PessoaJuridicaServices.incluirConvenio(J);
+                                
 				msg = messages.getString("br.cefetrj.sisgee.incluir_cadastro_empresa_servlet.msg_empresa_cadastrada");
 				request.setAttribute("msg", msg);
 				lg.info(msg);
@@ -53,17 +73,30 @@ public class IncluirCadastroEmpresaServlet extends HttpServlet {
 			} catch (Exception e) {
 				msg = messages.getString("br.cefetrj.sisgee.incluir_cadastro_empresa_servlet.msg_ocorreu_erro");
 				request.setAttribute("msg", msg);
-				lg.error("Exception ao tentar inserir uma Empresa", e);
+				lg.error("Exception ao tentar inserir um convenio", e);
 				request.getRequestDispatcher("/form_empresa.jsp").forward(request, response);
 
 			}
-
-		} else {
-			String msg = "";
-			Logger lg = Logger.getLogger(IncluirCadastroEmpresaServlet.class);
-			try {
-				AgenteIntegracaoServices.incluirAgenteIntegracao(agente);
-				msg = messages.getString("br.cefetrj.sisgee.incluir_cadastro_empresa_servlet.msg_agente_cadastrado");
+                }else if(tipoPessoa.equals("cpf")){
+                    String cpfConvenio = request.getParameter("cpf");
+                    String nomePessoa = request.getParameter("nomePessoa");
+                    cpfConvenio = cpfConvenio.replaceAll("[.|-]", "");
+                    
+                    
+                    PessoaFisica F = new PessoaFisica(cpfConvenio, nomePessoa, dataAssinatura);
+                   //// F.setNumeroConvenio(numConvenio);
+                    if(email != null){
+                        F.setEmail(email);
+                    }if(telefone!=null){
+                        F.setTelefone(telefone);
+                    }
+                    
+                    String msg = "";
+                    Logger lg = Logger.getLogger(IncluirCadastroEmpresaServlet.class);
+                    try {       
+				PessoaFisicaServices.incluirConvenio(F);
+                                
+				msg = messages.getString("br.cefetrj.sisgee.incluir_cadastro_empresa_servlet.msg_empresa_cadastrada");
 				request.setAttribute("msg", msg);
 				lg.info(msg);
 				request.getRequestDispatcher("/index.jsp").forward(request, response);
@@ -71,13 +104,17 @@ public class IncluirCadastroEmpresaServlet extends HttpServlet {
 			} catch (Exception e) {
 				msg = messages.getString("br.cefetrj.sisgee.incluir_cadastro_empresa_servlet.msg_ocorreu_erro");
 				request.setAttribute("msg", msg);
-				lg.error("Exception ao tentar inserir uma Empresa", e);
+				lg.error("Exception ao tentar inserir um convenio", e);
 				request.getRequestDispatcher("/form_empresa.jsp").forward(request, response);
-                                
 
 			}
-
-		}
-	}
+                    
+                    
+                }
+                
+        }    
+                
+                
+		
 
 }

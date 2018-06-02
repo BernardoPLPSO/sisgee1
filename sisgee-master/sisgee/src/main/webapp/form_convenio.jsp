@@ -58,6 +58,30 @@
 				    		<div class="invalid-feedback">${ nomeEmpresaMsg }</div>
 		        		</c:if>
 				</div>
+                                                
+                                                
+                                                
+                               
+                                                
+                   
+                    <legend class="col-form-legend col-lg"><fmt:message key = "br.cefetrj.sisgee.resources.form.vigenciaEstagio"/></legend>
+                    
+                        <div class="form-group col-md-6">
+
+                            <label for="dataInicioTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.dataInicio"/></label>
+                            <input type="text" class="form-control col-sm-4 ${ not empty dataInicioMsg ? 'is-invalid': not empty periodoMsg ? 'is-invalid' : 'is-valid' }" id="dataInicioTermoEstagio"  name="dataInicioTermoEstagio" value="${ param.dataInicioTermoEstagio }" ${ not empty termoEstagio ? 'disabled' : '' } >
+                            <c:if test="${ not empty dataInicioMsg }">
+                                <div class="invalid-feedback">${ dataInicioMsg }</div>
+                            </c:if>
+                        </div>
+                        
+                   
+               
+                            
+                            
+                            
+                            
+                            
 		</fieldset>
 					
 			<button type="submit" class="btn btn-primary"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_salvar"/></button>
