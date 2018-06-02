@@ -11,9 +11,7 @@
             $('.isPessoaChk').change(function(){
 	    	$('.AI').hide();
 	    	$(".AI input").val("");
-	    	
-	    	
-	    	$(this).val() == 'sim' ? $('.isAI').show("slow") : $('.notAI').show("slow");
+	    	$(this).val() == 'cpf' ? $('.isAI').show("slow") : $('.notAI').show("slow");
 	    });
 	    
 	    

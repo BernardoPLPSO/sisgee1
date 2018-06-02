@@ -122,7 +122,7 @@
                         </div> 
                                         
                                         
-                        <div class="form-row notAI AI" ${ empty param.tipoPessoa ? "style='display:none'" : param.tipoPessoa == "cnpj" ? "style='display:none'" : "" }>
+                        <div class="form-row isAI AI" ${ empty param.tipoPessoa ? "style='display:none'" : param.tipoPessoa == "cnpj" ? "style='display:none'" : "" }>
                             
 				<div class="form-group col-md-6">
 					<label for="cnpjConvenio"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_cnpj"/></label>
