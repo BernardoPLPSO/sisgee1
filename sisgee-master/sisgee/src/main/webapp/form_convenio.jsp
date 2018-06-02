@@ -25,12 +25,63 @@
 		
 		<form action="ValidaCadastroEmpresaServlet" method="post">
 			<fieldset class="form-group">
-				<div class="form-row" >
-				<div class="form-group col-md-3" >
-					<label for="agenteIntegracao"><fmt:message key="br.cefetrj.sisgee.form_empresa.msg_agente_integracao" /></label>
-				</div>
+				
+                            
 
-				<div class="custom-controls-stacked d-block my-3">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="tipoPessoa"><fmt:message key = "br.cefetrj.sisgee.resources.form.tipoPessoa"/></label>
+                                
+
+                                <div class="custom-controls-stacked d-block my-3">							
+                                    <label class="custom-control custom-radio">
+                                        <input id="agenteSim" class="custom-control-input isAgenteChk ${ not empty isAgenteIntegracaoMsg ? 'is-invalid' : '' }" type="radio" name="tipoPessoa" value="cpf" ${ not empty isAgenteIntegracaoMsg ? '' : param.isAgenteIntegracao == 'cpf' ? 'checked' : '' }> 
+                                        <span class="custom-control-indicator"></span> 
+                                        <span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.resources.form.cpf"/></span>
+                                    </label>						
+
+                                    <label class="custom-control custom-radio">
+                                        <input id="agenteNao" class="custom-control-input isAgenteChk ${ not empty isAgenteIntegracaoMsg ? 'is-invalid' : '' }" type="radio" name="tipoPessoa" value="cnpj" ${ not empty isAgenteIntegracaoMsg ? '' : param.isAgenteIntegracao == 'cnpj' ? 'checked' : '' }> 
+                                        <span class="custom-control-indicator"></span> 
+                                        <span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.resources.form.cnpj"/></span>
+                                    </label>
+                                    <c:if test="${ not empty isAgenteIntegracaoMsg }">
+                                        <div class="invalid-feedback">${ isAgenteIntegracaoMsg }</div>
+                                    </c:if>
+                                </div>
+                                </div>
+                            </div>
+
+                                
+                            
+                            
+                            
+                            
+				
+
+							
+			<div class="form-row notAI AI" ${ empty param.tipoPessoa ? "style='display:none'" : param.tipoPessoa == "cnpj" ? "style='display:none'" : "" }>
+                            
+				<div class="form-group col-md-6">
+					<label for="cnpjConvenio"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_cnpj"/></label>
+					<input type="text" class="form-control ${ not empty cnpjConvenioMsg ? 'is-invalid': 'is-valid' }" id="cnpjConvenio" name="cnpjConvenio" required value="${ param.cnpjConvenio }">
+						<c:if test="${ not empty cnpjConvenioMsg }">
+				    		<div class="invalid-feedback">${ cnpjConvenioMsg }</div>
+		        		</c:if>
+				</div>
+																			
+				<div class="form-group col-md-6">
+					<label for="razaoSocial"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_razao_social"/></label>
+                                        <input type="text" class="form-control ${ not empty razaoSocialMsg ? 'is-invalid': 'is-valid' }" id="razaoSocial" name="razaoSocial" maxlength="100" required value="${ param.razaoSocial }">
+						<c:if test="${ not empty razaoSocialMsg }">
+				    		<div class="invalid-feedback">${ razaoSocialMsg }</div>
+		        		</c:if>
+				</div>
+                                                
+                                <div class="form-group col-md-4" >
+					<label for="agenteIntegracao"><fmt:message key="br.cefetrj.sisgee.form_empresa.msg_agente_integracao" /></label>
+                                        
+                                        <div class="custom-controls-stacked d-block my-3">
 					<label class="custom-control custom-radio"> 
 						<input id="agenteSim" name="agenteIntegracao" type="radio" class="custom-control-input" required value = "sim" > 
 						<span class="custom-control-indicator"></span> 
@@ -41,21 +92,61 @@
 						<span class="custom-control-indicator"></span> 
 						<span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_nao"/></span>
 					</label>
-				</div>					
-			</div>
+				</div>		
+				</div>
+                                        
+                        </div> 
+                                        
+                                        
+                        <div class="form-row notAI AI" ${ empty param.tipoPessoa ? "style='display:none'" : param.tipoPessoa == "cpf" ? "style='display:none'" : "" }>
+                            
 				<div class="form-group col-md-6">
-					<label for="cnpjEmpresa"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_cnpj"/></label>
-					<input type="text" class="form-control ${ not empty cnpjEmpresaMsg ? 'is-invalid': 'is-valid' }" id="cnpjEmpresa" name="cnpjEmpresa" required value="${ param.cnpjEmpresa }">
-						<c:if test="${ not empty cnpjEmpresaMsg }">
-				    		<div class="invalid-feedback">${ cnpjEmpresaMsg }</div>
+					<label for="cnpjConvenio"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_cnpj"/></label>
+					<input type="text" class="form-control ${ not empty cnpjConvenioMsg ? 'is-invalid': 'is-valid' }" id="cnpjConvenio" name="cnpjConvenio" required value="${ param.cnpjConvenio }">
+						<c:if test="${ not empty cnpjConvenioMsg }">
+				    		<div class="invalid-feedback">${ cnpjConvenioMsg }</div>
 		        		</c:if>
 				</div>
 																			
 				<div class="form-group col-md-6">
-					<label for="nomeEmpresa"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_razao_social"/></label>
-                                        <input type="text" class="form-control ${ not empty nomeEmpresaMsg ? 'is-invalid': 'is-valid' }" id="nomeEmpresa" name="nomeEmpresa" maxlength="100" required value="${ param.nomeEmpresa }">
-						<c:if test="${ not empty nomeEmpresaMsg }">
-				    		<div class="invalid-feedback">${ nomeEmpresaMsg }</div>
+					<label for="razaoSocial"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_razao_social"/></label>
+                                        <input type="text" class="form-control ${ not empty razaoSocialMsg ? 'is-invalid': 'is-valid' }" id="razaoSocial" name="razaoSocial" maxlength="100" required value="${ param.razaoSocial }">
+						<c:if test="${ not empty razaoSocialMsg }">
+				    		<div class="invalid-feedback">${ razaoSocialMsg }</div>
+		        		</c:if>
+				</div>
+                                                
+                                
+                        </div>                
+                                        
+                                        
+                                        
+                                        
+                                            
+                                                
+                                                
+                                <div class="form-group col-md-6">
+
+                                     <label for="dataAssinatura"><fmt:message key = "br.cefetrj.sisgee.resources.form.dataAssinatura"/></label>
+                                     <input type="text" class="form-control col-sm-4 ${ not empty dataAssinaturaMsg ? 'is-invalid': not empty dataAssinaturaMsg ? 'is-invalid' : 'is-valid' }" id="dataAssinatura"  name="dataAssinatura" value="${ param.dataAssinatura }" ${ not empty termoEstagio ? 'disabled' : '' } >
+                                         <c:if test="${ not empty dataAssinaturaMsg }">
+                                              <div class="invalid-feedback">${ dataAssinaturaMsg }</div>
+                                         </c:if>
+                                </div> 
+                                                
+                                <div class="form-group col-md-6">
+					<label for="email"><fmt:message key = "br.cefetrj.sisgee.resources.form.email"/></label>
+                                        <input type="email" placeholder="nome@exemplo.com" class="form-control ${ not empty EmailMsg ? 'is-invalid': 'is-valid' }" id="email" name="email" maxlength="50" required value="${ param.email }">
+						<c:if test="${ not empty EmailMsg }">
+				    		<div class="invalid-feedback">${ EmailMsg }</div>
+		        		</c:if>
+				</div>
+                                             
+                                <div class="form-group col-md-6">
+					<label for="telefone"><fmt:message key = "br.cefetrj.sisgee.resources.form.telefone"/></label>
+                                        <input type="tel"  class="form-control mask('(99) 99999-9999') ${ not empty telefoneMsg ? 'is-invalid': 'is-valid' }" id="telefone" name="telefone" maxlength="11" required value="${ param.telefone }">
+						<c:if test="${ not empty telefoneMsg }">
+				    		<div class="invalid-feedback">${ telefoneMsg }</div>
 		        		</c:if>
 				</div>
                                                 
@@ -64,16 +155,9 @@
                                
                                                 
                    
-                    <legend class="col-form-legend col-lg"><fmt:message key = "br.cefetrj.sisgee.resources.form.vigenciaEstagio"/></legend>
                     
-                        <div class="form-group col-md-6">
-
-                            <label for="dataInicioTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.dataInicio"/></label>
-                            <input type="text" class="form-control col-sm-4 ${ not empty dataInicioMsg ? 'is-invalid': not empty periodoMsg ? 'is-invalid' : 'is-valid' }" id="dataInicioTermoEstagio"  name="dataInicioTermoEstagio" value="${ param.dataInicioTermoEstagio }" ${ not empty termoEstagio ? 'disabled' : '' } >
-                            <c:if test="${ not empty dataInicioMsg }">
-                                <div class="invalid-feedback">${ dataInicioMsg }</div>
-                            </c:if>
-                        </div>
+                    
+                        
                         
                    
                
@@ -91,9 +175,12 @@
 	</div>
 	<%@include file="import_footer.jspf"%>
 	<%@include file="import_finalbodyscripts.jspf"%>
+        <%@include file="import_scripts.jspf"%>
         <script>
             $(document).ready(function(){
                 $('#cnpjEmpresa').mask('99.999.999/9999-99');
+                $('#dataAssinatura').mask('99/99/9999');
+                $('#telefone').mask('(99) 99999-9999');
+                
             });
         </script>
-</body>

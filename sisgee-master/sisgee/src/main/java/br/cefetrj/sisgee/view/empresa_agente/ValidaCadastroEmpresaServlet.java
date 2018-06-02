@@ -99,7 +99,7 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 						PessoaJuridica e = PessoaJuridicaServices.buscarConvenioByCNPJ(cnpjConvenio);
 						if (e == null) { 
                                                     
-                                                    request.setAttribute("cnpjEmpresa", cnpjConvenio);
+                                                    request.setAttribute("cnpjConvenio", cnpjConvenio);
                                                     
 						}
 						else {
@@ -254,22 +254,22 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 		 * Nome ja existente.
 		 */
 		String nomePessoaMsg = "";
-		nomePessoaMsg = ValidaUtils.validaObrigatorio("Razão Social", nomePessoa);
+		nomePessoaMsg = ValidaUtils.validaObrigatorio("Nome Pessoa", nomePessoa);
 		if (nomePessoaMsg.trim().isEmpty()) {
-			nomePessoaMsg = ValidaUtils.validaTamanho("Razão Social", 100, nomePessoa);
+			nomePessoaMsg = ValidaUtils.validaTamanho("Nome Pessoa", 100, nomePessoa);
 			if (nomePessoaMsg.trim().isEmpty()) {
                             
-                                    request.setAttribute("razaoSocial", nomePessoa);
+                                    request.setAttribute("nomePessoa", nomePessoa);
                                     
                }else {
 				nomePessoaMsg = ServletUtils.mensagemFormatada(nomePessoaMsg, locale, tamanho);
-				request.setAttribute("razaoSocialMsg", nomePessoaMsg);
+				request.setAttribute("nomePessoaMsg", nomePessoaMsg);
 				isValid = false;
 			}
 		}
 		else {
 			nomePessoaMsg = messages.getString(nomePessoaMsg);
-			request.setAttribute("razaoSocialMsg", nomePessoaMsg);
+			request.setAttribute("nomePessoaMsg", nomePessoaMsg);
 			isValid = false;
 		}
                             
