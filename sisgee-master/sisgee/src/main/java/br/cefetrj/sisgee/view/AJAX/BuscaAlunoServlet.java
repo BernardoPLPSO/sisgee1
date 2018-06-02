@@ -15,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import br.cefetrj.sisgee.control.AlunoServices;
 import br.cefetrj.sisgee.model.entity.Aluno;
 import br.cefetrj.sisgee.model.entity.TermoEstagio;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.json.JsonObjectBuilder;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
@@ -44,17 +46,17 @@ public class BuscaAlunoServlet extends HttpServlet {
         String nomeCurso = "";
         String nomeCampus = "";
         String idTermoEstagioAtivo = "";
+        List<TermoEstagio> termos = null;
 
-        
         Aluno aluno = AlunoServices.buscarAlunoByMatricula(matricula.trim());
-        if (aluno != null) {            
+        if (aluno != null) {
             idAluno = Integer.toString(aluno.getIdAluno());
             nomeAluno = aluno.getNomeAluno();
             nomeCurso = aluno.getNomeCurso();
             nomeCampus = aluno.getNomeCampus();
-            List<TermoEstagio> termos = aluno.getTermoEstagios();
+            termos = aluno.getTermoEstagios();
             request.getServletContext().setAttribute("termos", termos);
-            
+
             if (!termos.isEmpty() || termos == null) {
                 System.out.println("Passei aqui");
                 for (TermoEstagio termo : termos) {
@@ -72,6 +74,16 @@ public class BuscaAlunoServlet extends HttpServlet {
             System.out.println("Vazio");
         }
         //JSON
+
+        JsonObjectBuilder ajuda = Json.createObjectBuilder();
+
+        for (TermoEstagio t : termos) {
+            
+            ajuda.add("a", t.getDataInicioTermoEstagio().toString());
+            
+        }
+        JsonObject termosadd = ajuda.build();
+
         JsonObject model = Json.createObjectBuilder()
                 .add("idAluno", idAluno)
                 .add("nome", nomeAluno)
@@ -83,6 +95,7 @@ public class BuscaAlunoServlet extends HttpServlet {
         StringWriter stWriter = new StringWriter();
         JsonWriter jsonWriter = Json.createWriter(stWriter);
         jsonWriter.writeObject(model);
+        jsonWriter.writeObject(termosadd);
         jsonWriter.close();
         String jsonData = stWriter.toString();
 
