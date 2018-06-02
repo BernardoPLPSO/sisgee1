@@ -50,16 +50,16 @@
 				</tr>
 			</thead>			
 			<tbody>
-				<c:forEach items = "${termosAditivos}" var = "termoAditivo">
+				<c:forEach items = "${termos}" var = "termo">
 						<tr>
 						<td>
 							<c:url value = "/VerTermoAditivoServlet" var = "verTermoAditivoUrl" scope = "page">
-								<c:param name="idTermoAditivo" value = "${termoAditivo.idTermoEstagio}"/>  
+								<c:param name="idTermo" value = "${termo.idTermoEstagio}"/>  
 							</c:url>
-						<a href = "${verTermoAditivoUrl}" >${termoAditivo.dataInicioTermoEstagio }</a></td>	
+						<a href = "${verTermoAditivoUrl}" >${termo.dataInicioTermoEstagio }</a></td>	
 												
-						<td> ${ termoAditivo.convenioPJ.cnpj }</td>
-						<td> ${ termoAditivo.convenioPJ.razaoSocial }</td>						
+						<td> ${ termo.convenioPJ.cnpj }</td>
+						<td> ${ termo.convenioPJ.razaoSocial }</td>						
 							
 						</tr>
 				</c:forEach>
