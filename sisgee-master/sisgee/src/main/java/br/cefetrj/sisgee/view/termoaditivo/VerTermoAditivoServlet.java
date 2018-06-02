@@ -30,7 +30,7 @@ public class VerTermoAditivoServlet extends HttpServlet {
 		Locale locale = ServletUtils.getLocale(request);
 		ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
 		
-		String idTermoAditivo = request.getParameter("idTermoAditivo");
+		String idTermoAditivo = request.getParameter("idTermo");
 		Integer id = null;
 		TermoEstagio termoAditivo = null;
 		TermoEstagio termoEstagio = null;
@@ -46,8 +46,8 @@ public class VerTermoAditivoServlet extends HttpServlet {
 				id = Integer.parseInt(idTermoAditivo);
 				termoAditivo = TermoAditivoServices.buscarTermoAditivo(id);
 				if(termoAditivo != null) {
-					termoEstagio = TermoAditivoServices.termoEstagioAtualizadoByTermoAditivo(termoAditivo);					
-					request.setAttribute("termoAditivo", termoEstagio);				
+					//termoEstagio = TermoAditivoServices.termoEstagioAtualizadoByTermoAditivo(termoAditivo);					
+					request.setAttribute("termoAditivo", termoAditivo);				
 					
 				}else {
 					isValid = false;
