@@ -35,13 +35,13 @@
 
                                 <div class="custom-controls-stacked d-block my-3">							
                                     <label class="custom-control custom-radio">
-                                        <input id="agenteSim" class="custom-control-input isAgenteChk ${ not empty isAgenteIntegracaoMsg ? 'is-invalid' : '' }" type="radio" name="tipoPessoa" value="cpf" ${ not empty isAgenteIntegracaoMsg ? '' : param.isAgenteIntegracao == 'cpf' ? 'checked' : '' }> 
+                                        <input id="tipoPessoa" class="custom-control-input isAgenteChk ${ not empty isAgenteIntegracaoMsg ? 'is-invalid' : '' }" type="radio" name="tipoPessoa" value="cpf" ${ not empty isAgenteIntegracaoMsg ? '' : param.isAgenteIntegracao == 'cpf' ? 'checked' : '' }> 
                                         <span class="custom-control-indicator"></span> 
                                         <span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.resources.form.cpf"/></span>
                                     </label>						
 
                                     <label class="custom-control custom-radio">
-                                        <input id="agenteNao" class="custom-control-input isAgenteChk ${ not empty isAgenteIntegracaoMsg ? 'is-invalid' : '' }" type="radio" name="tipoPessoa" value="cnpj" ${ not empty isAgenteIntegracaoMsg ? '' : param.isAgenteIntegracao == 'cnpj' ? 'checked' : '' }> 
+                                        <input id="tipoPessoa" class="custom-control-input isAgenteChk ${ not empty isAgenteIntegracaoMsg ? 'is-invalid' : '' }" type="radio" name="tipoPessoa" value="cnpj" ${ not empty isAgenteIntegracaoMsg ? '' : param.isAgenteIntegracao == 'cnpj' ? 'checked' : '' }> 
                                         <span class="custom-control-indicator"></span> 
                                         <span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.resources.form.cnpj"/></span>
                                     </label>
@@ -61,7 +61,7 @@
 				
 
 							
-			<div class="form-row notAI AI" ${ empty param.tipoPessoa ? "style='display:none'" : param.tipoPessoa == "cnpj" ? "style='display:none'" : "" }>
+			<div class="form-row notAI AI" ${ empty param.tipoPessoa ? "style='display:none'" : param.tipoPessoa == "cpf" ? "style='display:none'" : "" }>
                             
 				<div class="form-group col-md-6">
 					<label for="cnpjConvenio"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_cnpj"/></label>
@@ -99,7 +99,7 @@
                         </div> 
                                         
                                         
-                        <div class="form-row notAI AI" ${ empty param.tipoPessoa ? "style='display:none'" : param.tipoPessoa == "cpf" ? "style='display:none'" : "" }>
+                        <div class="form-row notAI AI" ${ empty param.tipoPessoa ? "style='display:none'" : param.tipoPessoa == "cnpj" ? "style='display:none'" : "" }>
                             
 				<div class="form-group col-md-6">
 					<label for="cnpjConvenio"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_cnpj"/></label>
