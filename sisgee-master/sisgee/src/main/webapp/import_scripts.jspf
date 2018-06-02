@@ -10,14 +10,20 @@
 	    
 	    
 	    
-	    $("#btnBuscarNumeroConvenio").click(function(){
-	    	
+	    $("#btnBuscarNumeroConvenio,#btnBuscarNomeConvenio").click(function(){
+                
+                $elementNome = $('.nomeConvenio');
                 $elementNumero = $('.numeroConvenio');
 	    	
-	    	if($.trim($elementNumero.val()) == ""){
-	    		$("#idConvenio").val("");
+	    	if($.trim($elementNumero.val()) == "" && $elementNome.val() == ""){
 	    		$("#myModalLabel").html("<fmt:message key="br.cefetrj.sisgee.import_busca_empresa_script.campo_vazio"/>");
 	        	$(".modal-body").html("<fmt:message key="br.cefetrj.sisgee.import_busca_aluno_script.cnpj_vazio"/>");      	
+	        	$('#myModal').modal('show');
+    			return;
+	    	}
+                else if($.trim($elementNumero.val()) != "" && $elementNome.val() != ""){
+	    		$("#myModalLabel").html("<fmt:message key="br.cefetrj.sisgee.import_busca_empresa_script.campo_vazio"/>");
+	        	$(".modal-body").html("<fmt:message key="br.cefetrj.sisgee.import_busca_aluno_script.ambosPreenchidos"/>");      	
 	        	$('#myModal').modal('show');
     			return;
 	    	}
@@ -33,12 +39,52 @@
 	                result = json;
                         if(result.idConvenio != ""){
                             $("#idConvenio").val(result.idConvenio);
+                            $('#cpfConvenio').val(result.cpfConvenio);
+                            $('#nomePF').val(result.nomePF);
+                            $('#razaoSocial').val(result.razaoSocial);
+                            $('#cnpjConvenio').val(result.cnpjConvenio);
+                            $('#isPessoa').val(result.isPessoa);
+                            $('agenteIntegracao').val(result.agenteIntegracao);
                         }
                         else{
                             $(".nomeConvenio, #idConvenio").val("");
                             $("#myModalLabel").html("Empresa não encontrada!");
                             $(".modal-body").html("O CNPJ não corresponde a uma empresa cadastrada.");	        	
                             $('#myModal').modal('show');	        	
+                        }
+                        if(result.isPessoa === 'PF'){
+                            $('#divPF').css('display','');
+                            $('#divPJ').css('display','none');
+                            $('#divTipo').css('visibility','');
+                            var $radios = $('input:radio[name=tipoPessoa]');
+                            $radios.filter('[value=cpf]').prop('disabled',false);
+                            $radios.filter('[value=cnpj]').prop('disabled',true);
+                            $radios.filter('[value=cpf]').prop('checked',true);
+                        }
+                        else if(result.isPessoa === 'PJ'){
+                            $('#divPF').css('display','none');
+                            $('#divPJ').css('display','');
+                            $('#divTipo').css('visibility','');
+                            var $radios = $('input:radio[name=tipoPessoa]');
+                            $radios.filter('[value=cnpj]').prop('disabled',false);                            
+                            $radios.filter('[value=cpf]').prop('disabled',true);
+                            $radios.filter('[value=cnpj]').prop('checked',true);
+                            var $radioTipo = $('input:radio[name=agtInt]');
+                            if(result.agenteIntegracao == 'false'){
+                                $radioTipo.filter('[value=nao]').prop('disabled',false);
+                                $radioTipo.filter('[value=sim]').prop('disabled',true);
+                                $radioTipo.filter('[value=nao]').prop('checked',true);
+                            }
+                            else{
+                                $radioTipo.filter('[value=sim]').prop('disabled',false);
+                                $radioTipo.filter('[value=nao]').prop('disabled',true);
+                                $radioTipo.filter('[value=sim]').prop('checked',true);
+                            }
+                        }
+                        else{
+                            $('#divPF').css('display','none');
+                            $('#divPJ').css('display','none');
+                            $('#divTipo').css('visibility','hidden');
                         }
                     }
 	        });
@@ -94,7 +140,7 @@
 	    });
 	    
 	    $(".addEmpresa, .addAgenteIntegracao").click(function(){
-	    	window.open("form_convenio.jsp", "_blank", "width=800,height=600");
+	    	window.open("form_convenios.jsp", "_blank", "width=800,height=600");
 	    });
 	    
 	    function atualizaAgenteIntegracao(){

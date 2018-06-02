@@ -1,5 +1,7 @@
 package br.cefetrj.sisgee.view.termoestagio;
 
+import br.cefetrj.sisgee.control.PessoaFisicaServices;
+import br.cefetrj.sisgee.control.PessoaJuridicaServices;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Locale;
@@ -53,15 +55,11 @@ public class IncluirTermoEstagioServlet extends HttpServlet {
         String estadoEnderecoTermoEstagio = (String) request.getAttribute("estadoEnderecoTermoEstagio");
         Boolean eEstagioObrigatorio = (Boolean) request.getAttribute("obrigatorio");
         Aluno aluno = new Aluno((Integer) request.getAttribute("idAluno"));
+        String numeroConvenio = (String)request.getAttribute("numeroConvenio");
         //Convenio convenio = (Convenio)request.getAttribute("convenio");
-        String tipoConvenio = (String) request.getAttribute("tipo");
-        PessoaJuridica pj = null;
-        PessoaFisica pf = null;
-        if (tipoConvenio.equals("Pessoa Fisica")) {
-            pf = new PessoaFisica((String) request.getAttribute("numeroConvenio"));
-        } else {
-            pj = new PessoaJuridica((String) request.getAttribute("numeroConvenio"));
-        }
+        PessoaFisica pf = PessoaFisicaServices.buscarConvenioByNumero(numeroConvenio);
+        PessoaJuridica pj = PessoaJuridicaServices.buscarConvenioByNumero(numeroConvenio);
+
         //Empresa empresa = new Empresa((Integer)request.getAttribute("idEmp"));		
 
         //NÃO OBRIGATÓRIO
