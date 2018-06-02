@@ -39,9 +39,15 @@ public class BuscaEmpresaServlet extends HttpServlet {
         
         PessoaJuridica pj = null;
         PessoaFisica pf = null;
-        String numeroConvenio = request.getParameter("numeroConvenio");
+        String numeroConvenio = "";
+        if(request.getParameter("numeroConvenio") != null){
+            numeroConvenio = request.getParameter("numeroConvenio");
+        }
         String idConvenio = "";
         String nomeConvenio = "";
+        if(request.getParameter("nomeConvenio")!=null){
+            nomeConvenio = request.getParameter("nomeConvenio");
+        }
         String cpfConvenio = "";
         String cnpjConvenio = "";
         String razaoSocial = "";
