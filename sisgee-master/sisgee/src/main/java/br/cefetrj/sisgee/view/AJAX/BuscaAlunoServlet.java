@@ -50,6 +50,10 @@ public class BuscaAlunoServlet extends HttpServlet {
         if (aluno != null) {
             List<TermoEstagio> termosAditivos = aluno.getTermoEstagios();
             request.getServletContext().setAttribute("termosAditivos", termosAditivos);
+            for (TermoEstagio t : termosAditivos){
+            System.out.println(t.getTermoEstagio());    
+            }
+            
             idAluno = Integer.toString(aluno.getIdAluno());
             nomeAluno = aluno.getNomeAluno();
             nomeCurso = aluno.getNomeCurso();

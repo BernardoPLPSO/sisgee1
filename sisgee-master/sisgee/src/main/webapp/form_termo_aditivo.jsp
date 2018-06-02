@@ -56,10 +56,10 @@
 							<c:url value = "/VerTermoAditivoServlet" var = "verTermoAditivoUrl" scope = "page">
 								<c:param name="idTermoAditivo" value = "${termoAditivo.idTermoEstagio}"/>  
 							</c:url>
-						<a href = "${verTermoAditivoUrl}" >${ termoAditivo.termoEstagio.dataInicioTermoEstagio }</a></td>	
+						<a href = "${verTermoAditivoUrl}" >${ termoAditivo.termoEstagio == null ? null : termoAditivo.dataInicioTermoEstagio }</a></td>	
 												
-						<td> ${ termoAditivo.termoEstagio.convenioPJ.cnpj }</td>
-						<td> ${ termoAditivo.termoEstagio.convenioPJ.razaoSocial }</td>						
+						<td> ${ termoAditivo.convenioPJ.cnpj }</td>
+						<td> ${ termoAditivo.convenioPJ.razaoSocial }</td>						
 							
 						</tr>
 				</c:forEach>
