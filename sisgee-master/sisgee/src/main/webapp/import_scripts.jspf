@@ -140,7 +140,7 @@
 	    });
 	    
 	    $(".addEmpresa, .addAgenteIntegracao").click(function(){
-	    	window.open("form_convenios.jsp", "_blank", "width=800,height=600");
+	    	window.open("form_convenio.jsp", "_blank", "width=800,height=600");
 	    });
 	    
 	    function atualizaAgenteIntegracao(){
