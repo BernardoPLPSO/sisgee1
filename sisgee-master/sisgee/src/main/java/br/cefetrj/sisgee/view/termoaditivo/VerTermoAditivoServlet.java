@@ -32,8 +32,8 @@ public class VerTermoAditivoServlet extends HttpServlet {
 		
 		String idTermoAditivo = request.getParameter("idTermo");
 		Integer id = null;
-		TermoEstagio termoAditivo = null;
-		TermoEstagio termoEstagio = null;
+		TermoEstagio termo = null;
+		//TermoEstagio termoEstagio = null;
 		
 		String msg = "";
 		String campo = "Termo Aditivo";
@@ -44,10 +44,10 @@ public class VerTermoAditivoServlet extends HttpServlet {
 			msg = ValidaUtils.validaInteger(campo, idTermoAditivo);
 			if(msg.trim().isEmpty()) {
 				id = Integer.parseInt(idTermoAditivo);
-				termoAditivo = TermoAditivoServices.buscarTermoAditivo(id);
-				if(termoAditivo != null) {
+				termo = TermoAditivoServices.buscarTermoAditivo(id);
+				if(termo != null) {
 					//termoEstagio = TermoAditivoServices.termoEstagioAtualizadoByTermoAditivo(termoAditivo);					
-					request.setAttribute("termoAditivo", termoAditivo);				
+					request.setAttribute("termoAditivo", termo);				
 					
 				}else {
 					isValid = false;

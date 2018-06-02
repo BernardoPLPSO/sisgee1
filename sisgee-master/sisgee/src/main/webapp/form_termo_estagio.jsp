@@ -4,7 +4,6 @@
         <%@include file="import_head.jspf"%>
 
         <style type="text/css">
-
             div.container {
                 margin-bottom: 2em;
             }
@@ -20,7 +19,6 @@
             div.form-row {
                 padding: 0px 15px;
             }
-
         </style>
 
         <title>
@@ -74,70 +72,7 @@
                 </c:choose>
 
                 <fieldset class="form-group" ${ not empty termoEstagio ? 'disabled' : '' }>
-                    <legend class="col-form-legend col-lg"><fmt:message key = "br.cefetrj.sisgee.resources.form.dadosEmpresaConveniada"/></legend>
-
-
-                    <div class="form-row">
-                        <div class="form-group col-md-3">
-                            <label for="isPessoa"><fmt:message key = "br.cefetrj.sisgee.resources.form.convenio.fj"/></label>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="numeroConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.numeroConvenio"/></label>
-                            <div class="input-group">						  
-                                <input type="text" class="form-control numeroConvenio" placeholder="Digite o Número" id="numeroConvenio" name="numeroConvenio" value="${ param.numeroConvenio }">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="button" id="btnBuscarNumeroConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="nomeConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomeConvenio"/></label>
-                            <div class="input-group">						  
-                                <input type="text" class="form-control nomeConvenioNotAI nomeConvenio" placeholder="Digite o Nome" id="nomeConvenio" name="nomeConvenio" value="${ param.nomeConvenio }">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="button" id="btnBuscarNomeConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
-                                </span>
-                                &nbsp;&nbsp;
-                                <button type="button" class="btn btn-primary addEmpresa">+</button>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="form-row notAI AI" >
-                        <div class="form-group col-md-5">
-                            <label for="cpfConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.cpf.pf"/></label>
-                            <input type="text" class="form-control nomeEmpresaIsAI nomePF" id="nomeConvenio" name="nomeConvenio" value="${ param.nomeConvenio }" readonly>
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="nomePF"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomePessoaFisica"/></label>
-                            <input type="text" class="form-control nomeEmpresaIsAI nomePF" name="nomeConvenio" value="${ param.nomeConvenio }" readonly>
-                        </div>
-                    </div>
-                    <div class="form-row notAI AI" >
-                        <div class="form-group col-md-5">
-                            <label for="cpfConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.cnpj"/></label>
-                            <input type="text" class="form-control nomeEmpresaIsAI nomePF" name="nomeConvenio" value="${ param.nomeConvenio }" readonly>
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="nomePF"><fmt:message key = "br.cefetrj.sisgee.resources.form.razaoSocial"/></label>
-                            <input type="text" class="form-control nomeEmpresaIsAI nomePF" name="nomeConvenio" value="${ param.nomeConvenio }" readonly>
-                        </div>
-                    </div>
-                    <div class="custom-controls-stacked d-block my-3">							
-                        <label class="custom-control custom-radio">
-                            <input id="PessoaFisica" class="custom-control-input isJuridicaChk ${not empty isPessoa ? 'is-invalid' : '' }" type="radio" name="tipoPessoa" value="cpf"> 
-                            <span class="custom-control-indicator"></span> 
-                            <span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.resources.form.pFisica"/></span>
-                        </label>						
-                        <label class="custom-control custom-radio"> 
-                            <input id="PessoaJuridica" class="custom-control-input isJuridicaChk ${not empty isPessoa ? 'is-invalid' : '' }" type="radio" name="tipoPessoa" value="cnpj"> 
-                            <span class="custom-control-indicator"></span> 
-                            <span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.resources.form.pJuridica"/></span>
-                        </label>
-                    </div>
+                    <%@include file="import_busca_convenio.jspf" %>
                 </fieldset>
 
 

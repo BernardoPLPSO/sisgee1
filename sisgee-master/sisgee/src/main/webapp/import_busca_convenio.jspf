@@ -1,0 +1,69 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<legend class="col-form-legend col-lg"><fmt:message key = "br.cefetrj.sisgee.resources.form.dadosEmpresaConveniada"/></legend>
+<div class="form-row">
+    <div class="form-group col-md-4">
+        <label for="numeroConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.numeroConvenio"/></label>
+        <div class="input-group">						  
+            <input type="text" class="form-control numeroConvenio" placeholder="Digite o Número" id="numeroConvenio" name="numeroConvenio" value="${ param.numeroConvenio }">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" id="btnBuscarNumeroConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
+            </span>
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="nomeConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomeConvenio"/></label>
+        <div class="input-group">						  
+            <input type="text" class="form-control nomeConvenioNotAI nomeConvenio" placeholder="Digite o Nome" id="nomeConvenio" name="nomeConvenio" value="${ param.nomeConvenio }">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" id="btnBuscarNomeConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
+            </span>
+            &nbsp;&nbsp;
+            <button type="button" class="btn btn-primary addEmpresa">+</button>
+        </div>
+    </div>
+</div>
+<div class="form-row"  id="divPF" style="display:none">
+    <div class="form-group col-md-5">
+        <label for="cpfConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.cpf.pf"/></label>
+        <input type="text" class="form-control" id="cpfConvenio" name="cpfConvenio" value="${ param.cpfConvenio }" readonly>
+    </div>
+    <div class="form-group col-md-5">
+        <label for="nomePF"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomePessoaFisica"/></label>
+        <input type="text" class="form-control nomeEmpresaIsAI nomePF" id="nomePF" name="nomePF" value="${ param.nomePF }" readonly>
+    </div>
+</div>
+<div class="form-row" id="divPJ" style="display:none">
+    <div class="form-group col-md-5">
+        <label for="cnpjConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.cnpj"/></label>
+        <input type="text" class="form-control nomeEmpresaIsAI nomePF" id="cnpjConvenio" name="cnpjConvenio" value="${ param.cnpjConvenio }" readonly>
+    </div>
+    <div class="form-group col-md-5">
+        <label for="razaoSocial"><fmt:message key = "br.cefetrj.sisgee.resources.form.razaoSocial"/></label>
+        <input type="text" class="form-control nomeEmpresaIsAI nomePF" id="razaoSocial" name="razaoSocial" value="${ param.razaoSocial }" readonly>
+    </div>
+    <div class="custom-controls-stacked d-block my-3" id="divAgt">
+        <label for="agenteIntegracao"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_agente_integracao"/></label>
+        <label class="custom-control custom-radio">
+            <input id="Agente" class="custom-control-input isAgenteChk ${not empty isPessoa ? 'is-invalid' : '' }" type="radio" name="agtInt" value="sim"> 
+            <span class="custom-control-indicator"></span> 
+            <span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.resources.form.sim"/></span>
+        </label>						
+        <label class="custom-control custom-radio"> 
+            <input id="NaoAgente" class="custom-control-input isAgenteChk ${not empty isPessoa ? 'is-invalid' : '' }" type="radio" name="agtInt" value="nao" > 
+            <span class="custom-control-indicator"></span> 
+            <span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.resources.form.nao"/></span>
+        </label>
+    </div>
+</div>
+<div class="custom-controls-stacked d-block my-3" id="divTipo" style="visibility:hidden">							
+    <label class="custom-control custom-radio">
+        <input id="PessoaFisica" class="custom-control-input isJuridicaChk ${not empty isPessoa ? 'is-invalid' : '' }" type="radio" name="tipoPessoa" value="cpf"> 
+        <span class="custom-control-indicator"></span> 
+        <span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.resources.form.pFisica"/></span>
+    </label>						
+    <label class="custom-control custom-radio"> 
+        <input id="PessoaJuridica" class="custom-control-input isJuridicaChk ${not empty isPessoa ? 'is-invalid' : '' }" type="radio" name="tipoPessoa" value="cnpj" > 
+        <span class="custom-control-indicator"></span> 
+        <span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.resources.form.pJuridica"/></span>
+    </label>
+</div>

@@ -82,10 +82,9 @@ public class FormTermoEstagioServlet extends HttpServlet {
 		String eEstagioObrigatorio = request.getParameter("eEstagioObrigatorio");
 		String idProfessorOrientador = request.getParameter("idProfessorOrientador");		
 		String idAluno = request.getParameter("idAluno");
+                System.out.println(idAluno);
 		String numeroConvenio = request.getParameter("numeroConvenio");
-		String idEmpresa = request.getParameter("idEmpresa");
 		String isAgenteIntegracao = request.getParameter("isAgenteIntegracao");
-		String idAgenteIntegracao = request.getParameter("idAgenteIntegracao");
 			
 		boolean isValid = true;
 		String msg = "";
@@ -580,7 +579,6 @@ public class FormTermoEstagioServlet extends HttpServlet {
 		if (numeroConvenioMsg.trim().isEmpty()) {
 			numeroConvenioMsg = ValidaUtils.validaTamanho(campo, tamanho, numeroConvenio);
 			if (numeroConvenioMsg.trim().isEmpty()) {
-				//convenio = ConvenioServices.buscarConvenioByNumero(numeroConvenio);
 				request.setAttribute("numeroConvenio", numeroConvenio);
 			} else {
 				numeroConvenioMsg = messages.getString(numeroConvenioMsg);
@@ -597,86 +595,6 @@ public class FormTermoEstagioServlet extends HttpServlet {
 			//TODO Fazer log
 			System.out.println(numeroConvenioMsg);
 		}	
-		
-		/**
-		 * Validação do idEmpresa campo obrigatório, inteiro e já existente no banco
-		 */
-		Empresa empresa = null;
-		String empresaMsg = "";
-		campo = "Empresa";
-		Integer idEmp;		
-		empresaMsg = ValidaUtils.validaObrigatorio(campo, idEmpresa);
-		if (empresaMsg.trim().isEmpty()) {
-			empresaMsg = ValidaUtils.validaInteger(campo, idEmpresa);
-			if (empresaMsg.trim().isEmpty()) {
-				idEmp = Integer.parseInt(idEmpresa);
-				empresa = EmpresaServices.buscarEmpresa(idEmp);
-				if(empresa != null) {
-					request.setAttribute("idEmp", idEmp);
-				}else {
-					empresaMsg = messages.getString("br.cefetrj.sisgee.form_termo_estagio_servlet.empresa_invalida");
-					request.setAttribute("empresaMsg", empresaMsg);
-					isValid = false;
-				}
-			} else {
-				empresaMsg = messages.getString(empresaMsg);
-				request.setAttribute("empresaMsg", empresaMsg);
-				isValid = false;
-			}
-		} else {
-			empresaMsg = messages.getString(empresaMsg);
-			request.setAttribute("empresaMsg", empresaMsg);
-			isValid = false;
-		}
-		
-		
-		/**
-		 * Validação do idAgenteIntegração campo obrigatório se usuário selecionou 
-		 * que Empresa Conveniada é agente de integração, inteiro e já existente no banco
-		 */
-		request.setAttribute("isAgenteIntegracao", isAgenteIntegracao);
-		String isAgenteIntegracaoMsg = "";
-		campo = "É agente de integração";
-		isAgenteIntegracaoMsg = ValidaUtils.validaObrigatorio(campo, isAgenteIntegracao);
-		if (isAgenteIntegracaoMsg.trim().isEmpty()) {		
-			if(isAgenteIntegracao.equals("sim")) {
-				AgenteIntegracao agenteIntegracao = null;
-				String agenteIntegracaoMsg = "";
-				campo = "Agente de Integração";
-				Integer idAI;
-				agenteIntegracaoMsg = ValidaUtils.validaObrigatorio(campo, idAgenteIntegracao);
-				if (agenteIntegracaoMsg.trim().isEmpty()) {
-					agenteIntegracaoMsg = ValidaUtils.validaInteger(campo, idAgenteIntegracao);
-					if (agenteIntegracaoMsg.trim().isEmpty()) {
-						idAI = Integer.parseInt(idAgenteIntegracao);
-						agenteIntegracao = AgenteIntegracaoServices.buscarAgenteIntegracao(idAI);
-						if(agenteIntegracao != null) {
-							request.setAttribute("idAI", idAI);
-							request.setAttribute(isAgenteIntegracao, isAgenteIntegracao);
-						}else {
-							agenteIntegracaoMsg = messages.getString("br.cefetrj.sisgee.form_termo_estagio_servlet.agente_integracao_invalido");
-							request.setAttribute("agenteIntegracaoMsg", agenteIntegracaoMsg);
-							isValid = false;
-						}
-					} else {
-						agenteIntegracaoMsg = messages.getString(agenteIntegracaoMsg);
-						request.setAttribute("agenteIntegracaoMsg", agenteIntegracaoMsg);
-						isValid = false;
-					}
-				} else {
-					agenteIntegracaoMsg = messages.getString(agenteIntegracaoMsg);
-					request.setAttribute("agenteIntegracaoMsg", agenteIntegracaoMsg);
-					isValid = false;
-				}
-			}
-		
-		}
-		else {
-			isAgenteIntegracaoMsg = messages.getString(isAgenteIntegracaoMsg);
-			System.out.println("msg AI: " + isAgenteIntegracaoMsg);
-			request.setAttribute("isAgenteIntegracaoMsg", isAgenteIntegracaoMsg);
-			isValid = false;
-		}
 		
 		
 		/**
