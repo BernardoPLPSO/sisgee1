@@ -67,7 +67,7 @@ public class VerTermoAditivoServlet extends HttpServlet {
 			String aditivo = "sim";
 			request.setAttribute("isVisualizacao", isVisualizacao);
 			request.setAttribute("aditivo", aditivo);
-			request.getRequestDispatcher("/form_termo_estagio.jsp").forward(request, response);
+			request.getRequestDispatcher("/form_termo_estagio_lista.jsp").forward(request, response);
 		}
 	}
 
