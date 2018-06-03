@@ -77,7 +77,37 @@
 
 
                 <fieldset class="form-group dadosAluno" ${ not empty termo ? 'disabled' :'' }>
-                    <%@include file="import_busca_aluno.jspf"%>
+                                        <legend class="col-form-legend col-lg"><fmt:message key = "br.cefetrj.sisgee.resources.form.dadosAluno"/></legend>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="matricula"><fmt:message key = "br.cefetrj.sisgee.resources.form.matricula"/></label>
+                            <div class="input-group">
+                                <input type="hidden" id="idAluno" name="idAluno" value="${ param.idAluno }">
+                                <input type="text" maxlength="100" class="form-control ${ not empty idAlunoMsg ? 'is-invalid': 'is-valid' }" id="matricula" name="matriculaPopUp" value="${ matriculaPopUp }" readonly>
+
+
+                                <c:if test="${ not empty idAlunoMsg }">
+                                    <div class="invalid-feedback">${ idAlunoMsg }</div>
+                                </c:if>
+
+                            </div>					    
+                        </div>
+                        <div class="form-group col-md">
+                            <label for="nome"><fmt:message key = "br.cefetrj.sisgee.resources.form.nome"/></label>
+                            <input type="text" class="form-control" id="nome" name="nome" value="${ nomeAlunoPopUp}" readonly>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="nomeCurso"><fmt:message key = "br.cefetrj.sisgee.resources.form.curso"/></label>
+                            <input type="text" class="form-control" id="nomeCurso"  name="nomeCurso" value="${ nomeCursoPopUp }" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="nomeCampus"><fmt:message key = "br.cefetrj.sisgee.resources.form.unidade"/></label>
+                            <input type="text" class="form-control" id="nomeCampus"  name="nomeCampus" value="${ nomeCampusPopUp }" readonly>
+                        </div>
+                    </div>			
+
                 </fieldset>
 
 
