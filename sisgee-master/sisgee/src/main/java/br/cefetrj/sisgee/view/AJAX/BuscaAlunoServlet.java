@@ -79,7 +79,7 @@ public class BuscaAlunoServlet extends HttpServlet {
 
         for (TermoEstagio t : termos) {
             
-            ajuda.add("a", t.getDataInicioTermoEstagio().toString());
+            ajuda.add("data", t.getDataInicioTermoEstagio().toString());
             
         }
         JsonObject termosadd = ajuda.build();
@@ -90,6 +90,7 @@ public class BuscaAlunoServlet extends HttpServlet {
                 .add("nomeCurso", nomeCurso)
                 .add("nomeCampus", nomeCampus)
                 .add("idTermoEstagioAtivo", idTermoEstagioAtivo)
+                .add("termosadd", termosadd)
                 .build();
 
         StringWriter stWriter = new StringWriter();
