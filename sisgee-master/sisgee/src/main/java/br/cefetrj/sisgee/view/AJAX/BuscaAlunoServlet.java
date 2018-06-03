@@ -62,6 +62,7 @@ public class BuscaAlunoServlet extends HttpServlet {
             request.getServletContext().setAttribute("nomeCursoPopUp", nomeCurso);
             request.getServletContext().setAttribute("nomeCampusPopUp", nomeCampus);
             request.getServletContext().setAttribute("matriculaPopUp", matricula);
+            request.getServletContext().setAttribute("display", "");
 
             if (!termos.isEmpty() || termos == null) {
                 System.out.println("Passei aqui");
