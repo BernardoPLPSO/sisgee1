@@ -6,6 +6,7 @@
 package br.cefetrj.sisgee.model.dao;
 
 import br.cefetrj.sisgee.model.entity.PessoaFisica;
+import javax.persistence.Query;
 
 /**
  *
@@ -18,7 +19,10 @@ public class PessoaFisicaDAO extends GenericDAO<PessoaFisica> {
     }
 
     public PessoaFisica buscarByNumeroConvenio(String numero) {
-        PessoaFisica f = (PessoaFisica) manager.createQuery("SELECT c FROM PessoaFisica c WHERE c.numeroConvenio LIKE :numero").setParameter("numero", numero).getSingleResult();
+        Query q = manager.createQuery("SELECT c FROM PessoaFisica c WHERE c.numeroConvenio LIKE :numero");
+        q.setFirstResult(0);
+        q.setMaxResults(1);
+        PessoaFisica f = (PessoaFisica) q.setParameter("numero", numero).getSingleResult();
         System.out.println(f);
         return  f;
     }
