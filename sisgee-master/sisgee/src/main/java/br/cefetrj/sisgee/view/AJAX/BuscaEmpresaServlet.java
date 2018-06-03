@@ -42,6 +42,7 @@ public class BuscaEmpresaServlet extends HttpServlet {
         String numeroConvenio = "";
         if(request.getParameter("numeroConvenio") != null){
             numeroConvenio = request.getParameter("numeroConvenio");
+            numeroConvenio += "%";
         }
         String idConvenio = "";
         String nomeConvenio = "";
