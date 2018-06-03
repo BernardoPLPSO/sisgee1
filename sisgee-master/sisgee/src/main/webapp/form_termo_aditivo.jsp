@@ -31,13 +31,13 @@
                     <%@include file="import_busca_aluno.jspf"%>
                     <div class="container">					
 
-                        <button id="btnListarAditivo" type="submit" class="btn btn-secondary" disabled="true"><fmt:message key = "br.cefetrj.sisgee.resources.form.listarAditivos"/></button>
+                        <button id="btnListarAditivo" type="button" class="btn btn-secondary" ><fmt:message key = "br.cefetrj.sisgee.resources.form.listarAditivos"/></button>
 
                     </div>				
 
                 </fieldset>
             </form>
-
+            <input id="termosLista" value="${termos}" type="hidden"/>
             <div class="container">
 
                 <table class = "table table" id="termostabela">
@@ -51,12 +51,13 @@
 
                     </thead>			
                     <tbody>
-
+<!--
                         <c:forEach items = "${termos}" var = "termo">
 
                         
                         <script>
                             alert("b");
+                            "${termosadd}"
                             $(document).ready(function () {
                                 var table = $('<table/>').appendTo($('#termostabela'));
                                 $.getJSON("/BuscaAlunoServlet", function () {
@@ -82,7 +83,7 @@
 
                         </tr>
                     </c:forEach>
-
+-->
 
 
 

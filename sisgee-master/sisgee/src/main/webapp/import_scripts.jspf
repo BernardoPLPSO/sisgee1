@@ -202,6 +202,12 @@
                         if(typeof buscarAlunoCallback != 'undefined'){
                             buscarAlunoCallback(result);
                         }
+                        
+                        for(var i=0;i<${termos.size()};i++);
+                        {
+                                var Html= Html + "<tr><td>${termos.get(i).dataInicioTermoEstagio}</td><td>${termos.get(i).convenioPF == null ? termos.get(i).convenioPJ.cnpj: termos.get(i).convenioPF.cpf}</td><td>${termos.get(i).convenioPF == null ? termos.get(i).convenioPJ.razaoSocial: termos.get(i).convenioPF.nome}</td></tr>";
+                        }
+                        $('#termostabela').append(Html);
 	            }
 	        });
 	        
@@ -245,5 +251,5 @@
 	        }
 	    }
 	    
-	    
+  
     </script>

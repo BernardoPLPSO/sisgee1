@@ -45,6 +45,7 @@ public class BuscaAlunoServlet extends HttpServlet {
         String nomeAluno = "";
         String nomeCurso = "";
         String nomeCampus = "";
+        String teste = "Aaaaaa";
         String idTermoEstagioAtivo = "";
         List<TermoEstagio> termos = null;
 
@@ -74,16 +75,33 @@ public class BuscaAlunoServlet extends HttpServlet {
             System.out.println("Vazio");
         }
         //JSON
-
-        JsonObjectBuilder ajuda = Json.createObjectBuilder();
-
-        for (TermoEstagio t : termos) {
-            
-            ajuda.add("data", t.getDataInicioTermoEstagio().toString());
-            
+        JsonObject aux = null;
+        JsonObjectBuilder aux2 = null;
+        System.out.println(termos.size());
+        Integer i = 0;
+        for (TermoEstagio t2 : termos) {
+            try{
+                aux = Json.createObjectBuilder()
+                .add("data", t2.getDataInicioTermoEstagio().toString())
+                .add("CNPJ", t2.getConvenioPF().getCpf())
+                .add("razaoSocial", t2.getConvenioPF().getNome())
+                .build();
+                aux2 = Json.createObjectBuilder().add(i.toString(), aux);
+                i++;
+            }catch(Exception e){
+                System.out.println(t2.getConvenioPJ().getCnpj());
+                aux = Json.createObjectBuilder()
+                .add("data", t2.getDataInicioTermoEstagio().toString())
+                .add("CNPJ", t2.getConvenioPJ().getCnpj())
+                .add("razaoSocial", t2.getConvenioPJ().getRazaoSocial())
+                .build();
+                aux2 = Json.createObjectBuilder().add(i.toString(), aux);
+                i++;
+            }
         }
-        JsonObject termosadd = ajuda.build();
-
+        request.getServletContext().setAttribute("termos", termos);
+        JsonObject termosadd = aux2.build();
+        System.out.println(termosadd.size());
         JsonObject model = Json.createObjectBuilder()
                 .add("idAluno", idAluno)
                 .add("nome", nomeAluno)
@@ -91,17 +109,18 @@ public class BuscaAlunoServlet extends HttpServlet {
                 .add("nomeCampus", nomeCampus)
                 .add("idTermoEstagioAtivo", idTermoEstagioAtivo)
                 .add("termosadd", termosadd)
+                .add("termosSize", termos.size())
                 .build();
 
         StringWriter stWriter = new StringWriter();
         JsonWriter jsonWriter = Json.createWriter(stWriter);
         jsonWriter.writeObject(model);
-        jsonWriter.writeObject(termosadd);
         jsonWriter.close();
         String jsonData = stWriter.toString();
 
         response.setContentType("application/json");
-        response.getWriter().print(jsonData);
+        response.getWriter().printf(jsonData,termos);
+        //response.getWriter().print(jsonData2);
     }
 
 }
