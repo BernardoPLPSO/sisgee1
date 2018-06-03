@@ -28,70 +28,100 @@
 
                 <fieldset class="form-group dadosAluno" >
 
-                    <%@include file="import_busca_aluno.jspf"%>			
+                    <legend class="col-form-legend col-lg"><fmt:message key = "br.cefetrj.sisgee.resources.form.dadosAluno"/></legend>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="matricula"><fmt:message key = "br.cefetrj.sisgee.resources.form.matricula"/></label>
+                            <div class="input-group">
+                                <input type="hidden" id="idAluno" name="idAluno" value="${ param.idAluno }">
+                                <input type="text" maxlength="100" class="form-control ${ not empty idAlunoMsg ? 'is-invalid': 'is-valid' }" placeholder="<fmt:message key = "br.cefetrj.sisgee.import_busca_aluno.placeholder_matricula"/>" id="matricula" name="matricula" value="${ param.matricula }">
+                                <span class="input-group-btn"> 
+                                    <button class="btn btn-primary" type="button" id="btnBuscarMatriculaAditivo"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
+                                </span>
 
+                                <c:if test="${ not empty idAlunoMsg }">
+                                    <div class="invalid-feedback">${ idAlunoMsg }</div>
+                                </c:if>
+
+                            </div>					    
+                        </div>
+                        <div class="form-group col-md">
+                            <label for="nome"><fmt:message key = "br.cefetrj.sisgee.resources.form.nome"/></label>
+                            <input type="text" class="form-control" id="nome" name="nome" value="${ param.nome }" readonly>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="nomeCurso"><fmt:message key = "br.cefetrj.sisgee.resources.form.curso"/></label>
+                            <input type="text" class="form-control" id="nomeCurso"  name="nomeCurso" value="${ param.nomeCurso }" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="nomeCampus"><fmt:message key = "br.cefetrj.sisgee.resources.form.unidade"/></label>
+                            <input type="text" class="form-control" id="nomeCampus"  name="nomeCampus" value="${ param.nomeCampus }" readonly>
+                        </div>
+                    </div>
                 </fieldset>
             </form>
 
 
-<!--
-            <form action="TermoAditivoServlet" method="post">
-
-                <br>
-
-                <div class="mx-auto" style="width: 500px;">
-                    <div class="row">
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" id="vigencia" name="vigencia"  value="sim"><fmt:message key = "br.cefetrj.sisgee.resources.form.vigenciaEstagio"/>
-                            </label>
-                        </div>
-
-                        <div class="mx-auto" style="width: 200px;">
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" id="enderecoTermoEstagio" name="endereco" value="sim"><fmt:message key = "br.cefetrj.sisgee.resources.form.endereco"/>
-                                </label>
+            <!--
+                        <form action="TermoAditivoServlet" method="post">
+            
+                            <br>
+            
+                            <div class="mx-auto" style="width: 500px;">
+                                <div class="row">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" id="vigencia" name="vigencia"  value="sim"><fmt:message key = "br.cefetrj.sisgee.resources.form.vigenciaEstagio"/>
+                                        </label>
+                                    </div>
+            
+                                    <div class="mx-auto" style="width: 200px;">
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" id="enderecoTermoEstagio" name="endereco" value="sim"><fmt:message key = "br.cefetrj.sisgee.resources.form.endereco"/>
+                                            </label>
+                                        </div>
+                                    </div>
+            
+                                </div>
                             </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="mx-auto" style="width: 500px;">
-                    <div class="row">
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" id="cargaHorariaTermoEstagio" name="cargaHoraria" value="sim"><fmt:message key = "br.cefetrj.sisgee.resources.form.cargaHorariaAluno"/>
-                            </label>
-                        </div>
-
-                        <div class="mx-auto" style="width: 236px;">
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" id="professorOrientador" name="professor" value="sim"><fmt:message key = "br.cefetrj.sisgee.resources.form.professorOrientador"/>
-                                </label>
+            
+                            <div class="mx-auto" style="width: 500px;">
+                                <div class="row">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" id="cargaHorariaTermoEstagio" name="cargaHoraria" value="sim"><fmt:message key = "br.cefetrj.sisgee.resources.form.cargaHorariaAluno"/>
+                                        </label>
+                                    </div>
+            
+                                    <div class="mx-auto" style="width: 236px;">
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" id="professorOrientador" name="professor" value="sim"><fmt:message key = "br.cefetrj.sisgee.resources.form.professorOrientador"/>
+                                            </label>
+                                        </div>
+                                    </div>				
+                                </div>
                             </div>
-                        </div>				
-                    </div>
-                </div>
-
-                <div class="mx-auto" style="width: 500px;">
-                    <div class="row">
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" id="valorBolsa" name="valor" value="sim"><fmt:message key = "br.cefetrj.sisgee.resources.form.valorBolsaEstagio"/>
-                            </label>
-                        </div>
-                    </div>
-                </div>			
-                <br>			
-                <input type="hidden" id="idAlunoAdt" name="idAlunoAdt" value="" />
-                <input type="hidden" id="idAlunoAdt" name="idAlunoAdt" value="" />
-                <button type="submit" id="btnNovoAditivo" class="btn btn-secondary" disabled="true"><fmt:message key = "br.cefetrj.sisgee.resources.form.novo_aditivo"/></button>
-                <button type="button" class="btn btn-secondary"><fmt:message key = "br.cefetrj.sisgee.resources.form.cancelar"/></button>			
-            </form>
--->
+            
+                            <div class="mx-auto" style="width: 500px;">
+                                <div class="row">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" id="valorBolsa" name="valor" value="sim"><fmt:message key = "br.cefetrj.sisgee.resources.form.valorBolsaEstagio"/>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>			
+                            <br>			
+                            <input type="hidden" id="idAlunoAdt" name="idAlunoAdt" value="" />
+                            <input type="hidden" id="idAlunoAdt" name="idAlunoAdt" value="" />
+                            <button type="submit" id="btnNovoAditivo" class="btn btn-secondary" disabled="true"><fmt:message key = "br.cefetrj.sisgee.resources.form.novo_aditivo"/></button>
+                            <button type="button" class="btn btn-secondary"><fmt:message key = "br.cefetrj.sisgee.resources.form.cancelar"/></button>			
+                        </form>
+            -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">

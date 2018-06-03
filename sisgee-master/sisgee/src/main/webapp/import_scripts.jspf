@@ -167,7 +167,7 @@
 	        }
 	    });	    
 	    
-	    $('#btnBuscarMatricula').click(function(){
+	    $('#btnBuscarMatricula, #btnBuscarMatriculaAditivo').click(function(){
 	    	
 	    	if($.trim($('#matricula').val()) == ""){
                     $(".dadosAluno input:not([id=matricula])").val("");
@@ -176,6 +176,9 @@
                     $('#myModal').modal('show');
                     return;
 	    	}
+                if($(this).attr("id") == "btnBuscarMatriculaAditivo"){
+                    window.open("form_termo_aditivo_lista.jsp", "_blank", "width=800,height=600");
+                }
 	    	
 	    	var result = null;
                 
@@ -202,7 +205,7 @@
                         if(typeof buscarAlunoCallback != 'undefined'){
                             buscarAlunoCallback(result);
                         }
-                        window.open("form_termo_aditivo_lista.jsp", "_blank", "width=800,height=600");
+
                         //LIXO!
                         /*$("#tbody").html(function(currentcontent){
                                     $('#termostabela').append('<c:forEach items = "${termos}" var = "termo"><tr><td><c:url value = "/VerTermoAditivoServlet" var = "verTermoAditivoUrl" scope = "page"> <c:param name="idTermo" value = "${termo.idTermoEstagio}"/> </c:url> <a href = "${verTermoAditivoUrl}" >${termo.dataInicioTermoEstagio }</a></td><td>${ termo.convenioPF == null ? termos.get(i).convenioPJ.cnpj: termos.get(i).convenioPF.cpf }</td><td>${ termo.convenioPF == null ? termos.get(i).convenioPJ.razaoSocial: termos.get(i).convenioPF.nome }</td></tr></c:forEach>');
