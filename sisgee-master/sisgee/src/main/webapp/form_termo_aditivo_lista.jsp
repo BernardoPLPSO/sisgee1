@@ -28,13 +28,74 @@
 
                 <fieldset class="form-group dadosAluno" >
 
-                    <%@include file="import_busca_aluno.jspf"%>			
+                    <legend class="col-form-legend col-lg"><fmt:message key = "br.cefetrj.sisgee.resources.form.dadosAluno"/></legend>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="matricula"><fmt:message key = "br.cefetrj.sisgee.resources.form.matricula"/></label>
+                            <div class="input-group">
+                                <input type="hidden" id="idAluno" name="idAluno" value="${ param.idAluno }">
+                                <input type="text" maxlength="100" class="form-control ${ not empty idAlunoMsg ? 'is-invalid': 'is-valid' }" id="matricula" name="matriculaPopUp" value="${ matriculaPopUp }" readonly>
+
+
+                                <c:if test="${ not empty idAlunoMsg }">
+                                    <div class="invalid-feedback">${ idAlunoMsg }</div>
+                                </c:if>
+
+                            </div>					    
+                        </div>
+                        <div class="form-group col-md">
+                            <label for="nome"><fmt:message key = "br.cefetrj.sisgee.resources.form.nome"/></label>
+                            <input type="text" class="form-control" id="nome" name="nome" value="${ nomeAlunoPopUp}" readonly>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="nomeCurso"><fmt:message key = "br.cefetrj.sisgee.resources.form.curso"/></label>
+                            <input type="text" class="form-control" id="nomeCurso"  name="nomeCurso" value="${ nomeCursoPopUp }" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="nomeCampus"><fmt:message key = "br.cefetrj.sisgee.resources.form.unidade"/></label>
+                            <input type="text" class="form-control" id="nomeCampus"  name="nomeCampus" value="${ nomeCampusPopUp }" readonly>
+                        </div>
+                    </div>			
 
                 </fieldset>
             </form>
+            <input id="termosLista" value="${termos}" type="hidden"/>
+            <div class="container">
+
+                <table class = "table table" id="termostabela">
+
+                    <thead>		
+                        <tr>
+                            <th><fmt:message key = "br.cefetrj.sisgee.resources.form.dataRegistro"/></th>
+                            <th><fmt:message key = "br.cefetrj.sisgee.resources.form.cnpj"/></th>
+                            <th><fmt:message key = "br.cefetrj.sisgee.resources.form.razaoSocial"/></th>
+                        </tr>
+
+                    </thead>			
+                    <tbody id="tbody">
+                        <c:forEach items = "${termos}" var = "termo">
+                            <tr>
+                                <td>
+                                    <c:url value = "/VerTermoAditivoServlet" var = "verTermoAditivoUrl" scope = "page">
+                                        <c:param name="idTermo" value = "${termo.idTermoEstagio}"/>  
+                                    </c:url>
+                                    <a href = "${verTermoAditivoUrl}" >${termo.dataInicioTermoEstagio }</a></td>	
+
+                                <td> ${  termo.convenioPF == null ? termos.get(i).convenioPJ.cnpj: termos.get(i).convenioPF.cpf }</td>
+                                <td> ${ termo.convenioPF == null ? termos.get(i).convenioPJ.razaoSocial: termos.get(i).convenioPF.nome }</td>						
+
+                            </tr>
+                        </c:forEach>
 
 
-<!--
+                    </tbody>
+
+                </table>
+            </div>
+
+
             <form action="TermoAditivoServlet" method="post">
 
                 <br>
@@ -91,7 +152,7 @@
                 <button type="submit" id="btnNovoAditivo" class="btn btn-secondary" disabled="true"><fmt:message key = "br.cefetrj.sisgee.resources.form.novo_aditivo"/></button>
                 <button type="button" class="btn btn-secondary"><fmt:message key = "br.cefetrj.sisgee.resources.form.cancelar"/></button>			
             </form>
--->
+
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">

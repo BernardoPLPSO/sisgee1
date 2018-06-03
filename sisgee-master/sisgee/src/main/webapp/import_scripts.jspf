@@ -168,7 +168,7 @@
 	    });	    
 	    
 	    $('#btnBuscarMatricula').click(function(){
-	    	//window.open("form_termo_aditivo_lista.jsp", "_blank", "width=800,height=600");
+	    	
 	    	if($.trim($('#matricula').val()) == ""){
                     $(".dadosAluno input:not([id=matricula])").val("");
                     $("#myModalLabel").html("<fmt:message key="br.cefetrj.sisgee.import_busca_aluno_script.campo_vazio"/>");
@@ -202,6 +202,7 @@
                         if(typeof buscarAlunoCallback != 'undefined'){
                             buscarAlunoCallback(result);
                         }
+                        window.open("form_termo_aditivo_lista.jsp", "_blank", "width=800,height=600");
                         $("#tbody").html(function(currentcontent){
                                     $('#termostabela').append('<c:forEach items = "${termos}" var = "termo"><tr><td><c:url value = "/VerTermoAditivoServlet" var = "verTermoAditivoUrl" scope = "page"> <c:param name="idTermo" value = "${termo.idTermoEstagio}"/> </c:url> <a href = "${verTermoAditivoUrl}" >${termo.dataInicioTermoEstagio }</a></td><td>${ termo.convenioPF == null ? termos.get(i).convenioPJ.cnpj: termos.get(i).convenioPF.cpf }</td><td>${ termo.convenioPF == null ? termos.get(i).convenioPJ.razaoSocial: termos.get(i).convenioPF.nome }</td></tr></c:forEach>');
                             });                
