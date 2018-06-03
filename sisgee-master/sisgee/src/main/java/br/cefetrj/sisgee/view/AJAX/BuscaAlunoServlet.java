@@ -38,6 +38,7 @@ public class BuscaAlunoServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      * response)
      */
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String matricula = request.getParameter("matricula");
@@ -79,41 +80,12 @@ public class BuscaAlunoServlet extends HttpServlet {
             System.out.println("Vazio");
         }
         //JSON
-        JsonObject aux = null;
-        JsonObjectBuilder aux2 = null;
-        System.out.println(termos.size());
-        Integer i = 0;
-        for (TermoEstagio t2 : termos) {
-            try{
-                aux = Json.createObjectBuilder()
-                .add("data", t2.getDataInicioTermoEstagio().toString())
-                .add("CNPJ", t2.getConvenioPF().getCpf())
-                .add("razaoSocial", t2.getConvenioPF().getNome())
-                .build();
-                aux2 = Json.createObjectBuilder().add(i.toString(), aux);
-                i++;
-            }catch(Exception e){
-                System.out.println(t2.getConvenioPJ().getCnpj());
-                aux = Json.createObjectBuilder()
-                .add("data", t2.getDataInicioTermoEstagio().toString())
-                .add("CNPJ", t2.getConvenioPJ().getCnpj())
-                .add("razaoSocial", t2.getConvenioPJ().getRazaoSocial())
-                .build();
-                aux2 = Json.createObjectBuilder().add(i.toString(), aux);
-                i++;
-            }
-        }
-        request.getServletContext().setAttribute("termos", termos);
-        JsonObject termosadd = aux2.build();
-        System.out.println(termosadd.size());
         JsonObject model = Json.createObjectBuilder()
                 .add("idAluno", idAluno)
                 .add("nome", nomeAluno)
                 .add("nomeCurso", nomeCurso)
                 .add("nomeCampus", nomeCampus)
                 .add("idTermoEstagioAtivo", idTermoEstagioAtivo)
-                .add("termosadd", termosadd)
-                .add("termosSize", termos.size())
                 .build();
 
         StringWriter stWriter = new StringWriter();
@@ -123,7 +95,7 @@ public class BuscaAlunoServlet extends HttpServlet {
         String jsonData = stWriter.toString();
 
         response.setContentType("application/json");
-        response.getWriter().printf(jsonData,termos);
+        response.getWriter().print(jsonData);
         //response.getWriter().print(jsonData2);
     }
 

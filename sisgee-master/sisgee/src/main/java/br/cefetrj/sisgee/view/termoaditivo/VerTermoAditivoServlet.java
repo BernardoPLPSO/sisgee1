@@ -47,7 +47,7 @@ public class VerTermoAditivoServlet extends HttpServlet {
 				termo = TermoAditivoServices.buscarTermoAditivo(id);
 				if(termo != null) {
 					//termoEstagio = TermoAditivoServices.termoEstagioAtualizadoByTermoAditivo(termoAditivo);					
-					request.setAttribute("termoAditivo", termo);				
+					request.setAttribute("termo", termo);				
 					
 				}else {
 					isValid = false;
