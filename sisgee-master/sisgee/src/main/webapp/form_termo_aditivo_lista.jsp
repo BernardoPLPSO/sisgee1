@@ -68,21 +68,27 @@
 
                     <thead>		
                         <tr>
-                            <th><fmt:message key = "br.cefetrj.sisgee.resources.form.dataRegistro"/></th>
-                            <th><fmt:message key = "br.cefetrj.sisgee.resources.form.cnpj"/></th>
-                            <th><fmt:message key = "br.cefetrj.sisgee.resources.form.razaoSocial"/></th>
+                            <th><fmt:message key = "br.cefetrj.sisgee.resources.form.tipo"/></th>
+                            <th><fmt:message key = "br.cefetrj.sisgee.resources.form.status"/></th>
+                            <th><fmt:message key = "br.cefetrj.sisgee.resources.form.dataInicio"/></th>
+                            <th><fmt:message key = "br.cefetrj.sisgee.resources.form.dataTermino"/></th>
+                            <th><fmt:message key = "br.cefetrj.sisgee.resources.form.cpf_cpnj"/></th>
+                            <th><fmt:message key = "br.cefetrj.sisgee.resources.form.razao_nome"/></th>
                         </tr>
 
                     </thead>			
                     <tbody id="tbody">
                         <c:forEach items = "${termos}" var = "termo">
                             <tr>
+                                <td>${not empty termo.termosAditivos ? "Termo Estágio" : "Termo Aditivo"}</td>
+                                <td>${not empty termo.dataRescisaoTermoEstagio ? "Ativo" : "Inativo"}</td>
                                 <td>
                                     <c:url value = "/VerTermoAditivoServlet" var = "verTermoAditivoUrl" scope = "page">
                                         <c:param name="idTermo" value = "${termo.idTermoEstagio}"/>  
                                     </c:url>
-                                    <a href = "${verTermoAditivoUrl}" >${termo.dataInicioTermoEstagio }</a></td>	
-
+                                    <a href = "${verTermoAditivoUrl}" >${termo.dataInicioTermoEstagio }</a>
+                                </td>	
+                                <td></td>
                                 <td> ${  termo.convenioPF == null ? termos.get(i).convenioPJ.cnpj: termos.get(i).convenioPF.cpf }</td>
                                 <td> ${ termo.convenioPF == null ? termos.get(i).convenioPJ.razaoSocial: termos.get(i).convenioPF.nome }</td>						
 
