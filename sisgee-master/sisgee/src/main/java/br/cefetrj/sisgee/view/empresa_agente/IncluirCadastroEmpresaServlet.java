@@ -42,7 +42,7 @@ public class IncluirCadastroEmpresaServlet extends HttpServlet {
                 
                 if(tipoPessoa.equals("cnpj")){
                     String cnpjConvenio = request.getParameter("cnpjConvenio");
-                    cnpjConvenio = cnpjConvenio.replaceAll("[.|/|-]", "");
+                    cnpjConvenio = cnpjConvenio.replaceAll("\\D", "");
                     String razaoSocial = request.getParameter("razaoSocial");
                     boolean agenteIntegracao = Boolean.parseBoolean(request.getParameter("agenteIntegracao"));
                     String pessoaContato = request.getParameter("pessoaContato");
@@ -74,13 +74,13 @@ public class IncluirCadastroEmpresaServlet extends HttpServlet {
 				msg = messages.getString("br.cefetrj.sisgee.incluir_cadastro_empresa_servlet.msg_ocorreu_erro");
 				request.setAttribute("msg", msg);
 				lg.error("Exception ao tentar inserir um convenio", e);
-				request.getRequestDispatcher("/form_empresa.jsp").forward(request, response);
+				request.getRequestDispatcher("/form_convenio.jsp").forward(request, response);
 
 			}
                 }else if(tipoPessoa.equals("cpf")){
-                    String cpfConvenio = request.getParameter("cpf");
+                    String cpfConvenio = request.getParameter("cpfConvenio");
                     String nomePessoa = request.getParameter("nomePessoa");
-                    cpfConvenio = cpfConvenio.replaceAll("[.|-]", "");
+                    cpfConvenio = cpfConvenio.replaceAll("\\D", "");
                     
                     
                     PessoaFisica F = new PessoaFisica(cpfConvenio, nomePessoa, dataAssinatura);

@@ -223,7 +223,7 @@ public class ValidaUtils {
          */
         public static String validaEmail(String nomeCampo, String param){
             String msg = "";
-            if(param.contains("@") && param.contains(".com")){
+            if(param.contains("@") && (param.contains(".com"))|| (param.contains(".br"))){
                //ta certim
             }else{
                 msg = "br.cefetrj.sisgee.valida_utils.msg_valida_Email";

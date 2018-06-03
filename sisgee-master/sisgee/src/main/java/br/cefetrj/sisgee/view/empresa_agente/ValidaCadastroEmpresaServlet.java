@@ -18,11 +18,12 @@ import br.cefetrj.sisgee.model.entity.AgenteIntegracao;
 import br.cefetrj.sisgee.model.entity.Empresa;
 import br.cefetrj.sisgee.model.entity.PessoaFisica;
 import br.cefetrj.sisgee.model.entity.PessoaJuridica;
+import br.cefetrj.sisgee.view.filters.TodasRequisicoesFilter;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
 import br.cefetrj.sisgee.view.utils.ValidaUtils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import org.apache.log4j.Logger;
 /**
  * Servlet para validar os dados da tela de cadastro de empresa.
  *
@@ -62,17 +63,19 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 			request.setAttribute("tipoPessoaMsg", tipoPessoaMsg);
 			isValid = false;
 		}
+                System.out.println(tipoPessoa);
+                Logger lg = Logger.getLogger(TodasRequisicoesFilter.class);
+                lg.error(tipoPessoa);
+               
                 
-                if(tipoPessoaMsg.trim().isEmpty()){
-                
-                if(tipoPessoa.equals("cnpj")){
+             
                     String cnpjConvenio = request.getParameter("cnpjConvenio");
                     String razaoSocial = request.getParameter("razaoSocial");
                     String agenteIntegracao = request.getParameter("agenteIntegracao");
                     String pessoaContato = request.getParameter("pessoaContato");
                     
                     
-                    
+                if(tipoPessoa.equals("cnpj")){    
                     
                  /**
 		 * Validação do campo Agente Integração, usando métodos da Classe
@@ -84,7 +87,7 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 			agenteIntegracaoMsg = ValidaUtils.validaBoolean("Agente Integração", agenteIntegracao);
 			if (agenteIntegracaoMsg.trim().isEmpty()) {
 				Boolean obrigatorio = Boolean.parseBoolean(agenteIntegracao);
-				request.setAttribute("obrigatorio", obrigatorio);
+				request.setAttribute("agenteIntegracao", agenteIntegracao);
 			} else {
 				agenteIntegracaoMsg = messages.getString(agenteIntegracaoMsg);
 				request.setAttribute("agenteIntegracaoMsg", agenteIntegracaoMsg);
@@ -95,7 +98,7 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 			request.setAttribute("agenteIntegracaoMsg", agenteIntegracaoMsg);
 			isValid = false;
 		}
-                    
+                    System.out.println(agenteIntegracaoMsg);
 
                 
                     
@@ -145,7 +148,8 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 			request.setAttribute("cnpjConvenioMsg", cnpjConvenioMsg);
 			isValid = false;
 		}   
-                    
+                System.out.println(cnpjConvenioMsg);
+                          
                     
                 
                 
@@ -183,7 +187,7 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 			request.setAttribute("razaoSocialMsg", razaoSocialMsg);
 			isValid = false;
 		}
-                    
+                 System.out.println(razaoSocialMsg);   
                     
                 
                 /**
@@ -201,15 +205,17 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 			pessoaContatoMsg = messages.getString(pessoaContatoMsg);
 			request.setAttribute("pessoaContatoMsg", pessoaContatoMsg);
 			isValid = false;
-		}  
+		} 
+                System.out.println(pessoaContatoMsg);
+                        
+                
+                }else {
                 
                 
                 
                 
                 
-                
-                } else{
-                    String cpfConvenio = request.getParameter("cpf");
+                    String cpfConvenio = request.getParameter("cpfConvenio");
                     String nomePessoa = request.getParameter("nomePessoa");
                     
                     
@@ -223,6 +229,7 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 		 * Tamanho de 11 caracteres;
 		 * CPF repetido.
 		 */
+                
 		String cpfConvenioMsg = "";
 		tamanho = 11;
 		cpfConvenioMsg = ValidaUtils.validaObrigatorio("CPF", cpfConvenio);	
@@ -294,6 +301,7 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
                             
                             
                 }
+                
                 String dataAss = request.getParameter("dataAssinatura");
                 String email = request.getParameter("email");
                 String telefone = request.getParameter("telefone");
@@ -374,9 +382,10 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 		 */
                 
                 
-                telefone = telefone.replaceAll("(", "");
-                telefone = telefone.replaceAll(")", "");
-                telefone = telefone.replaceAll("-", "");
+         
+               telefone = telefone.replaceAll("\\D", "");
+               telefone = telefone.trim();
+               
 		String telefoneMsg = "";
 		telefoneMsg = ValidaUtils.validaTamanho("telefone", 11, telefone);
 		if (telefoneMsg.trim().isEmpty()) {
@@ -397,7 +406,7 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 			isValid = false;
 		}
 		
-                }
+                
 		
 		/**
 		 * Teste das variÃ¡veis booleanas apÃ³s validaÃ§Ã£o. Redirecionamento para a
@@ -406,6 +415,10 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 		if (isValid) {
 			request.getRequestDispatcher("/IncluirCadastroEmpresaServlet").forward(request, response);
 		} else {
+                        
+                        
+                        
+                   
 			String msg = messages.getString("br.cefetrj.sisgee.valida_cadastro_empresa_servlet.msg_atencao");
 			request.setAttribute("msg", msg);
 			request.getRequestDispatcher("/form_convenio.jsp").forward(request, response);
