@@ -45,7 +45,7 @@ public class BuscaAlunoServlet extends HttpServlet {
         String nomeAluno = "";
         String nomeCurso = "";
         String nomeCampus = "";
-        String teste = "Aaaaaa";
+        String teste = "AA";
         String idTermoEstagioAtivo = "";
         List<TermoEstagio> termos = null;
 

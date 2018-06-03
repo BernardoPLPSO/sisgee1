@@ -50,40 +50,7 @@
                         </tr>
 
                     </thead>			
-                    <tbody>
-<!--
-                        <c:forEach items = "${termos}" var = "termo">
-
-                        
-                        <script>
-                            alert("b");
-                            "${termosadd}"
-                            $(document).ready(function () {
-                                var table = $('<table/>').appendTo($('#termostabela'));
-                                $.getJSON("/BuscaAlunoServlet", function () {
-                            $termosadd.each(function (termo) {
-                                        alert("aa");
-                                        $('<tr/>').appendTo(table)
-                                                .append($('<td/>').text(termo.dataInicioTermoEstagio))
-                                                .append($('<td/>').text(termo.dataInicioTermoEstagio))
-                                                .append($('<td/>').text(termo.dataInicioTermoEstagio))
-                                    });
-                                });
-                            });
-                        </script>
-                        <tr>
-                            <td>
-                                <c:url value = "/VerTermoAditivoServlet" var = "verTermoAditivoUrl" scope = "page">
-                                    <c:param name="idTermo" value = "${termo.idTermoEstagio}"/>  
-                                </c:url>
-                                <a href = "${verTermoAditivoUrl}" >${termo.dataInicioTermoEstagio }</a></td>	
-
-                            <td> ${ termo.convenioPJ.cnpj }</td>
-                            <td> ${ termo.convenioPJ.razaoSocial }</td>						
-
-                        </tr>
-                    </c:forEach>
--->
+                    <tbody id="tbody">
 
 
 
