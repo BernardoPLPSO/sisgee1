@@ -22,16 +22,16 @@ public class PessoaJuridicaDAO extends GenericDAO<PessoaJuridica>{
             .setParameter("numero", numero)
             .getSingleResult();
     }    
-    public PessoaJuridica buscarByNome(String nome) {
+    public PessoaJuridica buscarByNome(String razaosocial) {
         return (PessoaJuridica) manager.createQuery(
-                "SELECT c FROM PessoaFisica c WHERE c.nome LIKE :nome")
-                .setParameter("nome", nome)
+                "SELECT c FROM PessoaJuridica c WHERE c.razaoSocial LIKE :razaosocial")
+                .setParameter("razaosocial", razaosocial)   
                 .getSingleResult();
     }
     
     public PessoaJuridica buscarByCNPJ(String cnpj) {
         return (PessoaJuridica) manager.createQuery(
-                "SELECT c FROM PessoaFisica c WHERE c.cnpj LIKE :cnpj")
+                "SELECT c FROM PessoaJuridica c WHERE c.cnpj LIKE :cnpj")
                 .setParameter("cnpj", cnpj)
                 .getSingleResult();
     }
