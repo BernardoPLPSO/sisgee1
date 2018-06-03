@@ -90,14 +90,14 @@
                         <div class="form-group col-md-6">
 
                             <label for="dataInicioTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.dataInicio"/></label>
-                            <input type="text" class="form-control col-sm-4 ${ not empty dataInicioMsg ? 'is-invalid': not empty periodoMsg ? 'is-invalid' : 'is-valid' }" id="dataInicioTermoEstagio"  name="dataInicioTermoEstagio" value="${ not empty termo ? ServletUtils.mudarFormatoData(termo.dataInicioTermoEstagio) : '' }" ${ not empty termo ? 'disabled' : '' } >
+                            <input type="text" class="form-control col-sm-4 ${ not empty dataInicioMsg ? 'is-invalid': not empty periodoMsg ? 'is-invalid' : 'is-valid' }" id="dataInicioTermoEstagio"  name="dataInicioTermoEstagio" value="${ not empty termo ? termo.dataInicioTermoEstagio.toString().replaceAll('-','') : '' }" ${ not empty termo ? 'disabled' : '' } >
                             <c:if test="${ not empty dataInicioMsg }">
                                 <div class="invalid-feedback">${ dataInicioMsg }</div>
                             </c:if>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="dataFimTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.dataTermino"/></label>
-                            <input type="text" class="form-control col-sm-4 ${ not empty dataFimMsg ? 'is-invalid': not empty periodoMsg ? 'is-invalid' : 'is-valid' }" id="dataFimTermoEstagio"   name="dataFimTermoEstagio" value="${ not empty termo ? termo.dataFimTermoEstagio : '' }" ${ empty termo ? '' : empty updVigencia ? 'disabled' : '' } >
+                            <input type="text" class="form-control col-sm-4 ${ not empty dataFimMsg ? 'is-invalid': not empty periodoMsg ? 'is-invalid' : 'is-valid' }" id="dataFimTermoEstagio"   name="dataFimTermoEstagio" value="${ not empty termo ? termo.dataFimTermoEstagio.toString().replaceAll('-','') : '' }" ${ empty termo ? '' : empty updVigencia ? 'disabled' : '' } >
                             <c:if test="${ not empty dataFimMsg }">
                                 <div class="invalid-feedback">${ dataFimMsg }</div>
                             </c:if>
@@ -183,7 +183,11 @@
                                 <option value="" selected>---</option>
                                 <c:forEach items="${ uf }" var="uf">
                                     <option value="${ uf }">${ uf }</option>
-                                </c:forEach>							
+                                </c:forEach>
+                                
+                                <c:if test="${ not empty termo }">
+                                    <option selected>${termo.estadoEnderecoTermoEstagio.toUpperCase()}</option>
+                                </c:if>
                             </select>
                             <c:if test="${ not empty estadoEnderecoMsg }">
                                 <div class="invalid-feedback">${ estadoEnderecoMsg }</div>
@@ -207,12 +211,12 @@
 
                     <div class="custom-controls-stacked d-block my-3" ${ isVisualizacao eq true ? 'disabled' :'' }>
                         <label class="custom-control custom-radio"> 
-                            <input id="estagioSim" name="eEstagioObrigatorio" type="radio" class="custom-control-input ${ not empty eEstagioObrigatorioMsg ? 'is-invalid' : '' }" value = "sim" ${ not empty termo ? 'disabled' :'' } ${ not empty eEstagioObrigatorioMsg ? '' : param.eEstagioObrigatorio == 'sim' ? 'checked' : '' }> 
+                            <input id="estagioSim" name="eEstagioObrigatorio" type="radio" class="custom-control-input ${ not empty eEstagioObrigatorioMsg ? 'is-invalid' : '' }" value = "sim" ${ not empty termo ? 'disabled' :'' } ${ not empty termo ? termo.eEstagioObrigatorio == true ? 'checked' : '' : ''  }> 
                             <span class="custom-control-indicator"></span> 
                             <span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.resources.form.sim"/></span>
                         </label> 
                         <label class="custom-control custom-radio"> 
-                            <input id="estagioNao" name="eEstagioObrigatorio" type="radio" class="custom-control-input ${ not empty eEstagioObrigatorioMsg ? 'is-invalid' : '' }" value = "nao" ${ not empty termo ? 'disabled' :'' } ${ not empty eEstagioObrigatorioMsg ? '' : param.eEstagioObrigatorio == 'nao' ? 'checked' : '' }> 
+                            <input id="estagioNao" name="eEstagioObrigatorio" type="radio" class="custom-control-input ${ not empty eEstagioObrigatorioMsg ? 'is-invalid' : '' }" value = "nao" ${ not empty termo ? 'disabled' :'' } ${ not empty termo ?  termo.eEstagioObrigatorio == false ? 'checked' : '' : '' }> 
                             <span class="custom-control-indicator"></span> 
                             <span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.resources.form.nao"/></span>
                         </label>
@@ -226,7 +230,10 @@
                             <option value="" selected>---</option>
                             <c:forEach items="${ professores }" var="professor">
                                 <option value="${ professor.idProfessorOrientador }">${ professor.nomeProfessorOrientador }</option>
-                            </c:forEach>					
+                            </c:forEach>
+                            <c:if test="${ not empty termo }">
+                                <option selected>${termo.professorOrientador.nomeProfessorOrientador}</option>
+                            </c:if>    
                         </select>
                         <c:if test="${ not empty idProfessorMsg }">
                             <div class="invalid-feedback">${ idProfessorMsg }</div>
