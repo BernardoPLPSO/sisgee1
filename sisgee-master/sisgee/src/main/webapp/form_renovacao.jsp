@@ -42,7 +42,16 @@
            
 		<h5><fmt:message key="br.cefetrj.sisgee.form_empresa.msg_titulo" /></h5>		
 		
-		<form action="ValidaCadastroEmpresaServlet" method="post">
+                
+                 <c:choose>
+            <c:when test="${ not empty listConvenio }">
+                <form action="RenovaConvenioServlet" method="post">
+                </c:when>
+                <c:otherwise>
+                    <form action="BuscaConvenioServlet" method="post">
+                    </c:otherwise>
+                </c:choose>
+		
 			<fieldset class="form-group">
 
                             
@@ -78,10 +87,7 @@
         <script>
             $(document).ready(function(){
 
-                $('#telefone').mask('(99) 99999-9999');
-                $('#cnpjConvenio').mask('99.999.999/9999-99');
-                $('#cpfConvenio').mask('999.999.999-99');
-                $('#dataAssinatura').mask('31/12/000');
-                $('#dataAssinatura').mask('99/99/9999');
+                $('#buscaNumero').mask('999999');
+                
             });
         </script>
