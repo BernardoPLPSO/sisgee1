@@ -69,7 +69,10 @@ public class IncluirCadastroEmpresaServlet extends HttpServlet {
             if (pessoaContato != null) {
                 J.setPessoaCOntato(pessoaContato);
             }
-
+            
+            
+            System.out.println("");
+            
             String msg = "";
             Logger lg = Logger.getLogger(IncluirCadastroEmpresaServlet.class);
             try {

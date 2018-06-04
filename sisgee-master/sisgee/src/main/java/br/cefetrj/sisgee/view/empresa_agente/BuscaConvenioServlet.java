@@ -20,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -27,11 +28,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/BuscaConvenioServlet")
 public class BuscaConvenioServlet extends HttpServlet {
-    
+    private static final long serialVersionUID = 1L;
   @Override
     protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         
-        boolean validado;
+        boolean validado = false;
         Locale locale = ServletUtils.getLocale(request);
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
         
@@ -42,51 +43,72 @@ public class BuscaConvenioServlet extends HttpServlet {
         String buscaRazaoNomeMsg;
         String msg;
          
-        List<PessoaFisica> conveniosPF = PessoaFisicaServices.listarConvenios();
-        List<PessoaJuridica> conveniosPJ = PessoaJuridicaServices.listarConvenios();
+      
+       
+       
         
-        try{
-            if(!buscaNumero.trim().isEmpty() && !buscaRazaoNome.trim().isEmpty() ){
-                
-                msg = messages.getString("Preencha apenas um dos campos de busca!");
-                request.setAttribute("msg", msg);
-                validado = false;
-                
-                
-            }else if(buscaNumero.trim().isEmpty() && buscaRazaoNome.trim().isEmpty() ){
-                msg = messages.getString("Preencha um dos campos de busca!");
-                request.setAttribute("msg", msg);
-                validado = false;   
-                
-            }
-        if(!buscaNumero.trim().isEmpty()){
-            if(buscaNumero.contains("\\D")){
-                buscaNumeroMsg = messages.getString("Apenas numeros são válidos neste campo");
-                request.setAttribute("buscaNumeroMsg", buscaNumeroMsg);
-                validado = false;
-                 } else{
-                validado = true;
-                request.setAttribute("buscaNumero", buscaNumero);
-                 }
+        
+        
+        
+       if (buscaNumero.isEmpty() && buscaRazaoNome.isEmpty()){
          
-                  }else if(!buscaRazaoNome.trim().isEmpty()){
-                      validado = true;
-                      request.setAttribute("buscaRazaoNome", buscaRazaoNome);
-                    }else{
+              msg = messages.getString("br.cefetrj.sisgee.resources.form.busca.nenhumCampo");
+              buscaRazaoNomeMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.nenhumCampo");
+              buscaNumeroMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.nenhumCampo");        
+              request.setAttribute("msg", msg);
+              request.setAttribute("buscaRazaoNomeMsg", buscaRazaoNomeMsg);
+              request.setAttribute("buscaNumeroMsg", buscaNumeroMsg);
+              validado = false;
+              
+          
+        }else if(!buscaNumero.isEmpty() && !buscaRazaoNome.isEmpty()){
+                
+                    msg = messages.getString("br.cefetrj.sisgee.resources.form.busca.doisCampos");
+                    buscaRazaoNomeMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.doisCampos");
+                    buscaNumeroMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.doisCampos");        
+                    request.setAttribute("msg", msg);
+                    request.setAttribute("buscaRazaoNomeMsg", buscaRazaoNomeMsg);
+                    request.setAttribute("buscaNumeroMsg", buscaNumeroMsg);
+                    validado = false;
+                
+        }else{ 
+            if (!buscaNumero.isEmpty()) {
+               if (buscaNumero.contains("\\D")){
+                   buscaNumeroMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.campoNumerico");
+                    request.setAttribute("buscaNumeroMsg", buscaNumeroMsg);
+                    validado = false;
+                    
+               }else {
+                   validado = true;
+                   request.setAttribute("buscaNumero", buscaNumero);
+                   
+               }
+          
+               
+           }else if (!buscaRazaoNome.isEmpty()) {
+                   validado = true;
+                   request.setAttribute("buscaRazaoNome", buscaRazaoNome);
+                   
+                   }else {
+                      buscaRazaoNomeMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.nenhumCampo");
+                      request.setAttribute("buscaRazaoNomeMsg", buscaRazaoNomeMsg);
                       validado = false;
-                    }
-        
+                      
+                   }                  
+       }   
+               
+               
+          
+           
+
         if(validado){
             request.getRequestDispatcher("/RenovaConvenioServlet").forward(request, response);
+        }else{
+            request.getRequestDispatcher("/form_renovacao.jsp").forward(request, response);
         }
         
         
-        }catch(Exception e){
-                msg = messages.getString("br.cefetrj.sisgee.incluir_cadastro_empresa_servlet.msg_ocorreu_erro");
-                request.setAttribute("msg", msg);
-                request.getRequestDispatcher("/form_renovacao.jsp").forward(request, response);
-            
-        }
+        
         
         
     }

@@ -35,7 +35,7 @@ public class PessoaJuridicaDAO extends GenericDAO<PessoaJuridica>{
     }
     
     public List<PessoaJuridica> buscarListaNome(String nome){
-        return (List<PessoaJuridica>) manager.createQuery("SELECT c FROM PessoaJuridica c WHERE c.nome LIKE :nome");
+        return (List<PessoaJuridica>) manager.createQuery("SELECT c FROM PessoaJuridica c WHERE c.nome LIKE :nome").setParameter("nome", nome);
     }
     
     public PessoaJuridica buscarByCNPJ(String cnpj) {

@@ -79,8 +79,29 @@
 					
 			<button type="submit" class="btn btn-primary"  ><fmt:message key = "br.cefetrj.sisgee.resources.form.busca.buscar"/></button>
 			<button type="button" class="btn btn-secondary" onclick="javascript:location.href='index.jsp'"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_cancelar"/></button>
-								
-		</form>
+		
+                <table class="table table-hover" style="width: 100%; margin-top: 20px;">
+  			<thead>
+  				<tr>${ Resultado.numeroConvenio }
+  					<th>Numero do Convênio</th>
+  					<th>Nome / Razão Social</th>
+                                        <th>CPF / CNPJ</th>
+  				</tr>
+  			</thead> 
+                        <tbody>
+		<<c:forEach items="${ Resultado }" var="Resultado">
+                    
+  					
+	  				<tr>
+						<th>${ Resultado.numeroConvenio }</th>
+                                                <th>Nome / Razão Social</th>
+                                                <th>CPF / CNPJ</th>
+	  				</tr>
+	  				
+                </c:forEach>                          
+  			</tbody>
+  		</table>
+  		    
 	</div>
 	<%@include file="import_footer.jspf"%>
 	<%@include file="import_finalbodyscripts.jspf"%>
