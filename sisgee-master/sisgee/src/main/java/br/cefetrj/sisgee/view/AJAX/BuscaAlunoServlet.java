@@ -58,12 +58,18 @@ public class BuscaAlunoServlet extends HttpServlet {
             nomeCampus = aluno.getNomeCampus();
             termos = aluno.getTermoEstagios();
             request.getServletContext().setAttribute("termos", termos);
+            request.getServletContext().setAttribute("idAlunoAdt", aluno.getIdAluno());
             request.getServletContext().setAttribute("nomeAlunoPopUp", nomeAluno);
             request.getServletContext().setAttribute("nomeCursoPopUp", nomeCurso);
             request.getServletContext().setAttribute("nomeCampusPopUp", nomeCampus);
             request.getServletContext().setAttribute("matriculaPopUp", matricula);
-            request.getServletContext().setAttribute("display", "");
-
+            request.getServletContext().setAttribute("termoEstagioAtivo", AlunoServices.buscarTermoEstagioAtivo(aluno));
+            request.getServletContext().setAttribute("vigencia", AlunoServices.buscarTermoEstagioAtivo(aluno).getDataFimTermoEstagio());
+            request.getServletContext().setAttribute("endereco", AlunoServices.buscarTermoEstagioAtivo(aluno).getEnderecoTermoEstagio());
+            request.getServletContext().setAttribute("cargaHoraria", AlunoServices.buscarTermoEstagioAtivo(aluno).getCargaHorariaTermoEstagio());
+            request.getServletContext().setAttribute("professor", AlunoServices.buscarTermoEstagioAtivo(aluno).getProfessorOrientador());
+            request.getServletContext().setAttribute("valor", AlunoServices.buscarTermoEstagioAtivo(aluno).getValorBolsa());
+            
             if (!termos.isEmpty() || termos == null) {
                 System.out.println("Passei aqui");
                 for (TermoEstagio termo : termos) {

@@ -6,6 +6,8 @@ import br.cefetrj.sisgee.model.dao.AlunoDAO;
 import br.cefetrj.sisgee.model.dao.GenericDAO;
 import br.cefetrj.sisgee.model.dao.PersistenceManager;
 import br.cefetrj.sisgee.model.entity.Aluno;
+import br.cefetrj.sisgee.model.entity.TermoEstagio;
+import java.util.ArrayList;
 
 /**
  * Serviços de alunos. Trata a lógica de negócios
@@ -51,6 +53,19 @@ public class AlunoServices {
 			return null;
 		}
 	}
+        
+        public static TermoEstagio buscarTermoEstagioAtivo(Aluno a){
+            List<TermoEstagio> t = null;
+            t = a.getTermoEstagios();
+            TermoEstagio aux = null;
+            
+            for (TermoEstagio te : t){
+                if(te.getDataRescisaoTermoEstagio() == null && !te.getTermosAditivos().isEmpty()){
+                    aux = te;
+                }
+            }
+            return aux;
+        }
 	
 
 }
