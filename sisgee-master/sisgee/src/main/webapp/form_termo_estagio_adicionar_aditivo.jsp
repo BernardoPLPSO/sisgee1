@@ -195,7 +195,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="dataFimTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.dataTermino"/></label>
-                            <input type="text" class="form-control col-sm-4 ${ not empty dataFimMsg ? 'is-invalid': not empty periodoMsg ? 'is-invalid' : 'is-valid' }" id="dataFimTermoEstagio"   name="dataFimTermoEstagio" value="${ not empty termo ? termo.dataFimTermoEstagio.toString().replaceAll('-','') : '' }" ${ empty termo ? '' : empty updVigencia ? 'disabled' : '' } >
+                            <input type="text" class="form-control col-sm-4 ${ not empty dataFimMsg ? 'is-invalid': not empty periodoMsg ? 'is-invalid' : 'is-valid' }" id="dataFimTermoEstagio"   name="dataFimTermoEstagio" value="${ not empty termo ? termo.dataFimTermoEstagio.toString().replaceAll('-','') : '' }" ${ not empty vigencia ? 'disabled' : '' } >
                             <c:if test="${ not empty dataFimMsg }">
                                 <div class="invalid-feedback">${ dataFimMsg }</div>
                             </c:if>
@@ -209,7 +209,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="cargaHorariaTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.horasDia"/></label>
-                            <input type="text" maxlength="1" class="form-control col-sm-2 ${ not empty cargaHorariaMsg ? 'is-invalid': 'is-valid' }" id="cargaHorariaTermoEstagio" name="cargaHorariaTermoEstagio" value="${ not empty termo ? termo.cargaHorariaTermoEstagio : '' }" ${ empty termo ? '' : empty updCargaHoraria ? 'disabled' : '' }>
+                            <input type="text" maxlength="1" class="form-control col-sm-2 ${ not empty cargaHorariaMsg ? 'is-invalid': 'is-valid' }" id="cargaHorariaTermoEstagio" name="cargaHorariaTermoEstagio" value="${ not empty termo ? termo.cargaHorariaTermoEstagio : '' }" ${ not empty cargaHoraria ? 'disabled' : '' }>
                             <c:if test="${ not empty cargaHorariaMsg }">
                                 <div class="invalid-feedback">${ cargaHorariaMsg }</div>
                             </c:if>
@@ -223,7 +223,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="valorBolsa">Valor (R$)</label>
-                            <input type="text" class="form-control col-sm-6 ${ not empty valorBolsaMsg ? 'is-invalid': 'is-valid' }" id="valorBolsa" name="valorBolsa" value="${ not empty termo ? termo.valorBolsa : ''  }" ${ empty termo ? '' : empty updValorBolsa ? 'disabled' : '' }>
+                            <input type="text" class="form-control col-sm-6 ${ not empty valorBolsaMsg ? 'is-invalid': 'is-valid' }" id="valorBolsa" name="valorBolsa" value="${ not empty termo ? termo.valorBolsa : ''  }" ${ not empty valor ? 'disabled' : '' }>
                             <c:if test="${ not empty valorBolsaMsg }">
                                 <div class="invalid-feedback">${ valorBolsaMsg }</div>
                             </c:if>
@@ -238,7 +238,7 @@
                         <div class="form-group col-md-12">
 
                             <label for="enderecoTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.endereco"/></label>
-                            <input type="text" maxlength="255" class="form-control ${ not empty enderecoMsg ? 'is-invalid': not empty enderecoMsg ? 'is-invalid' : 'is-valid' }" id="enderecoTermoEstagio" name="enderecoTermoEstagio" value="${ not empty termo ? termo.enderecoTermoEstagio : ''}">
+                            <input type="text" maxlength="255" class="form-control ${ not empty enderecoMsg ? 'is-invalid': not empty enderecoMsg ? 'is-invalid' : 'is-valid' }" id="enderecoTermoEstagio" name="enderecoTermoEstagio" value="${ not empty termo ? termo.enderecoTermoEstagio : ''}" ${ not empty endereco ? 'disabled' : ''}>
                             <c:if test="${ not empty enderecoMsg }">
                                 <div class="invalid-feedback">${ enderecoMsg }</div>
                             </c:if>
@@ -247,21 +247,21 @@
                     <div class="form-row">
                         <div class="form-group col-md-2">
                             <label for="numeroEnderecoTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.numero"/></label>
-                            <input type="text" maxlength="10" class="form-control ${ not empty numeroEnderecoMsg ? 'is-invalid': not empty numeroEnderecoMsg ? 'is-invalid' : 'is-valid' }" id="numeroEnderecoTermoEstagio" name="numeroEnderecoTermoEstagio" value="${ not empty termo ? termo.numeroEnderecoTermoEstagio : '' }">
+                            <input type="text" maxlength="10" class="form-control ${ not empty numeroEnderecoMsg ? 'is-invalid': not empty numeroEnderecoMsg ? 'is-invalid' : 'is-valid' }" id="numeroEnderecoTermoEstagio" name="numeroEnderecoTermoEstagio" value="${ not empty termo ? termo.numeroEnderecoTermoEstagio : '' }" ${ not empty endereco ? 'disabled' : ''}>
                             <c:if test="${ not empty numeroEnderecoMsg }">
                                 <div class="invalid-feedback">${ numeroEnderecoMsg }</div>
                             </c:if>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="complementoEnderecoTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.complemento"/></label>
-                            <input maxlength="150" type="text" class="form-control ${ not empty complementoEnderecoMsg ? 'is-invalid': not empty complementoEnderecoMsg ? 'is-invalid' : 'is-valid' }" id="complementoEnderecoTermoEstagio" name="complementoEnderecoTermoEstagio" value="${ not empty termo ? termo.complementoEnderecoTermoEstagio : '' }">
+                            <input maxlength="150" type="text" class="form-control ${ not empty complementoEnderecoMsg ? 'is-invalid': not empty complementoEnderecoMsg ? 'is-invalid' : 'is-valid' }" id="complementoEnderecoTermoEstagio" name="complementoEnderecoTermoEstagio" value="${ not empty termo ? termo.complementoEnderecoTermoEstagio : '' }" ${ not empty endereco ? 'disabled' : ''}>
                             <c:if test="${ not empty complementoEnderecoMsg }">
                                 <div class="invalid-feedback">${ complementoEnderecoMsg }</div>
                             </c:if>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="bairroEnderecoTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.bairro"/></label>
-                            <input type="text" maxlength="150" class="form-control ${ not empty bairroEnderecoMsg ? 'is-invalid': not empty bairroEnderecoMsg ? 'is-invalid' : 'is-valid' }" id="bairroEnderecoTermoEstagio" name="bairroEnderecoTermoEstagio" value="${ not empty termo ? termo.bairroEnderecoTermoEstagio : ''}">
+                            <input type="text" maxlength="150" class="form-control ${ not empty bairroEnderecoMsg ? 'is-invalid': not empty bairroEnderecoMsg ? 'is-invalid' : 'is-valid' }" id="bairroEnderecoTermoEstagio" name="bairroEnderecoTermoEstagio" value="${ not empty termo ? termo.bairroEnderecoTermoEstagio : ''}" ${ not empty endereco ? 'disabled' : ''}>
                             <c:if test="${ not empty bairroEnderecoMsg }">
                                 <div class="invalid-feedback">${ bairroEnderecoMsg }</div>
                             </c:if>
@@ -270,14 +270,14 @@
                     <div class="form-row">					
                         <div class="form-group col-md-6">
                             <label for="cidadeEnderecoTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.cidade"/></label>
-                            <input type="text" maxlength="150" class="form-control ${ not empty cidadeEnderecoMsg ? 'is-invalid': not empty cidadeEnderecoMsg ? 'is-invalid' : 'is-valid' }" id="cidadeEnderecoTermoEstagio" name="cidadeEnderecoTermoEstagio" value="${ not empty termo ? termo.cidadeEnderecoTermoEstagio : '' }">
+                            <input type="text" maxlength="150" class="form-control ${ not empty cidadeEnderecoMsg ? 'is-invalid': not empty cidadeEnderecoMsg ? 'is-invalid' : 'is-valid' }" id="cidadeEnderecoTermoEstagio" name="cidadeEnderecoTermoEstagio" value="${ not empty termo ? termo.cidadeEnderecoTermoEstagio : '' }" ${ not empty endereco ? 'disabled' : ''}>
                             <c:if test="${ not empty cidadeEnderecoMsg }">
                                 <div class="invalid-feedback">${ cidadeEnderecoMsg }</div>
                             </c:if>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="estadoEnderecoTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.estado"/></label>
-                            <select name = "estadoEnderecoTermoEstagio" id="estadoEnderecoTermoEstagio" class="form-control ${ not empty estadoEnderecoMsg ? 'is-invalid': not empty estadoEnderecoMsg ? 'is-invalid' : 'is-valid' }">
+                            <select name = "estadoEnderecoTermoEstagio" id="estadoEnderecoTermoEstagio" class="form-control ${ not empty estadoEnderecoMsg ? 'is-invalid': not empty estadoEnderecoMsg ? 'is-invalid' : 'is-valid' }" ${ not empty endereco ? 'disabled' : ''}>
                                 <option value="" selected>---</option>
                                 <c:forEach items="${ uf }" var="uf">
                                     <option value="${ uf }">${ uf }</option>
@@ -293,7 +293,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="cepEnderecoTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.cep"/></label>
-                            <input type="text" class="form-control ${ not empty cepEnderecoMsg ? 'is-invalid': not empty cepEnderecoMsg ? 'is-invalid' : 'is-valid' }" id="cepEnderecoTermoEstagio" name="cepEnderecoTermoEstagio" value="${ not empty termo ? termo.cepEnderecoTermoEstagio : '' }">
+                            <input type="text" class="form-control ${ not empty cepEnderecoMsg ? 'is-invalid': not empty cepEnderecoMsg ? 'is-invalid' : 'is-valid' }" id="cepEnderecoTermoEstagio" name="cepEnderecoTermoEstagio" value="${ not empty termo ? termo.cepEnderecoTermoEstagio : '' }" ${ not empty endereco ? 'disabled' : ''}>
                             <c:if test="${ not empty cepEnderecoMsg }">
                                 <div class="invalid-feedback">${ cepEnderecoMsg }</div>
                             </c:if>
@@ -324,7 +324,7 @@
                 <fieldset ${ isVisualizacao eq true ? 'disabled' :'' }>
                     <div class="form-group col-md-8">
                         <label for="idProfessorOrientador"><fmt:message key = "br.cefetrj.sisgee.resources.form.professorOrientador"/></label>
-                        <select name="idProfessorOrientador" id="idProfessorOrientador" class="form-control ${ not empty idProfessorMsg ? 'is-invalid': not empty idProfessorMsg ? 'is-invalid' : 'is-valid' }" ${ empty termo ? '' : empty updProfessor ? 'disabled' : '' }>
+                        <select name="idProfessorOrientador" id="idProfessorOrientador" class="form-control ${ not empty idProfessorMsg ? 'is-invalid': not empty idProfessorMsg ? 'is-invalid' : 'is-valid' }" ${ empty termo ? '' : empty updProfessor ? 'disabled' : '' } ${ not empty professor ? 'disabled' : ''}>
                             <option value="" selected>---</option>
                             <c:forEach items="${ professores }" var="professor">
                                 <option value="${ professor.idProfessorOrientador }">${ professor.nomeProfessorOrientador }</option>
