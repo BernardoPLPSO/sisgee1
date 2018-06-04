@@ -16,24 +16,20 @@ import javax.persistence.Query;
 
 public class TermoEstagioDAO  {
 	
-
 	public List<Object[]> buscarFiltrado(Boolean obrigatorio , Date inicio, Date termino){
 		EntityManagerFactory factory =
 				Persistence.createEntityManagerFactory("sisgeePU");
 		EntityManager manager = factory.createEntityManager();
 			
 			Query query = manager
-				.createNativeQuery("select te.idtermoestagio, cur.nomecurso, te.datarescisaotermoestagio " + 
-						"from termoestagio te " + 
-						"inner join aluno a " + 
-						"on te.aluno_idaluno = a.idaluno " + 
-						"inner join curso cur " + 
-						"on a.curso_idcurso = cur.idcurso " + 
-						"inner join campus c " + 
-						"on cur.campus_idcampus = c.idcampus " + 
-						"where te.datainiciotermoestagio > :inicio " + 
-						"and te.datainiciotermoestagio < :termino " + 
-						"and te.eestagioobrigatorio = :obrigatorio");
+				.createNativeQuery("SELECT idtermoestagio, datarescisaotermoestagio, nomecurso, termoestagio_idtermoestagio " + 
+						"FROM termoestagio, aluno " + 
+                                                "WHERE termoestagio.aluno_idaluno = aluno.idaluno " +
+						"AND datainiciotermoestagio > :inicio " + 
+						"AND datainiciotermoestagio < :termino " + 
+						"AND eestagioobrigatorio = :obrigatorio");
+                        
+                        //"SELECT nomecurso FROM termoestagio, aluno WHERE termoestagio.aluno_idaluno == aluno.idaluno"
 		
 		query.setParameter("obrigatorio", obrigatorio);
 		query.setParameter("inicio", inicio);
@@ -44,7 +40,7 @@ public class TermoEstagioDAO  {
 		 
 		manager.close();
 		factory.close();
-		 return  authors;
+		return  authors;
 	}
 	
 	public List<Object[]> buscarFiltrado( Date inicio, Date termino){
@@ -53,16 +49,11 @@ public class TermoEstagioDAO  {
 		EntityManager manager = factory.createEntityManager();
 			
 			Query query = manager
-				.createNativeQuery("select te.idtermoestagio, cur.nomecurso, te.datarescisaotermoestagio " + 
-						"from termoestagio te " + 
-						"inner join aluno a " + 
-						"on te.aluno_idaluno = a.idaluno " + 
-						"inner join curso cur " + 
-						"on a.curso_idcurso = cur.idcurso " + 
-						"inner join campus c " + 
-						"on cur.campus_idcampus = c.idcampus " + 
-						"where te.datainiciotermoestagio >= :inicio " + 
-						"and :termino >= te.datainiciotermoestagio ");
+				.createNativeQuery("SELECT idtermoestagio, datarescisaotermoestagio, nomecurso, termoestagio_idtermoestagio " + 
+						"FROM termoestagio, aluno " + 
+                                                "WHERE termoestagio.aluno_idaluno = aluno.idaluno " +
+						"AND te.datainiciotermoestagio >= :inicio " + 
+						"AND :termino >= te.datainiciotermoestagio ");
 		
 		query.setParameter("inicio", inicio);
 		query.setParameter("termino", termino);
@@ -72,7 +63,7 @@ public class TermoEstagioDAO  {
 		 
 		manager.close();
 		factory.close();
-		 return  authors;
+		return  authors;
 	}
 
 }

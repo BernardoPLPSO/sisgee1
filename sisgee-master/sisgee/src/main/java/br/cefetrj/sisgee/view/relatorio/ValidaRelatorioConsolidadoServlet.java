@@ -65,30 +65,31 @@ public class ValidaRelatorioConsolidadoServlet extends HttpServlet {
 		Boolean estagioObrig;
 		Boolean estagioNaoObrig;
 		
-		Boolean validDate = false;
+		Boolean validDateI = false;
+                Boolean validDateT = false;
 		
 		msgDataInicio = ValidaUtils.validaDate( "" , dataDeInicio);
 		msgDataTermino = ValidaUtils.validaDate( "" , dataDeTermino);
 		
 		if(!(msgDataInicio.isEmpty())) {
-			msgDataInicio = messages.getString("br.cefetrj.sisgee.relatorio.relatorio_consolidado_servlet.alert_data_inicio");
-			request.setAttribute("msgDataInicio", msgDataInicio );
-			validDate = false;
+			//msgDataInicio = messages.getString("br.cefetrj.sisgee.relatorio.relatorio_consolidado_servlet.alert_data_inicio");
+			//request.setAttribute("msgDataInicio", msgDataInicio );
+			validDateI = false;
 		}else {
-			validDate = true;
+			validDateI = true;
 		}
 		
 		if(!(msgDataTermino.isEmpty())) {
-			msgDataTermino = messages.getString("br.cefetrj.sisgee.relatorio.relatorio_consolidado_servlet.alert_data_termino");
-			request.setAttribute("msgDataTermino", msgDataTermino );
-			validDate = false;
+			//msgDataTermino = messages.getString("br.cefetrj.sisgee.relatorio.relatorio_consolidado_servlet.alert_data_termino");
+			//request.setAttribute("msgDataTermino", msgDataTermino );
+			validDateT = false;
 		}else {
 			
-			validDate = true;
+			validDateT = true;
 		}
 		
 		
-		if(validDate == false) {
+		if(validDateI == false || validDateT == false) {
 			msgDataObrig = messages.getString("br.cefetrj.sisgee.relatorio.relatorio_consolidado_servlet.msg_data_obrigatoria");
 			request.setAttribute("msgDataObrig", msgDataObrig );
 			msg += msgDataObrig;
