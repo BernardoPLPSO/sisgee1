@@ -57,6 +57,20 @@ public class PessoaFisicaServices {
             return null;
         }
     }
+    
+    public static List<PessoaFisica> buscarListaNome(String nome){
+        PessoaFisicaDAO pessoaFisicaDAO = new PessoaFisicaDAO();
+        String nome1 = "%";
+        nome1 += nome;
+        nome1 += "%"; 
+        try{
+            List<PessoaFisica> c = pessoaFisicaDAO.buscarListaNome(nome1);
+            return c;
+        
+        }catch(Exception e){
+            return null;
+        }
+    }
 
     public static PessoaFisica buscarConvenioByCPF(String cpf) {
         PessoaFisicaDAO pessoaFisicaDao = new PessoaFisicaDAO();

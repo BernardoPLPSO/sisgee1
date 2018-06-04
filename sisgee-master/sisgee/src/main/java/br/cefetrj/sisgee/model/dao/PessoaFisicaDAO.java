@@ -6,6 +6,7 @@
 package br.cefetrj.sisgee.model.dao;
 
 import br.cefetrj.sisgee.model.entity.PessoaFisica;
+import java.util.List;
 import javax.persistence.Query;
 
 /**
@@ -32,6 +33,10 @@ public class PessoaFisicaDAO extends GenericDAO<PessoaFisica> {
                 "SELECT c FROM PessoaFisica c WHERE c.nome LIKE :nome")
                 .setParameter("nome", nome)
                 .getSingleResult();
+    }
+    
+    public List<PessoaFisica> buscarListaNome(String nome){
+        return (List<PessoaFisica>) manager.createQuery("SELECT c FROM PessoaFisica c WHERE c.nome LIKE :nome");
     }
     
     public PessoaFisica buscarByCPF(String cpf) {

@@ -7,6 +7,7 @@ package br.cefetrj.sisgee.model.dao;
 
 import br.cefetrj.sisgee.model.entity.PessoaFisica;
 import br.cefetrj.sisgee.model.entity.PessoaJuridica;
+import java.util.List;
 import javax.persistence.Query;
 
 /**
@@ -25,12 +26,16 @@ public class PessoaJuridicaDAO extends GenericDAO<PessoaJuridica>{
         PessoaJuridica j = (PessoaJuridica) q.setParameter("numero", numero).getSingleResult();
         System.out.println(j);
         return  j;
-    }    
+    }
     public PessoaJuridica buscarByNome(String razaosocial) {
         return (PessoaJuridica) manager.createQuery(
                 "SELECT c FROM PessoaJuridica c WHERE c.razaoSocial LIKE :razaosocial")
                 .setParameter("razaosocial", razaosocial)   
                 .getSingleResult();
+    }
+    
+    public List<PessoaJuridica> buscarListaNome(String nome){
+        return (List<PessoaJuridica>) manager.createQuery("SELECT c FROM PessoaJuridica c WHERE c.nome LIKE :nome");
     }
     
     public PessoaJuridica buscarByCNPJ(String cnpj) {

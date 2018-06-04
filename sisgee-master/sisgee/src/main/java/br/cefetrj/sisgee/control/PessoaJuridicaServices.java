@@ -56,7 +56,20 @@ public class PessoaJuridicaServices {
             return null;
         }
     }
+    
+    public static List<PessoaJuridica> buscarListaNome(String nome){
+        PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+        String nome1 = "%";
+        nome1 += nome;
+        nome1 += "%"; 
+        try{
+            List<PessoaJuridica> c = pessoaJuridicaDAO.buscarListaNome(nome1);
+            return c;
         
+        }catch(Exception e){
+            return null;
+        }
+    }        
     public static PessoaJuridica buscarConvenioByCNPJ(String cnpj) {
         PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
         try {
