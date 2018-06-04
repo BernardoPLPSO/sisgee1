@@ -20,6 +20,7 @@ import br.cefetrj.sisgee.model.entity.TermoEstagio;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
 import br.cefetrj.sisgee.view.utils.UF;
 import br.cefetrj.sisgee.view.utils.ValidaUtils;
+import java.util.UUID;
 
 @WebServlet("/TermoAditivoServlet")
 public class TermoAditivoServlet extends HttpServlet {
@@ -39,12 +40,7 @@ public class TermoAditivoServlet extends HttpServlet {
         String endereco = request.getParameter("endereco");
         String vigencia = request.getParameter("vigencia");
         String professor = request.getParameter("professor");
-        System.out.println(cargaHoraria);
-        System.out.println(valor);
-        System.out.println(endereco);
-        System.out.println(vigencia);
-        System.out.println(professor);
-        
+
         Aluno aluno = null;
         TermoEstagio termoEstagio = null;
         List<TermoEstagio> termosAditivos = null;
@@ -72,7 +68,7 @@ public class TermoAditivoServlet extends HttpServlet {
                     List<TermoEstagio> termosEstagio = aluno.getTermoEstagios();
                     for (TermoEstagio termoEstagio2 : termosEstagio) {
 
-                        if (termoEstagio2.getDataRescisaoTermoEstagio() == null) {
+                        if (termoEstagio2.getDataRescisaoTermoEstagio() == null && termoEstagio2.getTermoEstagio() == null) {
                             termoEstagio = termoEstagio2;
                             break;
                         }
@@ -129,6 +125,9 @@ public class TermoAditivoServlet extends HttpServlet {
         if (isValid) {
             request.setAttribute("termo", termoEstagio);
             request.getRequestDispatcher("/form_termo_estagio_adicionar_aditivo.jsp").forward(request, response);
+
+            
+            
         } else {
             request.getRequestDispatcher("/form_termo_aditivo.jsp").forward(request, response);
         }

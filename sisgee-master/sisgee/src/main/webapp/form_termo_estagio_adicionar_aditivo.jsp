@@ -64,7 +64,7 @@
 
         <c:choose>
             <c:when test="${ not empty termo }">
-                <form action="FormTermoAditivoServlet" method="post">
+                <form action="IncluirTermoAditivoServlet" method="post">
                 </c:when>
                 <c:otherwise>
                     <form action="FormTermoEstagioServlet" method="post">
@@ -347,7 +347,7 @@
                     <input type="hidden" name="updValorBolsa" value="${ updValorBolsa }" />
                     <input type="hidden" name="updEndereco" value="${ updEndereco }" />
                 </c:if>
-
+                    <input type="hidden" name ="termoid" value="${termo.idTermoEstagio}"/>
                 <button type="submit" class="btn btn-primary" ${ isVisualizacao eq true ? 'disabled' :'' }><fmt:message key = "br.cefetrj.sisgee.resources.form.salvar"/></button>
                 <c:choose>
                     <c:when test="${ not empty termo }">
@@ -370,7 +370,7 @@
                         </div>
                         <div class="modal-body"></div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><fmt:message key = "br.cefetrj.sisgee.resources.form.fechar"/></button>
+                            <button type="button"  data-dismiss="modal"><fmt:message key = "br.cefetrj.sisgee.resources.form.fechar"/></button>
                         </div>
                     </div>
                 </div>
