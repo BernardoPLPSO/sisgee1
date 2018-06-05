@@ -84,6 +84,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
 		String idAluno = request.getParameter("idAluno");
                 System.out.println(idAluno);
 		String numeroConvenio = request.getParameter("numeroConvenio");
+                System.out.println(numeroConvenio);
 		String isAgenteIntegracao = request.getParameter("isAgenteIntegracao");
 			
 		boolean isValid = true;

@@ -24,7 +24,6 @@ public class PessoaFisicaDAO extends GenericDAO<PessoaFisica> {
         q.setFirstResult(0);
         q.setMaxResults(1);
         PessoaFisica f = (PessoaFisica) q.setParameter("numero", numero).getSingleResult();
-        System.out.println(f);
         return  f;
     }
     

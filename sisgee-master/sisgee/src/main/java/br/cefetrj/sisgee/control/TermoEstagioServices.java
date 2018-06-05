@@ -78,12 +78,20 @@ public class TermoEstagioServices {
          */
         PersistenceManager.getTransaction().begin();
         try {
-            PessoaFisica fis = PessoaFisicaServices.buscarConvenioByNumero((termoEstagio.getConvenioPF()).getNumeroConvenio());
-            PessoaJuridica jur = PessoaJuridicaServices.buscarConvenioByNumero(termoEstagio.getConvenioPJ().getNumeroConvenio());
-            if (fis != null) {
+            PessoaJuridica jur = new PessoaJuridica();
+            PessoaFisica fis = new PessoaFisica();
+            System.out.println("Convenio PF "+termoEstagio.getConvenioPF());
+            System.out.println("Convenio PJ "+termoEstagio.getConvenioPJ());
+            if(termoEstagio.getConvenioPF()!= null){
+                fis = PessoaFisicaServices.buscarConvenioByNumero((termoEstagio.getConvenioPF()).getNumeroConvenio());
+            }
+            else if(termoEstagio.getConvenioPJ() != null){
+                jur = PessoaJuridicaServices.buscarConvenioByNumero(termoEstagio.getConvenioPJ().getNumeroConvenio());
+            }
+            if (fis.getNumeroConvenio() != null) {
                 // SIM - Encapsular em termo estagio
                 termoEstagio.setConvenioPF(fis);
-            }else if(jur != null){
+            }else if(jur.getNumeroConvenio() != null){
                 // SIM - Encapsular em termo estagio
                 termoEstagio.setConvenioPJ(jur);
             }

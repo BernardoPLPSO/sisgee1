@@ -23,6 +23,7 @@ public class PessoaJuridicaDAO extends GenericDAO<PessoaJuridica>{
         Query q = manager.createQuery("SELECT c FROM PessoaJuridica c WHERE c.numeroConvenio LIKE :numero");
         q.setFirstResult(0);
         q.setMaxResults(1);
+        System.out.println(numero);
         PessoaJuridica j = (PessoaJuridica) q.setParameter("numero", numero).getSingleResult();
         System.out.println(j);
         return  j;

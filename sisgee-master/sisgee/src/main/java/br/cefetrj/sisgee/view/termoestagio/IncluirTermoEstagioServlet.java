@@ -56,11 +56,12 @@ public class IncluirTermoEstagioServlet extends HttpServlet {
         Boolean eEstagioObrigatorio = (Boolean) request.getAttribute("obrigatorio");
         Aluno aluno = new Aluno((Integer) request.getAttribute("idAluno"));
         String numeroConvenio = (String)request.getAttribute("numeroConvenio");
-        //Convenio convenio = (Convenio)request.getAttribute("convenio");
+        System.out.println("Numero convenio "+numeroConvenio);
         PessoaFisica pf = PessoaFisicaServices.buscarConvenioByNumero(numeroConvenio);
+        System.out.println(pf);
         PessoaJuridica pj = PessoaJuridicaServices.buscarConvenioByNumero(numeroConvenio);
+        System.out.println(pj);
 
-        //Empresa empresa = new Empresa((Integer)request.getAttribute("idEmp"));		
 
         //NÃO OBRIGATÓRIO
         Boolean hasDataFim = (Boolean) request.getAttribute("hasDataFim");

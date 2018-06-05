@@ -40,9 +40,13 @@ public class PessoaJuridicaServices {
     public static PessoaJuridica buscarConvenioByNumero(String numero) {
         PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
         try {
+            numero += "%";
+            System.out.println("Numero PJ "+numero);
             PessoaJuridica c = pessoaJuridicaDAO.buscarByNumeroConvenio(numero);
+            System.out.println("PJServicesSuccess "+c);
             return c;
         } catch (Exception e) {
+            System.out.println("PJServicesError "+e);
             return null;
         }
     }
