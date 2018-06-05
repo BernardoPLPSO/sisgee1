@@ -115,6 +115,7 @@
 		
 		<%@include file="import_footer.jspf"%>
 		<%@include file="import_finalbodyscripts.jspf"%>
+                <%@include file="import_scripts.jspf"%>
 		<script type="text/javascript">
 	    $('#dataInicio, #dataFim').datepicker({
 	    	<c:if test="${ lang eq 'pt_BR' }">

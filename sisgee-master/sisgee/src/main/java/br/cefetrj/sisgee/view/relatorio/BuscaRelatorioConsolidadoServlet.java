@@ -64,12 +64,10 @@ public class BuscaRelatorioConsolidadoServlet extends HttpServlet {
         } else if (estagioObrig == false && estagioNaoObrig == true) {
             termosEstagioLista = TermoEstagioServices.listarTermoEstagioFiltrado(false, dataInicio, dataTermino);
         }
-        System.out.println("tamanho da lista de termos: " + termosEstagioLista.size());
-
+        
         List<ItemRelatorio> listaItemRelatorio = new ArrayList<ItemRelatorio>();
 
         if (!(termosEstagioLista.isEmpty())) {
-            System.out.println("tem registro msm jao?");
             listaItemRelatorio = qntdPorCurso(termosEstagioLista);
             Object[] aux = null;
             String cursoNome = null;
@@ -78,7 +76,6 @@ public class BuscaRelatorioConsolidadoServlet extends HttpServlet {
             }
             
         } else {
-            System.out.println("Nenhum registro encontrado nesse período de tempo");
             String msgRelatorio = messages.getString("br.cefetrj.sisgee.relatorio.busca_relatorio_consolidado_servlet.nenhum_resultado");
             request.setAttribute("msgRelatorio", msgRelatorio);
         }
@@ -100,7 +97,6 @@ public class BuscaRelatorioConsolidadoServlet extends HttpServlet {
         Object[] aux = null;
         ItemRelatorio item = null;
         String stg = null;
-        System.out.println("tamanho da lista: " + termosEstagioLista.size());
         for (int i = 0; i < termosEstagioLista.size(); i++) {
 
             aux = termosEstagioLista.get(i);
