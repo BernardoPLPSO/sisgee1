@@ -208,7 +208,7 @@
                             buscarAlunoCallback(result);
                         }
                         if($elementID === "a" && result.idAluno != ""){
-                            window.open("form_termo_aditivo_lista.jsp", "_blank", "width=800,height=600");
+                            window.location.href = "form_termo_aditivo_lista.jsp", "_blank", "width=800,height=600";
                         }
 	
                         //LIXO!

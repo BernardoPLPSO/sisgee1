@@ -89,8 +89,8 @@
                                     <a href = "${verTermoAditivoUrl}" >${termo.dataInicioTermoEstagio }</a>
                                 </td>	
                                 <td> ${ termo.dataFimTermoEstagio }</td>
-                                <td> ${ termo.convenioPF == null ? termos.get(i).convenioPJ.cnpj: termos.get(i).convenioPF.cpf }</td>
-                                <td> ${ termo.convenioPF == null ? termos.get(i).convenioPJ.razaoSocial: termos.get(i).convenioPF.nome }</td>						
+                                <td> ${ termo.convenioPF == null ? termo.convenioPJ.cnpj: termo.convenioPF.cpf }</td>
+                                <td> ${ termo.convenioPF == null ? termo.convenioPJ.razaoSocial: termo.convenioPF.nome }</td>						
 
                             </tr>
                         </c:forEach>

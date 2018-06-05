@@ -62,8 +62,8 @@ public class RenovaConvenioServlet extends HttpServlet {
                  request.setAttribute("Resultado", Resultado);
                  
             }else if(!buscaNumero.isEmpty()){
-                 PessoaFisica buscaConvePF = PessoaFisicaServices.buscarConvenioByNome(buscaNumero);
-                 PessoaJuridica buscaConvePJ = PessoaJuridicaServices.buscarConvenioByNome(buscaNumero);
+                 PessoaFisica buscaConvePF = PessoaFisicaServices.buscarConvenioByNumero(buscaNumero);
+                 PessoaJuridica buscaConvePJ = PessoaJuridicaServices.buscarConvenioByNumero(buscaNumero);
                 if(buscaConvePF == null && buscaConvePJ==null){
                     request.setAttribute("Resultado", null);
                     
