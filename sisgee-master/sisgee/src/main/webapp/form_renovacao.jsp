@@ -54,25 +54,7 @@
 		
 			<fieldset class="form-group">
                                 
-                             <!-- 
-                            <div class="form-group col-md-4">
-        <label for="numeroConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.numeroConvenio"/></label>
-        <div class="input-group">						  
-            <input type="text" class="form-control numeroConvenio" placeholder="Digite o Número" id="numeroConvenio" name="numeroConvenio" value="${ param.numeroConvenio }">
-            <span class="input-group-btn">
-                <button class="btn btn-primary" type="button" id="btnBuscarNumeroConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
-            </span>
-        </div>
-    </div>
-    <div class="form-group col-md-6">
-        <label for="nomeConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomeConvenio"/></label>
-        <div class="input-group">						  
-            <input type="text" class="form-control nomeConvenioNotAI nomeConvenio" placeholder="Digite o Nome" id="nomeConvenio" name="nomeConvenio" value="${ param.nomeConvenio }">
-            <span class="input-group-btn">
-                <button class="btn btn-primary" type="button" id="btnBuscarNomeConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
-            </span>
-                            -->
-                            
+
                             
                             
                             
@@ -103,6 +85,30 @@
 			<button type="button" class="btn btn-secondary" onclick="javascript:location.href='index.jsp'"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_cancelar"/></button>
 								
 		</form>
+                        <c:if test="${ not empty Resultado }">
+                <table class="table table-hover" style="width: 100%; margin-top: 20px;">
+  			<thead>
+  				<tr>
+                                        <th>Seleção</th>
+  					<th>Numero do Convênio</th>
+  					<th>Nome / Razão Social</th>
+                                        <th>CPF / CNPJ</th>
+  				</tr>
+  			</thead> 
+                        <tbody>
+		<c:forEach items="${ Resultado }" var="Resultados" varStatus="status" >
+                    
+                    <tr>
+                        <th>${status.index} <button type="submit" class="btn btn-primary" id="btnRenovarConvenio" ><fmt:message key = "br.cefetrj.sisgee.resources.form.busca.buscar"/></button></th>
+			<th>${Resultados.numeroConvenio}</th>
+                        <th>${Resultados.nomeConvenio}</th>
+                        <th>${Resultados.idConvenio}</th>                     
+                    </tr>                                                                                                                                         
+	  				
+                </c:forEach>                          
+  			</tbody>
+  		</table>
+  		   </c:if> 
 	</div>
 	<%@include file="import_footer.jspf"%>
 	<%@include file="import_finalbodyscripts.jspf"%>

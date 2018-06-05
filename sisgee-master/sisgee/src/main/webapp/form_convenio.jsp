@@ -101,12 +101,12 @@
                                         
                                         <div class="custom-controls-stacked d-block my-3">
 					<label class="custom-control custom-radio"> 
-						<input id="agenteSim" name="agenteIntegracao" type="radio" ${ param.tipoPessoa == "cnpj" ? 'required' : "" }  class="custom-control-input"  value = "sim" > 
+						<input id="agenteSim" name="agenteIntegracao" type="radio" ${ param.tipoPessoa == "cnpj" ? 'required' : "" }  class="custom-control-input"  value = "true" > 
 						<span class="custom-control-indicator"></span> 
 						<span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_sim"/></span>
 					</label> 
 					<label class="custom-control custom-radio"> 
-						<input id="agenteNao" name="agenteIntegracao" type="radio" class="custom-control-input"  value = "nao" > 
+						<input id="agenteNao" name="agenteIntegracao" type="radio" class="custom-control-input"  value = "false" > 
 						<span class="custom-control-indicator"></span> 
 						<span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_nao"/></span>
 					</label>
@@ -146,7 +146,7 @@
                                                 
                                 <div class="form-group col-md-6">
 					<label for="email"><fmt:message key = "br.cefetrj.sisgee.resources.form.email"/></label>
-                                        <input type="email" placeholder="nome@exemplo.com" class="form-control ${ not empty EmailMsg ? 'is-invalid': 'is-valid' }" id="email" name="email" maxlength="50" value="${ param.email }">
+                                        <input type="text" placeholder="nome@exemplo.com" class="form-control ${ not empty EmailMsg ? 'is-invalid': 'is-valid' }" id="email" name="email" maxlength="50" value="${ param.email }">
 						<c:if test="${ not empty EmailMsg }">
 				    		<div class="invalid-feedback">${ EmailMsg }</div>
 		        		</c:if>

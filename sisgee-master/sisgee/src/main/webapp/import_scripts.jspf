@@ -248,6 +248,10 @@
 	        	}
 	        }
 	    }
+            
+            $("#btnRenovarConvenio").click(function(){
+                window.location.href = "form_convenio2.jsp";
+            })
 	    
   
     </script>
