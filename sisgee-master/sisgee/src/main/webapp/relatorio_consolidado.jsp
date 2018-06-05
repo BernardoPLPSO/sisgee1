@@ -80,6 +80,7 @@
 					</div>				
 				</fieldset>
 				<button type="submit" class="btn btn-primary"><fmt:message key="br.cefetrj.sisgee.relatorio.relatorio_consolidado.btn_pesquisar" /></button>
+                                <button type="button" class="btn btn-primary" id="btnImprimirRelatorioConsolidado"><fmt:message key="br.cefetrj.sisgee.relatorio.relatorio_consolidado.btn_imprimir" /></button>                         
 			</form>
 			<c:if test="${ not empty msgRelatorio }">
 						<div class="alert alert-warning" role="alert">
