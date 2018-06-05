@@ -76,8 +76,12 @@ public class RenovaConvenioServlet extends HttpServlet {
                  request.setAttribute("Resultado", Resultado);
                  }
             }else if(!buscaNumero.isEmpty()){
-                 ConvePF = PessoaFisicaServices.buscarConvenioByNumero(buscaNumero);
-                 ConvePJ = PessoaJuridicaServices.buscarConvenioByNumero(buscaNumero);
+                if(PessoaFisicaServices.buscarConvenioByNumero(buscaNumero)!= null){
+                    ConvePF = PessoaFisicaServices.buscarConvenioByNumero(buscaNumero);
+                }
+                if(PessoaJuridicaServices.buscarConvenioByNumero(buscaNumero)!=null){
+                    ConvePJ = PessoaJuridicaServices.buscarConvenioByNumero(buscaNumero);
+                }
                 if(buscaConvePF == null && buscaConvePJ==null){
                     request.setAttribute("Resultado", null);
                     String msg = messages.getString("br.cefetrj.sisgee.resources.form.busca.semResultado");
@@ -100,7 +104,7 @@ public class RenovaConvenioServlet extends HttpServlet {
                  
             }
             
-            request.getRequestDispatcher("/form_renovacaoResul.jsp").forward(request, response); 
+            request.getRequestDispatcher("/form_renovacao.jsp").forward(request, response); 
         }catch(Exception e){
             lg.error("Exception ao tentar inserir um convenio", e);
             String msg = messages.getString("br.cefetrj.sisgee.resources.form.busca.erroBusca");

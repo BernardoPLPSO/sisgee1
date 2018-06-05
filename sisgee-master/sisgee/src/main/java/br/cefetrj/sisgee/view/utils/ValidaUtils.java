@@ -226,6 +226,7 @@ public class ValidaUtils {
             if(param.contains("@") && (param.contains(".com"))|| (param.contains(".br"))){
                //ta certim
             }else{
+                System.out.println("Passou no validaEmail e falhou com o param: "+param);
                 msg = "br.cefetrj.sisgee.valida_utils.msg_valida_Email";
             }
             return msg;
