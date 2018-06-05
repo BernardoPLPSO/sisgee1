@@ -36,7 +36,7 @@ public class PessoaFisicaDAO extends GenericDAO<PessoaFisica> {
     }
     
     public List<PessoaFisica> buscarListaNome(String nome){
-        return (List<PessoaFisica>) manager.createQuery("SELECT c FROM PessoaFisica c WHERE c.nome LIKE :nome").setParameter("nome", nome);
+        return (List<PessoaFisica>) manager.createQuery("SELECT c FROM PessoaFisica c WHERE c.nome LIKE :nome").setParameter("nome", nome).getResultList();
     }
     
     public PessoaFisica buscarByCPF(String cpf) {

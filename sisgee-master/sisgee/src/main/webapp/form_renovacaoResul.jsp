@@ -79,7 +79,7 @@
 					
 			<button type="submit" class="btn btn-primary"  ><fmt:message key = "br.cefetrj.sisgee.resources.form.busca.buscar"/></button>
 			<button type="button" class="btn btn-secondary" onclick="javascript:location.href='index.jsp'"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_cancelar"/></button>
-		
+		<c:if test="${ not empty Resultado }">
                 <table class="table table-hover" style="width: 100%; margin-top: 20px;">
   			<thead>
   				<tr>${ Resultado.numeroConvenio }
@@ -101,7 +101,7 @@
                 </c:forEach>                          
   			</tbody>
   		</table>
-  		    
+  		   </c:if> 
 	</div>
 	<%@include file="import_footer.jspf"%>
 	<%@include file="import_finalbodyscripts.jspf"%>
