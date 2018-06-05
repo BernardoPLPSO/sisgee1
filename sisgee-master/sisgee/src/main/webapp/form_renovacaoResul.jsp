@@ -93,7 +93,7 @@
                     
   					
 	  				<tr>
-						<th>${ Resultado.numeroConvenio }</th>
+						<th>${Resultado.numeroConvenio}</th>
                                                 <th>Nome / Razão Social</th>
                                                 <th>CPF / CNPJ</th>
 	  				</tr>

@@ -43,6 +43,11 @@ public class RenovaConvenioServlet extends HttpServlet {
         Logger lg = Logger.getLogger(RenovaConvenioServlet.class);
         List<Object> Resultado = null;
         
+        PessoaFisica ConvePF = null;
+        PessoaJuridica ConvePJ = null;
+        List<PessoaFisica> buscaConvePF = null;
+        List<PessoaJuridica> buscaConvePJ = null;
+        
         String buscaNumero = request.getParameter("buscaNumero");
         String buscaRazaoNome = request.getParameter("buscaRazaoNome");
         
@@ -50,8 +55,8 @@ public class RenovaConvenioServlet extends HttpServlet {
         System.out.println(buscaRazaoNome);
         try{
             if(!buscaRazaoNome.isEmpty()){
-                 List<PessoaFisica> buscaConvePF = PessoaFisicaServices.buscarListaNome(buscaRazaoNome);
-                 List<PessoaJuridica> buscaConvePJ = PessoaJuridicaServices.buscarListaNome(buscaRazaoNome);
+                 buscaConvePF = PessoaFisicaServices.buscarListaNome(buscaRazaoNome);
+                 buscaConvePJ = PessoaJuridicaServices.buscarListaNome(buscaRazaoNome);
                  
                  for(PessoaFisica P : buscaConvePF){
                      Resultado.add(P);
@@ -62,10 +67,12 @@ public class RenovaConvenioServlet extends HttpServlet {
                  request.setAttribute("Resultado", Resultado);
                  
             }else if(!buscaNumero.isEmpty()){
-                 PessoaFisica buscaConvePF = PessoaFisicaServices.buscarConvenioByNumero(buscaNumero);
-                 PessoaJuridica buscaConvePJ = PessoaJuridicaServices.buscarConvenioByNumero(buscaNumero);
+                 ConvePF = PessoaFisicaServices.buscarConvenioByNumero(buscaNumero);
+                 ConvePJ = PessoaJuridicaServices.buscarConvenioByNumero(buscaNumero);
                 if(buscaConvePF == null && buscaConvePJ==null){
                     request.setAttribute("Resultado", null);
+                    String msg = messages.getString("br.cefetrj.sisgee.resources.form.busca.semResultado");
+                    request.setAttribute("msg", msg);
                     
                 }else{ if(buscaConvePJ == null){
                     Resultado.add(buscaConvePF);
