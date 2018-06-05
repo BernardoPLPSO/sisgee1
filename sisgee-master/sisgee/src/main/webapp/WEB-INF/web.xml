@@ -5,9 +5,17 @@
         <servlet-name>ImprimeRelatorioConsolidadoServlet</servlet-name>
         <servlet-class>br.cefetrj.sisgee.view.relatorio.ImprimeRelatorioConsolidadoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ValidaRenovaConvenioServlet</servlet-name>
+        <servlet-class>br.cefetrj.sisgee.view.empresa_agente.ValidaRenovaConvenioServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ImprimeRelatorioConsolidadoServlet</servlet-name>
         <url-pattern>/ImprimeRelatorioConsolidadoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidaRenovaConvenioServlet</servlet-name>
+        <url-pattern>/ValidaRenovaConvenioServlet</url-pattern>
     </servlet-mapping>
     <jsp-config>
         <jsp-property-group>
