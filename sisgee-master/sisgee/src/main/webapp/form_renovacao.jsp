@@ -54,7 +54,7 @@
 		
 			<fieldset class="form-group">
                                 
-                            
+                             <!-- 
                             <div class="form-group col-md-4">
         <label for="numeroConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.numeroConvenio"/></label>
         <div class="input-group">						  
@@ -71,13 +71,13 @@
             <span class="input-group-btn">
                 <button class="btn btn-primary" type="button" id="btnBuscarNomeConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
             </span>
+                            -->
                             
                             
                             
                             
                             
-                            
-                              <!--                  
+                                              
                                 <div class="form-group col-md-6">
 					<label for="buscaNumero"><fmt:message key = "br.cefetrj.sisgee.resources.form.busca.numeroConvenio"/></label>
                                         <input type="search" placeholder="Insira o Numero do Convênio a Ser Encontrado Sem o Ano" class="form-control ${ not empty buscaNumeroMsg ? 'is-invalid': 'is-valid' }" id="numeroConvenio" name="buscaNumero" maxlength="6" value="${ param.buscaNumero }">
@@ -93,7 +93,7 @@
 				    		<div class="invalid-feedback">${ buscaRazaoNomeMsg }</div>
                                                 
 		        		</c:if>
-				</div>  -->
+				</div>  
                                                 
                   
                             
