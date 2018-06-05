@@ -85,24 +85,21 @@
                 <table class="table table-hover" style="width: 100%; margin-top: 20px;">
   			<thead>
   				<tr>
+                                        <th>Seleção</th>
   					<th>Numero do Convênio</th>
   					<th>Nome / Razão Social</th>
                                         <th>CPF / CNPJ</th>
   				</tr>
   			</thead> 
                         <tbody>
-		<<c:forEach items="${ Resultado }" var="Resultados">
+		<c:forEach items="${ Resultado }" var="Resultados" varStatus="status" >
+                    
                     <tr>
+                        <th>${status.index}</th>
 			<th>${Resultados.numeroConvenio}</th>
-                    
-                    
-                     <th> LL </th>
-                                                
-                                                
-                                                
-                                                
-                                                <th>CPF / CNPJ</th>
-	  				</tr>
+                        <th>${Resultados.nomeConvenio}</th>
+                        <th>${Resultados.idConvenio}</th>                     
+                    </tr>                                                                                                                                         
 	  				
                 </c:forEach>                          
   			</tbody>

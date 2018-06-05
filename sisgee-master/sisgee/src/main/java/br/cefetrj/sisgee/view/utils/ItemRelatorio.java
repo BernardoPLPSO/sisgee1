@@ -16,7 +16,68 @@ public class ItemRelatorio {
 	private int qntTermoAditivo;
 	private int qntRescReg;
 	
+        private String numeroConvenio;
+        private String idConvenio;
+        private String nomeConvenio;
+        private Object objConvenio;
+        private Class tipoConvenio;
 	
+        public ItemRelatorio(String numeroConvenio, String idConvenio, String nomeConvenio, Object objConvenio, Class tipoConvenio){
+            super();
+            this.numeroConvenio = numeroConvenio;
+            if(idConvenio.length()==11){
+                
+            }else{
+                
+            }
+            this.idConvenio = idConvenio;
+            this.nomeConvenio = nomeConvenio;
+            this.objConvenio = objConvenio;
+            this.tipoConvenio = tipoConvenio;
+            
+        }
+
+    public String getNumeroConvenio() {
+        return numeroConvenio;
+    }
+
+    public void setNumeroConvenio(String numeroConvenio) {
+        this.numeroConvenio = numeroConvenio;
+    }
+
+    public String getIdConvenio() {
+        return idConvenio;
+    }
+
+    public void setIdConvenio(String idConvenio) {
+        this.idConvenio = idConvenio;
+    }
+
+    public String getNomeConvenio() {
+        return nomeConvenio;
+    }
+
+    public void setNomeConvenio(String nomeConvenio) {
+        this.nomeConvenio = nomeConvenio;
+    }
+
+    public Object getObjConvenio() {
+        return objConvenio;
+    }
+
+    public void setObjConvenio(Object objConvenio) {
+        this.objConvenio = objConvenio;
+    }
+
+    public Class getTipoConvenio() {
+        return tipoConvenio;
+    }
+
+    public void setTipoConvenio(Class tipoConvenio) {
+        this.tipoConvenio = tipoConvenio;
+    }
+        
+        
 	
 	public ItemRelatorio(String nomeCurso) {
 		super();
@@ -92,7 +153,7 @@ public class ItemRelatorio {
 				+ qntTermoAditivo + ", qntRescReg=" + qntRescReg + "]";
 	}
 	
-	
+	   
 	
 	
 	
