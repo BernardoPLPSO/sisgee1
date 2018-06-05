@@ -42,32 +42,40 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
         String idtermo = request.getParameter("termoid");
 
-        TermoEstagio termoAditivo = TermoEstagioServices.buscarTermoEstagio(Integer.parseInt(idtermo));
-        System.out.println(termoAditivo);
+        TermoEstagio t = TermoEstagioServices.buscarTermoEstagio(Integer.parseInt(idtermo));
+        
+        TermoEstagio termoAditivo = new TermoEstagio(t.getDataInicioTermoEstagio(),t.getCargaHorariaTermoEstagio(), t.getValorBolsa(), t.getEnderecoTermoEstagio(), t.getProfessorOrientador());
+        termoAditivo.setAluno(t.getAluno());
+        termoAditivo.setBairroEnderecoTermoEstagio(t.getBairroEnderecoTermoEstagio());
+        termoAditivo.setCepEnderecoTermoEstagio(t.getCepEnderecoTermoEstagio());
+        termoAditivo.setCidadeEnderecoTermoEstagio(t.getCidadeEnderecoTermoEstagio());
+        termoAditivo.setComplementoEnderecoTermoEstagio(t.getComplementoEnderecoTermoEstagio());
+        termoAditivo.setDataFimTermoEstagio(t.getDataFimTermoEstagio());
+        termoAditivo.setDataInicioTermoEstagio(t.getDataInicioTermoEstagio());
+        termoAditivo.setEEstagioObrigatorio(t.getEEstagioObrigatorio());
+        termoAditivo.setEnderecoTermoEstagio(t.getEnderecoTermoEstagio());
+        termoAditivo.setEstadoEnderecoTermoEstagio(t.getEstadoEnderecoTermoEstagio());
+        termoAditivo.setNumeroEnderecoTermoEstagio(t.getNumeroEnderecoTermoEstagio());
+        termoAditivo.setConvenioPF(t.getConvenioPF());
+        termoAditivo.setConvenioPJ(t.getConvenioPJ());        
+        termoAditivo.setIdTermoEstagio(t.getIdTermoEstagio());
 
-        Date dataFimTermoAditivo;
+        /*Date dataFimTermoAditivo;
         try {
             dataFimTermoAditivo = DateFormat.getInstance().parse(request.getParameter("updVigencia"));
         } catch (ParseException ex) {
             java.util.logging.Logger.getLogger(IncluirTermoAditivoServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
         Integer cargaHorariaTermoAditivo = Integer.parseInt(request.getParameter("updCargaHoraria"));
-        System.out.println(cargaHorariaTermoAditivo);
         Float valorBolsaTermoAditivo = Float.parseFloat(request.getParameter("updValorBolsa"));
-        System.out.println(valorBolsaTermoAditivo);
         String enderecoTermoAditivo = (String) request.getParameter("updEndereco");
        // ProfessorOrientador professorOrientador = (ProfessorOrientador) request.getParameter("updProfessor");
 
-        String myObjectId = request.getParameter("myObjectId");
-
-        request.getSession().removeAttribute(myObjectId);
-
-        System.out.println(termoAditivo);
         /*if (dataFimTermoAditivo != null) {
             termoAditivo.setDataFimTermoEstagio(dataFimTermoAditivo);
         }*/
-
+        
         if (cargaHorariaTermoAditivo != null) {
             termoAditivo.setCargaHorariaTermoEstagio(cargaHorariaTermoAditivo);
         }
@@ -83,27 +91,7 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         /*if (professorOrientador != null) {
             termoAditivo.setProfessorOrientador(professorOrientador);
         }*/
-        System.out.println(termoAditivo.getBairroEnderecoTermoEstagio());
-        System.out.println(termoAditivo.getCargaHorariaTermoEstagio());
-        System.out.println(termoAditivo.getBairroEnderecoTermoEstagio());
-        System.out.println(termoAditivo.getCepEnderecoTermoEstagio());
-        System.out.println(termoAditivo.getCidadeEnderecoTermoEstagio());
-        System.out.println(termoAditivo.getComplementoEnderecoTermoEstagio());
-        System.out.println(termoAditivo.getConvenioPF());
-        System.out.println(termoAditivo.getConvenioPJ());
-        System.out.println(termoAditivo.getDataFimTermoEstagio());
-        System.out.println(termoAditivo.getDataInicioTermoEstagio());
-        System.out.println(termoAditivo.getDataRescisaoTermoEstagio());
-        System.out.println(termoAditivo.getEEstagioObrigatorio());
-        System.out.println(termoAditivo.getEnderecoTermoEstagio());
-        System.out.println(termoAditivo.getEstadoEnderecoTermoEstagio());
-        System.out.println(termoAditivo.getIdTermoEstagio());
-        System.out.println(termoAditivo.getNumeroEnderecoTermoEstagio());
-        System.out.println(termoAditivo.getProfessorOrientador());
-        System.out.println(termoAditivo.getTermoEstagio());
-        System.out.println(termoAditivo.getTermosAditivos());
-        System.out.println(termoAditivo.getValorBolsa());
-        System.out.println(termoAditivo.geteEstagioObrigatorio());
+        
 
         String registroAditivoConcluido = "";
         String msgOcorreuErro = "";
