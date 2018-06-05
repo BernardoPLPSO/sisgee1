@@ -65,9 +65,14 @@ public class PessoaFisicaServices {
         nome1 += "%"; 
         try{
             List<PessoaFisica> c = pessoaFisicaDAO.buscarListaNome(nome1);
+            System.out.println(c);
             return c;
+            
         
         }catch(Exception e){
+            System.out.println("He");
+            System.out.println(e);
+            System.out.println("He");
             return null;
         }
     }

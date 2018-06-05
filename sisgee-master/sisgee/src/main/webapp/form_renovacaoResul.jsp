@@ -1,3 +1,5 @@
+<%@page import="br.cefetrj.sisgee.model.entity.PessoaFisica"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,19 +84,23 @@
 		<c:if test="${ not empty Resultado }">
                 <table class="table table-hover" style="width: 100%; margin-top: 20px;">
   			<thead>
-  				<tr>${ Resultado.numeroConvenio }
+  				<tr>
   					<th>Numero do Convênio</th>
   					<th>Nome / Razão Social</th>
                                         <th>CPF / CNPJ</th>
   				</tr>
   			</thead> 
                         <tbody>
-		<<c:forEach items="${ Resultado }" var="Resultado">
+		<<c:forEach items="${ Resultado }" var="Resultados">
+                    <tr>
+			<th>${Resultados.numeroConvenio}</th>
                     
-  					
-	  				<tr>
-						<th>${Resultado.numeroConvenio}</th>
-                                                <th>Nome / Razão Social</th>
+                    
+                     <th> LL </th>
+                                                
+                                                
+                                                
+                                                
                                                 <th>CPF / CNPJ</th>
 	  				</tr>
 	  				

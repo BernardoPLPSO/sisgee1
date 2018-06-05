@@ -14,6 +14,7 @@ import br.cefetrj.sisgee.model.entity.PessoaJuridica;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -41,7 +42,7 @@ public class RenovaConvenioServlet extends HttpServlet {
         Locale locale = ServletUtils.getLocale(request);
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
         Logger lg = Logger.getLogger(RenovaConvenioServlet.class);
-        List<Object> Resultado = null;
+        List<Object> Resultado = new ArrayList<Object>();
         
         PessoaFisica ConvePF = null;
         PessoaJuridica ConvePJ = null;
@@ -55,17 +56,22 @@ public class RenovaConvenioServlet extends HttpServlet {
         System.out.println(buscaRazaoNome);
         try{
             if(!buscaRazaoNome.isEmpty()){
-                 buscaConvePF = PessoaFisicaServices.buscarListaNome(buscaRazaoNome.trim()+"%");
-                 buscaConvePJ = PessoaJuridicaServices.buscarListaNome(buscaRazaoNome.trim()+"%");
-                 
+                 buscaConvePF = PessoaFisicaServices.buscarListaNome(buscaRazaoNome);
+                 buscaConvePJ = PessoaJuridicaServices.buscarListaNome(buscaRazaoNome);
+                 System.out.println(buscaConvePF+"LOLO");
+                 if(buscaConvePF!=null){
                  for(PessoaFisica P : buscaConvePF){
                      Resultado.add(P);
-                 }
+                 }}
+                 if(buscaConvePJ!=null){
                  for(PessoaJuridica J : buscaConvePJ){
                      Resultado.add(J); 
-                 }
+                 }}
+                 if(Resultado.isEmpty()){
+                    request.setAttribute("Resultado", null); 
+                 }else{
                  request.setAttribute("Resultado", Resultado);
-                 
+                 }
             }else if(!buscaNumero.isEmpty()){
                  ConvePF = PessoaFisicaServices.buscarConvenioByNumero(buscaNumero.trim()+"%");
                  ConvePJ = PessoaJuridicaServices.buscarConvenioByNumero(buscaNumero.trim()+"%");
@@ -84,10 +90,12 @@ public class RenovaConvenioServlet extends HttpServlet {
                     
                 }
                 } 
+              
                 
-               request.getRequestDispatcher("/form_renovacaoResul.jsp").forward(request, response);  
                  
             }
+            
+            request.getRequestDispatcher("/form_renovacaoResul.jsp").forward(request, response); 
         }catch(Exception e){
             lg.error("Exception ao tentar inserir um convenio", e);
             String msg = messages.getString("br.cefetrj.sisgee.resources.form.busca.erroBusca");
