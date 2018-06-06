@@ -384,8 +384,8 @@
         $(document).ready(function () {
             $('#cargaHorariaTermoEstagio').mask('9');
             $('#valorBolsa').mask('000.000,00', {reverse: true});
-            $('#dataInicioTermoEstagio').mask('9999/99/99');
-            $('#dataFimTermoEstagio').mask('9999/99/99');
+            $('#dataInicioTermoEstagio').mask('99/99/9999');
+            $('#dataFimTermoEstagio').mask('99/99/9999');
             $('#cnpjEmpresa1').mask('99.999.999/9999-99');
             $('#cnpjEmpresa2').mask('99.999.999/9999-99');
             $('#cepEnderecoTermoEstagio').mask('99.999-999');
