@@ -5,6 +5,10 @@
  */
 package br.cefetrj.sisgee.view.empresa_agente;
 
+import br.cefetrj.sisgee.control.PessoaFisicaServices;
+import br.cefetrj.sisgee.control.PessoaJuridicaServices;
+import br.cefetrj.sisgee.model.entity.PessoaFisica;
+import br.cefetrj.sisgee.model.entity.PessoaJuridica;
 import br.cefetrj.sisgee.view.utils.ItemRelatorio;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
 import java.io.IOException;
@@ -32,10 +36,39 @@ public class ValidaRenovaConvenioServlet extends HttpServlet {
         Locale locale = ServletUtils.getLocale(request);
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
         
-        List<ItemRelatorio> Resultado = (List<ItemRelatorio>)request.getAttribute("Resultado");
-        Object index = request.getAttribute("teste");
         
-        System.out.println("OLHA AQUI:"+index);
+        String numeroConvenio =  request.getParameter("convenio");
+        
+        PessoaFisica ConvePF = null;
+        PessoaJuridica ConvePJ = null;
+        
+        if (PessoaFisicaServices.buscarConvenioByNumero(numeroConvenio) != null) {
+            ConvePF = PessoaFisicaServices.buscarConvenioByNumero(numeroConvenio);
+        }
+        if (PessoaJuridicaServices.buscarConvenioByNumero(numeroConvenio) != null) {
+            ConvePJ = PessoaJuridicaServices.buscarConvenioByNumero(numeroConvenio);
+        } 
+        
+        if(ConvePF == null && ConvePJ==null){
+                    
+                    String msg = messages.getString("br.cefetrj.sisgee.resources.form.busca.semResultado");
+                    request.setAttribute("msg", msg);
+                    
+                }else{ if(ConvePJ == null){
+                    ItemRelatorio item = new ItemRelatorio(ConvePF.getNumeroConvenio(),ConvePF.getCpf(),ConvePF.getNome(),ConvePF,ConvePF.getClass());
+                    Resultado.add(item);
+                    request.setAttribute("Resultado", Resultado);
+                    
+                }else if(ConvePF == null){
+                    ItemRelatorio item = new ItemRelatorio(ConvePJ.getNumeroConvenio(),ConvePJ.getCnpj(),ConvePJ.getRazaoSocial(),ConvePJ,ConvePJ.getClass());
+                    Resultado.add(item);
+                    request.setAttribute("Resultado", Resultado);
+                    
+                }
+                } 
+        
+        
+        
         
     }
 }

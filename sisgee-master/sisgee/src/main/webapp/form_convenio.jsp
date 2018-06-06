@@ -101,12 +101,12 @@
                                         
                                         <div class="custom-controls-stacked d-block my-3">
 					<label class="custom-control custom-radio"> 
-						<input id="agenteSim" name="agenteIntegracao" type="radio" ${ param.tipoPessoa == "cnpj" ? 'required' : "" }  class="custom-control-input"  value = "true" > 
+						<input id="agenteSim" name="agenteIntegracao" type="radio" ${empty param.agenteIntegracao? '' : param.agenteIntegracao =='true'?'checked':''} class="custom-control-input"  value = "true" > 
 						<span class="custom-control-indicator"></span> 
 						<span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_sim"/></span>
 					</label> 
 					<label class="custom-control custom-radio"> 
-						<input id="agenteNao" name="agenteIntegracao" type="radio" class="custom-control-input"  value = "false" > 
+						<input id="agenteNao" name="agenteIntegracao" type="radio" ${empty param.agenteIntegracao? 'checked' : param.agenteIntegracao =='false'?'checked':''} class="custom-control-input"  value = "false" > 
 						<span class="custom-control-indicator"></span> 
 						<span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_nao"/></span>
 					</label>

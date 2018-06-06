@@ -85,6 +85,8 @@
 			<button type="button" class="btn btn-secondary" onclick="javascript:location.href='index.jsp'"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_cancelar"/></button>
 								
 		</form>
+                        <form action="ValidaRenovaConvenioServlet" method="post">
+                         
                         <c:if test="${ not empty Resultado }">
                 <table class="table table-hover" style="width: 100%; margin-top: 20px;">
   			<thead>
@@ -100,7 +102,7 @@
                     
                     <tr>
                         <th><label class="custom-control custom-radio"> 
-                            <input name="convenio" type="radio" class="custom-control-input"  value = "${Resultados.numeroConvenio}" >
+                            <input name="convenio" id="convenio" type="radio" class="custom-control-input"  value = "${Resultados.numeroConvenio}" >
                             <span class="custom-control-indicator"></span>
                             </label>
                             </th>
@@ -112,8 +114,9 @@
                 </c:forEach>                          
   			</tbody>
   		</table>
-                <button type="submit" class="btn btn-primary" id="btnRenovarConvenio" ><fmt:message key = "br.cefetrj.sisgee.resources.form.busca.buscar"/></button>
+                <button type="submit" class="btn btn-primary" ><fmt:message key = "br.cefetrj.sisgee.resources.form.busca.buscar"/></button>
   		   </c:if> 
+                </form>
 	</div>
 	<%@include file="import_footer.jspf"%>
 	<%@include file="import_finalbodyscripts.jspf"%>

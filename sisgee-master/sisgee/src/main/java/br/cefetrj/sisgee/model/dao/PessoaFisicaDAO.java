@@ -47,4 +47,9 @@ public class PessoaFisicaDAO extends GenericDAO<PessoaFisica> {
                 .setParameter("cpf", cpf)
                 .getSingleResult();
     }
+    
+    public PessoaFisica atualizaPessoaFisica(String numeroConvenio){
+        
+    }
+    
 }
