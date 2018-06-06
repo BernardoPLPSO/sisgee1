@@ -21,6 +21,7 @@ import br.cefetrj.sisgee.view.utils.ServletUtils;
 import java.awt.BorderLayout;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 
 /**
@@ -59,7 +60,7 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         String cidade = request.getParameter("cidadeEnderecoTermoEstagio");
         String complemento = request.getParameter("complementoEnderecoTermoEstagio");
         String bairro = request.getParameter("bairroEnderecoTermoEstagio");
-        System.out.println(endereco);
+
         TermoEstagio t = TermoEstagioServices.buscarTermoEstagio(Integer.parseInt(idtermo));
         
         TermoEstagio termoAditivo = new TermoEstagio(t.getDataInicioTermoEstagio(),t.getCargaHorariaTermoEstagio(), t.getValorBolsa(), t.getEnderecoTermoEstagio(), t.getProfessorOrientador());
@@ -90,18 +91,37 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
             termoAditivo.setDataFimTermoEstagio(dataFimTermoAditivo);
         }*/
         
-        if (cargaHorariaTermoAditivo != null) {
-            termoAditivo.setCargaHorariaTermoEstagio(cargaHorariaTermoAditivo);
+        if (Integer.parseInt(cargaHoraria) != termoAditivo.getCargaHorariaTermoEstagio()) {
+            termoAditivo.setCargaHorariaTermoEstagio(Integer.parseInt(cargaHoraria));
         }
 
-        if (valor != termoAditivo.getValorBolsa()) {
-            termoAditivo.setValorBolsa(valorBolsaTermoAditivo);
+        if (Float.parseFloat(valor) != termoAditivo.getValorBolsa()) {
+            termoAditivo.setValorBolsa(Float.parseFloat(valor));
         }
 
         if (endereco != termoAditivo.getEnderecoTermoEstagio()) {
             termoAditivo.setEnderecoTermoEstagio(endereco);
         }
-
+        
+        if (cep != termoAditivo.getCepEnderecoTermoEstagio()) {
+            termoAditivo.setCepEnderecoTermoEstagio(cep);
+        }
+        
+        if (bairro != termoAditivo.getBairroEnderecoTermoEstagio()) {
+            termoAditivo.setBairroEnderecoTermoEstagio(bairro);
+        }
+        
+        if (endereco != termoAditivo.getEnderecoTermoEstagio()) {
+            termoAditivo.setEnderecoTermoEstagio(endereco);
+        }
+        
+        if (estado != termoAditivo.getEstadoEnderecoTermoEstagio()) {
+            termoAditivo.setEstadoEnderecoTermoEstagio(estado);
+        }
+        
+        if (complemento != termoAditivo.getComplementoEnderecoTermoEstagio()) {
+            termoAditivo.setComplementoEnderecoTermoEstagio(complemento);
+        }
         /*if (professorOrientador != null) {
             termoAditivo.setProfessorOrientador(professorOrientador);
         }*/
