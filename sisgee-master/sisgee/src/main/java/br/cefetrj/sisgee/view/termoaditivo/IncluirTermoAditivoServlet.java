@@ -57,8 +57,9 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         termoAditivo.setEstadoEnderecoTermoEstagio(t.getEstadoEnderecoTermoEstagio());
         termoAditivo.setNumeroEnderecoTermoEstagio(t.getNumeroEnderecoTermoEstagio());
         termoAditivo.setConvenioPF(t.getConvenioPF());
-        termoAditivo.setConvenioPJ(t.getConvenioPJ());        
-        termoAditivo.setIdTermoEstagio(t.getIdTermoEstagio());
+        termoAditivo.setConvenioPJ(t.getConvenioPJ());      
+        termoAditivo.setTermoEstagio(t);
+        //termoAditivo.setIdTermoEstagio(t.getIdTermoEstagio());
 
         /*Date dataFimTermoAditivo;
         try {
