@@ -44,7 +44,6 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         String idtermo = request.getParameter("idTermoEstagio");
         //Pega prof
         String professorNome = (String)request.getAttribute("idProfessorOrientador");
-        System.out.println("Professor: "+professorNome);
         //Pega data fim
         String vigencia = request.getParameter("dataFimTermoEstagio");
         request.getParameter("dataFimTermoEstagio");
@@ -54,9 +53,6 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         String valor = request.getParameter("valorBolsa");
         valor = valor.replace(".", "");
         valor = valor.replace(",", ".");
-        System.out.println("Data: "+vigencia);
-        System.out.println("Valor: "+ valor);
-        System.out.println("Carga: "+ cargaHoraria);
         //Pega campos de endereco
         String endereco = request.getParameter("enderecoTermoEstagio");
         String cep = request.getParameter("cepEnderecoTermoEstagio");
