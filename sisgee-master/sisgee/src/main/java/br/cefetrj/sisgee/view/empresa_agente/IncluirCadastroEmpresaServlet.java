@@ -67,7 +67,7 @@ public class IncluirCadastroEmpresaServlet extends HttpServlet {
                 J.setTelefone(telefone);
             }
             if (pessoaContato != null) {
-                J.setPessoaCOntato(pessoaContato);
+                J.setPessoaContato(pessoaContato);
             }
             
             

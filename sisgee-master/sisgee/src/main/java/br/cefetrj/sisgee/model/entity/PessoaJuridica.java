@@ -52,7 +52,7 @@ public class PessoaJuridica{
     private String razaoSocial;
     
     @Column(length = 100, nullable = true)
-    private String pessoaCOntato;
+    private String pessoaContato;
     
     @Column(nullable = false)
     private boolean agenteIntegracao;
@@ -104,12 +104,12 @@ public class PessoaJuridica{
         this.razaoSocial = razaoSocial;
     }
 
-    public String getPessoaCOntato() {
-        return pessoaCOntato;
+    public String getPessoaContato() {
+        return pessoaContato;
     }
 
-    public void setPessoaCOntato(String pessoaCOntato) {
-        this.pessoaCOntato = pessoaCOntato;
+    public void setPessoaContato(String pessoaContato) {
+        this.pessoaContato = pessoaContato;
     }
 
     public boolean isAgenteIntegracao() {
