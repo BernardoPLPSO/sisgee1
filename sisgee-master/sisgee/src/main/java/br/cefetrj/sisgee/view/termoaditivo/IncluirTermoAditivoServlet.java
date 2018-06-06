@@ -51,7 +51,8 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         String cargaHoraria = request.getParameter("cargaHorariaTermoEstagio");
         //Pega valor da bolsa
         String valor = request.getParameter("valorBolsa");
-        valor = valor.replace(',', '.');
+        valor = valor.replace(".", "");
+        valor = valor.replace(",", ".");
         //Pega campos de endereco
         String endereco = request.getParameter("enderecoTermoEstagio");
         String cep = request.getParameter("cepEnderecoTermoEstagio");
@@ -87,20 +88,45 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         String enderecoTermoAditivo = (String) request.getParameter("updEndereco");
        // ProfessorOrientador professorOrientador = (ProfessorOrientador) request.getParameter("updProfessor");
 
-        /*if (dataFimTermoAditivo != null) {
-            termoAditivo.setDataFimTermoEstagio(dataFimTermoAditivo);
-        }*/
+        if (vigencia != null) {
+            String aux = vigencia.substring(8);
+            aux = aux + "/";
+            aux = aux + vigencia.charAt(6);
+            aux = aux + vigencia.charAt(7);
+            aux = aux + "/";
+            aux = aux + vigencia.charAt(0);
+            aux = aux + vigencia.charAt(1);
+            aux = aux + vigencia.charAt(3);
+            aux = aux + vigencia.charAt(4);
+            System.out.println(aux);
+            SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yyyy");
+            Date data = null;
+            try {
+                data = formata.parse(aux);
+                termoAditivo.setDataFimTermoEstagio(data);
+            } catch (ParseException ex) {
+                java.util.logging.Logger.getLogger(IncluirTermoAditivoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
         if (Integer.parseInt(cargaHoraria) != termoAditivo.getCargaHorariaTermoEstagio()) {
             termoAditivo.setCargaHorariaTermoEstagio(Integer.parseInt(cargaHoraria));
         }
-
+        
         if (Float.parseFloat(valor) != termoAditivo.getValorBolsa()) {
             termoAditivo.setValorBolsa(Float.parseFloat(valor));
         }
 
         if (endereco != termoAditivo.getEnderecoTermoEstagio()) {
             termoAditivo.setEnderecoTermoEstagio(endereco);
+        }
+        
+        if (cidade != termoAditivo.getCidadeEnderecoTermoEstagio()) {
+            termoAditivo.setCidadeEnderecoTermoEstagio(cidade);
+        }
+        
+        if (numero != termoAditivo.getNumeroEnderecoTermoEstagio()) {
+            termoAditivo.setNumeroEnderecoTermoEstagio(numero);
         }
         
         if (cep != termoAditivo.getCepEnderecoTermoEstagio()) {
