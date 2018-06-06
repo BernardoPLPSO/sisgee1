@@ -1,5 +1,9 @@
 package br.cefetrj.sisgee.view.utils;
 
+import br.cefetrj.sisgee.model.entity.PessoaFisica;
+import br.cefetrj.sisgee.model.entity.PessoaJuridica;
+import static com.oracle.nio.BufferSecrets.instance;
+
 /**
  * Classe para auxiliar na organizacao
  * do relatorio consolidado.
@@ -21,6 +25,9 @@ public class ItemRelatorio {
         private String nomeConvenio;
         private Object objConvenio;
         private Class tipoConvenio;
+        private String email;
+        private String telefone;
+        private String pessoaContato;
 	
         public ItemRelatorio(String numeroConvenio, String idConvenio, String nomeConvenio, Object objConvenio, Class tipoConvenio){
             super();
@@ -34,8 +41,46 @@ public class ItemRelatorio {
             this.nomeConvenio = nomeConvenio;
             this.objConvenio = objConvenio;
             this.tipoConvenio = tipoConvenio;
+            this.tipoConvenio = tipoConvenio;
+            if(objConvenio instanceof PessoaFisica){
+                this.email = ((PessoaFisica)objConvenio).getEmail();
+                this.telefone = ((PessoaFisica)objConvenio).getTelefone();
+                this.pessoaContato = "";
+            }
+            if(objConvenio instanceof PessoaJuridica){
+                this.email = ((PessoaJuridica)objConvenio).getEmail();
+                this.telefone = ((PessoaJuridica)objConvenio).getTelefone();
+                this.telefone = ((PessoaJuridica)objConvenio).getTelefone();
+                this.pessoaContato = ((PessoaJuridica)objConvenio).getPessoaCOntato();
+            }
+            
             
         }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getPessoaContato() {
+        return pessoaContato;
+    }
+
+    public void setPessoaContato(String pessoaContato) {
+        this.pessoaContato = pessoaContato;
+    }
+        
 
     public String getNumeroConvenio() {
         return numeroConvenio;
