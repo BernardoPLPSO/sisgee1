@@ -42,12 +42,12 @@
            
 		<h5><fmt:message key="br.cefetrj.sisgee.form_empresa.msg_titulo" /></h5>		
 		
-		<form action="ValidaCadastroEmpresaServlet" method="post">
+		<form action="RenovaServlet" method="post">
 			<fieldset class="form-group">
 
                          
 									
-			<div class="form-row notAI AI" ${ empty param.tipoPessoa ? "style='display:none'" : param.tipoPessoa == "cpf" ? "style='display:none'" : "" }>
+			<div class="form-row notAI AI" ${ param.tipoPessoa == "cpf" ? "style='display:none'" : "" }>
                             
 				<div class="form-group col-md-6">
 					<label for="cnpjConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.cnpj"/></label>
@@ -78,12 +78,12 @@
                                         
                                         <div class="custom-controls-stacked d-block my-3">
 					<label class="custom-control custom-radio"> 
-						<input id="agenteSim" name="agenteIntegracao" type="radio" ${empty param.agenteIntegracao? '' : param.agenteIntegracao =='true'?'checked':''} readonly="true" class="custom-control-input"  value = "true" > 
+						<input id="agenteSim" name="agenteIntegracao" type="radio" ${empty param.agenteIntegracao? '' : param.agenteIntegracao =='true'?'checked':''} disable="true" checked class="custom-control-input"  value = "true" > 
 						<span class="custom-control-indicator"></span> 
 						<span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_sim"/></span>
 					</label> 
 					<label class="custom-control custom-radio"> 
-						<input id="agenteNao" name="agenteIntegracao" type="radio" ${empty param.agenteIntegracao? 'checked' : param.agenteIntegracao =='false'?'checked':''}  readonly="true" class="custom-control-input"  value = "false" > 
+						<input id="agenteNao" name="agenteIntegracao" type="radio" ${empty param.agenteIntegracao? 'checked' : param.agenteIntegracao =='false'?'checked':''}  disable="true" checked class="custom-control-input"  value = "false" > 
 						<span class="custom-control-indicator"></span> 
 						<span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_nao"/></span>
 					</label>
@@ -91,7 +91,7 @@
 				</div>                                                        
                         </div> ${ param.tipoPessoa == "cnpj" ? "required" : "" }
                                      
-                        <div class="form-row isAI AI" ${ empty param.tipoPessoa ? "style='display:none'" : param.tipoPessoa == "cnpj" ? "style='display:none'" : "" }>
+                        <div class="form-row isAI AI" ${param.tipoPessoa == "cnpj" ? "style='display:none'" : "" }>
                             
 				<div class="form-group col-md-6">
 					<label for="cpfConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.cpf"/></label>

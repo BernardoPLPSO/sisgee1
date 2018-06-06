@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/ValidaRenovaConvenioServlet")
 public class ValidaRenovaConvenioServlet extends HttpServlet {
-
+private static final long serialVersionUID = 1L;
     
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
@@ -61,7 +61,8 @@ public class ValidaRenovaConvenioServlet extends HttpServlet {
                             request.setAttribute("cpfConvenio", ConvePF.getCpf());
                             request.setAttribute("nomePessoa", ConvePF.getNome());
                             request.setAttribute("dataAssinatura", ConvePF.getDataAssinatura());
-                            request.setAttribute("email", ConvePF.getEmail());
+                            String teste = ConvePF.getEmail();
+                            request.setAttribute("email", teste);
                             request.setAttribute("telefone", ConvePF.getTelefone());
                             System.out.println(ConvePF.getCpf());
                             System.out.println(ConvePF.getNome());
@@ -73,7 +74,8 @@ public class ValidaRenovaConvenioServlet extends HttpServlet {
                             request.setAttribute("cpfConvenio", ConvePJ.getCnpj());
                             request.setAttribute("nomePessoa", ConvePJ.getCnpj());
                             request.setAttribute("dataAssinatura", ConvePJ.getDataAssinatura());
-                            request.setAttribute("email", ConvePJ.getEmail());
+                            String teste = ConvePJ.getEmail();
+                            request.setAttribute("email",teste );
                             request.setAttribute("telefone", ConvePJ.getTelefone());
                             System.out.println(ConvePJ.getCnpj());
                             System.out.println(ConvePJ.getRazaoSocial());
