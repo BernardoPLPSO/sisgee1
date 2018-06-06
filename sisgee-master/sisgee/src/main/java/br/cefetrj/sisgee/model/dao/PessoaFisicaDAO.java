@@ -48,8 +48,16 @@ public class PessoaFisicaDAO extends GenericDAO<PessoaFisica> {
                 .getSingleResult();
     }
     
-    public PessoaFisica atualizaPessoaFisica(String numeroConvenio){
+    public String atualizaPessoaFisica(String numeroConvenio){
+        String msg = "";
+        try{
+            
         
+            manager.createQuery("").setParameter("numeroConvenio", numeroConvenio);       
+        
+    }catch(Exception e){
+        msg = "erro";
     }
-    
+        return msg;
+    }
 }

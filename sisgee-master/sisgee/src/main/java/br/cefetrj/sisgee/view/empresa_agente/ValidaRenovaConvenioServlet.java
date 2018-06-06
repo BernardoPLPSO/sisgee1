@@ -36,8 +36,9 @@ public class ValidaRenovaConvenioServlet extends HttpServlet {
         Locale locale = ServletUtils.getLocale(request);
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
         
-        
         String numeroConvenio =  request.getParameter("convenio");
+        
+        System.out.println("ouu"+numeroConvenio);
         
         PessoaFisica ConvePF = null;
         PessoaJuridica ConvePJ = null;
@@ -55,14 +56,14 @@ public class ValidaRenovaConvenioServlet extends HttpServlet {
                     request.setAttribute("msg", msg);
                     
                 }else{ if(ConvePJ == null){
-                    ItemRelatorio item = new ItemRelatorio(ConvePF.getNumeroConvenio(),ConvePF.getCpf(),ConvePF.getNome(),ConvePF,ConvePF.getClass());
-                    Resultado.add(item);
-                    request.setAttribute("Resultado", Resultado);
+                    
+                    
+                    
                     
                 }else if(ConvePF == null){
-                    ItemRelatorio item = new ItemRelatorio(ConvePJ.getNumeroConvenio(),ConvePJ.getCnpj(),ConvePJ.getRazaoSocial(),ConvePJ,ConvePJ.getClass());
-                    Resultado.add(item);
-                    request.setAttribute("Resultado", Resultado);
+                    
+                   
+                    
                     
                 }
                 } 
