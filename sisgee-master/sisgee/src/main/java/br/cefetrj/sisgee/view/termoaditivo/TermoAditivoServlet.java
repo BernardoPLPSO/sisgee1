@@ -40,7 +40,6 @@ public class TermoAditivoServlet extends HttpServlet {
         String endereco = request.getParameter("endereco");
         String vigencia = request.getParameter("vigencia");
         String professor = request.getParameter("professor");
-        System.out.println(professor);
 
         Aluno aluno = null;
         TermoEstagio termoEstagio = null;
@@ -110,11 +109,6 @@ public class TermoAditivoServlet extends HttpServlet {
             request.setAttribute("termoAditivo", termoAditivo);
             request.setAttribute("professores", professores);
             request.setAttribute("uf", uf);
-            request.setAttribute("cargaHoraria",cargaHoraria);
-            request.setAttribute("valor", valor);
-            request.setAttribute("endereco",endereco);
-            request.setAttribute("vigencia",vigencia);
-            request.setAttribute("professor", professor);
 
             request.setAttribute("updVigencia", termoEstagio.getDataFimTermoEstagio());
             request.setAttribute("updCargaHoraria", termoEstagio.getCargaHorariaTermoEstagio());
