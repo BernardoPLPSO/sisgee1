@@ -7,6 +7,8 @@ package br.cefetrj.sisgee.view.empresa_agente;
 
 import br.cefetrj.sisgee.control.PessoaFisicaServices;
 import br.cefetrj.sisgee.control.PessoaJuridicaServices;
+import br.cefetrj.sisgee.model.entity.PessoaFisica;
+import br.cefetrj.sisgee.model.entity.PessoaJuridica;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
 import br.cefetrj.sisgee.view.utils.ValidaUtils;
 import java.io.IOException;
@@ -27,14 +29,15 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/RenovaServlet")
 public class RenovaServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+
         boolean isValid = true;
         Integer tamanho = 0;
-        
+
         Locale locale = ServletUtils.getLocale(request);
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
 
@@ -43,13 +46,11 @@ public class RenovaServlet extends HttpServlet {
         String cpf = request.getParameter("cpfConvenio");
         cpf = cpf.replaceAll("[.|/|-]", "");
         cnpj = cnpj.replaceAll("[.|/|-]", "");
-        System.out.println("CPF: "+cpf);
-        System.out.println("CNPJ: "+cnpj);
-        
+        System.out.println("CPF: " + cpf);
+        System.out.println("CNPJ: " + cnpj);
+
         if (!cnpj.equals("")) {
-           
-            
-            
+
             /**
              * Validação da Pessoa de Contato do Cadastro Empresa usando
              * mÃ©todos da Classe ValidaUtils. Campo Opcional; Tamanho mÃ¡ximo
@@ -66,18 +67,15 @@ public class RenovaServlet extends HttpServlet {
             }
         }
         String numeroConvenio = "";
-        if(!cnpj.equals("")){
+        if (!cnpj.equals("")) {
             numeroConvenio = (PessoaJuridicaServices.buscarConvenioByCNPJ(cnpj)).getNumeroConvenio();
-        }
-        else{
+        } else {
             numeroConvenio = (PessoaFisicaServices.buscarConvenioByCPF(cpf)).getNumeroConvenio();
         }
         String dataAss = request.getParameter("dataAssinatura");
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
-        
-        
-        
+
         /**
          * Validação da Data de Assinatura do Convênio com métodos da classe
          * ValidaUtils
@@ -125,11 +123,10 @@ public class RenovaServlet extends HttpServlet {
 
         System.out.println("email:" + email);
 
-        if (email == null || email.trim().isEmpty() || email.equals("")){
+        if (email == null || email.trim().isEmpty() || email.equals("")) {
             System.out.println("BOLINHA");
-        } 
-        else{
-            System.out.println("Email dentro do if: "+email);
+        } else {
+            System.out.println("Email dentro do if: " + email);
             EmailMsg = ValidaUtils.validaTamanho("Email", 50, email);
             if (EmailMsg.trim().isEmpty()) {
                 EmailMsg = ValidaUtils.validaEmail("Email", email);
@@ -175,28 +172,51 @@ public class RenovaServlet extends HttpServlet {
             request.setAttribute("telefoneMsg", telefoneMsg);
             isValid = false;
         }
-        
+
         if (isValid) {
             String sucesso = "";
-            if(!cnpj.equals("")){
+            if (!cnpj.equals("")) {
                 sucesso = PessoaJuridicaServices.atualizarConvenioPJ(numeroConvenio, email, pessoaContato, telefone, dataAssinatura);
-            }else{
-                sucesso = PessoaFisicaServices.atualizarConvenioPF(numeroConvenio, email,telefone, dataAssinatura);
+            } else {
+                sucesso = PessoaFisicaServices.atualizarConvenioPF(numeroConvenio, email, telefone, dataAssinatura);
             }
-            if(sucesso.trim().isEmpty()){
+            if (sucesso.trim().isEmpty()) {
                 request.getRequestDispatcher("/sucesso_renova.jsp").forward(request, response);
-            }else {
+            } else {
                 String msg = messages.getString("br.cefetrj.sisgee.valida_cadastro_empresa_servlet.msg_atencao");
                 request.setAttribute("msg", msg);
                 request.getRequestDispatcher("/form_renova_atualiza.jsp").forward(request, response);
-                
+
             }
-            
-         }else{
+
+        } else {
+            PessoaJuridica ConvePJ = PessoaJuridicaServices.buscarConvenioByNumero(numeroConvenio);
+            PessoaFisica ConvePF = PessoaFisicaServices.buscarConvenioByNumero(numeroConvenio);
+            if (ConvePJ != null) {
+                request.setAttribute("tipoPessoa", "cnpj");
+                request.setAttribute("cnpjConvenio", ConvePJ.getCnpj());
+                request.setAttribute("razaoSocial", ConvePJ.getRazaoSocial());
+                request.setAttribute("pessoaContato", ConvePJ.getPessoaCOntato());
+                String aiStr = Boolean.toString(ConvePJ.isAgenteIntegracao());
+                request.setAttribute("agenteIntegracao", aiStr);
+                request.setAttribute("dataAssinatura", ConvePJ.getDataAssinatura());
+                String teste = ConvePJ.getEmail();
+                request.setAttribute("email", teste);
+                request.setAttribute("telefone", ConvePJ.getTelefone());
+            }
+            if (ConvePF != null) {
+                request.setAttribute("tipoPessoa", "cpf");
+                request.setAttribute("cpfConvenio", ConvePF.getCpf());
+                request.setAttribute("nomePessoa", ConvePF.getNome());
+                request.setAttribute("dataAssinatura", ConvePF.getDataAssinatura());
+                String teste = ConvePF.getEmail();
+                request.setAttribute("email", teste);
+                request.setAttribute("telefone", ConvePF.getTelefone());
+            }
             String msg = messages.getString("br.cefetrj.sisgee.valida_cadastro_empresa_servlet.msg_atencao");
             request.setAttribute("msg", msg);
             request.getRequestDispatcher("/form_renova_atualiza.jsp").forward(request, response);
         }
-  }
-    
+    }
+
 }

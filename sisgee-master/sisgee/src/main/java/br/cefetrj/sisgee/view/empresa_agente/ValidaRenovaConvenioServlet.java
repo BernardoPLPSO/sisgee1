@@ -72,7 +72,7 @@ private static final long serialVersionUID = 1L;
                 }else if(ConvePF == null){
                             request.setAttribute("tipoPessoa", "cnpj");
                             request.setAttribute("cnpjConvenio", ConvePJ.getCnpj());
-                            request.setAttribute("razaoSocial", ConvePJ.getCnpj());
+                            request.setAttribute("razaoSocial", ConvePJ.getRazaoSocial());
                             request.setAttribute("pessoaContato", ConvePJ.getPessoaCOntato());
                             System.out.println("Is agente integracao: "+ConvePJ.isAgenteIntegracao());
                             String aiStr = Boolean.toString(ConvePJ.isAgenteIntegracao());
