@@ -7,6 +7,8 @@ package br.cefetrj.sisgee.model.dao;
 
 import br.cefetrj.sisgee.model.entity.PessoaFisica;
 import br.cefetrj.sisgee.model.entity.PessoaJuridica;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Query;
 
@@ -45,5 +47,36 @@ public class PessoaJuridicaDAO extends GenericDAO<PessoaJuridica>{
                 .setParameter("cnpj", cnpj)
                 .getSingleResult();
     }
+    
+    public void atualizaPessoaJuridica(String numeroConvenio, String email, String pessoaContato ,String telefone, Date dataAssinatura){
+        
+        String numeroConvenioAtual = retornaConvenioNovo(numeroConvenio);
+        
+        
+            manager.createQuery("UPDATE public.pessoajuridica SET email= :email  , numeroconvenio = :numeroConvenioAtual , "
+                    + "telefone = :telefone , pessoacontato = :pessoaContato  , dataassinatura = :dataAssinatura    WHERE numeroconvenio = :numeroConvenio ")
+                    .setParameter("numeroConvenio", numeroConvenio).setParameter("email", email)
+    .setParameter("telefone", telefone).setParameter("dataAssinatura", dataAssinatura).setParameter("numeroConvenioAtual", numeroConvenioAtual).setParameter("pessoaContato", pessoaContato);       
+        
+   
+   
+    
+        
+    }
+    
+    public String retornaConvenioNovo(String numeroConvenio){
+        
+        int anoInt = Calendar.getInstance().get(Calendar.YEAR);
+        String ano = Integer.toString(anoInt);
+        String convenio[] = numeroConvenio.split("/");
+        String convenioAtual = convenio[0]+"/"+ano;
+        System.out.println(anoInt);
+        System.out.println(convenio[0]);
+        System.out.println(convenioAtual);
+        
+        return convenioAtual;
+    }
+        
+    }
 
-}
+

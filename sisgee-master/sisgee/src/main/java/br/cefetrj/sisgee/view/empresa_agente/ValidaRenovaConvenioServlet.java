@@ -54,19 +54,37 @@ public class ValidaRenovaConvenioServlet extends HttpServlet {
                     
                     String msg = messages.getString("br.cefetrj.sisgee.resources.form.busca.semResultado");
                     request.setAttribute("msg", msg);
+                    request.getRequestDispatcher("/erro.jsp").forward(request, response);
                     
                 }else{ if(ConvePJ == null){
-                    
-                    
-                    
+                            request.setAttribute("tipoPessoa", "cpf");
+                            request.setAttribute("cpfConvenio", ConvePF.getCpf());
+                            request.setAttribute("nomePessoa", ConvePF.getNome());
+                            request.setAttribute("dataAssinatura", ConvePF.getDataAssinatura());
+                            request.setAttribute("email", ConvePF.getEmail());
+                            request.setAttribute("telefone", ConvePF.getTelefone());
+                            System.out.println(ConvePF.getCpf());
+                            System.out.println(ConvePF.getNome());
+                            
+                            request.getRequestDispatcher("/form_renova_atualiza.jsp").forward(request, response);
                     
                 }else if(ConvePF == null){
-                    
+                            request.setAttribute("tipoPessoa", "cnpj");
+                            request.setAttribute("cpfConvenio", ConvePJ.getCnpj());
+                            request.setAttribute("nomePessoa", ConvePJ.getCnpj());
+                            request.setAttribute("dataAssinatura", ConvePJ.getDataAssinatura());
+                            request.setAttribute("email", ConvePJ.getEmail());
+                            request.setAttribute("telefone", ConvePJ.getTelefone());
+                            System.out.println(ConvePJ.getCnpj());
+                            System.out.println(ConvePJ.getRazaoSocial());
+                            
+                            request.getRequestDispatcher("/form_renova_atualiza.jsp").forward(request, response);
                    
                     
                     
                 }
-                } 
+                }
+        
         
         
         

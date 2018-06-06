@@ -9,6 +9,7 @@ import br.cefetrj.sisgee.model.dao.GenericDAO;
 import br.cefetrj.sisgee.model.dao.PersistenceManager;
 import br.cefetrj.sisgee.model.dao.PessoaFisicaDAO;
 import br.cefetrj.sisgee.model.entity.PessoaFisica;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -90,6 +91,19 @@ public class PessoaFisicaServices {
             return null;
         }
 
+    }
+    
+    
+    public static String atualizarConvenioPF(String numeroConvenio, String email ,String telefone, Date dataAssinatura) {
+        PessoaFisicaDAO pessoaFisicaDao = new PessoaFisicaDAO();
+        String msg = "";
+        try {
+            pessoaFisicaDao.atualizaPessoaFisica(numeroConvenio, email ,telefone, dataAssinatura);
+            return msg;
+        } catch (Exception e) {
+            msg = "ERROR";
+            return msg;
+        }
     }
 
 }
