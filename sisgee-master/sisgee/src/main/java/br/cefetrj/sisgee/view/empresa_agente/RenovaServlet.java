@@ -13,6 +13,7 @@ import br.cefetrj.sisgee.view.utils.ServletUtils;
 import br.cefetrj.sisgee.view.utils.ValidaUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -181,7 +182,9 @@ public class RenovaServlet extends HttpServlet {
                 sucesso = PessoaFisicaServices.atualizarConvenioPF(numeroConvenio, email, telefone, dataAssinatura);
             }
             if (sucesso.trim().isEmpty()) {
-                request.getRequestDispatcher("/sucesso_renova.jsp").forward(request, response);
+                String msg = messages.getString("br.cefetrj.sisgee.resources.form.renova.sucesso");
+                request.setAttribute("msg", msg);
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
             } else {
                 String msg = messages.getString("br.cefetrj.sisgee.valida_cadastro_empresa_servlet.msg_atencao");
                 request.setAttribute("msg", msg);
@@ -200,6 +203,7 @@ public class RenovaServlet extends HttpServlet {
                 String aiStr = Boolean.toString(ConvePJ.isAgenteIntegracao());
                 request.setAttribute("agenteIntegracao", aiStr);
                 request.setAttribute("dataAssinatura", ConvePJ.getDataAssinatura());
+               
                 String teste = ConvePJ.getEmail();
                 request.setAttribute("email", teste);
                 request.setAttribute("telefone", ConvePJ.getTelefone());
@@ -209,6 +213,8 @@ public class RenovaServlet extends HttpServlet {
                 request.setAttribute("cpfConvenio", ConvePF.getCpf());
                 request.setAttribute("nomePessoa", ConvePF.getNome());
                 request.setAttribute("dataAssinatura", ConvePF.getDataAssinatura());
+                System.out.println("AQUIII:"+ConvePF.getDataAssinatura());
+                
                 String teste = ConvePF.getEmail();
                 request.setAttribute("email", teste);
                 request.setAttribute("telefone", ConvePF.getTelefone());
@@ -217,6 +223,11 @@ public class RenovaServlet extends HttpServlet {
             request.setAttribute("msg", msg);
             request.getRequestDispatcher("/form_renova_atualiza.jsp").forward(request, response);
         }
+    }
+    
+    public String formataData(Date x)throws ParseException{
+       String resultado =  ServletUtils.mudarFormatoData(x);
+       return resultado;
     }
 
 }

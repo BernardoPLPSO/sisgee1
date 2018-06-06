@@ -223,7 +223,7 @@ public class ValidaUtils {
          */
         public static String validaEmail(String nomeCampo, String param){
             String msg = "";
-            if(param.contains("@") && (param.contains(".com"))|| (param.contains(".br"))){
+            if(param.contains("@") &&((param.contains(".com")) || (param.contains(".br")))){
                //ta certim
             }else{
                 System.out.println("Passou no validaEmail e falhou com o param: "+param);
