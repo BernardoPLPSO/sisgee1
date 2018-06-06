@@ -45,30 +45,7 @@
 		<form action="ValidaCadastroEmpresaServlet" method="post">
 			<fieldset class="form-group">
 
-                            <div class="form-row">   
-                                <div class="form-group col-md-4">  
-                                    <label for="tipoPessoa"><fmt:message key = "br.cefetrj.sisgee.resources.form.tipoPessoa"/></label>
-                                </div>
-
-                                <div class="custom-controls-stacked d-block my-3">							
-                                    <label class="custom-control custom-radio">
-                                        <input id="tipoPessoa" class="custom-control-input isPessoaChk ${ not empty tipoPessoaMsg ? 'is-invalid' : '' }" ${ empty param.tipoPessoa ? 'required' :  "" } readonly="true" type="radio" name="tipoPessoa"  value="cnpj" ${ not empty tipoPessoaMsg ? '' : param.tipoPessoa == 'cnpj' ? 'checked' : '' }> 
-                                        <span class="custom-control-indicator"></span> 
-                                        <span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.resources.form.cnpj"/></span>
-                                    </label>						
-
-                                    <label class="custom-control custom-radio">
-                                        <input id="tipoPessoa" class="custom-control-input isPessoaChk ${ not empty tipoPessoaMsg ? 'is-invalid' : '' }" ${ empty param.tipoPessoa ? 'required' :  "" } readonly="true" type="radio" name="tipoPessoa"  value="cpf" ${ not empty tipoPessoaMsg ? '' : param.tipoPessoa == 'cpf' ? 'checked' : '' }> 
-                                        <span class="custom-control-indicator"></span> 
-                                        <span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.resources.form.cpf"/></span>
-                                    </label>
-                                    <c:if test="${ not empty tipoPessoaMsg }">
-                                        <div class="invalid-feedback">${ tipoPessoaMsg }</div>
-                                    </c:if>
-                                </div>
-                                    
-                                
-                            </div>
+                         
 									
 			<div class="form-row notAI AI" ${ empty param.tipoPessoa ? "style='display:none'" : param.tipoPessoa == "cpf" ? "style='display:none'" : "" }>
                             
