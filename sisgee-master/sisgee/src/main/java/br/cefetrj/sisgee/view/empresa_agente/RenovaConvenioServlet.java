@@ -30,93 +30,88 @@ import org.apache.log4j.Logger;
  *
  * @author Lucas Carvalho
  */
-
 @WebServlet("/RenovaConvenioServlet")
 public class RenovaConvenioServlet extends HttpServlet {
 
-   
-
-    
     @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-        
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         Locale locale = ServletUtils.getLocale(request);
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
         Logger lg = Logger.getLogger(RenovaConvenioServlet.class);
         List<ItemRelatorio> Resultado = new ArrayList<ItemRelatorio>();
-        
+
         PessoaFisica ConvePF = null;
         PessoaJuridica ConvePJ = null;
-        List<PessoaFisica> buscaConvePF = null;
-        List<PessoaJuridica> buscaConvePJ = null;
-        
+        List<PessoaFisica> buscaConvePF = new ArrayList();
+        List<PessoaJuridica> buscaConvePJ = new ArrayList();
+
         String buscaNumero = request.getParameter("buscaNumero");
         String buscaRazaoNome = request.getParameter("buscaRazaoNome");
-        
-        System.out.println(buscaNumero);
+
+        System.out.println("Busca Numero: "+buscaNumero);
         System.out.println(buscaRazaoNome);
-        try{
-            if(!buscaRazaoNome.isEmpty()){
-                 buscaConvePF = PessoaFisicaServices.buscarListaNome(buscaRazaoNome);
-                 buscaConvePJ = PessoaJuridicaServices.buscarListaNome(buscaRazaoNome);
-                 System.out.println(buscaConvePF+"LOLO");
-                 if(buscaConvePF!=null){
-                 for(PessoaFisica P : buscaConvePF){
-                     ItemRelatorio item = new ItemRelatorio(P.getNumeroConvenio(),P.getCpf(),P.getNome(),P,P.getClass());
-                     Resultado.add(item);
-                 }}
-                 if(buscaConvePJ!=null){
-                 for(PessoaJuridica J : buscaConvePJ){
-                     ItemRelatorio item = new ItemRelatorio(J.getNumeroConvenio(),J.getCnpj(),J.getRazaoSocial(),J,J.getClass());
-                     Resultado.add(item); 
-                 }}
-                 if(Resultado.isEmpty()){
-                    request.setAttribute("Resultado", null); 
-                 }else{
-                 request.setAttribute("Resultado", Resultado);
-                 }
-            }else if(!buscaNumero.isEmpty()){
-                if(PessoaFisicaServices.buscarConvenioByNumero(buscaNumero)!= null){
+        try {
+            if (!buscaRazaoNome.isEmpty()) {
+                buscaConvePF = PessoaFisicaServices.buscarListaNome(buscaRazaoNome);
+                buscaConvePJ = PessoaJuridicaServices.buscarListaNome(buscaRazaoNome);
+                System.out.println(buscaConvePF + "LOLO");
+                if (buscaConvePF != null) {
+                    for (PessoaFisica P : buscaConvePF) {
+                        ItemRelatorio item = new ItemRelatorio(P.getNumeroConvenio(), P.getCpf(), P.getNome(), P, P.getClass());
+                        Resultado.add(item);
+                    }
+                }
+                if (buscaConvePJ != null) {
+                    for (PessoaJuridica J : buscaConvePJ) {
+                        ItemRelatorio item = new ItemRelatorio(J.getNumeroConvenio(), J.getCnpj(), J.getRazaoSocial(), J, J.getClass());
+                        Resultado.add(item);
+                    }
+                }
+                if (Resultado.isEmpty()) {
+                    request.setAttribute("Resultado", null);
+                } else {
+                    request.setAttribute("Resultado", Resultado);
+                }
+            } else if (!buscaNumero.isEmpty()) {
+                if (PessoaFisicaServices.buscarConvenioByNumero(buscaNumero) != null) {
                     ConvePF = PessoaFisicaServices.buscarConvenioByNumero(buscaNumero);
+                    System.out.println("Resultado Busca PF RENOVA CONVENIO SERVLET: "+ ConvePF.getNome());
                 }
-                if(PessoaJuridicaServices.buscarConvenioByNumero(buscaNumero)!=null){
+                if (PessoaJuridicaServices.buscarConvenioByNumero(buscaNumero) != null) {
                     ConvePJ = PessoaJuridicaServices.buscarConvenioByNumero(buscaNumero);
+                    System.out.println("Resultado Busca PJ RENOVA CONVENIO SERVLET: "+ ConvePJ.getRazaoSocial());
                 }
-                if(buscaConvePF == null && buscaConvePJ==null){
+                if (ConvePF == null && ConvePJ == null) {
                     request.setAttribute("Resultado", null);
                     String msg = messages.getString("br.cefetrj.sisgee.resources.form.busca.semResultado");
                     request.setAttribute("msg", msg);
-                    
-                }else{ if(buscaConvePJ == null){
-                    ItemRelatorio item = new ItemRelatorio(ConvePF.getNumeroConvenio(),ConvePF.getCpf(),ConvePF.getNome(),ConvePF,ConvePF.getClass());
-                    Resultado.add(item);
-                    request.setAttribute("Resultado", Resultado);
-                    
-                }else{
-                    ItemRelatorio item = new ItemRelatorio(ConvePJ.getNumeroConvenio(),ConvePJ.getCnpj(),ConvePJ.getRazaoSocial(),ConvePJ,ConvePJ.getClass());
-                    Resultado.add(item);
-                    request.setAttribute("Resultado", Resultado);
-                    
                 }
-                } 
-              
-                
-                 
+                else 
+                {
+                    if (ConvePJ == null) {
+                        ItemRelatorio item = new ItemRelatorio(ConvePF.getNumeroConvenio(), ConvePF.getCpf(), ConvePF.getNome(), ConvePF, ConvePF.getClass());
+                        Resultado.add(item);
+                        request.setAttribute("Resultado", Resultado);
+
+                    } else {
+                        ItemRelatorio item = new ItemRelatorio(ConvePJ.getNumeroConvenio(), ConvePJ.getCnpj(), ConvePJ.getRazaoSocial(), ConvePJ, ConvePJ.getClass());
+                        Resultado.add(item);
+                        request.setAttribute("Resultado", Resultado);
+
+                    }
+                }
+
             }
-            
-            request.getRequestDispatcher("/form_renovacao.jsp").forward(request, response); 
-        }catch(Exception e){
+
+            request.getRequestDispatcher("/form_renovacao.jsp").forward(request, response);
+        } catch (Exception e) {
             lg.error("Exception ao tentar inserir um convenio", e);
             String msg = messages.getString("br.cefetrj.sisgee.resources.form.busca.erroBusca");
-	    request.setAttribute("msg", msg);
+            request.setAttribute("msg", msg);
             request.getRequestDispatcher("/form_renovacao.jsp").forward(request, response);
         }
-            
-            
-        
-        
-        
+
     }
 
-   
 }
