@@ -56,6 +56,7 @@ public class IncluirCadastroEmpresaServlet extends HttpServlet {
             cnpjConvenio = cnpjConvenio.replaceAll("\\D", "");
             String razaoSocial = request.getParameter("razaoSocial");
             boolean agenteIntegracao = Boolean.parseBoolean(request.getParameter("agenteIntegracao"));
+            System.out.println("Agente Integracao: "+ agenteIntegracao);
             String pessoaContato = request.getParameter("pessoaContato");
 
             PessoaJuridica J = new PessoaJuridica(cnpjConvenio, razaoSocial, agenteIntegracao, dataAssinatura);

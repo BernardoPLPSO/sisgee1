@@ -4,7 +4,7 @@
     <div class="form-group col-md-4">
         <label for="numeroConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.numeroConvenio"/></label>
         <div class="input-group">						  
-            <input type="text" class="form-control numeroConvenio" placeholder="Digite o Número" id="numeroConvenio" name="numeroConvenio" value="${ param.numeroConvenio }">
+            <input type="text" class="form-control numeroConvenio" placeholder="Digite o Número" id="numeroConvenio" name="numeroConvenio" value="${ numeroConvenio }">
             <span class="input-group-btn">
                 <button class="btn btn-primary" type="button" id="btnBuscarNumeroConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
             </span>
@@ -13,7 +13,7 @@
     <div class="form-group col-md-6">
         <label for="nomeConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomeConvenio"/></label>
         <div class="input-group">						  
-            <input type="text" class="form-control nomeConvenioNotAI nomeConvenio" placeholder="Digite o Nome" id="nomeConvenio" name="nomeConvenio" value="${ param.nomeConvenio }">
+            <input type="text" class="form-control nomeConvenioNotAI nomeConvenio" placeholder="Digite o Nome" id="nomeConvenio" name="nomeConvenio" value="${ nomeConvenio }">
             <span class="input-group-btn">
                 <button class="btn btn-primary" type="button" id="btnBuscarNomeConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
             </span>
@@ -25,21 +25,21 @@
 <div class="form-row"  id="divPF" style="display:none">
     <div class="form-group col-md-5">
         <label for="cpfConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.cpf.pf"/></label>
-        <input type="text" class="form-control" id="cpfConvenio" name="cpfConvenio" value="${ param.cpfConvenio }" readonly>
+        <input type="text" class="form-control" id="cpfConvenio" name="cpfConvenio" value="${ cpfConvenio }" readonly>
     </div>
     <div class="form-group col-md-5">
         <label for="nomePF"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomePessoaFisica"/></label>
-        <input type="text" class="form-control nomeEmpresaIsAI nomePF" id="nomePF" name="nomePF" value="${ param.nomePF }" readonly>
+        <input type="text" class="form-control nomeEmpresaIsAI nomePF" id="nomePF" name="nomePF" value="${ nomePF }" readonly>
     </div>
 </div>
 <div class="form-row" id="divPJ" style="display:none">
     <div class="form-group col-md-5">
         <label for="cnpjConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.cnpj"/></label>
-        <input type="text" class="form-control nomeEmpresaIsAI nomePF" id="cnpjConvenio" name="cnpjConvenio" value="${ param.cnpjConvenio }" readonly>
+        <input type="text" class="form-control nomeEmpresaIsAI nomePF" id="cnpjConvenio" name="cnpjConvenio" value="${ cnpjConvenio }" readonly>
     </div>
     <div class="form-group col-md-5">
         <label for="razaoSocial"><fmt:message key = "br.cefetrj.sisgee.resources.form.razaoSocial"/></label>
-        <input type="text" class="form-control nomeEmpresaIsAI nomePF" id="razaoSocial" name="razaoSocial" value="${ param.razaoSocial }" readonly>
+        <input type="text" class="form-control nomeEmpresaIsAI nomePF" id="razaoSocial" name="razaoSocial" value="${ razaoSocial }" readonly>
     </div>
     <div class="custom-controls-stacked d-block my-3" id="divAgt">
         <label for="agenteIntegracao"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_agente_integracao"/></label>

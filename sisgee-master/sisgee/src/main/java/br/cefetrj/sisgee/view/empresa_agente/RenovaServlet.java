@@ -38,11 +38,15 @@ public class RenovaServlet extends HttpServlet {
         Locale locale = ServletUtils.getLocale(request);
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
 
-        String tipoPessoa = request.getParameter("tipoPessoa");
         String pessoaContato = request.getParameter("pessoaContato");
+        String cnpj = request.getParameter("cnpjConvenio");
+        String cpf = request.getParameter("cpfConvenio");
+        cpf = cpf.replaceAll("[.|/|-]", "");
+        cnpj = cnpj.replaceAll("[.|/|-]", "");
+        System.out.println("CPF: "+cpf);
+        System.out.println("CNPJ: "+cnpj);
         
-        
-        if (tipoPessoa.equals("cnpj")) {
+        if (!cnpj.equals("")) {
            
             
             
@@ -61,7 +65,13 @@ public class RenovaServlet extends HttpServlet {
                 isValid = false;
             }
         }
-        String numeroConvenio = request.getParameter("numeroConvenio");
+        String numeroConvenio = "";
+        if(!cnpj.equals("")){
+            numeroConvenio = (PessoaJuridicaServices.buscarConvenioByCNPJ(cnpj)).getNumeroConvenio();
+        }
+        else{
+            numeroConvenio = (PessoaFisicaServices.buscarConvenioByCPF(cpf)).getNumeroConvenio();
+        }
         String dataAss = request.getParameter("dataAssinatura");
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
@@ -168,10 +178,10 @@ public class RenovaServlet extends HttpServlet {
         
         if (isValid) {
             String sucesso = "";
-            if(tipoPessoa.equals("cnpj")){
+            if(!cnpj.equals("")){
                 sucesso = PessoaJuridicaServices.atualizarConvenioPJ(numeroConvenio, email, pessoaContato, telefone, dataAssinatura);
             }else{
-                    sucesso = PessoaFisicaServices.atualizarConvenioPF(numeroConvenio, email,telefone, dataAssinatura);
+                sucesso = PessoaFisicaServices.atualizarConvenioPF(numeroConvenio, email,telefone, dataAssinatura);
             }
             if(sucesso.trim().isEmpty()){
                 request.getRequestDispatcher("/sucesso_renova.jsp").forward(request, response);

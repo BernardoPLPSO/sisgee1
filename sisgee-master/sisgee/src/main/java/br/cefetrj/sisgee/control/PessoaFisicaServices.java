@@ -98,7 +98,7 @@ public class PessoaFisicaServices {
         PessoaFisicaDAO pessoaFisicaDao = new PessoaFisicaDAO();
         String msg = "";
         try {
-            pessoaFisicaDao.atualizaPessoaFisica(numeroConvenio, email ,telefone, dataAssinatura);
+            pessoaFisicaDao.mergePessoaFisica(numeroConvenio, email ,telefone, dataAssinatura);
             return msg;
         } catch (Exception e) {
             msg = "ERROR";

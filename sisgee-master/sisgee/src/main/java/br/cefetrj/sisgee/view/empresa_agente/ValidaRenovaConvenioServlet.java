@@ -71,8 +71,12 @@ private static final long serialVersionUID = 1L;
                     
                 }else if(ConvePF == null){
                             request.setAttribute("tipoPessoa", "cnpj");
-                            request.setAttribute("cpfConvenio", ConvePJ.getCnpj());
-                            request.setAttribute("nomePessoa", ConvePJ.getCnpj());
+                            request.setAttribute("cnpjConvenio", ConvePJ.getCnpj());
+                            request.setAttribute("razaoSocial", ConvePJ.getCnpj());
+                            request.setAttribute("pessoaContato", ConvePJ.getPessoaCOntato());
+                            System.out.println("Is agente integracao: "+ConvePJ.isAgenteIntegracao());
+                            String aiStr = Boolean.toString(ConvePJ.isAgenteIntegracao());
+                            request.setAttribute("agenteIntegracao", aiStr);
                             request.setAttribute("dataAssinatura", ConvePJ.getDataAssinatura());
                             String teste = ConvePJ.getEmail();
                             request.setAttribute("email",teste );

@@ -5,6 +5,7 @@
  */
 package br.cefetrj.sisgee.model.dao;
 
+import br.cefetrj.sisgee.control.PessoaFisicaServices;
 import br.cefetrj.sisgee.model.entity.PessoaFisica;
 import java.util.Calendar;
 import java.util.Date;
@@ -50,20 +51,16 @@ public class PessoaFisicaDAO extends GenericDAO<PessoaFisica> {
                 .getSingleResult();
     }
     
-    public void atualizaPessoaFisica(String numeroConvenio, String email, String telefone, Date dataAssinatura){
-       
-        String numeroConvenioAtual = retornaConvenioNovo(numeroConvenio);
-        
-       
-            manager.createQuery("UPDATE public.pessoafisica SET email= :email  , numeroconvenio = :numeroConvenioAtual , "
-                    + "telefone = :telefone , dataassinatura = :dataAssinatura    WHERE numeroconvenio = :numeroConvenio ")
-                    .setParameter("numeroConvenio", numeroConvenio).setParameter("email", email)
-                    .setParameter("telefone", telefone).setParameter("dataAssinatura", dataAssinatura).setParameter("numeroConvenioAtual", numeroConvenioAtual);       
-        
-   
-        
-    
-        
+    public void mergePessoaFisica(String numeroConvenio, String email, String telefone, Date dataAssinatura){
+        PessoaFisica pf = PessoaFisicaServices.buscarConvenioByNumero(numeroConvenio);
+        Integer id = pf.getIdConvenio();
+        pf = manager.find(PessoaFisica.class, id);
+        manager.getTransaction().begin();
+        pf.setNumeroConvenio(retornaConvenioNovo(numeroConvenio));
+        pf.setEmail(email);
+        pf.setTelefone(telefone);
+        pf.setDataAssinatura(dataAssinatura);
+        manager.getTransaction().commit();
     }
     
     public String retornaConvenioNovo(String numeroConvenio){

@@ -28,10 +28,10 @@ public class PessoaJuridicaServices {
     }
 
     public static void incluirConvenio(PessoaJuridica pessoaJuridica) {
-        GenericDAO<PessoaJuridica> pessoaFisicaDAO = PersistenceManager.createGenericDAO(PessoaJuridica.class);
+        GenericDAO<PessoaJuridica> pessoaJuridicaDAO = PersistenceManager.createGenericDAO(PessoaJuridica.class);
         PersistenceManager.getTransaction().begin();
         try {
-            pessoaFisicaDAO.incluir(pessoaJuridica);
+            pessoaJuridicaDAO.incluir(pessoaJuridica);
             PersistenceManager.getTransaction().commit();
         } catch (Exception e) {
             PersistenceManager.getTransaction().rollback();
@@ -88,10 +88,14 @@ public class PessoaJuridicaServices {
      public static String atualizarConvenioPJ(String numeroConvenio, String email, String pessoaContato ,String telefone, Date dataAssinatura) {
         PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
         String msg = "";
+         System.out.println(numeroConvenio + email + pessoaContato);
+         System.out.println("Entrou Atualiza");
         try {
-            pessoaJuridicaDAO.atualizaPessoaJuridica(numeroConvenio, email, pessoaContato ,telefone, dataAssinatura);
+            System.out.println(telefone);
+            pessoaJuridicaDAO.mergePessoaJuridica(numeroConvenio, email, telefone, dataAssinatura, pessoaContato);
             return msg;
         } catch (Exception e) {
+            System.out.println("Exception: "+e);
             msg = "ERROR";
             return msg;
         }

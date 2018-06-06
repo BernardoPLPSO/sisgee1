@@ -52,6 +52,7 @@ public class BuscaEmpresaServlet extends HttpServlet {
         String cnpjConvenio = "";
         String razaoSocial = "";
         String isPessoa = "";
+        String aiStr = "";
         boolean agenteIntegracao = false;
         if (numeroConvenio != null) {
             numeroConvenio = numeroConvenio.replaceAll("[.|/|-]", "");
@@ -70,6 +71,7 @@ public class BuscaEmpresaServlet extends HttpServlet {
             razaoSocial = pj.getRazaoSocial();
             cnpjConvenio = pj.getCnpj();
             agenteIntegracao = pj.isAgenteIntegracao();
+            aiStr = Boolean.toString(agenteIntegracao);
             isPessoa = "PJ";
         } else if (pf != null) {
             idConvenio = Integer.toString(pf.getIdConvenio());
@@ -88,7 +90,7 @@ public class BuscaEmpresaServlet extends HttpServlet {
                 .add("cnpjConvenio", cnpjConvenio)
                 .add("razaoSocial", razaoSocial)
                 .add("isPessoa",isPessoa)
-                .add("agenteIntegracao",agenteIntegracao)
+                .add("agenteIntegracao",aiStr)
                 .build();
 
         StringWriter stWriter = new StringWriter();

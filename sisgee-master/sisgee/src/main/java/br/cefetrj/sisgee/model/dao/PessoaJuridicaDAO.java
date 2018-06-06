@@ -5,6 +5,7 @@
  */
 package br.cefetrj.sisgee.model.dao;
 
+import br.cefetrj.sisgee.control.PessoaJuridicaServices;
 import br.cefetrj.sisgee.model.entity.PessoaFisica;
 import br.cefetrj.sisgee.model.entity.PessoaJuridica;
 import java.util.Calendar;
@@ -48,23 +49,20 @@ public class PessoaJuridicaDAO extends GenericDAO<PessoaJuridica>{
                 .getSingleResult();
     }
     
-    public void atualizaPessoaJuridica(String numeroConvenio, String email, String pessoaContato ,String telefone, Date dataAssinatura){
-        
-        String numeroConvenioAtual = retornaConvenioNovo(numeroConvenio);
-        
-        
-            manager.createQuery("UPDATE public.pessoajuridica SET email= :email  , numeroconvenio = :numeroConvenioAtual , "
-                    + "telefone = :telefone , pessoacontato = :pessoaContato  , dataassinatura = :dataAssinatura    WHERE numeroconvenio = :numeroConvenio ")
-                    .setParameter("numeroConvenio", numeroConvenio).setParameter("email", email)
-    .setParameter("telefone", telefone).setParameter("dataAssinatura", dataAssinatura).setParameter("numeroConvenioAtual", numeroConvenioAtual).setParameter("pessoaContato", pessoaContato);       
-        
-   
-   
-    
-        
+    public void mergePessoaJuridica(String numeroConvenio, String email, String telefone, Date dataAssinatura, String pessoaContato){
+        PessoaJuridica pj = PessoaJuridicaServices.buscarConvenioByNumero(numeroConvenio);
+        Integer id = pj.getIdConvenio();
+        pj = manager.find(PessoaJuridica.class, id);
+        manager.getTransaction().begin();
+        pj.setNumeroConvenio(retornaConvenioNovo(numeroConvenio));
+        pj.setEmail(email);
+        pj.setTelefone(telefone);
+        pj.setDataAssinatura(dataAssinatura);
+        pj.setPessoaCOntato(pessoaContato);
+        manager.getTransaction().commit();
     }
     
-    public String retornaConvenioNovo(String numeroConvenio){
+    public static String retornaConvenioNovo(String numeroConvenio){
         
         int anoInt = Calendar.getInstance().get(Calendar.YEAR);
         String ano = Integer.toString(anoInt);

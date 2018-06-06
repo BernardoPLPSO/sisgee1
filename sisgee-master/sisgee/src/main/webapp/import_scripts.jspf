@@ -75,12 +75,12 @@
                                 $radios.filter('[value=cpf]').prop('disabled',true);
                                 $radios.filter('[value=cnpj]').prop('checked',true);
                                 var $radioTipo = $('input:radio[name=agtInt]');
-                                if(result.agenteIntegracao == 'false'){
+                                if(result.agenteIntegracao === 'false'){
                                     $radioTipo.filter('[value=nao]').prop('disabled',false);
                                     $radioTipo.filter('[value=sim]').prop('disabled',true);
                                     $radioTipo.filter('[value=nao]').prop('checked',true);
                                 }
-                                else{
+                                else if(result.agenteIntegracao === 'true'){
                                     $radioTipo.filter('[value=sim]').prop('disabled',false);
                                     $radioTipo.filter('[value=nao]').prop('disabled',true);
                                     $radioTipo.filter('[value=sim]').prop('checked',true);
