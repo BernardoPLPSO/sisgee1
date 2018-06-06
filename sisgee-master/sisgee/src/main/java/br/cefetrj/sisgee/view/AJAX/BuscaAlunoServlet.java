@@ -63,6 +63,7 @@ public class BuscaAlunoServlet extends HttpServlet {
             request.getServletContext().setAttribute("nomeCursoPopUp", nomeCurso);
             request.getServletContext().setAttribute("nomeCampusPopUp", nomeCampus);
             request.getServletContext().setAttribute("matriculaPopUp", matricula);
+            System.out.println(aluno);
             if(AlunoServices.buscarTermoEstagioAtivo(aluno) != null){
                 request.getServletContext().setAttribute("termoEstagioAtivo", AlunoServices.buscarTermoEstagioAtivo(aluno));
                 request.getServletContext().setAttribute("vigencia", AlunoServices.buscarTermoEstagioAtivo(aluno).getDataFimTermoEstagio());
