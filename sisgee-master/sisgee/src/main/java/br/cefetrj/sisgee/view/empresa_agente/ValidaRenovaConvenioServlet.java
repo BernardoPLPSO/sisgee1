@@ -13,8 +13,6 @@ import br.cefetrj.sisgee.view.utils.ItemRelatorio;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -62,12 +60,9 @@ private static final long serialVersionUID = 1L;
                             request.setAttribute("tipoPessoa", "cpf");
                             request.setAttribute("cpfConvenio", ConvePF.getCpf());
                             request.setAttribute("nomePessoa", ConvePF.getNome());
-                            
-                            SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yyyy");
-                            String data= formata.format(ConvePF.getDataAssinatura());
-                            
-                            request.setAttribute("dataAssinatura", data);
-                            request.setAttribute("email", ConvePF.getEmail());
+                            request.setAttribute("dataAssinatura", ConvePF.getDataAssinatura());
+                            String teste = ConvePF.getEmail();
+                            request.setAttribute("email", teste);
                             request.setAttribute("telefone", ConvePF.getTelefone());
                             System.out.println(ConvePF.getCpf());
                             System.out.println(ConvePF.getNome());
@@ -76,16 +71,11 @@ private static final long serialVersionUID = 1L;
                     
                 }else if(ConvePF == null){
                             request.setAttribute("tipoPessoa", "cnpj");
-                            request.setAttribute("cnpjConvenio", ConvePJ.getCnpj());
-                            request.setAttribute("razaoSocial", ConvePJ.getRazaoSocial());
-                            
-                            SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yyyy");
-                            String data = formata.format(ConvePJ.getDataAssinatura());
-                            System.out.println(data);
-                            
-                            request.setAttribute("dataAssinatura", data);
-                            request.setAttribute("pessoaContato",ConvePJ.getPessoaContato());
-                            request.setAttribute("email",ConvePJ.getEmail() );
+                            request.setAttribute("cpfConvenio", ConvePJ.getCnpj());
+                            request.setAttribute("nomePessoa", ConvePJ.getCnpj());
+                            request.setAttribute("dataAssinatura", ConvePJ.getDataAssinatura());
+                            String teste = ConvePJ.getEmail();
+                            request.setAttribute("email",teste );
                             request.setAttribute("telefone", ConvePJ.getTelefone());
                             System.out.println(ConvePJ.getCnpj());
                             System.out.println(ConvePJ.getRazaoSocial());
