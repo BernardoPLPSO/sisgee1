@@ -118,12 +118,12 @@
                         <div class="custom-controls-stacked d-block my-3" id="divAgt">
                             <label for="agenteIntegracao"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_agente_integracao"/></label>
                             <label class="custom-control custom-radio">
-                                <input id="Agente" type="radio" class="custom-control-input isAgenteChk" name="agtInt" value="sim" ${not empty termo.convenioPF ? termo.convenioPF.agenteIntegracao == true ? "checked" : '' : termo.convenioPJ.agenteIntegracao == true ? "checked" : '' }> 
+                                <input id="Agente" type="radio" class="custom-control-input isAgenteChk" name="agtInt" value="sim" ${not empty termo.convenioPJ.agenteIntegracao == true ? "checked" : '' }> 
                                 <span class="custom-control-indicator"></span> 
                                 <span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.resources.form.sim"/></span>
                             </label>						
                             <label class="custom-control custom-radio"> 
-                                <input id="NaoAgente" type="radio" class="custom-control-input isAgenteChk" name="agtInt" value="nao" ${not empty termo.convenioPF ? termo.convenioPF.agenteIntegracao == false ? "checked" : '' : termo.convenioPJ.agenteIntegracao == false ? "checked" : ''} > 
+                                <input id="NaoAgente" type="radio" class="custom-control-input isAgenteChk" name="agtInt" value="nao" ${not empty termo.convenioPJ.agenteIntegracao == false ? "checked" : ''} > 
                                 <span class="custom-control-indicator"></span> 
                                 <span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.resources.form.nao"/></span>
                             </label>

@@ -41,7 +41,25 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         Locale locale = ServletUtils.getLocale(request);
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
         String idtermo = request.getParameter("idTermoEstagio");
-        System.out.println(idtermo);
+        //Pega prof
+        String professorNome = (String)request.getAttribute("idProfessorOrientador");
+        //Pega data fim
+        String vigencia = request.getParameter("dataFimTermoEstagio");
+        request.getParameter("dataFimTermoEstagio");
+        //Pega carga horaria
+        String cargaHoraria = request.getParameter("cargaHorariaTermoEstagio");
+        //Pega valor da bolsa
+        String valor = request.getParameter("valorBolsa");
+        valor = valor.replace(',', '.');
+        //Pega campos de endereco
+        String endereco = request.getParameter("enderecoTermoEstagio");
+        String cep = request.getParameter("cepEnderecoTermoEstagio");
+        String estado = request.getParameter("estadoEnderecoTermoEstagio");
+        String numero = request.getParameter("numeroEnderecoTermoEstagio");
+        String cidade = request.getParameter("cidadeEnderecoTermoEstagio");
+        String complemento = request.getParameter("complementoEnderecoTermoEstagio");
+        String bairro = request.getParameter("bairroEnderecoTermoEstagio");
+        System.out.println(endereco);
         TermoEstagio t = TermoEstagioServices.buscarTermoEstagio(Integer.parseInt(idtermo));
         
         TermoEstagio termoAditivo = new TermoEstagio(t.getDataInicioTermoEstagio(),t.getCargaHorariaTermoEstagio(), t.getValorBolsa(), t.getEnderecoTermoEstagio(), t.getProfessorOrientador());
@@ -59,14 +77,9 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         termoAditivo.setConvenioPF(t.getConvenioPF());
         termoAditivo.setConvenioPJ(t.getConvenioPJ());      
         termoAditivo.setTermoEstagio(t);
-        //termoAditivo.setIdTermoEstagio(t.getIdTermoEstagio());
-
-        /*Date dataFimTermoAditivo;
-        try {
-            dataFimTermoAditivo = DateFormat.getInstance().parse(request.getParameter("updVigencia"));
-        } catch (ParseException ex) {
-            java.util.logging.Logger.getLogger(IncluirTermoAditivoServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        
+        
+        
         
         Integer cargaHorariaTermoAditivo = Integer.parseInt(request.getParameter("updCargaHoraria"));
         Float valorBolsaTermoAditivo = Float.parseFloat(request.getParameter("updValorBolsa"));
@@ -81,12 +94,12 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
             termoAditivo.setCargaHorariaTermoEstagio(cargaHorariaTermoAditivo);
         }
 
-        if (valorBolsaTermoAditivo != null) {
+        if (valor != termoAditivo.getValorBolsa()) {
             termoAditivo.setValorBolsa(valorBolsaTermoAditivo);
         }
 
-        if (enderecoTermoAditivo != null) {
-            termoAditivo.setEnderecoTermoEstagio(enderecoTermoAditivo);
+        if (endereco != termoAditivo.getEnderecoTermoEstagio()) {
+            termoAditivo.setEnderecoTermoEstagio(endereco);
         }
 
         /*if (professorOrientador != null) {
