@@ -33,8 +33,9 @@ public class ValidaRenovaConvenioServlet extends HttpServlet {
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
         
         List<ItemRelatorio> Resultado = (List<ItemRelatorio>)request.getAttribute("Resultado");
-        String index = request.getParameter("OLHA AQUI:"+"status");
-        System.out.println(index);
+        Object index = request.getAttribute("teste");
+        
+        System.out.println("OLHA AQUI:"+index);
         
     }
 }

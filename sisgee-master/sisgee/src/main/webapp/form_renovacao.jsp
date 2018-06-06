@@ -99,7 +99,11 @@
 		<c:forEach items="${ Resultado }" var="Resultados" varStatus="status" >
                     
                     <tr>
-                        <th>${status.index} <button type="submit" class="btn btn-primary" id="btnRenovarConvenio" ><fmt:message key = "br.cefetrj.sisgee.resources.form.busca.buscar"/></button></th>
+                        <th><label class="custom-control custom-radio"> 
+                            <input name="convenio" type="radio" class="custom-control-input"  value = "${Resultados.numeroConvenio}" >
+                            <span class="custom-control-indicator"></span>
+                            </label>
+                            </th>
 			<th>${Resultados.numeroConvenio}</th>
                         <th>${Resultados.nomeConvenio}</th>
                         <th>${Resultados.idConvenio}</th>                     
@@ -108,6 +112,7 @@
                 </c:forEach>                          
   			</tbody>
   		</table>
+                <button type="submit" class="btn btn-primary" id="btnRenovarConvenio" ><fmt:message key = "br.cefetrj.sisgee.resources.form.busca.buscar"/></button>
   		   </c:if> 
 	</div>
 	<%@include file="import_footer.jspf"%>
