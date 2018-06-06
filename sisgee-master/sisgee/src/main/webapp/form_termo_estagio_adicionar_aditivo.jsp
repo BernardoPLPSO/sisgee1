@@ -339,15 +339,12 @@
                     </div>
                 </fieldset>
 
-                <c:if test="${ not empty termo }">
                     <input type="hidden" name="idTermoEstagio" value="${ termo.idTermoEstagio }" />
                     <input type="hidden" name="updVigencia" value="${ updVigencia }" />
                     <input type="hidden" name="updCargaHoraria" value="${ updCargaHoraria }" />
                     <input type="hidden" name="updProfessor" value="${ updProfessor }" />
                     <input type="hidden" name="updValorBolsa" value="${ updValorBolsa }" />
                     <input type="hidden" name="updEndereco" value="${ updEndereco }" />
-                </c:if>
-                    <input type="hidden" name ="termoid" value="${termo.idTermoEstagio}"/>
                 <button type="submit" class="btn btn-primary" ${ isVisualizacao eq true ? 'disabled' :'' }><fmt:message key = "br.cefetrj.sisgee.resources.form.salvar"/></button>
                 <c:choose>
                     <c:when test="${ not empty termo }">

@@ -40,8 +40,8 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
 
         Locale locale = ServletUtils.getLocale(request);
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
-        String idtermo = request.getParameter("termoid");
-
+        String idtermo = request.getParameter("idTermoEstagio");
+        System.out.println(idtermo);
         TermoEstagio t = TermoEstagioServices.buscarTermoEstagio(Integer.parseInt(idtermo));
         
         TermoEstagio termoAditivo = new TermoEstagio(t.getDataInicioTermoEstagio(),t.getCargaHorariaTermoEstagio(), t.getValorBolsa(), t.getEnderecoTermoEstagio(), t.getProfessorOrientador());
