@@ -3,6 +3,11 @@ package br.cefetrj.sisgee.view.utils;
 import br.cefetrj.sisgee.model.entity.PessoaFisica;
 import br.cefetrj.sisgee.model.entity.PessoaJuridica;
 import static com.oracle.nio.BufferSecrets.instance;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Classe para auxiliar na organizacao
@@ -28,8 +33,32 @@ public class ItemRelatorio {
         private String email;
         private String telefone;
         private String pessoaContato;
+        private Date dataVencimento;
+        private String dataFormatada;
+
+    public String getDataFormatada() {
+        final DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        dataFormatada = df.format(dataVencimento);
+        return dataFormatada;
+    }
+
+    public void setDataFormatada(String dataFormatada) {
+        final DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        this.dataFormatada = df.format(dataVencimento);
+    }
+        
+        
+
+    public Date getDataVencimento() {
+        return dataVencimento;
+    }
+
+    public void setDataVencimento(Date dataVencimento) {
+        this.dataVencimento = dataVencimento;
+    }
+        
 	
-        public ItemRelatorio(String numeroConvenio, String idConvenio, String nomeConvenio, Object objConvenio, Class tipoConvenio){
+        public ItemRelatorio(String numeroConvenio, String idConvenio, String nomeConvenio, Object objConvenio, Class tipoConvenio) throws ParseException{
             super();
             this.numeroConvenio = numeroConvenio;
             if(idConvenio.length()==11){
@@ -46,12 +75,28 @@ public class ItemRelatorio {
                 this.email = ((PessoaFisica)objConvenio).getEmail();
                 this.telefone = ((PessoaFisica)objConvenio).getTelefone();
                 this.pessoaContato = "";
+                Calendar c = Calendar.getInstance();
+                c.setTime(((PessoaFisica)objConvenio).getDataAssinatura());
+                c.add(Calendar.YEAR, +5);
+                Date dataVencimentoC = c.getTime();
+                SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yyyy");
+                dataVencimentoC = formata.parse(formata.format(dataVencimentoC));
+                this.dataVencimento = dataVencimentoC;
+                
             }
             if(objConvenio instanceof PessoaJuridica){
                 this.email = ((PessoaJuridica)objConvenio).getEmail();
                 this.telefone = ((PessoaJuridica)objConvenio).getTelefone();
                 this.telefone = ((PessoaJuridica)objConvenio).getTelefone();
                 this.pessoaContato = ((PessoaJuridica)objConvenio).getPessoaCOntato();
+                Calendar c = Calendar.getInstance();
+                c.setTime(((PessoaJuridica)objConvenio).getDataAssinatura());
+                c.add(Calendar.YEAR, +5);
+                Date dataVencimentoC = c.getTime();
+                SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yyyy");
+                dataVencimentoC = formata.parse(formata.format(dataVencimentoC));
+                System.out.println(dataVencimentoC);
+                this.dataVencimento = dataVencimentoC;
             }
             
             

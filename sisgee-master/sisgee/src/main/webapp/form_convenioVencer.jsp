@@ -63,7 +63,7 @@
 		<c:forEach items="${ Resultado }" var="Resultados" varStatus="status" >
                     
                     <tr>
-                        <th>${Resultados.numeroConvenio}</th>
+                        <th>${Resultados.dataFormatada}</th>
 			<th>${Resultados.numeroConvenio}</th>
                         <th>${Resultados.nomeConvenio}</th>
                         <th>${Resultados.idConvenio}</th>

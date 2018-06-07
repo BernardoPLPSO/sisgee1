@@ -12,6 +12,9 @@ import br.cefetrj.sisgee.model.entity.PessoaJuridica;
 import br.cefetrj.sisgee.view.utils.ItemRelatorio;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -61,14 +64,25 @@ public class ConveniosVencerServlet extends HttpServlet {
                         Calendar c = Calendar.getInstance();
                         Date atual = c.getTime();
                         c.setTime(Expira);
-                        c.add(Calendar.YEAR, +5);
+                        c.add(Calendar.YEAR, +4);
+                        c.add(Calendar.MONTH, +10);
                         Date dataFim = c.getTime();
                         System.out.println(atual);
                         System.out.println(dataFim);
                         
+                        SimpleDateFormat F = new SimpleDateFormat("yyyy-MM-dd");
+                        String Format = F.format(atual);
+                        String Format2 = F.format(dataFim);
+                        dataFim = F.parse(Format2);
+                        atual = F.parse(Format);
+                                
                         
-                        int compara = (atual).compareTo(dataFim);
-                        if(compara == -1){
+                        if(atual.after(dataFim)){
+                        
+                        System.out.println(P.getDataAssinatura());
+                        
+                        System.out.println(atual);
+                        System.out.println(dataFim);
                         ItemRelatorio item = new ItemRelatorio(P.getNumeroConvenio(), P.getCpf(), P.getNome(), P, P.getClass());
                         Resultado.add(item);}
                     }
@@ -80,19 +94,31 @@ public class ConveniosVencerServlet extends HttpServlet {
                         Calendar c = Calendar.getInstance();
                         Date atual = c.getTime();
                         c.setTime(Expira);
-                        c.add(Calendar.YEAR, +5);
+                        c.add(Calendar.YEAR, +4);
+                        c.add(Calendar.MONTH, +10);
                         Date dataFim = c.getTime();
+                        
+                        SimpleDateFormat F = new SimpleDateFormat("yyyy-MM-dd");
+                        String Format = F.format(atual);
+                        String Format2 = F.format(dataFim);
+                        dataFim = F.parse(Format2);
+                        atual = F.parse(Format);
+                        
+                        
+                        
+                        if(atual.after(dataFim)){
+                        
                         System.out.println(atual);
                         System.out.println(dataFim);
-                        
-                        int compara = (atual).compareTo(dataFim);
-                        if(compara == -1){
                         ItemRelatorio item = new ItemRelatorio(J.getNumeroConvenio(), J.getCnpj(), J.getRazaoSocial(), J, J.getClass());
                         Resultado.add(item);}
                     }
                 }
                 if (Resultado.isEmpty()) {
                     request.setAttribute("Resultado", null);
+                    String msg = messages.getString("br.cefetrj.sisgee.incluir_cadastro_empresa_servlet.msg_empresa_semResultado");
+                    request.setAttribute("msg", msg);
+                    request.getRequestDispatcher("/index.jsp").forward(request, response);
                 } else {
                     request.setAttribute("Resultado", Resultado);
                 }
