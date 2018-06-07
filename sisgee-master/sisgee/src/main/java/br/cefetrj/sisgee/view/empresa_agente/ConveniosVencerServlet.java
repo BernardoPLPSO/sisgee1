@@ -69,6 +69,8 @@ public class ConveniosVencerServlet extends HttpServlet {
                         Date dataFim = c.getTime();
                         System.out.println(atual);
                         System.out.println(dataFim);
+                        c.add(Calendar.MONTH, +2);
+                        Date pos = c.getTime();
                         
                         SimpleDateFormat F = new SimpleDateFormat("yyyy-MM-dd");
                         String Format = F.format(atual);
@@ -78,13 +80,14 @@ public class ConveniosVencerServlet extends HttpServlet {
                                 
                         
                         if(atual.after(dataFim)){
+                            if(atual.before(pos)){
                         
                         System.out.println(P.getDataAssinatura());
                         
                         System.out.println(atual);
                         System.out.println(dataFim);
                         ItemRelatorio item = new ItemRelatorio(P.getNumeroConvenio(), P.getCpf(), P.getNome(), P, P.getClass());
-                        Resultado.add(item);}
+                        Resultado.add(item);}}
                     }
                 }
                 if (buscaConvePJ != null) {
@@ -97,6 +100,8 @@ public class ConveniosVencerServlet extends HttpServlet {
                         c.add(Calendar.YEAR, +4);
                         c.add(Calendar.MONTH, +10);
                         Date dataFim = c.getTime();
+                        c.add(Calendar.MONTH, +2);
+                        Date pos = c.getTime();
                         
                         SimpleDateFormat F = new SimpleDateFormat("yyyy-MM-dd");
                         String Format = F.format(atual);
@@ -107,11 +112,12 @@ public class ConveniosVencerServlet extends HttpServlet {
                         
                         
                         if(atual.after(dataFim)){
+                            if(atual.before(pos)){
                         
                         System.out.println(atual);
                         System.out.println(dataFim);
                         ItemRelatorio item = new ItemRelatorio(J.getNumeroConvenio(), J.getCnpj(), J.getRazaoSocial(), J, J.getClass());
-                        Resultado.add(item);}
+                        Resultado.add(item);}}
                     }
                 }
                 if (Resultado.isEmpty()) {
