@@ -80,7 +80,7 @@ public class BuscaRelatorioConsolidadoServlet extends HttpServlet {
             request.setAttribute("msgRelatorio", msgRelatorio);
         }
 
-        request.setAttribute("relatorio", listaItemRelatorio);
+        request.getSession().setAttribute("relatorio", listaItemRelatorio);
         request.getRequestDispatcher("/relatorio_consolidado.jsp").forward(request, response);
     }
 

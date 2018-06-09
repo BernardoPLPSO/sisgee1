@@ -251,7 +251,9 @@
             
             $("#btnRenovarConvenio").click(function(){
                 window.location.href = "ValidaRenovaConvenioServlet";
-            })
+            });
+            
+            
 	    
   
     </script>

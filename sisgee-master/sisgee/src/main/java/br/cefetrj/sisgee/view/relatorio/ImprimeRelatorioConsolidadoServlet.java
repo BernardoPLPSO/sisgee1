@@ -24,7 +24,7 @@ public class ImprimeRelatorioConsolidadoServlet extends HttpServlet {
         
         List<ItemRelatorio> listaItemRelatorio = (List) request.getAttribute("relatorio");
         
-        request.setAttribute("relatorioIm", listaItemRelatorio);
+        request.setAttribute("relatorio", listaItemRelatorio);
         request.getRequestDispatcher("/relatorio_consolidado_lista.jsp").forward(request, response);
         
     }

@@ -1,3 +1,5 @@
+<%@page import="br.cefetrj.sisgee.view.utils.ItemRelatorio"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html >
 <html>
     <head>
@@ -86,7 +88,7 @@
                     ${ msgRelatorio }
                 </div>
             </c:if>
-                
+
             <c:forEach items="${ relatorio }" var="relatorio">
                 <table class="table table-hover" style="width: 100%; margin-top: 20px;">
                     <thead>
@@ -111,9 +113,11 @@
                     </tbody>
                 </table>
             </c:forEach>
-
+            
             <form action="ImprimeRelatorioConsolidadoServlet" method="POST" >
-                <button type="submit" class="btn btn-primary"><fmt:message key="br.cefetrj.sisgee.relatorio.relatorio_consolidado.btn_imprimir" /></button>                         
+                <c:if test="${not empty relatorio}">
+                    <button type="submit" class="btn btn-primary"><fmt:message key="br.cefetrj.sisgee.relatorio.relatorio_consolidado.btn_imprimir" /></button>                         
+                </c:if>
             </form>
 
         </div>
