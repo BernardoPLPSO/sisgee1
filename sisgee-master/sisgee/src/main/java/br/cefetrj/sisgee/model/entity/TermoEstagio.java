@@ -70,6 +70,9 @@ public class TermoEstagio {
     @Column(length = 100, nullable = true)
     private String cargoSupervisor;
 
+    @Column(length = 100, nullable = true)
+    private String agenciada;
+    
     @Column(nullable = false)
     private Boolean eEstagioObrigatorio;
 
