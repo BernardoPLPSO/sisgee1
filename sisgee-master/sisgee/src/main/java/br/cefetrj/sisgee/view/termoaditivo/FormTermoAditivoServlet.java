@@ -60,20 +60,19 @@ public class FormTermoAditivoServlet extends HttpServlet {
 		ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);			
 		
 		
-		String dataFimTermoAditivo = request.getParameter("dataFimTermoEstagio");		
-		String cargaHorariaTermoAditivo = request.getParameter("cargaHorariaTermoEstagio");
-		String valorBolsaTermoAditivo = request.getParameter("valorBolsa");
+		String dataFimTermoAditivo = (String)request.getParameter("dataFimTermoEstagio");		
+		String cargaHorariaTermoAditivo = (String)request.getParameter("cargaHorariaTermoEstagio");
+		String valorBolsaTermoAditivo = (String)request.getParameter("valorBolsa");
 		
 		/**
 		 * campos de endereço
 		 */
-		String enderecoTermoAditivo = request.getParameter("enderecoTermoEstagio");
-		String numeroEnderecoTermoAditivo = request.getParameter("numeroEnderecoTermoEstagio");
-		String complementoEnderecoTermoAditivo = request.getParameter("complementoEnderecoTermoEstagio");
-		String bairroEnderecoTermoAditivo = request.getParameter("bairroEnderecoTermoEstagio");
-		String cepEnderecoTermoAditivo = request.getParameter("cepEnderecoTermoEstagio");
-		String cidadeEnderecoTermoAditivo = request.getParameter("cidadeEnderecoTermoEstagio");
-		String estadoEnderecoTermoAditivo = request.getParameter("estadoEnderecoTermoEstagio");	
+		String enderecoTermoAditivo = (String)request.getParameter("enderecoTermoEstagio");
+		String complementoEnderecoTermoAditivo = (String)request.getParameter("complementoEnderecoTermoEstagio");
+		String bairroEnderecoTermoAditivo = (String)request.getParameter("bairroEnderecoTermoEstagio");
+		String cepEnderecoTermoAditivo = (String)request.getParameter("cepEnderecoTermoEstagio");
+		String cidadeEnderecoTermoAditivo = (String)request.getParameter("cidadeEnderecoTermoEstagio");
+		String estadoEnderecoTermoAditivo = (String)request.getParameter("estadoEnderecoTermoEstagio");	
 		
 		/**
 		 * Campos possíveis selecionados para atualização
@@ -146,10 +145,9 @@ public class FormTermoAditivoServlet extends HttpServlet {
 				if (dataFimMsg.trim().isEmpty()) {					
 					dataFimMsg = ValidaUtils.validaDate(campo , dataFimTermoAditivo);
 					if (dataFimMsg.trim().isEmpty()) {
-						SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 						try {
-							dataFim = format.parse(dataFimTermoAditivo);
-							request.setAttribute("dataFim", dataFim);
+                                                        String dataFimStr = ServletUtils.mudarFormatoData(dataFim);
+							request.setAttribute("dataFim", dataFimStr);
 							hasDataFim = true;
 						} catch (Exception e) {							
 							isValid = false;
@@ -317,43 +315,14 @@ public class FormTermoAditivoServlet extends HttpServlet {
 				
 				
 				/**
-				 * Validação do número do endereço do TermoEstagio usando os métodos da Classe ValidaUtils.
-				 * Campo obrigatório e tamanho máximo de 10 caracteres.
-				 */
-				String numeroEnderecoMsg = "";
-				campo = "Número";
-				tamanho = 10;
-				numeroEnderecoMsg = ValidaUtils.validaObrigatorio(campo , numeroEnderecoTermoAditivo);
-				if(numeroEnderecoMsg.trim().isEmpty()) {
-					numeroEnderecoMsg = ValidaUtils.validaTamanho(campo, tamanho, numeroEnderecoTermoAditivo);
-					if(numeroEnderecoMsg.trim().isEmpty()) {
-						request.setAttribute("numeroEnderecoTermoEstagio", numeroEnderecoTermoAditivo);
-					}else {				
-						numeroEnderecoMsg = messages.getString(numeroEnderecoMsg);
-						numeroEnderecoMsg = ServletUtils.mensagemFormatada(numeroEnderecoMsg, locale, tamanho);
-						request.setAttribute("numeroEnderecoMsg", numeroEnderecoMsg);
-						isValid = false;
-						//TODO Fazer log
-						System.out.println(numeroEnderecoMsg);
-					}
-				}else {
-					numeroEnderecoMsg = messages.getString(numeroEnderecoMsg);
-					request.setAttribute("numeroEnderecoMsg", numeroEnderecoMsg);
-					isValid = false;
-					//TODO Fazer log
-					System.out.println(numeroEnderecoMsg);
-				}		
-				
-				/**
 				 * Validação do complemento do endereço do TermoEstagio usando os métodos da Classe ValidaUtils.
-				 * Campo obrigatório e tamanho máximo de 150 caracteres.
+				 * Campo não obrigatório e tamanho máximo de 150 caracteres.
 				 */		
 				String complementoEnderecoMsg = "";
 				campo = "Complemento";
 				tamanho = 150;
-				complementoEnderecoMsg = ValidaUtils.validaObrigatorio(campo, complementoEnderecoTermoAditivo);
 				if(complementoEnderecoMsg.trim().isEmpty()) {
-					numeroEnderecoMsg = ValidaUtils.validaTamanho(campo, tamanho, complementoEnderecoTermoAditivo);
+					complementoEnderecoMsg = ValidaUtils.validaTamanho(campo, tamanho, complementoEnderecoTermoAditivo);
 					if(complementoEnderecoMsg.trim().isEmpty()) {
 						request.setAttribute("complementoEnderecoTermoEstagio", complementoEnderecoTermoAditivo);
 					}else {				
@@ -363,10 +332,6 @@ public class FormTermoAditivoServlet extends HttpServlet {
 						isValid = false;
 						
 					}
-				}else {
-					complementoEnderecoMsg = messages.getString(complementoEnderecoMsg);
-					request.setAttribute("complementoEnderecoMsg", complementoEnderecoMsg);
-					isValid = false;					
 				}		
 				
 				/**
@@ -496,44 +461,29 @@ public class FormTermoAditivoServlet extends HttpServlet {
 				termoAditivo = termosAditivos.get(termosAditivos.size() -1);
 				if(updVigencia != null && !updVigencia.trim().isEmpty()) {
 					termoAditivo.setDataFimTermoEstagio(dataFim);
-				}else {
-					termoAditivo.setDataFimTermoEstagio(termoEstagio.getDataFimTermoEstagio());
 				}
 				
 				if(updCargaHoraria != null && !updCargaHoraria.trim().isEmpty()) {
 					termoAditivo.setCargaHorariaTermoEstagio(cargaHoraria);
-				}else {
-					termoAditivo.setCargaHorariaTermoEstagio(termoEstagio.getCargaHorariaTermoEstagio());
 				}
 				
 				if(updProfessor != null && !updProfessor.trim().isEmpty()) {
 					termoAditivo.setProfessorOrientador(professorOrientador);
-				}else {
-					termoAditivo.setProfessorOrientador(termoEstagio.getProfessorOrientador());
 				}
 				
 				if(updValorBolsa != null && !updValorBolsa.trim().isEmpty()) {
 					termoAditivo.setValorBolsa(valor);
-				}else {
-					termoAditivo.setValorBolsa(termoEstagio.getValorBolsa());
 				}
 				
 				if(updEndereco != null && !updEndereco.trim().isEmpty()) {
 					termoAditivo.setEnderecoTermoEstagio(enderecoTermoAditivo);
-					termoAditivo.setNumeroEnderecoTermoEstagio(numeroEnderecoTermoAditivo);
 					termoAditivo.setComplementoEnderecoTermoEstagio(complementoEnderecoTermoAditivo);
 					termoAditivo.setBairroEnderecoTermoEstagio(bairroEnderecoTermoAditivo);
 					termoAditivo.setCidadeEnderecoTermoEstagio(cidadeEnderecoTermoAditivo);
 					termoAditivo.setEstadoEnderecoTermoEstagio(estadoEnderecoTermoAditivo);
 					termoAditivo.setCepEnderecoTermoEstagio(cepEnderecoTermoAditivo);
-				}else {
-					termoAditivo.setEnderecoTermoEstagio(termoEstagio.getEnderecoTermoEstagio());
-					termoAditivo.setNumeroEnderecoTermoEstagio(termoEstagio.getNumeroEnderecoTermoEstagio());
-					termoAditivo.setComplementoEnderecoTermoEstagio(termoEstagio.getComplementoEnderecoTermoEstagio());
-					termoAditivo.setBairroEnderecoTermoEstagio(termoEstagio.getBairroEnderecoTermoEstagio());
-					termoAditivo.setCidadeEnderecoTermoEstagio(termoEstagio.getCidadeEnderecoTermoEstagio());
-					termoAditivo.setEstadoEnderecoTermoEstagio(termoEstagio.getEstadoEnderecoTermoEstagio());
-					termoAditivo.setCepEnderecoTermoEstagio(termoEstagio.getCepEnderecoTermoEstagio());
+                                        termoAditivo.setNomeSupervisor(updEndereco);
+                                        termoAditivo.setCargoSupervisor(campo);
 				}
 				
 				//termoAditivo.setIdTermoAditivo(null);
@@ -573,7 +523,6 @@ public class FormTermoAditivoServlet extends HttpServlet {
 				
 				if(updEndereco != null && !updEndereco.trim().isEmpty()) {
 					termoAditivo.setEnderecoTermoEstagio(enderecoTermoAditivo);
-					termoAditivo.setNumeroEnderecoTermoEstagio(numeroEnderecoTermoAditivo);
 					termoAditivo.setComplementoEnderecoTermoEstagio(complementoEnderecoTermoAditivo);
 					termoAditivo.setBairroEnderecoTermoEstagio(bairroEnderecoTermoAditivo);
 					termoAditivo.setCidadeEnderecoTermoEstagio(cidadeEnderecoTermoAditivo);
@@ -581,7 +530,6 @@ public class FormTermoAditivoServlet extends HttpServlet {
 					termoAditivo.setCepEnderecoTermoEstagio(cepEnderecoTermoAditivo);
 				}else {
 					termoAditivo.setEnderecoTermoEstagio(termoEstagio.getEnderecoTermoEstagio());
-					termoAditivo.setNumeroEnderecoTermoEstagio(termoEstagio.getNumeroEnderecoTermoEstagio());
 					termoAditivo.setComplementoEnderecoTermoEstagio(termoEstagio.getComplementoEnderecoTermoEstagio());
 					termoAditivo.setBairroEnderecoTermoEstagio(termoEstagio.getBairroEnderecoTermoEstagio());
 					termoAditivo.setCidadeEnderecoTermoEstagio(termoEstagio.getCidadeEnderecoTermoEstagio());

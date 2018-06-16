@@ -59,11 +59,21 @@ public class BuscaTermoAditivoServlet extends HttpServlet {
         }
         if (termoEstagios != null) {
             for (TermoEstagio termoEstagio : termoEstagios) {
-                if (termoEstagio.getDataRescisaoTermoEstagio() == null || 
-                        termoEstagio.getDataRescisaoTermoEstagio().equals("")) {
-                    request.setAttribute("termoAtivo", termoEstagio);
-                    request.setAttribute("termosAditivos", termoEstagio.getTermosAditivos());
-                    break;
+                if ((termoEstagio.getDataRescisaoTermoEstagio() == null || 
+                    termoEstagio.getDataRescisaoTermoEstagio().equals(""))&&
+                    (termoEstagio.getTermosAditivos() == null ||
+                    termoEstagio.getTermosAditivos().isEmpty())) {
+                        request.setAttribute("termoAtivo", termoEstagio);
+                        request.setAttribute("termosAditivos", termoEstagio.getTermosAditivos());
+                        break;
+                }
+                else if(!termoEstagio.getTermosAditivos().isEmpty()){
+                    TermoEstagio termoAditivo = termoEstagio.getTermosAditivos().get(termoEstagio.getTermosAditivos().size()-1);
+                    if(termoAditivo.getDataRescisaoTermoEstagio() == null || termoAditivo.getDataRescisaoTermoEstagio().equals("")){
+                        request.setAttribute("termoAtivo", termoAditivo);
+                        request.setAttribute("termosAditivos", termoEstagio.getTermosAditivos());
+                        break;
+                    }
                 }
             }
         }

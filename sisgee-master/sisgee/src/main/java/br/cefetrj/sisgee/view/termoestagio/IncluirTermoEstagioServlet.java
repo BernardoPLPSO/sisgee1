@@ -47,7 +47,6 @@ public class IncluirTermoEstagioServlet extends HttpServlet {
         Integer cargaHorariaTermoEstagio = (Integer) request.getAttribute("cargaHoraria");
         Float valorBolsa = (Float) request.getAttribute("valor");
         String enderecoTermoEstagio = (String) request.getAttribute("enderecoTermoEstagio");
-        String numeroEnderecoTermoEstagio = (String) request.getAttribute("numeroEnderecoTermoEstagio");
         String complementoEnderecoTermoEstagio = (String) request.getAttribute("complementoEnderecoTermoEstagio");
         String bairroEnderecoTermoEstagio = (String) request.getAttribute("bairroEnderecoTermoEstagio");
         String cepEnderecoTermoEstagio = (String) request.getAttribute("cepEnderecoTermoEstagio");
@@ -56,6 +55,9 @@ public class IncluirTermoEstagioServlet extends HttpServlet {
         Boolean eEstagioObrigatorio = (Boolean) request.getAttribute("obrigatorio");
         Aluno aluno = new Aluno((Integer) request.getAttribute("idAluno"));
         String numeroConvenio = (String)request.getAttribute("numeroConvenio");
+        String nomeSupervisor = (String)request.getAttribute("nomeSupervisor");
+        System.out.println("nomeSupervisor: "+nomeSupervisor);
+        String cargoSupervisor = (String)request.getAttribute("cargoSupervisor");
         System.out.println("Numero convenio "+numeroConvenio);
         PessoaFisica pf = PessoaFisicaServices.buscarConvenioByNumero(numeroConvenio);
         System.out.println(pf);
@@ -89,16 +91,16 @@ public class IncluirTermoEstagioServlet extends HttpServlet {
         TermoEstagio termoEstagio = null;
         if (pf != null) {
             termoEstagio = new TermoEstagio(dataInicioTermoEstagio, dataFimTermoEstagio, cargaHorariaTermoEstagio,
-                    valorBolsa, enderecoTermoEstagio, numeroEnderecoTermoEstagio,
-                    complementoEnderecoTermoEstagio, bairroEnderecoTermoEstagio, cepEnderecoTermoEstagio,
+                    valorBolsa, enderecoTermoEstagio,complementoEnderecoTermoEstagio, 
+                    bairroEnderecoTermoEstagio, cepEnderecoTermoEstagio,
                     cidadeEnderecoTermoEstagio, estadoEnderecoTermoEstagio, eEstagioObrigatorio,
-                    aluno, pf, professorOrientador);
+                    aluno, pf, professorOrientador, nomeSupervisor, cargoSupervisor);
         } else {
             termoEstagio = new TermoEstagio(dataInicioTermoEstagio, dataFimTermoEstagio, cargaHorariaTermoEstagio,
-                    valorBolsa, enderecoTermoEstagio, numeroEnderecoTermoEstagio,
+                    valorBolsa, enderecoTermoEstagio,
                     complementoEnderecoTermoEstagio, bairroEnderecoTermoEstagio, cepEnderecoTermoEstagio,
                     cidadeEnderecoTermoEstagio, estadoEnderecoTermoEstagio, eEstagioObrigatorio,
-                    aluno, pj, professorOrientador);
+                    aluno, pj, professorOrientador, nomeSupervisor, cargoSupervisor);
         }
 
         String msg = "";
@@ -115,7 +117,7 @@ public class IncluirTermoEstagioServlet extends HttpServlet {
         } catch (Exception e) {
             msg = messages.getString("br.cefetrj.sisgee.incluir_termo_estagio_servlet.msg_falha");
             request.setAttribute("msg", msg);
-
+            System.out.println("Erro incluirTermoEstagioServlet: "+e);
             lg.error("Exception ao tentar inserir o Termo de Estágio", e);
             request.getRequestDispatcher("FormTermoEstagioServlet").forward(request, response);
 

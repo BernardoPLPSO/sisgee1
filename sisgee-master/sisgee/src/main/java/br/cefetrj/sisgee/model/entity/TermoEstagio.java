@@ -49,10 +49,7 @@ public class TermoEstagio {
     @Column(length = 255, nullable = false)
     private String enderecoTermoEstagio;
 
-    @Column(length = 10, nullable = false)
-    private String numeroEnderecoTermoEstagio;
-
-    @Column(length = 150, nullable = false)
+    @Column(length = 150, nullable = true)
     private String complementoEnderecoTermoEstagio;
 
     @Column(length = 150, nullable = false)
@@ -66,6 +63,12 @@ public class TermoEstagio {
 
     @Column(length = 2, nullable = false)
     private String estadoEnderecoTermoEstagio;
+    
+    @Column(length = 100, nullable = true)
+    private String nomeSupervisor;
+    
+    @Column(length = 100, nullable = true)
+    private String cargoSupervisor;
 
     @Column(nullable = false)
     private Boolean eEstagioObrigatorio;
@@ -117,17 +120,15 @@ public class TermoEstagio {
     }
 
     public TermoEstagio(Date dataInicioTermoEstagio, Date dataFimTermoEstagio, Integer cargaHorariaTermoEstagio,
-            Float valorBolsa, String enderecoTermoEstagio, String numeroEnderecoTermoEstagio,
-            String complementoEnderecoTermoEstagio, String bairroEnderecoTermoEstagio, String cepEnderecoTermoEstagio,
+            Float valorBolsa, String enderecoTermoEstagio,String complementoEnderecoTermoEstagio, String bairroEnderecoTermoEstagio, String cepEnderecoTermoEstagio,
             String cidadeEnderecoTermoEstagio, String estadoEnderecoTermoEstagio, Boolean eEstagioObrigatorio,
-            Aluno aluno, PessoaFisica convenioPF, ProfessorOrientador professorOrientador) {
+            Aluno aluno, PessoaFisica convenioPF, ProfessorOrientador professorOrientador, String nomeSupervisor, String cargoSupervisor) {
 
         this.dataInicioTermoEstagio = dataInicioTermoEstagio;
         this.dataFimTermoEstagio = dataFimTermoEstagio;
         this.cargaHorariaTermoEstagio = cargaHorariaTermoEstagio;
         this.valorBolsa = valorBolsa;
         this.enderecoTermoEstagio = enderecoTermoEstagio;
-        this.numeroEnderecoTermoEstagio = numeroEnderecoTermoEstagio;
         this.complementoEnderecoTermoEstagio = complementoEnderecoTermoEstagio;
         this.bairroEnderecoTermoEstagio = bairroEnderecoTermoEstagio;
         this.cepEnderecoTermoEstagio = cepEnderecoTermoEstagio;
@@ -137,20 +138,36 @@ public class TermoEstagio {
         this.aluno = aluno;
         this.convenioPF = convenioPF;
         this.professorOrientador = professorOrientador;
+        this.nomeSupervisor = nomeSupervisor;
+        this.cargoSupervisor = cargoSupervisor;
+    }
+
+    public String getNomeSupervisor() {
+        return nomeSupervisor;
+    }
+
+    public void setNomeSupervisor(String nomeSupervisor) {
+        this.nomeSupervisor = nomeSupervisor;
+    }
+
+    public String getCargoSupervisor() {
+        return cargoSupervisor;
+    }
+
+    public void setCargoSupervisor(String cargoSupervisor) {
+        this.cargoSupervisor = cargoSupervisor;
     }
     
     public TermoEstagio(Date dataInicioTermoEstagio, Date dataFimTermoEstagio, Integer cargaHorariaTermoEstagio,
-            Float valorBolsa, String enderecoTermoEstagio, String numeroEnderecoTermoEstagio,
-            String complementoEnderecoTermoEstagio, String bairroEnderecoTermoEstagio, String cepEnderecoTermoEstagio,
+            Float valorBolsa, String enderecoTermoEstagio, String complementoEnderecoTermoEstagio, String bairroEnderecoTermoEstagio, String cepEnderecoTermoEstagio,
             String cidadeEnderecoTermoEstagio, String estadoEnderecoTermoEstagio, Boolean eEstagioObrigatorio,
-            Aluno aluno, PessoaJuridica convenioPJ, ProfessorOrientador professorOrientador) {
+            Aluno aluno, PessoaJuridica convenioPJ, ProfessorOrientador professorOrientador, String nomeSupervisor, String cargoSupervisor) {
 
         this.dataInicioTermoEstagio = dataInicioTermoEstagio;
         this.dataFimTermoEstagio = dataFimTermoEstagio;
         this.cargaHorariaTermoEstagio = cargaHorariaTermoEstagio;
         this.valorBolsa = valorBolsa;
         this.enderecoTermoEstagio = enderecoTermoEstagio;
-        this.numeroEnderecoTermoEstagio = numeroEnderecoTermoEstagio;
         this.complementoEnderecoTermoEstagio = complementoEnderecoTermoEstagio;
         this.bairroEnderecoTermoEstagio = bairroEnderecoTermoEstagio;
         this.cepEnderecoTermoEstagio = cepEnderecoTermoEstagio;
@@ -160,6 +177,8 @@ public class TermoEstagio {
         this.aluno = aluno;
         this.convenioPJ = convenioPJ;
         this.professorOrientador = professorOrientador;
+        this.nomeSupervisor = nomeSupervisor;
+        this.cargoSupervisor = cargoSupervisor;
     }
 
     public Integer getIdTermoEstagio() {
@@ -216,14 +235,6 @@ public class TermoEstagio {
 
     public void setEnderecoTermoEstagio(String enderecoTermoEstagio) {
         this.enderecoTermoEstagio = enderecoTermoEstagio;
-    }
-
-    public String getNumeroEnderecoTermoEstagio() {
-        return numeroEnderecoTermoEstagio;
-    }
-
-    public void setNumeroEnderecoTermoEstagio(String numeroEnderecoTermoEstagio) {
-        this.numeroEnderecoTermoEstagio = numeroEnderecoTermoEstagio;
     }
 
     public String getComplementoEnderecoTermoEstagio() {

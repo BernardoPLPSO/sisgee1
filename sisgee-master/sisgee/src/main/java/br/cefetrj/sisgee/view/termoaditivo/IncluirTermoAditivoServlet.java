@@ -75,9 +75,10 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         termoAditivo.setEEstagioObrigatorio(t.getEEstagioObrigatorio());
         termoAditivo.setEnderecoTermoEstagio(t.getEnderecoTermoEstagio());
         termoAditivo.setEstadoEnderecoTermoEstagio(t.getEstadoEnderecoTermoEstagio());
-        termoAditivo.setNumeroEnderecoTermoEstagio(t.getNumeroEnderecoTermoEstagio());
         termoAditivo.setConvenioPF(t.getConvenioPF());
-        termoAditivo.setConvenioPJ(t.getConvenioPJ());      
+        termoAditivo.setConvenioPJ(t.getConvenioPJ());
+        termoAditivo.setNomeSupervisor(t.getNomeSupervisor());
+        termoAditivo.setCargoSupervisor(t.getCargoSupervisor());
         termoAditivo.setTermoEstagio(t);
         
         
@@ -123,10 +124,6 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         
         if (cidade != termoAditivo.getCidadeEnderecoTermoEstagio()) {
             termoAditivo.setCidadeEnderecoTermoEstagio(cidade);
-        }
-        
-        if (numero != termoAditivo.getNumeroEnderecoTermoEstagio()) {
-            termoAditivo.setNumeroEnderecoTermoEstagio(numero);
         }
         
         if (cep != termoAditivo.getCepEnderecoTermoEstagio()) {

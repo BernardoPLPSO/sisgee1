@@ -106,10 +106,6 @@ public class TermoAditivoServices {
 				termoEstagio.setEnderecoTermoEstagio(termoAditivo.getEnderecoTermoEstagio());
 			}
 
-			if (termoAditivo.getNumeroEnderecoTermoEstagio() != null) {
-				termoEstagio.setNumeroEnderecoTermoEstagio(termoAditivo.getNumeroEnderecoTermoEstagio());
-			}
-
 			if (termoAditivo.getComplementoEnderecoTermoEstagio() != null) {
 				termoEstagio.setComplementoEnderecoTermoEstagio(termoAditivo.getComplementoEnderecoTermoEstagio());
 			}
