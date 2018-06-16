@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.cefetrj.sisgee.control.TermoAditivoServices;
+import br.cefetrj.sisgee.control.TermoEstagioServices;
 import br.cefetrj.sisgee.model.entity.TermoEstagio;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
 import br.cefetrj.sisgee.view.utils.ValidaUtils;
@@ -34,11 +35,9 @@ public class VerTermoAditivoServlet extends HttpServlet {
 		Integer id = null;
 		TermoEstagio termo = null;
 		//TermoEstagio termoEstagio = null;
-		
 		String msg = "";
 		String campo = "Termo Aditivo";
 		boolean isValid = true;
-		
 		msg = ValidaUtils.validaObrigatorio("campo", idTermoAditivo);
 		if(msg.trim().isEmpty()){
 			msg = ValidaUtils.validaInteger(campo, idTermoAditivo);

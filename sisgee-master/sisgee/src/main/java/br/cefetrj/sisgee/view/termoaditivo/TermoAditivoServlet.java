@@ -69,7 +69,19 @@ public class TermoAditivoServlet extends HttpServlet {
                     for (TermoEstagio termoEstagio2 : termosEstagio) {
 
                         if (termoEstagio2.getDataRescisaoTermoEstagio() == null && termoEstagio2.getTermoEstagio() == null) {
-                            termoEstagio = termoEstagio2;
+                            if(termoEstagio2.getTermosAditivos() == null){
+                                termoEstagio = termoEstagio2;
+                                break;
+                            }else{
+                                termoEstagio = termoEstagio2.getTermosAditivos().get(0);
+                                for(TermoEstagio termoEstagio3: termoEstagio2.getTermosAditivos()){
+                                    if(termoEstagio.getIdTermoEstagio() < termoEstagio3.getIdTermoEstagio()){
+                                        termoEstagio = termoEstagio3;
+                                    }
+                                }
+                            }
+                            
+                            
                             break;
                         }
                     }
