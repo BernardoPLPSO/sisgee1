@@ -153,7 +153,7 @@
                     </div>
                 </div>			
                 <br>			
-                <input type="hidden" id="idAluno" name="idAluno" value="${termos.get(0).aluno.idAluno}" />
+                <input type="hidden" id="idAluno" name="idAluno" value="${empty termos ? null : termos.get(0).aluno.idAluno}" />
                 <button type="submit" id="btnNovoAditivo" class="btn btn-secondary" ><fmt:message key = "br.cefetrj.sisgee.resources.form.novo_aditivo"/></button>
                 <button type="button" class="btn btn-secondary"><fmt:message key = "br.cefetrj.sisgee.resources.form.cancelar"/></button>			
             </form>
