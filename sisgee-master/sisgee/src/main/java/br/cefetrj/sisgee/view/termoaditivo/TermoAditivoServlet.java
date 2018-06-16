@@ -35,11 +35,16 @@ public class TermoAditivoServlet extends HttpServlet {
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
 
         String idAluno = request.getParameter("idAluno");
-        String cargaHoraria = request.getParameter("cargaHoraria");
-        String valor = request.getParameter("valor");
-        String endereco = request.getParameter("endereco");
-        String vigencia = request.getParameter("vigencia");
-        String professor = request.getParameter("professor");
+        String cargaHoraria = request.getParameter("cargaHoraria") == null ? "readonly" : "";
+        request.setAttribute("cargaHoraria", cargaHoraria);
+        String valor = request.getParameter("valor") == null ? "readonly" : "";
+        request.setAttribute("valor", valor);
+        String endereco = request.getParameter("endereco") == null ? "readonly" : "";
+        request.setAttribute("endereco", endereco);
+        String vigencia = request.getParameter("vigencia") == null ? "readonly" : "";
+        request.setAttribute("vigencia", vigencia);
+        String professor = request.getParameter("professor") == null ? "readonly" : "";
+        request.setAttribute("professor", professor);
 
         Aluno aluno = null;
         TermoEstagio termoEstagio = null;
