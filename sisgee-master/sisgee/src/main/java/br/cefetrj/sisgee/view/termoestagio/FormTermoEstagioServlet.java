@@ -87,6 +87,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
         String cargoSupervisor = request.getParameter("cargoSupervisor");
         System.out.println(numeroConvenio);
         String isAgenteIntegracao = request.getParameter("isAgenteIntegracao");
+        String agenciada = request.getParameter("Agenciada");
 
         boolean isValid = true;
         String msg = "";
@@ -617,6 +618,25 @@ public class FormTermoEstagioServlet extends HttpServlet {
             request.setAttribute("cargoSupervisorMsg",cargoSupervisorMsg);
         }
 
+        /**
+         * Validação do nome de agenciada
+         */
+        String agenciadaMsg = "";
+        campo = "Agenciada";
+        tamanho = 150;
+        System.out.println(agenciada);
+        nomeSupervisorMsg = ValidaUtils.validaTamanho(campo, tamanho, agenciada);
+        if (agenciadaMsg.trim().isEmpty()) {
+            request.setAttribute("agenciada", agenciada);
+        } else {
+            agenciadaMsg = messages.getString(agenciadaMsg);
+            agenciadaMsg = ServletUtils.mensagemFormatada(agenciadaMsg, locale, tamanho);
+            request.setAttribute("agenciadaMsg", agenciadaMsg);
+            isValid = false;
+            //TODO Fazer log
+            System.out.println(agenciadaMsg);
+        }
+        
         /**
          * *************************************************************************
          * Se aluno já possui estágio aberto, não pode cadastrar outro

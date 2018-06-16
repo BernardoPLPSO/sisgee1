@@ -228,7 +228,7 @@
                     </div>
                     <div class="form-group col-md-4" id="divAgenciada" style="display:none">
                         <label for="Agenciada"><fmt:message key = "br.cefetrj.sisgee.resources.form.agenciada"/></label>
-                        <input name="Agenciada" maxlength="150" id="Agenciada" type="text" class="form-control" required>
+                        <input name="Agenciada" maxlength="150" id="Agenciada" type="text" class="form-control" >
                         <c:if test="${ not empty AgenciadaMsg }">
                             <div class="invalid-feedback">${ AgenciadaMsg }</div>
                         </c:if>
