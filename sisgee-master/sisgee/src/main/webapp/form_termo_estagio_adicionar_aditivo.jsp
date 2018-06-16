@@ -189,8 +189,8 @@
 
                             <label for="dataInicioTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.dataInicio"/></label>
                             <input type="text" class="form-control col-sm-4 ${ not empty dataInicioMsg ? 'is-invalid': not empty periodoMsg ? 'is-invalid' : 'is-valid' }" id="dataInicioTermoEstagio"  name="dataInicioTermoEstagio" value="${ not empty termo ? termo.dataInicioTermoEstagio.toString().replaceAll('-','') : '' }" readonly } >
-                            <c:if test="${ not empty dataInicioMsg }">
-                                <div class="invalid-feedback">${ dataInicioMsg }</div>
+                                   <c:if test="${ not empty dataInicioMsg }">
+                                       <div class="invalid-feedback">${ dataInicioMsg }</div>
                             </c:if>
                         </div>
                         <div class="form-group col-md-6">
@@ -320,6 +320,29 @@
                         </label>
                     </div>				
                 </div>
+                <fieldset>
+                    <div class="form-group col-md-4">
+                        <label for="nomeSupervisor"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomeSupervisor"/></label>
+                        <input type="text" maxlength="150" class="form-control" name="nomeSupervisor" id="nomeSupervisor">
+                        <c:if test="${ not empty nomeSupervisorMsg }">
+                            <div class="invalid-feedback"> ${nomeSupervisorMsg}</div>
+                        </c:if>				
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="cargoSupervisor"><fmt:message key = "br.cefetrj.sisgee.resources.form.cargoSupervisor"/></label>
+                        <input name="cargoSupervisor" maxlength="150" id="cargoSupervisor" type="text" class="form-control>
+                               <c:if test="${ not empty cargoSupervisorMsg }">
+                                   <div class="invalid-feedback">${ cargoSupervisorMsg }</div>
+                        </c:if>				
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="Agenciada"><fmt:message key = "br.cefetrj.sisgee.resources.form.agenciada"/></label>
+                        <input name="Agenciada" maxlength="150" id="Agenciada" type="text" class="form-control>
+                               <c:if test="${ not empty AgenciadaMsg }">
+                                   <div class="invalid-feedback">${ AgenciadaMsg }</div>
+                        </c:if>				
+                    </div>
+                </fieldset>
 
                 <fieldset ${ isVisualizacao eq true ? 'disabled' :'' }>
                     <div class="form-group col-md-8">
@@ -339,12 +362,12 @@
                     </div>
                 </fieldset>
 
-                    <input type="hidden" name="idTermoEstagio" value="${ termo.idTermoEstagio }" />
-                    <input type="hidden" name="updVigencia" value="${ updVigencia }" />
-                    <input type="hidden" name="updCargaHoraria" value="${ updCargaHoraria }" />
-                    <input type="hidden" name="updProfessor" value="${ updProfessor }" />
-                    <input type="hidden" name="updValorBolsa" value="${ updValorBolsa }" />
-                    <input type="hidden" name="updEndereco" value="${ updEndereco }" />
+                <input type="hidden" name="idTermoEstagio" value="${ termo.idTermoEstagio }" />
+                <input type="hidden" name="updVigencia" value="${ updVigencia }" />
+                <input type="hidden" name="updCargaHoraria" value="${ updCargaHoraria }" />
+                <input type="hidden" name="updProfessor" value="${ updProfessor }" />
+                <input type="hidden" name="updValorBolsa" value="${ updValorBolsa }" />
+                <input type="hidden" name="updEndereco" value="${ updEndereco }" />
                 <button type="submit" class="btn btn-primary" ${ isVisualizacao eq true ? 'disabled' :'' }><fmt:message key = "br.cefetrj.sisgee.resources.form.salvar"/></button>
                 <c:choose>
                     <c:when test="${ not empty termo }">

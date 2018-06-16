@@ -210,6 +210,7 @@
                         </label>
                     </div>				
                 </div>
+
                 <fieldset>
                     <div class="form-group col-md-4">
                         <label for="nomeSupervisor"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomeSupervisor"/></label>
@@ -220,13 +221,20 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="cargoSupervisor"><fmt:message key = "br.cefetrj.sisgee.resources.form.cargoSupervisor"/></label>
-                        <input name="cargoSupervisor" maxlength="150" id="cargoSupervisor" type="text" class="form-control>
+                        <input name="cargoSupervisor" maxlength="150" id="cargoSupervisor" type="text" class="form-control">
                         <c:if test="${ not empty cargoSupervisorMsg }">
                             <div class="invalid-feedback">${ cargoSupervisorMsg }</div>
                         </c:if>				
                     </div>
+                    <div class="form-group col-md-4" id="divAgenciada" style="display:none">
+                        <label for="Agenciada"><fmt:message key = "br.cefetrj.sisgee.resources.form.agenciada"/></label>
+                        <input name="Agenciada" maxlength="150" id="Agenciada" type="text" class="form-control" required>
+                        <c:if test="${ not empty AgenciadaMsg }">
+                            <div class="invalid-feedback">${ AgenciadaMsg }</div>
+                        </c:if>
+                    </div>
                 </fieldset>
-                
+
                 <fieldset ${ isVisualizacao eq true ? 'disabled' :'' }>
                     <div class="form-group col-md-8">
                         <label for="idProfessorOrientador"><fmt:message key = "br.cefetrj.sisgee.resources.form.professorOrientador"/></label>

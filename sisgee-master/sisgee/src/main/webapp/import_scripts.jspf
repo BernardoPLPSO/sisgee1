@@ -84,11 +84,12 @@
                                     $radioTipo.filter('[value=sim]').prop('disabled',false);
                                     $radioTipo.filter('[value=nao]').prop('disabled',true);
                                     $radioTipo.filter('[value=sim]').prop('checked',true);
+                                    $('#divAgenciada').css('display','');
                                 }
                             }
                             else{
                                 $('#divPF').css('display','none');
-                                $('#divPJ').css('display','none');
+                                $('#divPJ').css('display','none');                                                                
                                 $('#divTipo').css('visibility','hidden');
                             }
                         }
@@ -146,6 +147,7 @@
                                     $radioTipo.filter('[value=sim]').prop('disabled',false);
                                     $radioTipo.filter('[value=nao]').prop('disabled',true);
                                     $radioTipo.filter('[value=sim]').prop('checked',true);
+                                    $('#divAgenciada').css('display','');
                                 }
                             }
                             else{
