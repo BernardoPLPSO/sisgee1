@@ -51,6 +51,7 @@ public class BuscaTermoAditivoServlet extends HttpServlet {
 
         Aluno aluno = AlunoServices.buscarAluno(new Aluno(id));
         List<TermoEstagio> termoEstagios = aluno.getTermoEstagios();
+        System.out.println("Termos do Aluno: "+termoEstagios);
 
         //TODO consertar a lógica de mensagem vazia
         if (!msg.equals("")) {
@@ -77,7 +78,6 @@ public class BuscaTermoAditivoServlet extends HttpServlet {
                 }
             }
         }
-
         request.setAttribute("msg", msg);
         request.getRequestDispatcher("/form_termo_aditivo.jsp").forward(request, response);
 

@@ -83,6 +83,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
         String idAluno = request.getParameter("idAluno");
         System.out.println(idAluno);
         String numeroConvenio = request.getParameter("numeroConvenio");
+        String nomeConvenio = request.getParameter("nomeConvenio");
         String nomeSupervisor = request.getParameter("nomeSupervisor");
         String cargoSupervisor = request.getParameter("cargoSupervisor");
         System.out.println(numeroConvenio);
@@ -549,8 +550,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
          */
         String numeroConvenioMsg = "";
         campo = "Número do convênio";
-        tamanho = 10;
-        numeroConvenioMsg = ValidaUtils.validaObrigatorio(campo, numeroConvenio);
+        tamanho = 6;
         if (numeroConvenioMsg.trim().isEmpty()) {
             numeroConvenioMsg = ValidaUtils.validaTamanho(campo, tamanho, numeroConvenio);
             if (numeroConvenioMsg.trim().isEmpty()) {
@@ -563,12 +563,26 @@ public class FormTermoEstagioServlet extends HttpServlet {
                 //TODO Fazer log
                 System.out.println(numeroConvenioMsg);
             }
-        } else {
-            numeroConvenioMsg = messages.getString(numeroConvenioMsg);
-            request.setAttribute("numeroConvenioMsg", numeroConvenioMsg);
-            isValid = false;
-            //TODO Fazer log
-            System.out.println(numeroConvenioMsg);
+        }
+        
+        /**
+         * Validação nome do convênio para busca
+         */
+        String nomeConvenioMsg = "";
+        campo = "Nome do convênio";
+        tamanho = 100;
+        if (nomeConvenioMsg.trim().isEmpty()) {
+            nomeConvenioMsg = ValidaUtils.validaTamanho(campo, tamanho, nomeConvenioMsg);
+            if (nomeConvenioMsg.trim().isEmpty()) {
+                request.setAttribute("nomeConvenio", nomeConvenio);
+            } else {
+                nomeConvenioMsg = messages.getString(nomeConvenioMsg);
+                nomeConvenioMsg = ServletUtils.mensagemFormatada(nomeConvenioMsg, locale, tamanho);
+                request.setAttribute("nomeConvenioMsg", nomeConvenioMsg);
+                isValid = false;
+                //TODO Fazer log
+                System.out.println("NomeConvenio: "+nomeConvenioMsg);
+            }
         }
 
         /**
