@@ -157,6 +157,8 @@ public class TermoAditivoServlet extends HttpServlet {
 
             request.setAttribute("dataIni", di);
             request.setAttribute("dataFim", df);
+            System.out.println("data inicio "+di);
+            System.out.println("data fim "+df);
             request.setAttribute("termo", termoEstagio);
             request.getRequestDispatcher("/form_termo_estagio_adicionar_aditivo.jsp").forward(request, response);
 

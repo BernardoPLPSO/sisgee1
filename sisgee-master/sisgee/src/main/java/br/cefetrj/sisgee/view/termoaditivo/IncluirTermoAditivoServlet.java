@@ -46,6 +46,7 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         String professorNome = (String)request.getAttribute("idProfessorOrientador");
         //Pega data fim
         String vigencia = request.getParameter("dataFimTermoEstagio");
+        System.out.println("vigencia incluirtermoaditivoservlet " + vigencia);
         request.getParameter("dataFimTermoEstagio");
         //Pega carga horaria
         String cargaHoraria = request.getParameter("cargaHorariaTermoEstagio");
@@ -89,20 +90,12 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
        // ProfessorOrientador professorOrientador = (ProfessorOrientador) request.getParameter("updProfessor");
 
         if (vigencia != null) {
-            String aux = vigencia.substring(8);
-            aux = aux + "/";
-            aux = aux + vigencia.charAt(6);
-            aux = aux + vigencia.charAt(7);
-            aux = aux + "/";
-            aux = aux + vigencia.charAt(0);
-            aux = aux + vigencia.charAt(1);
-            aux = aux + vigencia.charAt(3);
-            aux = aux + vigencia.charAt(4);
-            System.out.println(aux);
+
             SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yyyy");
             Date data = null;
             try {
-                data = formata.parse(aux);
+                data = formata.parse(vigencia);
+                System.out.println("data dentro do trycatch " + data);
                 termoAditivo.setDataFimTermoEstagio(data);
             } catch (ParseException ex) {
                 java.util.logging.Logger.getLogger(IncluirTermoAditivoServlet.class.getName()).log(Level.SEVERE, null, ex);
