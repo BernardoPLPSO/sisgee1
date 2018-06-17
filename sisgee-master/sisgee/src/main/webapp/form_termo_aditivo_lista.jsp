@@ -79,9 +79,8 @@
                     </thead>			
                     <tbody id="tbody">
                         <c:forEach items = "${termos}" var = "termo">
-                            
                             <tr>
-                                <td>${not empty termo.termosAditivos ? "Termo Estágio" : "Termo Aditivo"}${termo.termosAditivos}</td>
+                                <td>${not empty termo.termosAditivos ? "Termo Estágio" : "Termo Aditivo"}</td>
                                 <td>${not empty termo.dataRescisaoTermoEstagio ? "Inativo" : "Ativo"}</td>
                                 <td>
                                     <c:url value = "/VerTermoAditivoServlet" var = "verTermoAditivoUrl" scope = "page">
