@@ -53,7 +53,6 @@ public class BuscaAlunoServlet extends HttpServlet {
         List<TermoEstagio> termos = null;
 
         Aluno aluno = AlunoServices.buscarAlunoByMatricula(matricula.trim());
-        System.out.println("Termos Estagio do aluno: "+aluno.getTermoEstagios());
         if (aluno != null) {
             idAluno = Integer.toString(aluno.getIdAluno());
             nomeAluno = aluno.getNomeAluno();

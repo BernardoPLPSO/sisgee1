@@ -35,19 +35,12 @@ public class ServletUtils {
     public static String mudarFormatoData(Date d) throws ParseException {
         final String OLD_FORMAT = "yyyy/MM/dd";
         final String NEW_FORMAT = "dd/MM/yyyy";
-
-        String oldDateString = d.toString().substring(0, 10).replaceAll("-", "/");
+        
+        System.out.println("Old date: "+ d.toString());
         String newDateString;
-
-        SimpleDateFormat formato = new SimpleDateFormat(NEW_FORMAT);
-        SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
-        
-        Date dd = sdf.parse(oldDateString);
-        sdf.applyPattern(NEW_FORMAT);
-        newDateString = sdf.format(dd);
-        
-        
-        return newDateString;
+        String data = new SimpleDateFormat("dd/MM/yyyy").format(d);
+        System.out.println("new date: "+ data);
+        return data;
     }
 
     public static Locale getLocale(HttpServletRequest request) throws ServletException {

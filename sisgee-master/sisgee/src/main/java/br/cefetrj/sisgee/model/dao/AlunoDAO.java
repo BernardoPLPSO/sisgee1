@@ -15,11 +15,6 @@ public class AlunoDAO extends GenericDAO<Aluno> {
 		    .setParameter("matricula", matricula)
 		    .getSingleResult();
                     manager.refresh(aluno);
-                    for(TermoEstagio t: aluno.getTermoEstagios()){
-                        manager.refresh(t);    
-                        manager.refresh(t.getProfessorOrientador());
-                    }
-                    
                     
                     return aluno;
 	}

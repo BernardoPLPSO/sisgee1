@@ -52,8 +52,8 @@ public class TermoEstagioDAO  {
 				.createNativeQuery("SELECT idtermoestagio, datarescisaotermoestagio, nomecurso, termoestagio_idtermoestagio " + 
 						"FROM termoestagio, aluno " + 
                                                 "WHERE termoestagio.aluno_idaluno = aluno.idaluno " +
-						"AND te.datainiciotermoestagio >= :inicio " + 
-						"AND :termino >= te.datainiciotermoestagio ");
+						"AND termoestagio.datainiciotermoestagio >= :inicio " + 
+						"AND :termino >= termoestagio.datafimtermoestagio ");
 		
 		query.setParameter("inicio", inicio);
 		query.setParameter("termino", termino);
