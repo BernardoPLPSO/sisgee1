@@ -336,6 +336,14 @@ public class TermoEstagio {
         this.convenioPJ = convenioPJ;
     }
 
+    public String getAgenciada() {
+        return agenciada;
+    }
+
+    public void setAgenciada(String agenciada) {
+        this.agenciada = agenciada;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

@@ -110,31 +110,31 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
             termoAditivo.setValorBolsa(Float.parseFloat(valor));
         }
 
-        if (endereco != termoAditivo.getEnderecoTermoEstagio()) {
+        if (!endereco.equals(termoAditivo.getEnderecoTermoEstagio())) {
             termoAditivo.setEnderecoTermoEstagio(endereco);
         }
         
-        if (cidade != termoAditivo.getCidadeEnderecoTermoEstagio()) {
+        if (!cidade.equals(termoAditivo.getCidadeEnderecoTermoEstagio())) {
             termoAditivo.setCidadeEnderecoTermoEstagio(cidade);
         }
         
-        if (cep != termoAditivo.getCepEnderecoTermoEstagio()) {
+        if (!cep.equals(termoAditivo.getCepEnderecoTermoEstagio())) {
             termoAditivo.setCepEnderecoTermoEstagio(cep);
         }
         
-        if (bairro != termoAditivo.getBairroEnderecoTermoEstagio()) {
+        if (!bairro.equals(termoAditivo.getBairroEnderecoTermoEstagio())) {
             termoAditivo.setBairroEnderecoTermoEstagio(bairro);
         }
         
-        if (endereco != termoAditivo.getEnderecoTermoEstagio()) {
+        if (!endereco.equals(termoAditivo.getEnderecoTermoEstagio())) {
             termoAditivo.setEnderecoTermoEstagio(endereco);
         }
         
-        if (estado != termoAditivo.getEstadoEnderecoTermoEstagio()) {
+        if (!estado.equals(termoAditivo.getEstadoEnderecoTermoEstagio())) {
             termoAditivo.setEstadoEnderecoTermoEstagio(estado);
         }
         
-        if (complemento != termoAditivo.getComplementoEnderecoTermoEstagio()) {
+        if (!complemento.equals(termoAditivo.getComplementoEnderecoTermoEstagio())) {
             termoAditivo.setComplementoEnderecoTermoEstagio(complemento);
         }
         /*if (professorOrientador != null) {
