@@ -86,6 +86,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
         String nomeConvenio = request.getParameter("nomeConvenio");
         String nomeSupervisor = request.getParameter("nomeSupervisor");
         String cargoSupervisor = request.getParameter("cargoSupervisor");
+        System.out.println("Cargo Supervisor: "+cargoSupervisor);
         System.out.println(numeroConvenio);
         String isAgenteIntegracao = request.getParameter("isAgenteIntegracao");
         String agenciada = request.getParameter("Agenciada");
@@ -593,7 +594,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
         tamanho = 150;
         System.out.println(nomeSupervisor);
         nomeSupervisorMsg = ValidaUtils.validaTamanho(campo, tamanho, nomeSupervisor);
-        if (nomeSupervisorMsg.trim().isEmpty()) {
+        if (nomeSupervisorMsg.trim().isEmpty() && nomeSupervisorMsg.trim().equals("")) {
             request.setAttribute("nomeSupervisor", nomeSupervisor);
         } else {
             nomeSupervisorMsg = messages.getString(nomeSupervisorMsg);
@@ -611,10 +612,12 @@ public class FormTermoEstagioServlet extends HttpServlet {
         campo = "Cargo Supervisor";
         tamanho = 150;
         cargoSupervisorMsg = ValidaUtils.validaTamanho(campo, tamanho, cargoSupervisor);
-        if(!nomeSupervisor.isEmpty() || cargoSupervisor.isEmpty()){
-            cargoSupervisorMsg = ValidaUtils.validaObrigatorio(campo, cargoSupervisorMsg);
+        if(!nomeSupervisor.isEmpty() || cargoSupervisor.isEmpty() && cargoSupervisorMsg.trim().equals("")){
+            cargoSupervisorMsg = ValidaUtils.validaObrigatorio(campo, cargoSupervisor);
+            System.out.println("cargoSupervisorMsg: "+ cargoSupervisorMsg);
             if(cargoSupervisorMsg.trim().isEmpty()){
                 if (cargoSupervisorMsg.trim().isEmpty()) {
+                    System.out.println("cargo valido");
                     request.setAttribute("cargoSupervisor", cargoSupervisor);
                 } else {
                     cargoSupervisorMsg = messages.getString(cargoSupervisorMsg);

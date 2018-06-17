@@ -58,7 +58,7 @@ public class IncluirTermoEstagioServlet extends HttpServlet {
         String nomeSupervisor = (String)request.getAttribute("nomeSupervisor");
         System.out.println("nomeSupervisor: "+nomeSupervisor);
         String cargoSupervisor = (String)request.getAttribute("cargoSupervisor");
-        System.out.println("Numero convenio "+numeroConvenio);
+        System.out.println("cargoSupervisor: "+cargoSupervisor);
         PessoaFisica pf = PessoaFisicaServices.buscarConvenioByNumero(numeroConvenio);
         System.out.println(pf);
         PessoaJuridica pj = PessoaJuridicaServices.buscarConvenioByNumero(numeroConvenio);
