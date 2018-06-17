@@ -57,7 +57,6 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         String endereco = request.getParameter("enderecoTermoEstagio");
         String cep = request.getParameter("cepEnderecoTermoEstagio");
         String estado = request.getParameter("estadoEnderecoTermoEstagio");
-        String numero = request.getParameter("numeroEnderecoTermoEstagio");
         String cidade = request.getParameter("cidadeEnderecoTermoEstagio");
         String complemento = request.getParameter("complementoEnderecoTermoEstagio");
         String bairro = request.getParameter("bairroEnderecoTermoEstagio");

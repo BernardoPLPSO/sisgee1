@@ -245,13 +245,6 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-2">
-                            <label for="numeroEnderecoTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.numero"/></label>
-                            <input type="text" maxlength="10" class="form-control ${ not empty numeroEnderecoMsg ? 'is-invalid': not empty numeroEnderecoMsg ? 'is-invalid' : 'is-valid' }" id="numeroEnderecoTermoEstagio" name="numeroEnderecoTermoEstagio" value="${ not empty termo ? termo.numeroEnderecoTermoEstagio : '' }">
-                            <c:if test="${ not empty numeroEnderecoMsg }">
-                                <div class="invalid-feedback">${ numeroEnderecoMsg }</div>
-                            </c:if>
-                        </div>
                         <div class="form-group col-md-4">
                             <label for="complementoEnderecoTermoEstagio"><fmt:message key = "br.cefetrj.sisgee.resources.form.complemento"/></label>
                             <input maxlength="150" type="text" class="form-control ${ not empty complementoEnderecoMsg ? 'is-invalid': not empty complementoEnderecoMsg ? 'is-invalid' : 'is-valid' }" id="complementoEnderecoTermoEstagio" name="complementoEnderecoTermoEstagio" value="${ not empty termo ? termo.complementoEnderecoTermoEstagio : '' }">
@@ -320,7 +313,30 @@
                         </label>
                     </div>				
                 </div>
-
+                <fieldset>
+                    <div class="form-group col-md-4" >
+                        <label for="nomeSupervisor"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomeSupervisor"/></label>
+                        <input type="text" maxlength="150" class="form-control" name="nomeSupervisor" id="nomeSupervisor" readonly>
+                        <c:if test="${ not empty nomeSupervisorMsg }">
+                            <div class="invalid-feedback"> ${nomeSupervisorMsg}</div>
+                        </c:if>				
+                    </div>
+                    <div class="form-group col-md-4" >
+                        <label for="cargoSupervisor"><fmt:message key = "br.cefetrj.sisgee.resources.form.cargoSupervisor"/></label>
+                        <input name="cargoSupervisor" maxlength="150" id="cargoSupervisor" type="text" class="form-control" readonly>
+                        <c:if test="${ not empty cargoSupervisorMsg }">
+                            <div class="invalid-feedback">${ cargoSupervisorMsg }</div>
+                        </c:if>				
+                    </div>
+                    <div class="form-group col-md-4" id="divAgenciada" >
+                        <label for="Agenciada"><fmt:message key = "br.cefetrj.sisgee.resources.form.agenciada"/></label>
+                        <input name="Agenciada" maxlength="150" id="Agenciada" type="text" class="form-control" readonly>
+                        <c:if test="${ not empty AgenciadaMsg }">
+                            <div class="invalid-feedback">${ AgenciadaMsg }</div>
+                        </c:if>
+                    </div>
+                </fieldset>
+                        
                 <fieldset ${ isVisualizacao eq true ? 'disabled' :'' }>
                     <div class="form-group col-md-8">
                         <label for="idProfessorOrientador"><fmt:message key = "br.cefetrj.sisgee.resources.form.professorOrientador"/></label>
