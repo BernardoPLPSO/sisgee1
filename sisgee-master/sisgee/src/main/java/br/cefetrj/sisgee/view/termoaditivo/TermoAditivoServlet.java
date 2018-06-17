@@ -75,24 +75,10 @@ public class TermoAditivoServlet extends HttpServlet {
                 if (aluno != null) {
                     List<TermoEstagio> termosEstagio = aluno.getTermoEstagios();
                     for (TermoEstagio termoEstagio2 : termosEstagio) {
-
                         if (termoEstagio2.getDataRescisaoTermoEstagio() == null && termoEstagio2.getTermoEstagio() == null ) {
-                            if (termoEstagio2.getTermosAditivos() == null) {
                                 termoEstagio = termoEstagio2;
+                                System.out.println("Termo Estagio Pai: "+ termoEstagio2.getIdTermoEstagio());
                                 break;
-                            } else if(termoEstagio2.getTermosAditivos().size() == 0){
-                                termoEstagio = termoEstagio2;
-                                break;
-                            }else{
-                                termoEstagio = termoEstagio2.getTermosAditivos().get(0);
-                                for (TermoEstagio termoEstagio3 : termoEstagio2.getTermosAditivos()) {
-                                    if (termoEstagio.getIdTermoEstagio() < termoEstagio3.getIdTermoEstagio()) {
-                                        termoEstagio = termoEstagio3;
-                                    }
-                                }
-                            }
-
-                            break;
                         }
                     }
 

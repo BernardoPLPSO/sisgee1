@@ -15,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import br.cefetrj.sisgee.control.AlunoServices;
 import br.cefetrj.sisgee.model.entity.Aluno;
 import br.cefetrj.sisgee.model.entity.TermoEstagio;
+import br.cefetrj.sisgee.view.utils.ComparaTermos;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.json.JsonObjectBuilder;
 import javax.json.bind.Jsonb;
@@ -58,6 +60,7 @@ public class BuscaAlunoServlet extends HttpServlet {
             nomeCurso = aluno.getNomeCurso();
             nomeCampus = aluno.getNomeCampus();
             termos = aluno.getTermoEstagios();
+            Collections.sort(termos, new ComparaTermos());
             request.getServletContext().setAttribute("termos", termos);
             request.getServletContext().setAttribute("idAlunoAdt", aluno.getIdAluno());
             request.getServletContext().setAttribute("nomeAlunoPopUp", nomeAluno);
