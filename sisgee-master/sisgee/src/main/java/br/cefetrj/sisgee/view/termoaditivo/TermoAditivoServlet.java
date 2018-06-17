@@ -121,6 +121,7 @@ public class TermoAditivoServlet extends HttpServlet {
             request.setAttribute("updVigencia", termoEstagio.getDataFimTermoEstagio());
             request.setAttribute("updCargaHoraria", termoEstagio.getCargaHorariaTermoEstagio());
             request.setAttribute("updProfessor", termoEstagio.getProfessorOrientador());
+            System.out.println(termoEstagio.getProfessorOrientador());
             request.setAttribute("updValorBolsa", termoEstagio.getValorBolsa());
             request.setAttribute("updEndereco", termoEstagio.getEnderecoTermoEstagio());
 
@@ -133,6 +134,8 @@ public class TermoAditivoServlet extends HttpServlet {
         if (isValid) {
             String di = null;
             String df = null;
+            System.out.println(termoEstagio.getDataInicioTermoEstagio());
+            System.out.println(termoEstagio.getDataFimTermoEstagio());
             try {
                 di = ServletUtils.mudarFormatoData(termoEstagio.getDataInicioTermoEstagio());
                 df = ServletUtils.mudarFormatoData(termoEstagio.getDataFimTermoEstagio());
