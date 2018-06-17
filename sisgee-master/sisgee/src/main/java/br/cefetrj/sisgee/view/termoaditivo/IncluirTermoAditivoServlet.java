@@ -61,7 +61,7 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         String cidade = request.getParameter("cidadeEnderecoTermoEstagio");
         String complemento = request.getParameter("complementoEnderecoTermoEstagio");
         String bairro = request.getParameter("bairroEnderecoTermoEstagio");
-
+        System.out.println("Id Termo: "+ idtermo);
         TermoEstagio t = TermoEstagioServices.buscarTermoEstagio(Integer.parseInt(idtermo));
         
         TermoEstagio termoAditivo = new TermoEstagio(t.getDataInicioTermoEstagio(),t.getCargaHorariaTermoEstagio(), t.getValorBolsa(), t.getEnderecoTermoEstagio(), t.getProfessorOrientador());

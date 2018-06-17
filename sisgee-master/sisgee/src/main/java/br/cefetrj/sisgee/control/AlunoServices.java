@@ -62,7 +62,7 @@ public class AlunoServices {
             for (TermoEstagio te : t){
             System.out.println(te.getDataRescisaoTermoEstagio());
             System.out.println(te.getTermosAditivos());   
-            if(te.getDataRescisaoTermoEstagio() == null && !te.getTermosAditivos().isEmpty()){
+            if(te.getDataRescisaoTermoEstagio() == null && te.getTermoEstagio() == null){
                     aux = te;
                 }
             }

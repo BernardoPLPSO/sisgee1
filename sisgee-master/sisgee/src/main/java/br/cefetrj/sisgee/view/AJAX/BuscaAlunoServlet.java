@@ -51,6 +51,7 @@ public class BuscaAlunoServlet extends HttpServlet {
         List<TermoEstagio> termos = null;
 
         Aluno aluno = AlunoServices.buscarAlunoByMatricula(matricula.trim());
+        System.out.println("Termos Estagio do aluno: "+aluno.getTermoEstagios());
         if (aluno != null) {
             idAluno = Integer.toString(aluno.getIdAluno());
             nomeAluno = aluno.getNomeAluno();
@@ -72,7 +73,7 @@ public class BuscaAlunoServlet extends HttpServlet {
                 request.getServletContext().setAttribute("professor", AlunoServices.buscarTermoEstagioAtivo(aluno).getProfessorOrientador());
                 request.getServletContext().setAttribute("valor", AlunoServices.buscarTermoEstagioAtivo(aluno).getValorBolsa());
             }
-            if (!termos.isEmpty() || termos == null) {
+            if (!termos.isEmpty() || termos != null) {
                 System.out.println("Passei aqui");
                 for (TermoEstagio termo : termos) {
                     if (termo.getDataFimTermoEstagio() == null) {
