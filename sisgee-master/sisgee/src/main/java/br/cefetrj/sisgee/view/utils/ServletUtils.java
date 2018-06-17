@@ -36,15 +36,18 @@ public class ServletUtils {
         final String OLD_FORMAT = "yyyy/MM/dd";
         final String NEW_FORMAT = "dd/MM/yyyy";
 
-        String oldDateString = d.toString();
+        String oldDateString = d.toString().substring(0, 10).replaceAll("-", "/");
         String newDateString;
 
+        SimpleDateFormat formato = new SimpleDateFormat(NEW_FORMAT);
         SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
+        
         Date dd = sdf.parse(oldDateString);
         sdf.applyPattern(NEW_FORMAT);
         newDateString = sdf.format(dd);
-        System.out.println(dd);
-        return dd.toString();
+        
+        
+        return newDateString;
     }
 
     public static Locale getLocale(HttpServletRequest request) throws ServletException {

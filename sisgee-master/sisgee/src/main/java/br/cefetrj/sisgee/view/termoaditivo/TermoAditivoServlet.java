@@ -20,7 +20,10 @@ import br.cefetrj.sisgee.model.entity.TermoEstagio;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
 import br.cefetrj.sisgee.view.utils.UF;
 import br.cefetrj.sisgee.view.utils.ValidaUtils;
+import java.text.ParseException;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet("/TermoAditivoServlet")
 public class TermoAditivoServlet extends HttpServlet {
@@ -73,20 +76,22 @@ public class TermoAditivoServlet extends HttpServlet {
                     List<TermoEstagio> termosEstagio = aluno.getTermoEstagios();
                     for (TermoEstagio termoEstagio2 : termosEstagio) {
 
-                        if (termoEstagio2.getDataRescisaoTermoEstagio() == null && termoEstagio2.getTermoEstagio() == null) {
-                            if(termoEstagio2.getTermosAditivos() == null){
+                        if (termoEstagio2.getDataRescisaoTermoEstagio() == null && termoEstagio2.getTermoEstagio() == null ) {
+                            if (termoEstagio2.getTermosAditivos() == null) {
+                                termoEstagio = termoEstagio2;
+                                break;
+                            } else if(termoEstagio2.getTermosAditivos().size() == 0){
                                 termoEstagio = termoEstagio2;
                                 break;
                             }else{
                                 termoEstagio = termoEstagio2.getTermosAditivos().get(0);
-                                for(TermoEstagio termoEstagio3: termoEstagio2.getTermosAditivos()){
-                                    if(termoEstagio.getIdTermoEstagio() < termoEstagio3.getIdTermoEstagio()){
+                                for (TermoEstagio termoEstagio3 : termoEstagio2.getTermosAditivos()) {
+                                    if (termoEstagio.getIdTermoEstagio() < termoEstagio3.getIdTermoEstagio()) {
                                         termoEstagio = termoEstagio3;
                                     }
                                 }
                             }
-                            
-                            
+
                             break;
                         }
                     }
@@ -140,11 +145,21 @@ public class TermoAditivoServlet extends HttpServlet {
         }
 
         if (isValid) {
+            String di = null;
+            String df = null;
+            try {
+                di = ServletUtils.mudarFormatoData(termoEstagio.getDataInicioTermoEstagio());
+                df = ServletUtils.mudarFormatoData(termoEstagio.getDataFimTermoEstagio());
+            } catch (ParseException ex) {
+                Logger.getLogger(TermoAditivoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+
+            request.setAttribute("dataIni", di);
+            request.setAttribute("dataFim", df);
             request.setAttribute("termo", termoEstagio);
             request.getRequestDispatcher("/form_termo_estagio_adicionar_aditivo.jsp").forward(request, response);
 
-            
-            
         } else {
             request.getRequestDispatcher("/form_termo_aditivo.jsp").forward(request, response);
         }

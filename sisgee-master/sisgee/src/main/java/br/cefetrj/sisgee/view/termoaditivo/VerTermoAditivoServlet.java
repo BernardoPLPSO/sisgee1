@@ -15,6 +15,10 @@ import br.cefetrj.sisgee.control.TermoEstagioServices;
 import br.cefetrj.sisgee.model.entity.TermoEstagio;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
 import br.cefetrj.sisgee.view.utils.ValidaUtils;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  * Servlet criada para visualização dos termos aditivos na tela
  * @author Paulo Cantuária
@@ -45,8 +49,20 @@ public class VerTermoAditivoServlet extends HttpServlet {
 				id = Integer.parseInt(idTermoAditivo);
 				termo = TermoAditivoServices.buscarTermoAditivo(id);
 				if(termo != null) {
-					//termoEstagio = TermoAditivoServices.termoEstagioAtualizadoByTermoAditivo(termoAditivo);					
-					request.setAttribute("termo", termo);				
+                                    try {
+                                        String di = ServletUtils.mudarFormatoData(termo.getDataInicioTermoEstagio());
+                                        String df = ServletUtils.mudarFormatoData(termo.getDataFimTermoEstagio());
+                                        //String dr = ServletUtils.mudarFormatoData(termo.getDataRescisaoTermoEstagio());
+                                        
+                                        request.setAttribute("dataIni", di);
+                                        request.setAttribute("dataFim", df);
+                                        //termo.setDataInicioTermoEstagio(di);
+                                        //termo.setDataFimTermoEstagio(df);
+                                        //System.out.println(dr);
+                                    } catch (ParseException ex) {
+                                        Logger.getLogger(VerTermoAditivoServlet.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    request.setAttribute("termo", termo);				
 					
 				}else {
 					isValid = false;
