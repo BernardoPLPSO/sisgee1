@@ -317,21 +317,21 @@
                 <fieldset>
                     <div class="form-group col-md-4">
                         <label for="nomeSupervisor"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomeSupervisor"/></label>
-                        <input type="text" maxlength="150" class="form-control" name="nomeSupervisor" id="nomeSupervisor">
+                        <input type="text" maxlength="150" class="form-control" name="nomeSupervisor" id="nomeSupervisor" value="${termo.nomeSupervisor}" readonly>
                         <c:if test="${ not empty nomeSupervisorMsg }">
                             <div class="invalid-feedback"> ${nomeSupervisorMsg}</div>
                         </c:if>				
                     </div>
                     <div class="form-group col-md-4">
                         <label for="cargoSupervisor"><fmt:message key = "br.cefetrj.sisgee.resources.form.cargoSupervisor"/></label>
-                        <input name="cargoSupervisor" maxlength="150" id="cargoSupervisor" type="text" class="form-control>
+                        <input name="cargoSupervisor" maxlength="150" id="cargoSupervisor" type="text" class="form-control" value ="${termo.cargoSupervisor}" readonly>
                                <c:if test="${ not empty cargoSupervisorMsg }">
                                    <div class="invalid-feedback">${ cargoSupervisorMsg }</div>
                         </c:if>				
                     </div>
                     <div class="form-group col-md-4">
                         <label for="Agenciada"><fmt:message key = "br.cefetrj.sisgee.resources.form.agenciada"/></label>
-                        <input name="Agenciada" maxlength="150" id="Agenciada" type="text" class="form-control>
+                        <input name="Agenciada" maxlength="150" id="Agenciada" type="text" class="form-control" value ="${termo.agenciada}" readonly> 
                                <c:if test="${ not empty AgenciadaMsg }">
                                    <div class="invalid-feedback">${ AgenciadaMsg }</div>
                         </c:if>				
