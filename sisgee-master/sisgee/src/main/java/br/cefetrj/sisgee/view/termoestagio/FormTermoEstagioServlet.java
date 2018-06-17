@@ -644,7 +644,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
         System.out.println(agenciada);
         nomeSupervisorMsg = ValidaUtils.validaTamanho(campo, tamanho, agenciada);
         if (agenciadaMsg.trim().isEmpty()) {
-            request.setAttribute("agenciada", agenciada);
+            request.setAttribute("Agenciada", agenciada);
         } else {
             agenciadaMsg = messages.getString(agenciadaMsg);
             agenciadaMsg = ServletUtils.mensagemFormatada(agenciadaMsg, locale, tamanho);

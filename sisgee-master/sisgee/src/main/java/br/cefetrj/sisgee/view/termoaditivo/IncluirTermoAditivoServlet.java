@@ -43,10 +43,9 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
         String idtermo = request.getParameter("idTermoEstagio");
         //Pega prof
-        String professorNome = (String)request.getAttribute("idProfessorOrientador");
+        String professorNome = (String) request.getAttribute("idProfessorOrientador");
         //Pega data fim
         String vigencia = request.getParameter("dataFimTermoEstagio");
-        System.out.println("vigencia incluirtermoaditivoservlet " + vigencia);
         request.getParameter("dataFimTermoEstagio");
         //Pega carga horaria
         String cargaHoraria = request.getParameter("cargaHorariaTermoEstagio");
@@ -61,10 +60,12 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         String cidade = request.getParameter("cidadeEnderecoTermoEstagio");
         String complemento = request.getParameter("complementoEnderecoTermoEstagio");
         String bairro = request.getParameter("bairroEnderecoTermoEstagio");
-        System.out.println("Id Termo: "+ idtermo);
+        String agenciada = (String)request.getParameter("Agenciada");
+        String cargoSupervisor = (String) request.getParameter("cargoSupervisor");
+        String nomeSupervisor = (String) request.getParameter("nomeSupervisor");
         TermoEstagio t = TermoEstagioServices.buscarTermoEstagio(Integer.parseInt(idtermo));
-        
-        TermoEstagio termoAditivo = new TermoEstagio(t.getDataInicioTermoEstagio(),t.getCargaHorariaTermoEstagio(), t.getValorBolsa(), t.getEnderecoTermoEstagio(), t.getProfessorOrientador());
+
+        TermoEstagio termoAditivo = new TermoEstagio(t.getDataInicioTermoEstagio(), t.getCargaHorariaTermoEstagio(), t.getValorBolsa(), t.getEnderecoTermoEstagio(), t.getProfessorOrientador());
         termoAditivo.setAluno(t.getAluno());
         termoAditivo.setBairroEnderecoTermoEstagio(t.getBairroEnderecoTermoEstagio());
         termoAditivo.setCepEnderecoTermoEstagio(t.getCepEnderecoTermoEstagio());
@@ -79,15 +80,15 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         termoAditivo.setConvenioPJ(t.getConvenioPJ());
         termoAditivo.setNomeSupervisor(t.getNomeSupervisor());
         termoAditivo.setCargoSupervisor(t.getCargoSupervisor());
+        termoAditivo.setAgenciada(agenciada);
+        termoAditivo.setCargoSupervisor(cargoSupervisor);
+        termoAditivo.setNomeSupervisor(nomeSupervisor);
         termoAditivo.setTermoEstagio(t);
-        
-        
-        
-        
+
         Integer cargaHorariaTermoAditivo = Integer.parseInt(request.getParameter("updCargaHoraria"));
         Float valorBolsaTermoAditivo = Float.parseFloat(request.getParameter("updValorBolsa"));
         String enderecoTermoAditivo = (String) request.getParameter("updEndereco");
-       // ProfessorOrientador professorOrientador = (ProfessorOrientador) request.getParameter("updProfessor");
+        // ProfessorOrientador professorOrientador = (ProfessorOrientador) request.getParameter("updProfessor");
 
         if (vigencia != null) {
 
@@ -95,52 +96,46 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
             Date data = null;
             try {
                 data = formata.parse(vigencia);
-                System.out.println("data dentro do trycatch " + data);
                 termoAditivo.setDataFimTermoEstagio(data);
             } catch (ParseException ex) {
                 java.util.logging.Logger.getLogger(IncluirTermoAditivoServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         if (Integer.parseInt(cargaHoraria) != termoAditivo.getCargaHorariaTermoEstagio()) {
             termoAditivo.setCargaHorariaTermoEstagio(Integer.parseInt(cargaHoraria));
         }
-        
+
         if (Float.parseFloat(valor) != termoAditivo.getValorBolsa()) {
             termoAditivo.setValorBolsa(Float.parseFloat(valor));
         }
 
-        if (endereco != termoAditivo.getEnderecoTermoEstagio()) {
+        if (!endereco.equals(termoAditivo.getEnderecoTermoEstagio())) {
             termoAditivo.setEnderecoTermoEstagio(endereco);
         }
-        
-        if (cidade != termoAditivo.getCidadeEnderecoTermoEstagio()) {
+
+        if (!cidade.equals(termoAditivo.getCidadeEnderecoTermoEstagio())) {
             termoAditivo.setCidadeEnderecoTermoEstagio(cidade);
         }
-        
-        if (cep != termoAditivo.getCepEnderecoTermoEstagio()) {
+
+        if (!cep.equals(termoAditivo.getCepEnderecoTermoEstagio())) {
             termoAditivo.setCepEnderecoTermoEstagio(cep);
         }
-        
-        if (bairro != termoAditivo.getBairroEnderecoTermoEstagio()) {
+
+        if (!bairro.equals(termoAditivo.getBairroEnderecoTermoEstagio())) {
             termoAditivo.setBairroEnderecoTermoEstagio(bairro);
         }
-        
-        if (endereco != termoAditivo.getEnderecoTermoEstagio()) {
-            termoAditivo.setEnderecoTermoEstagio(endereco);
-        }
-        
-        if (estado != termoAditivo.getEstadoEnderecoTermoEstagio()) {
+
+        if (!estado.equals(termoAditivo.getEstadoEnderecoTermoEstagio())) {
             termoAditivo.setEstadoEnderecoTermoEstagio(estado);
         }
-        
-        if (complemento != termoAditivo.getComplementoEnderecoTermoEstagio()) {
+
+        if (!complemento.equals(termoAditivo.getComplementoEnderecoTermoEstagio())) {
             termoAditivo.setComplementoEnderecoTermoEstagio(complemento);
         }
         /*if (professorOrientador != null) {
             termoAditivo.setProfessorOrientador(professorOrientador);
         }*/
-        
 
         String registroAditivoConcluido = "";
         String msgOcorreuErro = "";

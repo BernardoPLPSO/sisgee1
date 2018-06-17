@@ -63,16 +63,16 @@ public class TermoEstagio {
 
     @Column(length = 2, nullable = false)
     private String estadoEnderecoTermoEstagio;
-    
+
     @Column(length = 100, nullable = true)
     private String nomeSupervisor;
-    
+
     @Column(length = 100, nullable = true)
     private String cargoSupervisor;
 
     @Column(length = 100, nullable = true)
     private String agenciada;
-    
+
     @Column(nullable = false)
     private Boolean eEstagioObrigatorio;
 
@@ -98,12 +98,12 @@ public class TermoEstagio {
     @JsonbTransient
     @OneToMany(mappedBy = "termoEstagio")
     private List<TermoEstagio> termosAditivos;
-    
+
     @JsonbTransient
     @ManyToOne(fetch = FetchType.EAGER)
     private TermoEstagio termoEstagio;
 
-   public TermoEstagio(Date dataFimTermoEstagio, Integer cargaHorariaTermoEstagio, Float valorBolsa, String enderecoTermoEstagio, ProfessorOrientador professorOrientador) {
+    public TermoEstagio(Date dataFimTermoEstagio, Integer cargaHorariaTermoEstagio, Float valorBolsa, String enderecoTermoEstagio, ProfessorOrientador professorOrientador) {
         this.dataFimTermoEstagio = dataFimTermoEstagio;
         this.cargaHorariaTermoEstagio = cargaHorariaTermoEstagio;
         this.valorBolsa = valorBolsa;
@@ -123,7 +123,7 @@ public class TermoEstagio {
     }
 
     public TermoEstagio(Date dataInicioTermoEstagio, Date dataFimTermoEstagio, Integer cargaHorariaTermoEstagio,
-            Float valorBolsa, String enderecoTermoEstagio,String complementoEnderecoTermoEstagio, String bairroEnderecoTermoEstagio, String cepEnderecoTermoEstagio,
+            Float valorBolsa, String enderecoTermoEstagio, String complementoEnderecoTermoEstagio, String bairroEnderecoTermoEstagio, String cepEnderecoTermoEstagio,
             String cidadeEnderecoTermoEstagio, String estadoEnderecoTermoEstagio, Boolean eEstagioObrigatorio,
             Aluno aluno, PessoaFisica convenioPF, ProfessorOrientador professorOrientador, String nomeSupervisor, String cargoSupervisor) {
 
@@ -160,7 +160,7 @@ public class TermoEstagio {
     public void setCargoSupervisor(String cargoSupervisor) {
         this.cargoSupervisor = cargoSupervisor;
     }
-    
+
     public TermoEstagio(Date dataInicioTermoEstagio, Date dataFimTermoEstagio, Integer cargaHorariaTermoEstagio,
             Float valorBolsa, String enderecoTermoEstagio, String complementoEnderecoTermoEstagio, String bairroEnderecoTermoEstagio, String cepEnderecoTermoEstagio,
             String cidadeEnderecoTermoEstagio, String estadoEnderecoTermoEstagio, Boolean eEstagioObrigatorio,
@@ -336,6 +336,14 @@ public class TermoEstagio {
         this.convenioPJ = convenioPJ;
     }
 
+    public String getAgenciada() {
+        return agenciada;
+    }
+
+    public void setAgenciada(String agenciada) {
+        this.agenciada = agenciada;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -374,10 +382,9 @@ public class TermoEstagio {
         JsonObject jobj = jsonReader.readObject();
 
         JsonObjectBuilder builder = Json.createObjectBuilder();
-        if(this.convenioPF != null){
+        if (this.convenioPF != null) {
             builder.add("convenio", this.getConvenioPF().toJsonObj());
-        }
-        else if(this.convenioPJ != null){
+        } else if (this.convenioPJ != null) {
             builder.add("convenio", this.getConvenioPJ().toJsonObj());
         }
         jobj.entrySet().

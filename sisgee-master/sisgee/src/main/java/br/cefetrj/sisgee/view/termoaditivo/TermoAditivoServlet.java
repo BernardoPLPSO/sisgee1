@@ -141,7 +141,7 @@ public class TermoAditivoServlet extends HttpServlet {
                 df = ServletUtils.mudarFormatoData(termoEstagio.getDataFimTermoEstagio());
             } catch (ParseException ex) {
                 Logger.getLogger(TermoAditivoServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } 
             
 
             request.setAttribute("dataIni", di);

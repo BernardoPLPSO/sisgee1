@@ -63,6 +63,7 @@ public class IncluirTermoEstagioServlet extends HttpServlet {
         System.out.println(pf);
         PessoaJuridica pj = PessoaJuridicaServices.buscarConvenioByNumero(numeroConvenio);
         System.out.println(pj);
+        String agenciada = (String)request.getAttribute("Agenciada");
 
 
         //NÃO OBRIGATÓRIO
@@ -95,12 +96,14 @@ public class IncluirTermoEstagioServlet extends HttpServlet {
                     bairroEnderecoTermoEstagio, cepEnderecoTermoEstagio,
                     cidadeEnderecoTermoEstagio, estadoEnderecoTermoEstagio, eEstagioObrigatorio,
                     aluno, pf, professorOrientador, nomeSupervisor, cargoSupervisor);
+             termoEstagio.setAgenciada(agenciada);
         } else {
             termoEstagio = new TermoEstagio(dataInicioTermoEstagio, dataFimTermoEstagio, cargaHorariaTermoEstagio,
                     valorBolsa, enderecoTermoEstagio,
                     complementoEnderecoTermoEstagio, bairroEnderecoTermoEstagio, cepEnderecoTermoEstagio,
                     cidadeEnderecoTermoEstagio, estadoEnderecoTermoEstagio, eEstagioObrigatorio,
                     aluno, pj, professorOrientador, nomeSupervisor, cargoSupervisor);
+             termoEstagio.setAgenciada(agenciada);
         }
 
         String msg = "";
