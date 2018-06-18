@@ -115,6 +115,13 @@
                             <label for="razaoSocial"><fmt:message key = "br.cefetrj.sisgee.resources.form.razaoSocial"/></label>
                             <input type="text" class="form-control nomeEmpresaIsAI nomePF" id="razaoSocial" name="razaoSocial" value="${ termo.convenioPJ.razaoSocial }" readonly>
                         </div>
+                        <div class="form-group col-md-4">
+                        <label for="Agenciada"><fmt:message key = "br.cefetrj.sisgee.resources.form.agenciada"/></label>
+                        <input name="Agenciada" maxlength="150" id="Agenciada" type="text" class="form-control" value ="${termo.agenciada}" readonly> 
+                               <c:if test="${ not empty AgenciadaMsg }">
+                                   <div class="invalid-feedback">${ AgenciadaMsg }</div>
+                        </c:if>				
+                    </div>
                         <div class="custom-controls-stacked d-block my-3" id="divAgt">
                             <label for="agenteIntegracao"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_agente_integracao"/></label>
                             <label class="custom-control custom-radio">
@@ -329,13 +336,7 @@
                                    <div class="invalid-feedback">${ cargoSupervisorMsg }</div>
                         </c:if>				
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="Agenciada"><fmt:message key = "br.cefetrj.sisgee.resources.form.agenciada"/></label>
-                        <input name="Agenciada" maxlength="150" id="Agenciada" type="text" class="form-control" value ="${termo.agenciada}" readonly> 
-                               <c:if test="${ not empty AgenciadaMsg }">
-                                   <div class="invalid-feedback">${ AgenciadaMsg }</div>
-                        </c:if>				
-                    </div>
+                    
                 </fieldset>
 
                 <fieldset ${ isVisualizacao eq true ? 'disabled' :'' }>
