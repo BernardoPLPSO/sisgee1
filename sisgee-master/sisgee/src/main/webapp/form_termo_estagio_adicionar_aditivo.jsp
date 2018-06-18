@@ -342,13 +342,11 @@
                     <div class="form-group col-md-8">
                         <label for="idProfessorOrientador"><fmt:message key = "br.cefetrj.sisgee.resources.form.professorOrientador"/></label>
                         <select name="idProfessorOrientador" id="idProfessorOrientador" class="form-control ${ not empty idProfessorMsg ? 'is-invalid': not empty idProfessorMsg ? 'is-invalid' : 'is-valid' }" ${ empty termo ? '' : empty updProfessor ? 'disabled' : '' } ${professor}>
-                            <option value="" selected>---</option>
+                            
                             <c:forEach items="${ professores }" var="professor">
-                                <option value="${ professor.idProfessorOrientador }">${ professor.nomeProfessorOrientador }</option>
+                                <option ${termo.professorOrientador.idProfessorOrientador == professor.idProfessorOrientador ? 'selected' : ''} value="${ professor.idProfessorOrientador }">${ professor.nomeProfessorOrientador }</option>
                             </c:forEach>
-                            <c:if test="${ not empty termo }">
-                                <option selected>${termo.professorOrientador.nomeProfessorOrientador}</option>
-                            </c:if>    
+                              
                         </select>
                         <c:if test="${ not empty idProfessorMsg }">
                             <div class="invalid-feedback">${ idProfessorMsg }</div>

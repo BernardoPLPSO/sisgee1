@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 
 import br.cefetrj.sisgee.control.TermoAditivoServices;
 import br.cefetrj.sisgee.control.TermoEstagioServices;
+import br.cefetrj.sisgee.model.dao.GenericDAO;
 import br.cefetrj.sisgee.model.entity.ProfessorOrientador;
 import br.cefetrj.sisgee.model.entity.TermoEstagio;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
@@ -43,7 +44,7 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
         String idtermo = request.getParameter("idTermoEstagio");
         //Pega prof
-        String professorNome = (String) request.getAttribute("idProfessorOrientador");
+        String professorId = request.getParameter("idProfessorOrientador");
         //Pega data fim
         String vigencia = request.getParameter("dataFimTermoEstagio");
         request.getParameter("dataFimTermoEstagio");
@@ -133,9 +134,10 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         if (!complemento.equals(termoAditivo.getComplementoEnderecoTermoEstagio())) {
             termoAditivo.setComplementoEnderecoTermoEstagio(complemento);
         }
-        /*if (professorOrientador != null) {
-            termoAditivo.setProfessorOrientador(professorOrientador);
-        }*/
+        System.out.println(professorId);
+        if (Integer.parseInt(professorId) != termoAditivo.getProfessorOrientador().getIdProfessorOrientador()) {
+            termoAditivo.setProfessorOrientador(new ProfessorOrientador(Integer.parseInt(professorId)));
+        }
 
         String registroAditivoConcluido = "";
         String msgOcorreuErro = "";
