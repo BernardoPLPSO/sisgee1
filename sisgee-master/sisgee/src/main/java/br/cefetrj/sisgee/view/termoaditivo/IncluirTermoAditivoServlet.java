@@ -52,8 +52,11 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         String cargaHoraria = request.getParameter("cargaHorariaTermoEstagio");
         //Pega valor da bolsa
         String valor = request.getParameter("valorBolsa");
+        System.out.println("Valor antes: "+valor);
         valor = valor.replace(".", "");
         valor = valor.replace(",", ".");
+        System.out.println("Valor dps: "+valor);
+        
         //Pega campos de endereco
         String endereco = request.getParameter("enderecoTermoEstagio");
         String cep = request.getParameter("cepEnderecoTermoEstagio");
@@ -61,10 +64,14 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         String cidade = request.getParameter("cidadeEnderecoTermoEstagio");
         String complemento = request.getParameter("complementoEnderecoTermoEstagio");
         String bairro = request.getParameter("bairroEnderecoTermoEstagio");
-        String agenciada = (String)request.getParameter("Agenciada");
+        String agenciada = request.getParameter("agenciada");
+        System.out.println("Agenciada: "+agenciada);
         String cargoSupervisor = (String) request.getParameter("cargoSupervisor");
         String nomeSupervisor = (String) request.getParameter("nomeSupervisor");
         TermoEstagio t = TermoEstagioServices.buscarTermoEstagio(Integer.parseInt(idtermo));
+        if(t.getTermoEstagio() != null){
+            t = TermoEstagioServices.buscarTermoEstagio(t.getTermoEstagio().getIdTermoEstagio());
+        }
 
         TermoEstagio termoAditivo = new TermoEstagio(t.getDataInicioTermoEstagio(), t.getCargaHorariaTermoEstagio(), t.getValorBolsa(), t.getEnderecoTermoEstagio(), t.getProfessorOrientador());
         termoAditivo.setAluno(t.getAluno());
@@ -108,6 +115,7 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
         }
 
         if (Float.parseFloat(valor) != termoAditivo.getValorBolsa()) {
+            System.out.println("Valor parseado: "+Float.parseFloat(valor));
             termoAditivo.setValorBolsa(Float.parseFloat(valor));
         }
 

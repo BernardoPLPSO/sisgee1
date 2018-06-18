@@ -55,42 +55,46 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
         String tipoPessoaMsg = "";
         tipoPessoaMsg = ValidaUtils.validaObrigatorio("Agente Integração", tipoPessoa);
         if (tipoPessoaMsg.trim().isEmpty()) {
-
+            System.out.println("Tipo pessoa válido");
             request.setAttribute("tipoPessoa", tipoPessoa);
 
         } else {
             tipoPessoaMsg = messages.getString(tipoPessoaMsg);
             request.setAttribute("tipoPessoaMsg", tipoPessoaMsg);
+            System.out.println("Tipo pessoa inválido");
             isValid = false;
         }
         System.out.println(tipoPessoa);
         Logger lg = Logger.getLogger(TodasRequisicoesFilter.class);
         lg.error(tipoPessoa);
 
-        String cnpjConvenio = request.getParameter("cnpjConvenio");
-        String razaoSocial = request.getParameter("razaoSocial");
-        String agenteIntegracao = request.getParameter("agenteIntegracao");
-        String pessoaContato = request.getParameter("pessoaContato");
-
         if (tipoPessoa.equals("cnpj")) {
-
+            String cnpjConvenio = request.getParameter("cnpjConvenio");
+            String razaoSocial = request.getParameter("razaoSocial");
+            String agenteIntegracao = request.getParameter("agenteIntegracao");
+            String pessoaContato = request.getParameter("pessoaContato");
             /**
              * Validação do campo Agente Integração, usando métodos da Classe
              * ValidaUtils. Deve ser campo booleano
              */
             String agenteIntegracaoMsg = "";
             agenteIntegracaoMsg = ValidaUtils.validaObrigatorio("Agente Integração", agenteIntegracao);
+            System.out.println("Razao: "+ razaoSocial);
+            System.out.println("Agente Integracao: "+ agenteIntegracao);
             if (agenteIntegracaoMsg.trim().isEmpty()) {
                 agenteIntegracaoMsg = ValidaUtils.validaBoolean("Agente Integração", agenteIntegracao);
                 if (agenteIntegracaoMsg.trim().isEmpty()) {
                     Boolean obrigatorio = Boolean.parseBoolean(agenteIntegracao);
+                    System.out.println("Agente Integração válido");
                     request.setAttribute("agenteIntegracao", agenteIntegracao);
                 } else {
+                    System.out.println("Agente Integração inválido por boolean incorreto");
                     agenteIntegracaoMsg = messages.getString(agenteIntegracaoMsg);
                     request.setAttribute("agenteIntegracaoMsg", agenteIntegracaoMsg);
                     isValid = false;
                 }
             } else {
+                System.out.println("Agente Integração inválido por vazio");
                 agenteIntegracaoMsg = messages.getString(agenteIntegracaoMsg);
                 request.setAttribute("agenteIntegracaoMsg", agenteIntegracaoMsg);
                 isValid = false;
@@ -311,11 +315,10 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
 
         System.out.println("email:" + email);
 
-        if (email == null || email.trim().isEmpty() || email.equals("")){
+        if (email == null || email.trim().isEmpty() || email.equals("")) {
             System.out.println("BOLINHA");
-        } 
-        else{
-            System.out.println("Email dentro do if: "+email);
+        } else {
+            System.out.println("Email dentro do if: " + email);
             EmailMsg = ValidaUtils.validaTamanho("Email", 50, email);
             if (EmailMsg.trim().isEmpty()) {
                 EmailMsg = ValidaUtils.validaEmail("Email", email);
@@ -378,16 +381,8 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
     }
 }
 
-
-
-
-
-
-
-
-
 /*
 
                                                              
 
-*/
+ */

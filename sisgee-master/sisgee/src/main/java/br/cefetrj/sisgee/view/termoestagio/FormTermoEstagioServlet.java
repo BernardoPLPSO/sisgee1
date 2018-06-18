@@ -86,7 +86,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
         String nomeConvenio = request.getParameter("nomeConvenio");
         String nomeSupervisor = request.getParameter("nomeSupervisor");
         String cargoSupervisor = request.getParameter("cargoSupervisor");
-        System.out.println("Cargo Supervisor: "+cargoSupervisor);
+        System.out.println("Cargo Supervisor: " + cargoSupervisor);
         System.out.println(numeroConvenio);
         String isAgenteIntegracao = request.getParameter("isAgenteIntegracao");
         String agenciada = request.getParameter("Agenciada");
@@ -232,7 +232,9 @@ public class FormTermoEstagioServlet extends HttpServlet {
         campo = "Valor";
         valorBolsaMsg = ValidaUtils.validaObrigatorio(campo, valorBolsa);
         if (valorBolsaMsg.trim().isEmpty()) {
-            valorBolsa = valorBolsa.replaceAll("[.|,]", "");
+            valorBolsa = valorBolsa.replace(".", "");
+            valorBolsa = valorBolsa.replace(",", ".");
+            System.out.println("Valor Bolsa: "+ valorBolsa);
             valorBolsaMsg = ValidaUtils.validaFloat(campo, valorBolsa);
             if (valorBolsaMsg.trim().isEmpty()) {
                 Float valor = Float.parseFloat(valorBolsa);
@@ -565,7 +567,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
                 System.out.println(numeroConvenioMsg);
             }
         }
-        
+
         /**
          * Validação nome do convênio para busca
          */
@@ -582,7 +584,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
                 request.setAttribute("nomeConvenioMsg", nomeConvenioMsg);
                 isValid = false;
                 //TODO Fazer log
-                System.out.println("NomeConvenio: "+nomeConvenioMsg);
+                System.out.println("NomeConvenio: " + nomeConvenioMsg);
             }
         }
 
@@ -612,10 +614,10 @@ public class FormTermoEstagioServlet extends HttpServlet {
         campo = "Cargo Supervisor";
         tamanho = 150;
         cargoSupervisorMsg = ValidaUtils.validaTamanho(campo, tamanho, cargoSupervisor);
-        if(!nomeSupervisor.isEmpty() || cargoSupervisor.isEmpty() && cargoSupervisorMsg.trim().equals("")){
+        if (!nomeSupervisor.isEmpty() || cargoSupervisor.isEmpty() && cargoSupervisorMsg.trim().equals("")) {
             cargoSupervisorMsg = ValidaUtils.validaObrigatorio(campo, cargoSupervisor);
-            System.out.println("cargoSupervisorMsg: "+ cargoSupervisorMsg);
-            if(cargoSupervisorMsg.trim().isEmpty()){
+            System.out.println("cargoSupervisorMsg: " + cargoSupervisorMsg);
+            if (cargoSupervisorMsg.trim().isEmpty()) {
                 if (cargoSupervisorMsg.trim().isEmpty()) {
                     System.out.println("cargo valido");
                     request.setAttribute("cargoSupervisor", cargoSupervisor);
@@ -628,11 +630,11 @@ public class FormTermoEstagioServlet extends HttpServlet {
                     System.out.println(cargoSupervisorMsg);
                 }
             }
-        } else{
+        } else {
             cargoSupervisorMsg = "br.cefetrj.sisgee.valida_utils.msgCargoSemNome";
             cargoSupervisorMsg = messages.getString(cargoSupervisorMsg);
             cargoSupervisorMsg = ServletUtils.mensagemFormatada(cargoSupervisorMsg, locale, tamanho);
-            request.setAttribute("cargoSupervisorMsg",cargoSupervisorMsg);
+            request.setAttribute("cargoSupervisorMsg", cargoSupervisorMsg);
         }
 
         /**
@@ -653,7 +655,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
             //TODO Fazer log
             System.out.println(agenciadaMsg);
         }
-        
+
         /**
          * *************************************************************************
          * Se aluno já possui estágio aberto, não pode cadastrar outro

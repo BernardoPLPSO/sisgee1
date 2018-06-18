@@ -84,17 +84,6 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="nomeConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomeConvenio"/></label>
-                            <div class="input-group">						  
-                                <input type="text" class="form-control nomeConvenioNotAI nomeConvenio" placeholder="Digite o Nome" id="nomeConvenio" name="nomeConvenio" value="${ not empty termo.convenioPJ ? termo.convenioPJ.razaoSocial : termo.convenioPF.nome  }">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="button" id="btnBuscarNomeConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
-                                </span>
-                                &nbsp;&nbsp;
-                                <button type="button" class="btn btn-primary addEmpresa">+</button>
-                            </div>
-                        </div>
                     </div>
                     <div class="form-row"  id="divPF" style="display:${not empty termo.convenioPF.nome ? '' : "none"}">
                         <div class="form-group col-md-5">
@@ -118,16 +107,25 @@
                         <div class="custom-controls-stacked d-block my-3" id="divAgt">
                             <label for="agenteIntegracao"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_agente_integracao"/></label>
                             <label class="custom-control custom-radio">
-                                <input id="Agente" type="radio" class="custom-control-input isAgenteChk" name="agtInt" value="sim" ${not empty termo.convenioPJ.agenteIntegracao == true ? "checked" : '' }> 
+                                <input id="Agente" type="radio" class="custom-control-input isAgenteChk" name="agtInt" value="sim" ${termo.convenioPJ.agenteIntegracao ? 'checked' : '' }> 
                                 <span class="custom-control-indicator"></span> 
                                 <span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.resources.form.sim"/></span>
                             </label>						
                             <label class="custom-control custom-radio"> 
-                                <input id="NaoAgente" type="radio" class="custom-control-input isAgenteChk" name="agtInt" value="nao" ${not empty termo.convenioPJ.agenteIntegracao == false ? "checked" : ''} > 
+                                <input id="NaoAgente" type="radio" class="custom-control-input isAgenteChk" name="agtInt" value="nao" ${termo.convenioPJ.agenteIntegracao ? '' : 'checked'} > 
                                 <span class="custom-control-indicator"></span> 
                                 <span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.resources.form.nao"/></span>
                             </label>
                         </div>
+                        <c:if test="${termo.convenioPJ.agenteIntegracao}">
+                            <div class="form-group col-md-4" id="divAgenciada" >
+                                <label for="Agenciada"><fmt:message key = "br.cefetrj.sisgee.resources.form.agenciada"/></label>
+                                <input name="Agenciada" maxlength="150" id="Agenciada" type="text" class="form-control" value="${termo.agenciada}" readonly>
+                                <c:if test="${ not empty AgenciadaMsg }">
+                                    <div class="invalid-feedback">${ AgenciadaMsg }</div>
+                                </c:if>
+                            </div>
+                        </c:if>
                     </div>
                     <div class="custom-controls-stacked d-block my-3" id="divTipo" style="visibility:hidden">							
                         <label class="custom-control custom-radio">
@@ -223,7 +221,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="valorBolsa">Valor (R$)</label>
-                            <input type="text" class="form-control col-sm-6 ${ not empty valorBolsaMsg ? 'is-invalid': 'is-valid' }" id="valorBolsa" name="valorBolsa" value="${ not empty termo ? termo.valorBolsa : ''  }" ${ empty termo ? '' : empty updValorBolsa ? 'disabled' : '' }>
+                            <input type="text" class="form-control col-sm-6 ${ not empty valorBolsaMsg ? 'is-invalid': 'is-valid' }" id="valorBolsa" name="valorBolsa" value="${valorBolsa}" ${ empty termo ? '' : empty updValorBolsa ? 'disabled' : '' }>
                             <c:if test="${ not empty valorBolsaMsg }">
                                 <div class="invalid-feedback">${ valorBolsaMsg }</div>
                             </c:if>
@@ -316,35 +314,25 @@
                 <fieldset>
                     <div class="form-group col-md-4" >
                         <label for="nomeSupervisor"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomeSupervisor"/></label>
-                        <input type="text" maxlength="150" class="form-control" name="nomeSupervisor" id="nomeSupervisor" readonly>
+                        <input type="text" maxlength="150" class="form-control" name="nomeSupervisor" id="nomeSupervisor"  value="${termo.nomeSupervisor}" readonly>
                         <c:if test="${ not empty nomeSupervisorMsg }">
                             <div class="invalid-feedback"> ${nomeSupervisorMsg}</div>
                         </c:if>				
                     </div>
                     <div class="form-group col-md-4" >
                         <label for="cargoSupervisor"><fmt:message key = "br.cefetrj.sisgee.resources.form.cargoSupervisor"/></label>
-                        <input name="cargoSupervisor" maxlength="150" id="cargoSupervisor" type="text" class="form-control" readonly>
+                        <input name="cargoSupervisor" maxlength="150" id="cargoSupervisor" type="text" class="form-control" value="${termo.cargoSupervisor}" readonly>
                         <c:if test="${ not empty cargoSupervisorMsg }">
                             <div class="invalid-feedback">${ cargoSupervisorMsg }</div>
                         </c:if>				
                     </div>
-                    <div class="form-group col-md-4" id="divAgenciada" >
-                        <label for="Agenciada"><fmt:message key = "br.cefetrj.sisgee.resources.form.agenciada"/></label>
-                        <input name="Agenciada" maxlength="150" id="Agenciada" type="text" class="form-control" readonly>
-                        <c:if test="${ not empty AgenciadaMsg }">
-                            <div class="invalid-feedback">${ AgenciadaMsg }</div>
-                        </c:if>
-                    </div>
                 </fieldset>
-                        
+
                 <fieldset ${ isVisualizacao eq true ? 'disabled' :'' }>
                     <div class="form-group col-md-8">
                         <label for="idProfessorOrientador"><fmt:message key = "br.cefetrj.sisgee.resources.form.professorOrientador"/></label>
                         <select name="idProfessorOrientador" id="idProfessorOrientador" class="form-control ${ not empty idProfessorMsg ? 'is-invalid': not empty idProfessorMsg ? 'is-invalid' : 'is-valid' }" ${ empty termo ? '' : empty updProfessor ? 'disabled' : '' }>
                             <option value="" selected>---</option>
-                            <c:forEach items="${ professores }" var="professor">
-                                <option value="${ professor.idProfessorOrientador }">${ professor.nomeProfessorOrientador }</option>
-                            </c:forEach>
                             <c:if test="${ not empty termo }">
                                 <option selected>${termo.professorOrientador.nomeProfessorOrientador}</option>
                             </c:if>    

@@ -41,13 +41,6 @@
         <label for="razaoSocial"><fmt:message key = "br.cefetrj.sisgee.resources.form.razaoSocial"/></label>
         <input type="text" class="form-control nomeEmpresaIsAI nomePF" id="razaoSocial" name="razaoSocial" value="${ razaoSocial }" readonly>
     </div>
-    <div class="form-group col-md-4" id="divAgenciada" style="display:none">
-                        <label for="Agenciada"><fmt:message key = "br.cefetrj.sisgee.resources.form.agenciada"/></label>
-                        <input name="Agenciada" maxlength="150" id="Agenciada" type="text" class="form-control" >
-                        <c:if test="${ not empty AgenciadaMsg }">
-                            <div class="invalid-feedback">${ AgenciadaMsg }</div>
-                        </c:if>
-                    </div>
     <div class="custom-controls-stacked d-block my-3" id="divAgt">
         <label for="agenteIntegracao"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_agente_integracao"/></label>
         <label class="custom-control custom-radio">
@@ -61,6 +54,13 @@
             <span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.resources.form.nao"/></span>
         </label>
     </div>
+    <div class="form-group col-md-4" id="divAgenciada" style="display:none">
+        <label for="Agenciada"><fmt:message key = "br.cefetrj.sisgee.resources.form.agenciada"/></label>
+        <input name="Agenciada" maxlength="150" id="Agenciada" type="text" class="form-control" >
+        <c:if test="${ not empty AgenciadaMsg }">
+            <div class="invalid-feedback">${ AgenciadaMsg }</div>
+        </c:if>
+    </div>        
 </div>
 <div class="custom-controls-stacked d-block my-3" id="divTipo" style="visibility:hidden">							
     <label class="custom-control custom-radio">
