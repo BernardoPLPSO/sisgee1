@@ -86,7 +86,7 @@
                     </div>
                     <div class="form-group col-md-5">
                         <label for="razaoSocial"><fmt:message key = "br.cefetrj.sisgee.resources.form.razaoSocial"/></label>
-                        <input type="text" class="form-control nomeEmpresaIsAI nomePF" id="razaoSocial" name="razaoSocial" value="${ termoEstagio.convenioPJ.razaoSocial }" readonly>
+                        <input type="text" class="form-control nomeEmpresaIsAI nomePF" id="razaoSocial" name="razaoSocial" value="${ termoEstagio.convenioPJ.razaoSocial }" readonly>                    
                     </div>
                     <div class="custom-controls-stacked d-block my-3" id="divAgt">
                         <label for="agenteIntegracao"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_agente_integracao"/></label>
