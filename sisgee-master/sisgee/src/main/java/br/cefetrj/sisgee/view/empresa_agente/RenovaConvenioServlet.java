@@ -50,12 +50,13 @@ public class RenovaConvenioServlet extends HttpServlet {
         String buscaRazaoNome = request.getParameter("buscaRazaoNome");
 
         System.out.println("Busca Numero: "+buscaNumero);
-        System.out.println(buscaRazaoNome);
+        System.out.println("Busca Razao: "+buscaRazaoNome);
         try {
             if (!buscaRazaoNome.isEmpty()) {
                 buscaConvePF = PessoaFisicaServices.buscarListaNome(buscaRazaoNome);
                 buscaConvePJ = PessoaJuridicaServices.buscarListaNome(buscaRazaoNome);
-                System.out.println(buscaConvePF + "LOLO");
+                System.out.println("Convenio PF: "+buscaConvePF);
+                System.out.println("Convenio PJ: "+buscaConvePJ);
                 if (buscaConvePF != null) {
                     for (PessoaFisica P : buscaConvePF) {
                         ItemRelatorio item = new ItemRelatorio(P.getNumeroConvenio(), P.getCpf(), P.getNome(), P, P.getClass());

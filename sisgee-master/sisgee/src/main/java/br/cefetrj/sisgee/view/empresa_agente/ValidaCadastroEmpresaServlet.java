@@ -21,6 +21,7 @@ import br.cefetrj.sisgee.model.entity.PessoaJuridica;
 import br.cefetrj.sisgee.view.filters.TodasRequisicoesFilter;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
 import br.cefetrj.sisgee.view.utils.ValidaUtils;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.apache.log4j.Logger;
@@ -278,15 +279,17 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
          */
         Date dataAssinatura = null;
         String dataAssinaturaMsg = "";
-
+        
         dataAssinaturaMsg = ValidaUtils.validaObrigatorio("Data Assinatura", dataAss);
         if (dataAssinaturaMsg.trim().isEmpty()) {
             dataAssinaturaMsg = ValidaUtils.validaDate("Data Assinatura", dataAss);
             if (dataAssinaturaMsg.trim().isEmpty()) {
                 try {
-                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                    dataAssinatura = format.parse(dataAss);
-                    request.setAttribute("dataAssinatura", dataAssinatura);
+                    DateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+                    dataAssinatura = (Date)formatter.parse(dataAss);
+                    String dataAssinaturaStr = ServletUtils.mudarFormatoData(dataAssinatura);
+                    request.setAttribute("dataAssinatura", dataAssinaturaStr);
+                    System.out.println("Data assinatura mudada: "+dataAssinaturaStr);
                 } catch (Exception e) {
                     //TODO trocar saída de console por Log
                     System.out.println("Data em formato incorreto, mesmo após validação na classe ValidaUtils");

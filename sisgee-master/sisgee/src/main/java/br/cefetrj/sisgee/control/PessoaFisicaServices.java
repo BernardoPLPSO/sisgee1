@@ -75,9 +75,7 @@ public class PessoaFisicaServices {
             
         
         }catch(Exception e){
-            System.out.println("He");
             System.out.println(e);
-            System.out.println("He");
             return null;
         }
     }

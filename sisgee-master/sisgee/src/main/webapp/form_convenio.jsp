@@ -132,7 +132,7 @@
                     <div class="form-group col-md-6">
 
                         <label for="dataAssinatura"><fmt:message key = "br.cefetrj.sisgee.resources.form.dataAssinatura"/></label>
-                        <input type="text" class="form-control col-sm-4 ${ not empty dataAssinaturaMsg ? 'is-invalid': not empty dataAssinaturaMsg ? 'is-invalid' : 'is-valid' }" id="dataAssinatura"  name="dataAssinatura" required  value="${ param.dataAssinatura }" ${ not empty termoEstagio ? 'disabled' : '' } >
+                        <input type="text" class="form-control col-sm-4 ${ not empty dataAssinaturaMsg ? 'is-invalid': not empty dataAssinaturaMsg ? 'is-invalid' : 'is-valid' }" id="dataAssinatura"  name="dataAssinatura" required  value="${dataAssinatura }" ${ not empty termoEstagio ? 'disabled' : '' } >
                         <c:if test="${ not empty dataAssinaturaMsg }">
                             <div class="invalid-feedback">${ dataAssinaturaMsg }</div>
                         </c:if>
@@ -169,7 +169,6 @@
                 $('#telefone').mask('(99) 99999-9999');
                 $('#cnpjConvenio').mask('99.999.999/9999-99');
                 $('#cpfConvenio').mask('999.999.999-99');
-                $('#dataAssinatura').mask('31/12/000');
                 $('#dataAssinatura').mask('99/99/9999');
             });
         </script>

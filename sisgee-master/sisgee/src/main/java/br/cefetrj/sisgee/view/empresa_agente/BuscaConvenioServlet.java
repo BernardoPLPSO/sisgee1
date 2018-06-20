@@ -38,18 +38,13 @@ public class BuscaConvenioServlet extends HttpServlet {
         
         String buscaNumero = request.getParameter("buscaNumero");
         String buscaRazaoNome = request.getParameter("buscaRazaoNome");
+        System.out.println("Busca Numero: "+buscaNumero);
+        System.out.println("Busca Razao Nome: "+ buscaRazaoNome);
         
         String buscaNumeroMsg;
         String buscaRazaoNomeMsg;
         String msg;
          
-      
-       
-       
-        
-        
-        
-        
        if (buscaNumero.isEmpty() && buscaRazaoNome.isEmpty()){
          
               msg = messages.getString("br.cefetrj.sisgee.resources.form.busca.nenhumCampo");

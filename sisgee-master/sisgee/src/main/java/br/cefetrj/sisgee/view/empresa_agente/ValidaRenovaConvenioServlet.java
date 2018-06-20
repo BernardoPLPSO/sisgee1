@@ -13,6 +13,7 @@ import br.cefetrj.sisgee.view.utils.ItemRelatorio;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -60,7 +61,14 @@ private static final long serialVersionUID = 1L;
                             request.setAttribute("tipoPessoa", "cpf");
                             request.setAttribute("cpfConvenio", ConvePF.getCpf());
                             request.setAttribute("nomePessoa", ConvePF.getNome());
-                            request.setAttribute("dataAssinatura", ConvePF.getDataAssinatura());
+                            Date dataAssinatura = ConvePJ.getDataAssinatura();
+                            try{
+                                String dataAssinaturaStr = ServletUtils.mudarFormatoData(dataAssinatura);
+                                request.setAttribute("dataAssinatura", dataAssinaturaStr);
+                            }
+                            catch(Exception e){
+                                System.out.println("erro data");
+                            }
                             String teste = ConvePF.getEmail();
                             request.setAttribute("email", teste);
                             request.setAttribute("telefone", ConvePF.getTelefone());
@@ -77,7 +85,14 @@ private static final long serialVersionUID = 1L;
                             System.out.println("Is agente integracao: "+ConvePJ.isAgenteIntegracao());
                             String aiStr = Boolean.toString(ConvePJ.isAgenteIntegracao());
                             request.setAttribute("agenteIntegracao", aiStr);
-                            request.setAttribute("dataAssinatura", ConvePJ.getDataAssinatura());
+                            Date dataAssinatura = ConvePJ.getDataAssinatura();
+                            try{
+                                String dataAssinaturaStr = ServletUtils.mudarFormatoData(dataAssinatura);
+                                request.setAttribute("dataAssinatura", dataAssinaturaStr);
+                            }
+                            catch(Exception e){
+                                System.out.println("erro data");
+                            }
                             String teste = ConvePJ.getEmail();
                             request.setAttribute("email",teste );
                             request.setAttribute("telefone", ConvePJ.getTelefone());
