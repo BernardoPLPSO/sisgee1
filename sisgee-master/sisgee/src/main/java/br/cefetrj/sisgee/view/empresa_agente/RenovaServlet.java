@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -176,13 +177,17 @@ public class RenovaServlet extends HttpServlet {
 
         if (isValid) {
             String sucesso = "";
+            String ndamsg= "";
             if (!cnpj.equals("")) {
                 sucesso = PessoaJuridicaServices.atualizarConvenioPJ(numeroConvenio, email, pessoaContato, telefone, dataAssinatura);
+                ndamsg = retornaConvenioNovo(numeroConvenio);
             } else {
                 sucesso = PessoaFisicaServices.atualizarConvenioPF(numeroConvenio, email, telefone, dataAssinatura);
+                ndamsg = retornaConvenioNovo(numeroConvenio);
             }
             if (sucesso.trim().isEmpty()) {
                 String msg = messages.getString("br.cefetrj.sisgee.resources.form.renova.sucesso");
+                msg = msg + " número: " + ndamsg;
                 request.setAttribute("msg", msg);
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
             } else {
@@ -229,5 +234,17 @@ public class RenovaServlet extends HttpServlet {
        String resultado =  ServletUtils.mudarFormatoData(x);
        return resultado;
     }
-
+    
+    public static String retornaConvenioNovo(String numeroConvenio){
+        
+        int anoInt = Calendar.getInstance().get(Calendar.YEAR);
+        String ano = Integer.toString(anoInt);
+        String convenio[] = numeroConvenio.split("/");
+        String convenioAtual = convenio[0]+"/"+ano;
+        System.out.println(anoInt);
+        System.out.println(convenio[0]);
+        System.out.println(convenioAtual);
+        
+        return convenioAtual;
+    }
 }
