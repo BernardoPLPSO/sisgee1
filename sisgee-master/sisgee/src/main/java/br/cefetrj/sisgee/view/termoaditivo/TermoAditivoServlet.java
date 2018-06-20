@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.cefetrj.sisgee.control.AlunoServices;
 import br.cefetrj.sisgee.control.ProfessorOrientadorServices;
 import br.cefetrj.sisgee.control.TermoAditivoServices;
+import br.cefetrj.sisgee.control.TermoEstagioServices;
 import br.cefetrj.sisgee.model.entity.Aluno;
 import br.cefetrj.sisgee.model.entity.ProfessorOrientador;
 import br.cefetrj.sisgee.model.entity.TermoEstagio;
@@ -82,16 +83,16 @@ public class TermoAditivoServlet extends HttpServlet {
                 System.out.println("Matricula: " + aluno.getMatricula());
                 if (aluno != null) {
                     List<TermoEstagio> termosEstagio = aluno.getTermoEstagios();
-                    Collections.sort(termosEstagio, new ComparaTermos());
-                    atual = termosEstagio.get(termosEstagio.size()-1);
-                    System.out.println("Atual ID: "+atual.getIdTermoEstagio());
                     for (TermoEstagio termoEstagio2 : termosEstagio) {
                         if (termoEstagio2.getDataRescisaoTermoEstagio() == null && termoEstagio2.getTermoEstagio() == null) {
-                            termoEstagio = termoEstagio2;
+                            termoEstagio = TermoEstagioServices.buscarTermoEstagio(termoEstagio2.getIdTermoEstagio());
                             System.out.println("Termo Estagio Pai: " + termoEstagio2.getIdTermoEstagio());
                             break;
                         }
                     }
+                    Collections.sort(termosEstagio, new ComparaTermos());
+                    atual = termosEstagio.get(termosEstagio.size() - 1);
+                    System.out.println("Atual ID: " + atual.getIdTermoEstagio());
                 } else {
                     idAlunoMsg = messages.getString("br.cefetrj.sisgee.incluir_termo_aditivo_servlet.msg_AlunoEscolhido");
                     request.setAttribute("idAlunoMsg", idAlunoMsg);

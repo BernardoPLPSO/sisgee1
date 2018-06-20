@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 /**
  * Implementação do padrão DAO conforme mostrado nas aulas
+ *
  * @author Paulo Cantuária
  * @since 1.0
  *
@@ -13,37 +14,37 @@ import javax.persistence.EntityManager;
  */
 public class GenericDAO<T> {
 
-	protected EntityManager manager;
-	protected Class<T> t;
-	
-	GenericDAO(Class<T> t, EntityManager manager){
-		this.t = t;
-		this.manager = manager;
-	}
-	
-	public List<T> buscarTodos(){
-		@SuppressWarnings("unchecked")
-		List<T> lista = manager.createQuery("from " + t.getName()).getResultList();
-				
-		return lista;
-	}
-	
-	public T buscar(Integer id){
-		return manager.find(t, id);
-	}
-	
-	public void incluir(T entidade){
-		manager.persist(entidade);
-	}
-	
-	public void excluir(T entidade){
-		manager.remove(entidade);
-	}
-	
-	public void alterar(T entidade){
-		manager.merge(entidade);
-	}
-	
-	
-	
+    protected EntityManager manager;
+    protected Class<T> t;
+
+    GenericDAO(Class<T> t, EntityManager manager) {
+        this.t = t;
+        this.manager = manager;
+    }
+
+    public List<T> buscarTodos() {
+        @SuppressWarnings("unchecked")
+        List<T> lista = manager.createQuery("from " + t.getName()).getResultList();
+
+        return lista;
+    }
+
+    public T buscar(Integer id) {
+        T t1 = manager.find(t, id);
+        manager.refresh(t1);
+        return t1;
+    }
+
+    public void incluir(T entidade) {
+        manager.persist(entidade);
+    }
+
+    public void excluir(T entidade) {
+        manager.remove(entidade);
+    }
+
+    public void alterar(T entidade) {
+        manager.merge(entidade);
+    }
+
 }

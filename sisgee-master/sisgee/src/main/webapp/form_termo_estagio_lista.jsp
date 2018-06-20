@@ -333,8 +333,8 @@
                     <label for="idProfessorOrientador"><fmt:message key = "br.cefetrj.sisgee.resources.form.professorOrientador"/></label>
                     <select name="idProfessorOrientador" id="idProfessorOrientador" class="form-control ${ not empty idProfessorMsg ? 'is-invalid': not empty idProfessorMsg ? 'is-invalid' : 'is-valid' }" ${ empty termoEstagio ? '' : empty updProfessor ? 'disabled' : '' } ${professor}>
 
-                        <c:forEach items="${ professores }" var="professor">
-                            <option ${termo.professorOrientador.idProfessorOrientador == professor.idProfessorOrientador ? 'selected' : ''} value="${ professor.idProfessorOrientador }">${ professor.nomeProfessorOrientador }</option>
+                        <c:forEach items="${ professores }" var="professor1">
+                            <option ${professor == professor1.idProfessorOrientador ? 'selected' : ''} value="${ professor1.idProfessorOrientador }">${ professor1.nomeProfessorOrientador }</option>
                         </c:forEach>
 
                     </select>

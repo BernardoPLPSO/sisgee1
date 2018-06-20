@@ -60,7 +60,7 @@ public class VerTermoAditivoServlet extends HttpServlet {
                 Aluno aluno = AlunoServices.buscarAlunoByMatricula(idAluno);
                 for(TermoEstagio termo1 : aluno.getTermoEstagios()){
                     if(termo1.getIdTermoEstagio() == idTermoInt){
-                        termo = termo1;
+                        termo = TermoEstagioServices.buscarTermoEstagio(termo1.getIdTermoEstagio());
                     }
                 }
                 if (termo != null) {
@@ -99,6 +99,9 @@ public class VerTermoAditivoServlet extends HttpServlet {
         if (isValid) {
             List<ProfessorOrientador> professores = ProfessorOrientadorServices.listarProfessorOrientador();
             request.setAttribute("professores", professores);
+            System.out.println("Professores "+professores);
+            System.out.println("Professor TERMO: "+ termo.getProfessorOrientador().getIdProfessorOrientador());
+            request.setAttribute("professor", termo.getProfessorOrientador().getIdProfessorOrientador());
             boolean isVisualizacao = true;
             String aditivo = "sim";
             request.setAttribute("isVisualizacao", isVisualizacao);
