@@ -49,13 +49,16 @@ public class IncluirCadastroEmpresaServlet extends HttpServlet {
         String telefone = request.getParameter("telefone");
         telefone = telefone.replaceAll("\\D", "");
         String numConvenio = criarNumeroConvenio(request);
-        System.out.println(numConvenio);
-
+        System.out.println("nume convenio " +numConvenio);
+        System.out.println("agente string " + request.getParameter("agenteIntegracao"));
+        boolean agenteIntegracao = Boolean.parseBoolean(request.getParameter("agenteIntegracao"));
+        System.out.println("agente sem string " + agenteIntegracao);
+        
         if (tipoPessoa.equals("cnpj")) {
             String cnpjConvenio = request.getParameter("cnpjConvenio");
             cnpjConvenio = cnpjConvenio.replaceAll("\\D", "");
             String razaoSocial = request.getParameter("razaoSocial");
-            boolean agenteIntegracao = Boolean.parseBoolean(request.getParameter("agenteIntegracao"));
+//            boolean agenteIntegracao = Boolean.parseBoolean(request.getParameter("agenteIntegracao"));
             System.out.println("Agente Integracao: "+ agenteIntegracao);
             String pessoaContato = request.getParameter("pessoaContato");
 

@@ -72,6 +72,7 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
             String cnpjConvenio = request.getParameter("cnpjConvenio");
             String razaoSocial = request.getParameter("razaoSocial");
             String agenteIntegracao = request.getParameter("agenteIntegracao");
+            System.out.println("PRINTZAO" + agenteIntegracao);
             String pessoaContato = request.getParameter("pessoaContato");
             /**
              * Validação do campo Agente Integração, usando métodos da Classe

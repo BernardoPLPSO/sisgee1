@@ -96,23 +96,17 @@
                             </c:if>
                         </div>                
 
-                        <div class="form-group col-md-4" >
+                        <div >
                             <label for="agenteIntegracao"><fmt:message key="br.cefetrj.sisgee.form_empresa.msg_agente_integracao" /></label>
 
                             <div class="custom-controls-stacked d-block my-3">
-                                <label class="custom-control custom-radio"> 
-                                    <input id="agenteIntegracao" name="agenteIntegracao" type="radio" ${empty param.agenteIntegracao? '' : param.agenteIntegracao =='true'?'checked':''} class="custom-control-input"  value = "true" > 
-                                    <span class="custom-control-indicator"></span> 
-                                    <span class="custom-control-description" ><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_sim"/></span>
-                                </label> 
-                                <label class="custom-control custom-radio"> 
-                                    <input id="agenteIntegracao" name="agenteIntegracao" type="radio" ${empty param.agenteIntegracao? 'checked' : param.agenteIntegracao =='false'?'checked':''} class="custom-control-input"  value = "false" > 
-                                    <span class="custom-control-indicator"></span> 
-                                    <span class="custom-control-description"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_nao"/></span>
-                                </label>
+                                <select id="teste" name="agenteIntegracao">
+                                    <option value="true"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_sim"/></option>
+                                    <option value="false"><fmt:message key = "br.cefetrj.sisgee.form_empresa.msg_nao"/></option>
+                                </select>
                             </div>		
                         </div>                                                        
-                    </div> ${ param.tipoPessoa == "cnpj" ? "required" : "" }
+                    </div> 
 
                     <div class="form-row isAI AI" ${ empty param.tipoPessoa ? "style='display:none'" : param.tipoPessoa == "cnpj" ? "style='display:none'" : "" }>
 
