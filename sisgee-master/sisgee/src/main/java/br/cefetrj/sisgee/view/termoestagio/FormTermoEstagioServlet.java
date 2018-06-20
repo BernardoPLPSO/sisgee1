@@ -71,6 +71,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
         String dataInicioTermoEstagio = request.getParameter("dataInicioTermoEstagio");
         String dataFimTermoEstagio = request.getParameter("dataFimTermoEstagio");
         String cargaHorariaTermoEstagio = request.getParameter("cargaHorariaTermoEstagio");
+        System.out.println("Carga Horaria Termo Estagio: "+cargaHorariaTermoEstagio);
         String valorBolsa = request.getParameter("valorBolsa");
         String enderecoTermoEstagio = request.getParameter("enderecoTermoEstagio");
         String complementoEnderecoTermoEstagio = request.getParameter("complementoEnderecoTermoEstagio");
@@ -146,7 +147,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
             if (dataFimMsg.trim().isEmpty()) {
                 try {
                     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                    dataFim = format.parse(dataInicioTermoEstagio);
+                    dataFim = format.parse(dataFimTermoEstagio);
                     request.setAttribute("dataFim", dataFim);
                 } catch (Exception e) {
                     //TODO trocar saída de console por Log
@@ -197,14 +198,18 @@ public class FormTermoEstagioServlet extends HttpServlet {
             cargaHorariaMsg = ValidaUtils.validaInteger(campo, cargaHorariaTermoEstagio);
             if (cargaHorariaMsg.trim().isEmpty()) {
                 Integer cargaHoraria = Integer.parseInt(cargaHorariaTermoEstagio);
+                System.out.println("Carga Int: " + cargaHoraria);
                 if (cargaHorariaMsg.trim().isEmpty()) {
                     cargaHorariaMsg = ValidaUtils.validaTamanho(campo, tamanho, cargaHoraria);
+                    System.out.println("IF 1");
                     if (cargaHorariaMsg.trim().isEmpty()) {
                         request.setAttribute("cargaHoraria", cargaHoraria);
+                        System.out.println("IF 2");
                     } else {
                         cargaHorariaMsg = messages.getString(cargaHorariaMsg);
                         cargaHorariaMsg = ServletUtils.mensagemFormatada(cargaHorariaMsg, locale, tamanho);
                         request.setAttribute("cargaHorariaMsg", cargaHorariaMsg);
+                        System.out.println("Msg carga horaria: "+cargaHorariaMsg);
                     }
                 } else {
                     cargaHorariaMsg = messages.getString(cargaHorariaMsg);
@@ -599,7 +604,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
             }
         }
 
-        if (numeroConvenio == null || numeroConvenio.equals("") && nomeConvenio == null || nomeConvenio.equals("")) {
+        if ((numeroConvenio == null || numeroConvenio.equals("")) && (nomeConvenio == null || nomeConvenio.equals(""))) {
             numeroConvenioMsg = messages.getString("br.cefetrj.sisgee.form_termo_estagio_servlet.busca_convenio_vazia");
             nomeConvenioMsg = numeroConvenioMsg;
             request.setAttribute("numeroConvenioMsg", numeroConvenioMsg);

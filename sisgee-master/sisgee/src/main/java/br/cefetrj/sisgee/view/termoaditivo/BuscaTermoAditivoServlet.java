@@ -55,7 +55,7 @@ public class BuscaTermoAditivoServlet extends HttpServlet {
 
         //TODO consertar a lógica de mensagem vazia
         if (!msg.equals("")) {
-            aluno = AlunoServices.buscarAluno(new Aluno(id));
+            aluno = AlunoServices.buscarAlunoByMatricula(idAluno);
             termoEstagios = aluno.getTermoEstagios();
         }
         if (termoEstagios != null) {

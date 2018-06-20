@@ -328,20 +328,21 @@
                     </div>
                 </fieldset>
 
-                <fieldset ${ isVisualizacao eq true ? 'disabled' :'' }>
-                    <div class="form-group col-md-8">
-                        <label for="idProfessorOrientador"><fmt:message key = "br.cefetrj.sisgee.resources.form.professorOrientador"/></label>
-                        <select name="idProfessorOrientador" id="idProfessorOrientador" class="form-control ${ not empty idProfessorMsg ? 'is-invalid': not empty idProfessorMsg ? 'is-invalid' : 'is-valid' }" ${ empty termo ? '' : empty updProfessor ? 'disabled' : '' }>
-                            <option value="" selected>---</option>
-                            <c:if test="${ not empty termo }">
-                                <option selected>${termo.professorOrientador.nomeProfessorOrientador}</option>
-                            </c:if>    
-                        </select>
-                        <c:if test="${ not empty idProfessorMsg }">
-                            <div class="invalid-feedback">${ idProfessorMsg }</div>
-                        </c:if>				
-                    </div>
-                </fieldset>
+              <fieldset ${ isVisualizacao eq true ? 'disabled' :'' }>
+                <div class="form-group col-md-8">
+                    <label for="idProfessorOrientador"><fmt:message key = "br.cefetrj.sisgee.resources.form.professorOrientador"/></label>
+                    <select name="idProfessorOrientador" id="idProfessorOrientador" class="form-control ${ not empty idProfessorMsg ? 'is-invalid': not empty idProfessorMsg ? 'is-invalid' : 'is-valid' }" ${ empty termoEstagio ? '' : empty updProfessor ? 'disabled' : '' } ${professor}>
+
+                        <c:forEach items="${ professores }" var="professor">
+                            <option ${termo.professorOrientador.idProfessorOrientador == professor.idProfessorOrientador ? 'selected' : ''} value="${ professor.idProfessorOrientador }">${ professor.nomeProfessorOrientador }</option>
+                        </c:forEach>
+
+                    </select>
+                    <c:if test="${ not empty idProfessorMsg }">
+                        <div class="invalid-feedback">${ idProfessorMsg }</div>
+                    </c:if>				
+                </div>
+            </fieldset>
 
                 <c:if test="${ not empty termo }">
                     <input type="hidden" name="idTermoEstagio" value="${ termo.idTermoEstagio }" />

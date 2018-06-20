@@ -43,8 +43,10 @@ public class IncluirTermoEstagioServlet extends HttpServlet {
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
 
         //OBRIGATÓRIO
+        Date dataFimTermoEstagio = (Date) request.getAttribute("dataFim");
         Date dataInicioTermoEstagio = (Date) request.getAttribute("dataInicio");
         Integer cargaHorariaTermoEstagio = (Integer) request.getAttribute("cargaHoraria");
+        System.out.println("Carga Horaria: "+cargaHorariaTermoEstagio);
         Float valorBolsa = (Float) request.getAttribute("valor");
         String enderecoTermoEstagio = (String) request.getAttribute("enderecoTermoEstagio");
         String complementoEnderecoTermoEstagio = (String) request.getAttribute("complementoEnderecoTermoEstagio");
@@ -67,17 +69,12 @@ public class IncluirTermoEstagioServlet extends HttpServlet {
 
 
         //NÃO OBRIGATÓRIO
-        Boolean hasDataFim = (Boolean) request.getAttribute("hasDataFim");
         Boolean hasProfessor = (Boolean) request.getAttribute("hasProfessor");
         String isAgenteIntegracao = (String) request.getAttribute("isAgenteIntegracao");
 
-        Date dataFimTermoEstagio = null;
         ProfessorOrientador professorOrientador = null;
         AgenteIntegracao agenteIntegracao = null;
 
-        if (hasDataFim) {
-            dataFimTermoEstagio = (Date) request.getAttribute("dataFim");
-        }
 
         if (hasProfessor) {
             professorOrientador = new ProfessorOrientador((Integer) request.getAttribute("idProfessor"));

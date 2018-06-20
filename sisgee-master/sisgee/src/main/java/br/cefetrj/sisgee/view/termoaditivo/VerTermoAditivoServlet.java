@@ -1,5 +1,7 @@
 package br.cefetrj.sisgee.view.termoaditivo;
 
+import br.cefetrj.sisgee.control.AlunoServices;
+import br.cefetrj.sisgee.control.ProfessorOrientadorServices;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -12,12 +14,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.cefetrj.sisgee.control.TermoAditivoServices;
 import br.cefetrj.sisgee.control.TermoEstagioServices;
+import br.cefetrj.sisgee.model.entity.Aluno;
+import br.cefetrj.sisgee.model.entity.ProfessorOrientador;
 import br.cefetrj.sisgee.model.entity.TermoEstagio;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
+import br.cefetrj.sisgee.view.utils.UF;
 import br.cefetrj.sisgee.view.utils.ValidaUtils;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,19 +45,24 @@ public class VerTermoAditivoServlet extends HttpServlet {
         Locale locale = ServletUtils.getLocale(request);
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
 
-        String idTermoAditivo = request.getParameter("idTermo");
+        String idAluno = request.getParameter("idAluno");
+        String idTermo = request.getParameter("idTermo");
+        int idTermoInt = Integer.parseInt(idTermo);
         Integer id = null;
         TermoEstagio termo = null;
         //TermoEstagio termoEstagio = null;
         String msg = "";
         String campo = "Termo Aditivo";
         boolean isValid = true;
-        msg = ValidaUtils.validaObrigatorio("campo", idTermoAditivo);
+        msg = ValidaUtils.validaObrigatorio("campo", idAluno);
         if (msg.trim().isEmpty()) {
-            msg = ValidaUtils.validaInteger(campo, idTermoAditivo);
             if (msg.trim().isEmpty()) {
-                id = Integer.parseInt(idTermoAditivo);
-                termo = TermoAditivoServices.buscarTermoAditivo(id);
+                Aluno aluno = AlunoServices.buscarAlunoByMatricula(idAluno);
+                for(TermoEstagio termo1 : aluno.getTermoEstagios()){
+                    if(termo1.getIdTermoEstagio() == idTermoInt){
+                        termo = termo1;
+                    }
+                }
                 if (termo != null) {
                     try {
                         String di = ServletUtils.mudarFormatoData(termo.getDataInicioTermoEstagio());
@@ -86,6 +97,8 @@ public class VerTermoAditivoServlet extends HttpServlet {
         }
 
         if (isValid) {
+            List<ProfessorOrientador> professores = ProfessorOrientadorServices.listarProfessorOrientador();
+            request.setAttribute("professores", professores);
             boolean isVisualizacao = true;
             String aditivo = "sim";
             request.setAttribute("isVisualizacao", isVisualizacao);

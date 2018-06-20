@@ -84,6 +84,7 @@
                                 <td>${not empty termo.dataRescisaoTermoEstagio ? "Inativo" : "Ativo"}</td>
                                 <td>
                                     <c:url value = "/VerTermoAditivoServlet" var = "verTermoAditivoUrl" scope = "page">
+                                        <c:param name="idAluno" value = "${termo.aluno.matricula}"/>
                                         <c:param name="idTermo" value = "${termo.idTermoEstagio}"/>  
                                     </c:url>
                                     <a href = "${verTermoAditivoUrl}" >${termo.dataInicioTermoEstagio }</a>
