@@ -39,57 +39,112 @@ public class Aluno {
     @OneToMany(mappedBy = "aluno")
     private List<TermoEstagio> termoEstagios;
 
+    /**
+     *
+     */
     public Aluno() {
     }
 
+    /**
+     *
+     * @param idAluno
+     */
     public Aluno(Integer idAluno) {
         this.idAluno = idAluno;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdAluno() {
         return idAluno;
     }
 
+    /**
+     *
+     * @param idAluno
+     */
     public void setIdAluno(Integer idAluno) {
         this.idAluno = idAluno;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMatricula() {
         return matricula;
     }
 
+    /**
+     *
+     * @param matricula
+     */
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNomeAluno() {
         return nomeAluno;
     }
 
+    /**
+     *
+     * @param nomeAluno
+     */
     public void setNomeAluno(String nomeAluno) {
         this.nomeAluno = nomeAluno;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNomeCurso() {
         return nomeCurso;
     }
 
+    /**
+     *
+     * @param nomeCurso
+     */
     public void setNomeCurso(String nomeCurso) {
         this.nomeCurso = nomeCurso;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNomeCampus() {
         return nomeCampus;
     }
 
+    /**
+     *
+     * @param nomeCampus
+     */
     public void setNomeCampus(String nomeCampus) {
         this.nomeCampus = nomeCampus;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<TermoEstagio> getTermoEstagios() {
         return termoEstagios;
     }
 
+    /**
+     *
+     * @param termoEstagios
+     */
     public void setTermoEstagios(List<TermoEstagio> termoEstagios) {
         this.termoEstagios = termoEstagios;
     }

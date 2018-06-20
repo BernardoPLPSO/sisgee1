@@ -35,10 +35,21 @@ public class Empresa {
 	/*@OneToMany(mappedBy = "empresa")
 	private List<PessoaFisica> convenios;
         */
+
+    /**
+     *
+     */
+
 	
 	public Empresa(){}
 	
-	public Empresa(String cnpjEmpresa, String nomeEmpresa, AgenteIntegracao agenteIntegracao ){
+    /**
+     *
+     * @param cnpjEmpresa
+     * @param nomeEmpresa
+     * @param agenteIntegracao
+     */
+    public Empresa(String cnpjEmpresa, String nomeEmpresa, AgenteIntegracao agenteIntegracao ){
 		
 		this.cnpjEmpresa = cnpjEmpresa;
 		this.nomeEmpresa = nomeEmpresa;
@@ -46,35 +57,67 @@ public class Empresa {
 
 	}
 	
-	public Empresa(Integer idEmpresa) {
+    /**
+     *
+     * @param idEmpresa
+     */
+    public Empresa(Integer idEmpresa) {
 		this.idEmpresa = idEmpresa;
 	}
 	
-	public Integer getIdEmpresa() {
+    /**
+     *
+     * @return
+     */
+    public Integer getIdEmpresa() {
 		return idEmpresa;
 	}
 
-	public void setIdEmpresa(Integer idEmpresa) {
+    /**
+     *
+     * @param idEmpresa
+     */
+    public void setIdEmpresa(Integer idEmpresa) {
 		this.idEmpresa = idEmpresa;
 	}
 
-	public String getCnpjEmpresa() {
+    /**
+     *
+     * @return
+     */
+    public String getCnpjEmpresa() {
 		return cnpjEmpresa;
 	}
 
-	public void setCnpjEmpresa(String cnpjEmpresa) {
+    /**
+     *
+     * @param cnpjEmpresa
+     */
+    public void setCnpjEmpresa(String cnpjEmpresa) {
 		this.cnpjEmpresa = cnpjEmpresa;
 	}
 
-	public String getNomeEmpresa() {
+    /**
+     *
+     * @return
+     */
+    public String getNomeEmpresa() {
 		return nomeEmpresa;
 	}
 
-	public void setNomeEmpresa(String nomeEmpresa) {
+    /**
+     *
+     * @param nomeEmpresa
+     */
+    public void setNomeEmpresa(String nomeEmpresa) {
 		this.nomeEmpresa = nomeEmpresa;
 	}
 
-	public AgenteIntegracao getAgenteIntegracao() {
+    /**
+     *
+     * @return
+     */
+    public AgenteIntegracao getAgenteIntegracao() {
 		return agenteIntegracao;
 	}
 

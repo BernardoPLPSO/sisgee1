@@ -35,6 +35,13 @@ import org.apache.log4j.Logger;
 @WebServlet("/ConveniosVencerServlet")
 public class ConveniosVencerServlet extends HttpServlet {
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

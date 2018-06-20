@@ -18,16 +18,29 @@ import java.util.List;
  */
 public class PessoaFisicaServices {
 
+    /**
+     *
+     * @return
+     */
     public static List<PessoaFisica> listarConvenios() {
         GenericDAO<PessoaFisica> pessoaFisicaDAO = PersistenceManager.createGenericDAO(PessoaFisica.class);
         return pessoaFisicaDAO.buscarTodos();
     }
 
+    /**
+     *
+     * @param pessoaFisica
+     * @return
+     */
     public static PessoaFisica buscarConvenio(PessoaFisica pessoaFisica) {
         GenericDAO<PessoaFisica> pessoaFisicaDAO = PersistenceManager.createGenericDAO(PessoaFisica.class);
         return pessoaFisicaDAO.buscar(pessoaFisica.getIdConvenio());
     }
 
+    /**
+     *
+     * @param pessoaFisica
+     */
     public static void incluirConvenio(PessoaFisica pessoaFisica) {
         GenericDAO<PessoaFisica> pessoaFisicaDAO = PersistenceManager.createGenericDAO(PessoaFisica.class);
         PersistenceManager.getTransaction().begin();
@@ -39,6 +52,11 @@ public class PessoaFisicaServices {
         }
     }
 
+    /**
+     *
+     * @param numero
+     * @return
+     */
     public static PessoaFisica buscarConvenioByNumero(String numero) {
         PessoaFisicaDAO pessoaFisicaDAO = new PessoaFisicaDAO();
         try {
@@ -53,6 +71,11 @@ public class PessoaFisicaServices {
         }
     }
 
+    /**
+     *
+     * @param nome
+     * @return
+     */
     public static PessoaFisica buscarConvenioByNome(String nome) {
         PessoaFisicaDAO pessoaFisicaDAO = new PessoaFisicaDAO();
         try {
@@ -63,6 +86,11 @@ public class PessoaFisicaServices {
         }
     }
     
+    /**
+     *
+     * @param nome
+     * @return
+     */
     public static List<PessoaFisica> buscarListaNome(String nome){
         PessoaFisicaDAO pessoaFisicaDAO = new PessoaFisicaDAO();
         String nome1 = "%";
@@ -80,6 +108,11 @@ public class PessoaFisicaServices {
         }
     }
 
+    /**
+     *
+     * @param cpf
+     * @return
+     */
     public static PessoaFisica buscarConvenioByCPF(String cpf) {
         PessoaFisicaDAO pessoaFisicaDao = new PessoaFisicaDAO();
         try {
@@ -91,7 +124,14 @@ public class PessoaFisicaServices {
 
     }
     
-    
+    /**
+     *
+     * @param numeroConvenio
+     * @param email
+     * @param telefone
+     * @param dataAssinatura
+     * @return
+     */
     public static String atualizarConvenioPF(String numeroConvenio, String email ,String telefone, Date dataAssinatura) {
         PessoaFisicaDAO pessoaFisicaDao = new PessoaFisicaDAO();
         String msg = "";

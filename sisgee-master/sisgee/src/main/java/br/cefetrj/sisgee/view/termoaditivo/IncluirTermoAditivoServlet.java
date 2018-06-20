@@ -36,6 +36,13 @@ public class IncluirTermoAditivoServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

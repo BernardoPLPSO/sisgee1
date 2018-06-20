@@ -31,41 +31,80 @@ public class AgenteIntegracao {
 	@OneToMany(mappedBy="agenteIntegracao")
 	private List<Empresa> empresas;
 		
-	public AgenteIntegracao() {}
+    /**
+     *
+     */
+    public AgenteIntegracao() {}
 	
-	public AgenteIntegracao(Integer idAgenteIntegracao) {
+    /**
+     *
+     * @param idAgenteIntegracao
+     */
+    public AgenteIntegracao(Integer idAgenteIntegracao) {
 		this.idAgenteIntegracao = idAgenteIntegracao;
 	}
 
-	public Integer getIdAgenteIntegracao() {
+    /**
+     *
+     * @return
+     */
+    public Integer getIdAgenteIntegracao() {
 		return idAgenteIntegracao;
 	}
 
-	public void setIdAgenteIntegracao(Integer idAgenteIntegracao) {
+    /**
+     *
+     * @param idAgenteIntegracao
+     */
+    public void setIdAgenteIntegracao(Integer idAgenteIntegracao) {
 		this.idAgenteIntegracao = idAgenteIntegracao;
 	}
 
-	public String getCnpjAgenteIntegracao() {
+    /**
+     *
+     * @return
+     */
+    public String getCnpjAgenteIntegracao() {
 		return cnpjAgenteIntegracao;
 	}
 
-	public void setCnpjAgenteIntegracao(String cnpjAgenteIntegracao) {
+    /**
+     *
+     * @param cnpjAgenteIntegracao
+     */
+    public void setCnpjAgenteIntegracao(String cnpjAgenteIntegracao) {
 		this.cnpjAgenteIntegracao = cnpjAgenteIntegracao;
 	}
 
-	public String getNomeAgenteIntegracao() {
+    /**
+     *
+     * @return
+     */
+    public String getNomeAgenteIntegracao() {
 		return nomeAgenteIntegracao;
 	}
 
-	public void setNomeAgenteIntegracao(String nomeAgenteIntegracao) {
+    /**
+     *
+     * @param nomeAgenteIntegracao
+     */
+    public void setNomeAgenteIntegracao(String nomeAgenteIntegracao) {
 		this.nomeAgenteIntegracao = nomeAgenteIntegracao;
 	}
 
-	public List<Empresa> getEmpresas() {
+    /**
+     *
+     * @return
+     */
+    public List<Empresa> getEmpresas() {
 		return empresas;
 	}
 
-	public void setEmpresas(List<Empresa> empresas) {
+    /**
+     *
+     * @param empresas
+     */
+    public void setEmpresas(List<Empresa> empresas) {
 		this.empresas = empresas;
 	}
 
@@ -99,7 +138,12 @@ public class AgenteIntegracao {
 		return nomeAgenteIntegracao;
 	}
 	
-	public AgenteIntegracao(String nomeAgenteIntegracao, String cnpjAgenteIntegracao){
+    /**
+     *
+     * @param nomeAgenteIntegracao
+     * @param cnpjAgenteIntegracao
+     */
+    public AgenteIntegracao(String nomeAgenteIntegracao, String cnpjAgenteIntegracao){
 		
 		this.cnpjAgenteIntegracao = cnpjAgenteIntegracao;
 		this.nomeAgenteIntegracao = nomeAgenteIntegracao;

@@ -15,7 +15,14 @@ import javax.persistence.Query;
  */
 public class TermoAditivoDAO {
 	
-	public List<Object[]> buscarFiltrado(Boolean obrigatorio , Date inicio, Date termino){
+    /**
+     *
+     * @param obrigatorio
+     * @param inicio
+     * @param termino
+     * @return
+     */
+    public List<Object[]> buscarFiltrado(Boolean obrigatorio , Date inicio, Date termino){
 
 		
 		EntityManagerFactory factory =
@@ -49,7 +56,13 @@ public class TermoAditivoDAO {
 		 return  authors;
 	}
 	
-	public List<Object[]> buscarFiltrado( Date inicio, Date termino){
+    /**
+     *
+     * @param inicio
+     * @param termino
+     * @return
+     */
+    public List<Object[]> buscarFiltrado( Date inicio, Date termino){
 		
 		System.out.println("test 56");
 		EntityManagerFactory factory =

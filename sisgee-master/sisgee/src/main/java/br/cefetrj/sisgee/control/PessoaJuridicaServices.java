@@ -17,16 +17,30 @@ import java.util.List;
  * @author Pirlimpimposo
  */
 public class PessoaJuridicaServices {
+
+    /**
+     *
+     * @return
+     */
     public static List<PessoaJuridica> listarConvenios() {
         GenericDAO<PessoaJuridica> pessoaJuridicaDAO = PersistenceManager.createGenericDAO(PessoaJuridica.class);
         return pessoaJuridicaDAO.buscarTodos();
     }
     
+    /**
+     *
+     * @param pessoaJuridica
+     * @return
+     */
     public static PessoaJuridica buscarConvenio(PessoaJuridica pessoaJuridica) {
         GenericDAO<PessoaJuridica> pessoaJuridicaDAO = PersistenceManager.createGenericDAO(PessoaJuridica.class);
         return pessoaJuridicaDAO.buscar(pessoaJuridica.getIdConvenio());
     }
 
+    /**
+     *
+     * @param pessoaJuridica
+     */
     public static void incluirConvenio(PessoaJuridica pessoaJuridica) {
         GenericDAO<PessoaJuridica> pessoaJuridicaDAO = PersistenceManager.createGenericDAO(PessoaJuridica.class);
         PersistenceManager.getTransaction().begin();
@@ -38,6 +52,11 @@ public class PessoaJuridicaServices {
         }
     }
 
+    /**
+     *
+     * @param numero
+     * @return
+     */
     public static PessoaJuridica buscarConvenioByNumero(String numero) {
         PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
         try {
@@ -52,6 +71,11 @@ public class PessoaJuridicaServices {
         }
     }
     
+    /**
+     *
+     * @param nome
+     * @return
+     */
     public static PessoaJuridica buscarConvenioByNome(String nome) {
         PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
         try {
@@ -62,6 +86,11 @@ public class PessoaJuridicaServices {
         }
     }
     
+    /**
+     *
+     * @param nome
+     * @return
+     */
     public static List<PessoaJuridica> buscarListaNome(String nome){
         PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
         String nome1 = "%";
@@ -75,6 +104,12 @@ public class PessoaJuridicaServices {
             return null;
         }
     }        
+
+    /**
+     *
+     * @param cnpj
+     * @return
+     */
     public static PessoaJuridica buscarConvenioByCNPJ(String cnpj) {
         PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
         try {
@@ -85,7 +120,16 @@ public class PessoaJuridicaServices {
         }
     }
     
-     public static String atualizarConvenioPJ(String numeroConvenio, String email, String pessoaContato ,String telefone, Date dataAssinatura) {
+    /**
+     *
+     * @param numeroConvenio
+     * @param email
+     * @param pessoaContato
+     * @param telefone
+     * @param dataAssinatura
+     * @return
+     */
+    public static String atualizarConvenioPJ(String numeroConvenio, String email, String pessoaContato ,String telefone, Date dataAssinatura) {
         PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
         String msg = "";
          System.out.println(numeroConvenio + email + pessoaContato);

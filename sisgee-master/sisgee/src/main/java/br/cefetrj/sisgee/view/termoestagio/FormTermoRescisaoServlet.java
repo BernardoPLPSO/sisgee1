@@ -27,13 +27,24 @@ import br.cefetrj.sisgee.view.utils.ValidaUtils;
 public class FormTermoRescisaoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	@Override
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {			
 		
 		request.getRequestDispatcher("/form_termo_rescisao.jsp").forward(request, response);
 	}
 
 	/**
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	@Override

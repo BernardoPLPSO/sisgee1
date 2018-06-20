@@ -8,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+/**
+ *
+ * @author diego
+ */
 @Entity
 public class ProfessorOrientador {
 
@@ -21,33 +25,64 @@ public class ProfessorOrientador {
 	@OneToMany(mappedBy = "professorOrientador")
 	private List<TermoEstagio> termoEstagios;
 
-	public ProfessorOrientador() {}
+    /**
+     *
+     */
+    public ProfessorOrientador() {}
 	
-	public ProfessorOrientador(Integer idProfessorOrientador) {
+    /**
+     *
+     * @param idProfessorOrientador
+     */
+    public ProfessorOrientador(Integer idProfessorOrientador) {
 		this.idProfessorOrientador = idProfessorOrientador;
 	}
 	
-	public Integer getIdProfessorOrientador() {
+    /**
+     *
+     * @return
+     */
+    public Integer getIdProfessorOrientador() {
 		return idProfessorOrientador;
 	}
 
-	public void setIdProfessorOrientador(Integer idProfessorOrientador) {
+    /**
+     *
+     * @param idProfessorOrientador
+     */
+    public void setIdProfessorOrientador(Integer idProfessorOrientador) {
 		this.idProfessorOrientador = idProfessorOrientador;
 	}
 
-	public String getNomeProfessorOrientador() {
+    /**
+     *
+     * @return
+     */
+    public String getNomeProfessorOrientador() {
 		return nomeProfessorOrientador;
 	}
 
-	public void setNomeProfessorOrientador(String nomeProfessorOrientador) {
+    /**
+     *
+     * @param nomeProfessorOrientador
+     */
+    public void setNomeProfessorOrientador(String nomeProfessorOrientador) {
 		this.nomeProfessorOrientador = nomeProfessorOrientador;
 	}
 
-	public List<TermoEstagio> getTermoEstagios() {
+    /**
+     *
+     * @return
+     */
+    public List<TermoEstagio> getTermoEstagios() {
 		return termoEstagios;
 	}
 
-	public void setTermoEstagios(List<TermoEstagio> termoEstagios) {
+    /**
+     *
+     * @param termoEstagios
+     */
+    public void setTermoEstagios(List<TermoEstagio> termoEstagios) {
 		this.termoEstagios = termoEstagios;
 	}
 

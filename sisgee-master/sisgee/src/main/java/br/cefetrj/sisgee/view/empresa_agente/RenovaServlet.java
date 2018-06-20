@@ -35,6 +35,13 @@ public class RenovaServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -233,11 +240,22 @@ public class RenovaServlet extends HttpServlet {
         }
     }
     
+    /**
+     *
+     * @param x
+     * @return
+     * @throws ParseException
+     */
     public String formataData(Date x)throws ParseException{
        String resultado =  ServletUtils.mudarFormatoData(x);
        return resultado;
     }
     
+    /**
+     *
+     * @param numeroConvenio
+     * @return
+     */
     public static String retornaConvenioNovo(String numeroConvenio){
         
         int anoInt = Calendar.getInstance().get(Calendar.YEAR);

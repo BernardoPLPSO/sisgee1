@@ -28,6 +28,11 @@ public class TodasRequisicoesFilter implements Filter {
 	public void destroy() {}
 
 	/**
+     * @param request
+     * @param response
+     * @param chain
+     * @throws java.io.IOException
+     * @throws javax.servlet.ServletException
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -44,6 +49,8 @@ public class TodasRequisicoesFilter implements Filter {
 	}
 
 	/**
+     * @param fConfig
+     * @throws javax.servlet.ServletException
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {

@@ -27,7 +27,12 @@ public class EmpresaServices {
 		return empresaDao.buscarTodos();
 	}	
 	
-	public static Empresa buscarEmpresaByCnpj(String cnpj) {
+    /**
+     *
+     * @param cnpj
+     * @return
+     */
+    public static Empresa buscarEmpresaByCnpj(String cnpj) {
 		EmpresaDAO empresaDao = new EmpresaDAO();
 		try{
 			Empresa e = empresaDao.buscarByCnpj(cnpj);
@@ -38,7 +43,12 @@ public class EmpresaServices {
 		
 	}
 	
-	public static Empresa buscarEmpresaByNome(String nome) {
+    /**
+     *
+     * @param nome
+     * @return
+     */
+    public static Empresa buscarEmpresaByNome(String nome) {
 		EmpresaDAO empresaDao = new EmpresaDAO();
 		try{
 			Empresa e = empresaDao.buscarByNome(nome);
@@ -49,7 +59,12 @@ public class EmpresaServices {
 		
 	}
 	
-	public static Empresa buscarEmpresa(Integer idEmpresa) {
+    /**
+     *
+     * @param idEmpresa
+     * @return
+     */
+    public static Empresa buscarEmpresa(Integer idEmpresa) {
 		EmpresaDAO empresaDao = new EmpresaDAO();
 		try{
 			Empresa e = empresaDao.buscar(idEmpresa);
@@ -60,7 +75,11 @@ public class EmpresaServices {
 		
 	}
 	
-	public static void incluirEmpresa(Empresa empresa){
+    /**
+     *
+     * @param empresa
+     */
+    public static void incluirEmpresa(Empresa empresa){
 		GenericDAO<Empresa> empresaDao = PersistenceManager.createGenericDAO(Empresa.class);	
 		PersistenceManager.getTransaction().begin();
 		try{

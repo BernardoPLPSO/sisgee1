@@ -103,6 +103,14 @@ public class TermoEstagio {
     @ManyToOne(fetch = FetchType.EAGER)
     private TermoEstagio termoEstagio;
 
+    /**
+     *
+     * @param dataFimTermoEstagio
+     * @param cargaHorariaTermoEstagio
+     * @param valorBolsa
+     * @param enderecoTermoEstagio
+     * @param professorOrientador
+     */
     public TermoEstagio(Date dataFimTermoEstagio, Integer cargaHorariaTermoEstagio, Float valorBolsa, String enderecoTermoEstagio, ProfessorOrientador professorOrientador) {
         this.dataFimTermoEstagio = dataFimTermoEstagio;
         this.cargaHorariaTermoEstagio = cargaHorariaTermoEstagio;
@@ -111,17 +119,47 @@ public class TermoEstagio {
         this.professorOrientador = professorOrientador;
     }
 
+    /**
+     *
+     * @return
+     */
     public TermoEstagio getTermoEstagio() {
         return termoEstagio;
     }
 
+    /**
+     *
+     * @param termoEstagio
+     */
     public void setTermoEstagio(TermoEstagio termoEstagio) {
         this.termoEstagio = termoEstagio;
     }
 
+    /**
+     *
+     */
     public TermoEstagio() {
     }
 
+    /**
+     *
+     * @param dataInicioTermoEstagio
+     * @param dataFimTermoEstagio
+     * @param cargaHorariaTermoEstagio
+     * @param valorBolsa
+     * @param enderecoTermoEstagio
+     * @param complementoEnderecoTermoEstagio
+     * @param bairroEnderecoTermoEstagio
+     * @param cepEnderecoTermoEstagio
+     * @param cidadeEnderecoTermoEstagio
+     * @param estadoEnderecoTermoEstagio
+     * @param eEstagioObrigatorio
+     * @param aluno
+     * @param convenioPF
+     * @param professorOrientador
+     * @param nomeSupervisor
+     * @param cargoSupervisor
+     */
     public TermoEstagio(Date dataInicioTermoEstagio, Date dataFimTermoEstagio, Integer cargaHorariaTermoEstagio,
             Float valorBolsa, String enderecoTermoEstagio, String complementoEnderecoTermoEstagio, String bairroEnderecoTermoEstagio, String cepEnderecoTermoEstagio,
             String cidadeEnderecoTermoEstagio, String estadoEnderecoTermoEstagio, Boolean eEstagioObrigatorio,
@@ -145,22 +183,57 @@ public class TermoEstagio {
         this.cargoSupervisor = cargoSupervisor;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNomeSupervisor() {
         return nomeSupervisor;
     }
 
+    /**
+     *
+     * @param nomeSupervisor
+     */
     public void setNomeSupervisor(String nomeSupervisor) {
         this.nomeSupervisor = nomeSupervisor;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCargoSupervisor() {
         return cargoSupervisor;
     }
 
+    /**
+     *
+     * @param cargoSupervisor
+     */
     public void setCargoSupervisor(String cargoSupervisor) {
         this.cargoSupervisor = cargoSupervisor;
     }
 
+    /**
+     *
+     * @param dataInicioTermoEstagio
+     * @param dataFimTermoEstagio
+     * @param cargaHorariaTermoEstagio
+     * @param valorBolsa
+     * @param enderecoTermoEstagio
+     * @param complementoEnderecoTermoEstagio
+     * @param bairroEnderecoTermoEstagio
+     * @param cepEnderecoTermoEstagio
+     * @param cidadeEnderecoTermoEstagio
+     * @param estadoEnderecoTermoEstagio
+     * @param eEstagioObrigatorio
+     * @param aluno
+     * @param convenioPJ
+     * @param professorOrientador
+     * @param nomeSupervisor
+     * @param cargoSupervisor
+     */
     public TermoEstagio(Date dataInicioTermoEstagio, Date dataFimTermoEstagio, Integer cargaHorariaTermoEstagio,
             Float valorBolsa, String enderecoTermoEstagio, String complementoEnderecoTermoEstagio, String bairroEnderecoTermoEstagio, String cepEnderecoTermoEstagio,
             String cidadeEnderecoTermoEstagio, String estadoEnderecoTermoEstagio, Boolean eEstagioObrigatorio,
@@ -184,162 +257,322 @@ public class TermoEstagio {
         this.cargoSupervisor = cargoSupervisor;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdTermoEstagio() {
         return idTermoEstagio;
     }
 
+    /**
+     *
+     * @param idTermoEstagio
+     */
     public void setIdTermoEstagio(Integer idTermoEstagio) {
         this.idTermoEstagio = idTermoEstagio;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDataInicioTermoEstagio() {
         return dataInicioTermoEstagio;
     }
 
+    /**
+     *
+     * @param dataInicioTermoEstagio
+     */
     public void setDataInicioTermoEstagio(Date dataInicioTermoEstagio) {
         this.dataInicioTermoEstagio = dataInicioTermoEstagio;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDataFimTermoEstagio() {
         return dataFimTermoEstagio;
     }
 
+    /**
+     *
+     * @param dataFimTermoEstagio
+     */
     public void setDataFimTermoEstagio(Date dataFimTermoEstagio) {
         this.dataFimTermoEstagio = dataFimTermoEstagio;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDataRescisaoTermoEstagio() {
         return dataRescisaoTermoEstagio;
     }
 
+    /**
+     *
+     * @param dataRescisaoTermoEstagio
+     */
     public void setDataRescisaoTermoEstagio(Date dataRescisaoTermoEstagio) {
         this.dataRescisaoTermoEstagio = dataRescisaoTermoEstagio;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getCargaHorariaTermoEstagio() {
         return cargaHorariaTermoEstagio;
     }
 
+    /**
+     *
+     * @param cargaHorariaTermoEstagio
+     */
     public void setCargaHorariaTermoEstagio(Integer cargaHorariaTermoEstagio) {
         this.cargaHorariaTermoEstagio = cargaHorariaTermoEstagio;
     }
 
+    /**
+     *
+     * @return
+     */
     public Float getValorBolsa() {
         return valorBolsa;
     }
 
+    /**
+     *
+     * @param valorBolsa
+     */
     public void setValorBolsa(Float valorBolsa) {
         this.valorBolsa = valorBolsa;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEnderecoTermoEstagio() {
         return enderecoTermoEstagio;
     }
 
+    /**
+     *
+     * @param enderecoTermoEstagio
+     */
     public void setEnderecoTermoEstagio(String enderecoTermoEstagio) {
         this.enderecoTermoEstagio = enderecoTermoEstagio;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getComplementoEnderecoTermoEstagio() {
         return complementoEnderecoTermoEstagio;
     }
 
+    /**
+     *
+     * @param complementoEnderecoTermoEstagio
+     */
     public void setComplementoEnderecoTermoEstagio(String complementoEnderecoTermoEstagio) {
         this.complementoEnderecoTermoEstagio = complementoEnderecoTermoEstagio;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBairroEnderecoTermoEstagio() {
         return bairroEnderecoTermoEstagio;
     }
 
+    /**
+     *
+     * @param bairroEnderecoTermoEstagio
+     */
     public void setBairroEnderecoTermoEstagio(String bairroEnderecoTermoEstagio) {
         this.bairroEnderecoTermoEstagio = bairroEnderecoTermoEstagio;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCepEnderecoTermoEstagio() {
         return cepEnderecoTermoEstagio;
     }
 
+    /**
+     *
+     * @param cepEnderecoTermoEstagio
+     */
     public void setCepEnderecoTermoEstagio(String cepEnderecoTermoEstagio) {
         this.cepEnderecoTermoEstagio = cepEnderecoTermoEstagio;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCidadeEnderecoTermoEstagio() {
         return cidadeEnderecoTermoEstagio;
     }
 
+    /**
+     *
+     * @param cidadeEnderecoTermoEstagio
+     */
     public void setCidadeEnderecoTermoEstagio(String cidadeEnderecoTermoEstagio) {
         this.cidadeEnderecoTermoEstagio = cidadeEnderecoTermoEstagio;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEstadoEnderecoTermoEstagio() {
         return estadoEnderecoTermoEstagio;
     }
 
+    /**
+     *
+     * @param estadoEnderecoTermoEstagio
+     */
     public void setEstadoEnderecoTermoEstagio(String estadoEnderecoTermoEstagio) {
         this.estadoEnderecoTermoEstagio = estadoEnderecoTermoEstagio;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getEEstagioObrigatorio() {
         return eEstagioObrigatorio;
     }
 
+    /**
+     *
+     * @param eEstagioObrigatorio
+     */
     public void setEEstagioObrigatorio(Boolean eEstagioObrigatorio) {
         this.eEstagioObrigatorio = eEstagioObrigatorio;
     }
 
+    /**
+     *
+     * @return
+     */
     public Aluno getAluno() {
         return aluno;
     }
 
+    /**
+     *
+     * @param aluno
+     */
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
 
+    /**
+     *
+     * @return
+     */
     public ProfessorOrientador getProfessorOrientador() {
         return professorOrientador;
     }
 
+    /**
+     *
+     * @param professorOrientador
+     */
     public void setProfessorOrientador(ProfessorOrientador professorOrientador) {
         this.professorOrientador = professorOrientador;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<TermoEstagio> getTermosAditivos() {
         return termosAditivos;
     }
 
+    /**
+     *
+     * @param termosAditivos
+     */
     public void setTermosAditivos(List<TermoEstagio> termosAditivos) {
         this.termosAditivos = termosAditivos;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean geteEstagioObrigatorio() {
         return eEstagioObrigatorio;
     }
 
+    /**
+     *
+     * @param eEstagioObrigatorio
+     */
     public void seteEstagioObrigatorio(Boolean eEstagioObrigatorio) {
         this.eEstagioObrigatorio = eEstagioObrigatorio;
     }
 
+    /**
+     *
+     * @return
+     */
     public PessoaFisica getConvenioPF() {
         return convenioPF;
     }
 
+    /**
+     *
+     * @param convenioPF
+     */
     public void setConvenioPF(PessoaFisica convenioPF) {
         this.convenioPF = convenioPF;
     }
 
+    /**
+     *
+     * @return
+     */
     public PessoaJuridica getConvenioPJ() {
         return convenioPJ;
     }
 
+    /**
+     *
+     * @param convenioPJ
+     */
     public void setConvenioPJ(PessoaJuridica convenioPJ) {
         this.convenioPJ = convenioPJ;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAgenciada() {
         return agenciada;
     }
 
+    /**
+     *
+     * @param agenciada
+     */
     public void setAgenciada(String agenciada) {
         this.agenciada = agenciada;
     }
@@ -374,6 +607,10 @@ public class TermoEstagio {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     public String toJson() {
         Jsonb jsonb = JsonbBuilder.create();
         String result = jsonb.toJson(this);

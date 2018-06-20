@@ -27,7 +27,12 @@ public class AgenteIntegracaoServices {
 		return agenteIntegracaoDAO.buscarTodos();
 	}	
 	
-	public static AgenteIntegracao buscarAgenteIntegracaoByCnpj(String cnpj) {
+    /**
+     *
+     * @param cnpj
+     * @return
+     */
+    public static AgenteIntegracao buscarAgenteIntegracaoByCnpj(String cnpj) {
 		AgenteIntegracaoDAO agenteIntegracaoDAO = new AgenteIntegracaoDAO();
 		try{
 			AgenteIntegracao e = agenteIntegracaoDAO.buscarByCnpj(cnpj);
@@ -38,7 +43,12 @@ public class AgenteIntegracaoServices {
 		
 	}
 	
-	public static AgenteIntegracao buscarAgenteIntegracaoByNome(String nome) {
+    /**
+     *
+     * @param nome
+     * @return
+     */
+    public static AgenteIntegracao buscarAgenteIntegracaoByNome(String nome) {
 		AgenteIntegracaoDAO agenteIntegracaoDAO = new AgenteIntegracaoDAO();
 		try{
 			AgenteIntegracao e = agenteIntegracaoDAO.buscarByNome(nome);
@@ -49,7 +59,12 @@ public class AgenteIntegracaoServices {
 		
 	}
 	
-	public static AgenteIntegracao buscarAgenteIntegracao(Integer idAgenteIntegracao) {
+    /**
+     *
+     * @param idAgenteIntegracao
+     * @return
+     */
+    public static AgenteIntegracao buscarAgenteIntegracao(Integer idAgenteIntegracao) {
 		AgenteIntegracaoDAO agenteIntegracaoDao = new AgenteIntegracaoDAO();
 		try{
 			AgenteIntegracao e = agenteIntegracaoDao.buscar(idAgenteIntegracao);
@@ -60,7 +75,11 @@ public class AgenteIntegracaoServices {
 		
 	}
 	
-	public static void incluirAgenteIntegracao(AgenteIntegracao agenteIntegracao){
+    /**
+     *
+     * @param agenteIntegracao
+     */
+    public static void incluirAgenteIntegracao(AgenteIntegracao agenteIntegracao){
 		GenericDAO<AgenteIntegracao> agenteIntegracaoDao = PersistenceManager.createGenericDAO(AgenteIntegracao.class);	
 		PersistenceManager.getTransaction().begin();
 		try{

@@ -18,10 +18,19 @@ import javax.persistence.Query;
  * @author Pirlimpimposo
  */
 public class PessoaJuridicaDAO extends GenericDAO<PessoaJuridica>{
+
+    /**
+     *
+     */
     public PessoaJuridicaDAO() {
         super(PessoaJuridica.class, PersistenceManager.getEntityManager());
     }
 
+    /**
+     *
+     * @param numero
+     * @return
+     */
     public PessoaJuridica buscarByNumeroConvenio(String numero) {
         Query q = manager.createQuery("SELECT c FROM PessoaJuridica c WHERE c.numeroConvenio LIKE :numero");
         q.setFirstResult(0);
@@ -31,6 +40,12 @@ public class PessoaJuridicaDAO extends GenericDAO<PessoaJuridica>{
         System.out.println(j);
         return  j;
     }
+
+    /**
+     *
+     * @param razaosocial
+     * @return
+     */
     public PessoaJuridica buscarByNome(String razaosocial) {
         return (PessoaJuridica) manager.createQuery(
                 "SELECT c FROM PessoaJuridica c WHERE c.razaoSocial LIKE :razaosocial")
@@ -38,10 +53,20 @@ public class PessoaJuridicaDAO extends GenericDAO<PessoaJuridica>{
                 .getSingleResult();
     }
     
+    /**
+     *
+     * @param nome
+     * @return
+     */
     public List<PessoaJuridica> buscarListaNome(String nome){
         return (List<PessoaJuridica>) manager.createQuery("SELECT c FROM PessoaJuridica c WHERE c.razaoSocial LIKE :nome").setParameter("nome", nome).getResultList();
     }
     
+    /**
+     *
+     * @param cnpj
+     * @return
+     */
     public PessoaJuridica buscarByCNPJ(String cnpj) {
         return (PessoaJuridica) manager.createQuery(
                 "SELECT c FROM PessoaJuridica c WHERE c.cnpj LIKE :cnpj")
@@ -49,6 +74,14 @@ public class PessoaJuridicaDAO extends GenericDAO<PessoaJuridica>{
                 .getSingleResult();
     }
     
+    /**
+     *
+     * @param numeroConvenio
+     * @param email
+     * @param telefone
+     * @param dataAssinatura
+     * @param pessoaContato
+     */
     public void mergePessoaJuridica(String numeroConvenio, String email, String telefone, Date dataAssinatura, String pessoaContato){
         PessoaJuridica pj = PessoaJuridicaServices.buscarConvenioByNumero(numeroConvenio);
         Integer id = pj.getIdConvenio();
@@ -62,6 +95,11 @@ public class PessoaJuridicaDAO extends GenericDAO<PessoaJuridica>{
         manager.getTransaction().commit();
     }
     
+    /**
+     *
+     * @param numeroConvenio
+     * @return
+     */
     public static String retornaConvenioNovo(String numeroConvenio){
         
         int anoInt = Calendar.getInstance().get(Calendar.YEAR);

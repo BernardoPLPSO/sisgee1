@@ -18,10 +18,18 @@ import javax.persistence.Query;
  */
 public class PessoaFisicaDAO extends GenericDAO<PessoaFisica> {
 
+    /**
+     *
+     */
     public PessoaFisicaDAO() {
         super(PessoaFisica.class, PersistenceManager.getEntityManager());
     }
 
+    /**
+     *
+     * @param numero
+     * @return
+     */
     public PessoaFisica buscarByNumeroConvenio(String numero) {
         Query q = manager.createQuery("SELECT c FROM PessoaFisica c WHERE c.numeroConvenio LIKE :numero");
         q.setFirstResult(0);
@@ -30,6 +38,11 @@ public class PessoaFisicaDAO extends GenericDAO<PessoaFisica> {
         return  f;
     }
     
+    /**
+     *
+     * @param nome
+     * @return
+     */
     public PessoaFisica buscarByNome(String nome) {
         return (PessoaFisica) manager.createQuery(
                 "SELECT c FROM PessoaFisica c WHERE c.nome LIKE :nome")
@@ -37,6 +50,11 @@ public class PessoaFisicaDAO extends GenericDAO<PessoaFisica> {
                 .getSingleResult();
     }
     
+    /**
+     *
+     * @param nome
+     * @return
+     */
     public List<PessoaFisica> buscarListaNome(String nome){
         
         List<PessoaFisica> Resultado = (List<PessoaFisica>) manager.createQuery("SELECT c FROM PessoaFisica c WHERE c.nome LIKE :nome").setParameter("nome", nome).getResultList();
@@ -44,6 +62,11 @@ public class PessoaFisicaDAO extends GenericDAO<PessoaFisica> {
         return Resultado;
     }
     
+    /**
+     *
+     * @param cpf
+     * @return
+     */
     public PessoaFisica buscarByCPF(String cpf) {
         return (PessoaFisica) manager.createQuery(
                 "SELECT c FROM PessoaFisica c WHERE c.cpf LIKE :cpf")
@@ -51,6 +74,13 @@ public class PessoaFisicaDAO extends GenericDAO<PessoaFisica> {
                 .getSingleResult();
     }
     
+    /**
+     *
+     * @param numeroConvenio
+     * @param email
+     * @param telefone
+     * @param dataAssinatura
+     */
     public void mergePessoaFisica(String numeroConvenio, String email, String telefone, Date dataAssinatura){
         PessoaFisica pf = PessoaFisicaServices.buscarConvenioByNumero(numeroConvenio);
         Integer id = pf.getIdConvenio();
@@ -63,6 +93,11 @@ public class PessoaFisicaDAO extends GenericDAO<PessoaFisica> {
         manager.getTransaction().commit();
     }
     
+    /**
+     *
+     * @param numeroConvenio
+     * @return
+     */
     public String retornaConvenioNovo(String numeroConvenio){
         
         int anoInt = Calendar.getInstance().get(Calendar.YEAR);

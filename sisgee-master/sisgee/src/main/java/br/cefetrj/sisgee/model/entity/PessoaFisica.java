@@ -52,84 +52,165 @@ public class PessoaFisica{
     @Column(length = 100, nullable = false)
     private String nome;
     
+    /**
+     *
+     */
     public PessoaFisica(){
         
     }
     
+    /**
+     *
+     * @param numeroConvenio
+     */
     public PessoaFisica(String numeroConvenio){
         this.numeroConvenio = numeroConvenio;
     }
     
+    /**
+     *
+     * @param cpf
+     * @param nome
+     * @param dataAssinatura
+     */
     public PessoaFisica(String cpf, String nome, Date dataAssinatura){
         this.cpf = cpf;
         this.nome = nome;
         this.dataAssinatura = dataAssinatura;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<TermoEstagio> getTermoEstagios() {
         return termoEstagios;
     }
 
+    /**
+     *
+     * @param termoEstagios
+     */
     public void setTermoEstagios(List<TermoEstagio> termoEstagios) {
         this.termoEstagios = termoEstagios;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDataAssinatura() {
         return dataAssinatura;
     }
 
+    /**
+     *
+     * @param dataAssinatura
+     */
     public void setDataAssinatura(Date dataAssinatura) {
         this.dataAssinatura = dataAssinatura;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTelefone() {
         return telefone;
     }
 
+    /**
+     *
+     * @param telefone
+     */
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCpf() {
         return cpf;
     }
 
+    /**
+     *
+     * @param cpf
+     */
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
     
-        public Integer getIdConvenio() {
+    /**
+     *
+     * @return
+     */
+    public Integer getIdConvenio() {
         return idConvenio;
     }
 
+    /**
+     *
+     * @param idConvenio
+     */
     public void setIdConvenio(Integer idConvenio) {
         this.idConvenio = idConvenio;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNumeroConvenio() {
         return numeroConvenio;
     }
 
+    /**
+     *
+     * @param numeroConvenio
+     */
     public void setNumeroConvenio(String numeroConvenio) {
         this.numeroConvenio = numeroConvenio;
     }
 
+    /**
+     *
+     * @return
+     */
     public JsonObject toJsonObj() {
         Jsonb jsonb = JsonbBuilder.create();
         String result = jsonb.toJson(this);

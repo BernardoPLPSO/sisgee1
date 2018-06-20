@@ -33,25 +33,50 @@ public class ItemRelatorio {
     private Date dataVencimento;
     private String dataFormatada;
 
+    /**
+     *
+     * @return
+     */
     public String getDataFormatada() {
         final DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         dataFormatada = df.format(dataVencimento);
         return dataFormatada;
     }
 
+    /**
+     *
+     * @param dataFormatada
+     */
     public void setDataFormatada(String dataFormatada) {
         final DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         this.dataFormatada = df.format(dataVencimento);
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDataVencimento() {
         return dataVencimento;
     }
 
+    /**
+     *
+     * @param dataVencimento
+     */
     public void setDataVencimento(Date dataVencimento) {
         this.dataVencimento = dataVencimento;
     }
 
+    /**
+     *
+     * @param numeroConvenio
+     * @param idConvenio
+     * @param nomeConvenio
+     * @param objConvenio
+     * @param tipoConvenio
+     * @throws ParseException
+     */
     public ItemRelatorio(String numeroConvenio, String idConvenio, String nomeConvenio, Object objConvenio, Class tipoConvenio) throws ParseException {
         super();
         this.numeroConvenio = numeroConvenio;
@@ -95,75 +120,149 @@ public class ItemRelatorio {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTelefone() {
         return telefone;
     }
 
+    /**
+     *
+     * @param telefone
+     */
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPessoaContato() {
         return pessoaContato;
     }
 
+    /**
+     *
+     * @param pessoaContato
+     */
     public void setPessoaContato(String pessoaContato) {
         this.pessoaContato = pessoaContato;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNumeroConvenio() {
         return numeroConvenio;
     }
 
+    /**
+     *
+     * @param numeroConvenio
+     */
     public void setNumeroConvenio(String numeroConvenio) {
         this.numeroConvenio = numeroConvenio;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getIdConvenio() {
         return idConvenio;
     }
 
+    /**
+     *
+     * @param idConvenio
+     */
     public void setIdConvenio(String idConvenio) {
         this.idConvenio = idConvenio;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNomeConvenio() {
         return nomeConvenio;
     }
 
+    /**
+     *
+     * @param nomeConvenio
+     */
     public void setNomeConvenio(String nomeConvenio) {
         this.nomeConvenio = nomeConvenio;
     }
 
+    /**
+     *
+     * @return
+     */
     public Object getObjConvenio() {
         return objConvenio;
     }
 
+    /**
+     *
+     * @param objConvenio
+     */
     public void setObjConvenio(Object objConvenio) {
         this.objConvenio = objConvenio;
     }
 
+    /**
+     *
+     * @return
+     */
     public Class getTipoConvenio() {
         return tipoConvenio;
     }
 
+    /**
+     *
+     * @param tipoConvenio
+     */
     public void setTipoConvenio(Class tipoConvenio) {
         this.tipoConvenio = tipoConvenio;
     }
 
+    /**
+     *
+     * @param nomeCurso
+     */
     public ItemRelatorio(String nomeCurso) {
         super();
         this.nomeCurso = nomeCurso;
     }
 
+    /**
+     *
+     * @param nomeCurso
+     * @param qntTermoEstagio
+     * @param qntRescReg
+     */
     public ItemRelatorio(String nomeCurso, int qntTermoEstagio, int qntRescReg) {
         super();
         this.nomeCurso = nomeCurso;
@@ -171,34 +270,66 @@ public class ItemRelatorio {
         this.qntRescReg = qntRescReg;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNomeCurso() {
         return nomeCurso;
     }
 
+    /**
+     *
+     * @param nomeCurso
+     */
     public void setNomeCurso(String nomeCurso) {
         this.nomeCurso = nomeCurso;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getQntTermoEstagio() {
         return qntTermoEstagio;
     }
 
+    /**
+     *
+     * @param qntTermoEstagio
+     */
     public void setQntTermoEstagio(int qntTermoEstagio) {
         this.qntTermoEstagio += qntTermoEstagio;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getQntTermoAditivo() {
         return qntTermoAditivo;
     }
 
+    /**
+     *
+     * @param qntTermoAditivo
+     */
     public void setQntTermoAditivo(int qntTermoAditivo) {
         this.qntTermoAditivo += qntTermoAditivo;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getQntRescReg() {
         return qntRescReg;
     }
 
+    /**
+     *
+     * @param qntRescReg
+     */
     public void setQntRescReg(int qntRescReg) {
         this.qntRescReg = qntRescReg;
     }

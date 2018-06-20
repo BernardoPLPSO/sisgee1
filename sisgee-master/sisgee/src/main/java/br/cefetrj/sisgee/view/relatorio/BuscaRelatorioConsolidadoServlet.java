@@ -39,6 +39,13 @@ public class BuscaRelatorioConsolidadoServlet extends HttpServlet {
         super();
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Date dataInicio = (Date) request.getAttribute("dataInicio");

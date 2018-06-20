@@ -30,6 +30,11 @@ public class TermoEstagioServices {
         return termoEstagioDao.buscarTodos();
     }
 
+    /**
+     *
+     * @param idTermoEstagio
+     * @return
+     */
     public static TermoEstagio buscarTermoEstagio(Integer idTermoEstagio) {
         GenericDAO<TermoEstagio> termoEstagioDao = PersistenceManager.createGenericDAO(TermoEstagio.class);
         return termoEstagioDao.buscar(idTermoEstagio);
@@ -62,6 +67,10 @@ public class TermoEstagioServices {
         }
     }
 
+    /**
+     *
+     * @param termoEstagio
+     */
     public static void incluirTermoEstagio(TermoEstagio termoEstagio) {
 
         /**
@@ -116,6 +125,10 @@ public class TermoEstagioServices {
 
     }
 
+    /**
+     *
+     * @param termoEstagio
+     */
     public static void alterarTermoEstagio(TermoEstagio termoEstagio) {
 
         GenericDAO<TermoEstagio> termoEstagioDao = PersistenceManager.createGenericDAO(TermoEstagio.class);

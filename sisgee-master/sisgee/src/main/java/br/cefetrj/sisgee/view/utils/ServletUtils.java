@@ -19,18 +19,31 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class ServletUtils {
 
+    /**
+     *
+     */
     public enum ErrorCode {
-        INVALID, REQUIRED
+
+        /**
+         *
+         */
+        INVALID,
+
+        /**
+         *
+         */
+        REQUIRED
     }
 
     /**
      * Método estático para buscar o locale no request, senão pega da sessão,
      * senão pega o padrão
      *
+     * @param d
      * @param request requisição do usuário
      * @return Locale localização do usuário ou selecionado pela página
-     * @throws ServletException caso a Locale não seja encontrada
      * @return locale do user ou selecionado
+     * @throws java.text.ParseException
      */
     public static String mudarFormatoData(Date d) throws ParseException {
         final String OLD_FORMAT = "yyyy/MM/dd";
@@ -43,6 +56,12 @@ public class ServletUtils {
         return data;
     }
 
+    /**
+     *
+     * @param request
+     * @return
+     * @throws ServletException
+     */
     public static Locale getLocale(HttpServletRequest request) throws ServletException {
 
         Locale locale = null;

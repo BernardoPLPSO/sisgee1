@@ -36,6 +36,10 @@ public class FormTermoAditivoServlet extends HttpServlet {
 
 	/**
 	 * Método doGet: carrega as listas necessárias para seleção dos atributos de relacionamento e redireciona para a tela de Registro de Termo
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -51,6 +55,10 @@ public class FormTermoAditivoServlet extends HttpServlet {
 
 	/**
 	 * Método para validação e inclusão do Termo Aditivo
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

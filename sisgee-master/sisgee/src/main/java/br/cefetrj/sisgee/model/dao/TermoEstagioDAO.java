@@ -16,7 +16,14 @@ import javax.persistence.Query;
 
 public class TermoEstagioDAO  {
 	
-	public List<Object[]> buscarFiltrado(Boolean obrigatorio , Date inicio, Date termino){
+    /**
+     *
+     * @param obrigatorio
+     * @param inicio
+     * @param termino
+     * @return
+     */
+    public List<Object[]> buscarFiltrado(Boolean obrigatorio , Date inicio, Date termino){
 		EntityManagerFactory factory =
 				Persistence.createEntityManagerFactory("sisgeePU");
 		EntityManager manager = factory.createEntityManager();
@@ -43,7 +50,13 @@ public class TermoEstagioDAO  {
 		return  authors;
 	}
 	
-	public List<Object[]> buscarFiltrado( Date inicio, Date termino){
+    /**
+     *
+     * @param inicio
+     * @param termino
+     * @return
+     */
+    public List<Object[]> buscarFiltrado( Date inicio, Date termino){
 		EntityManagerFactory factory =
 				Persistence.createEntityManagerFactory("sisgeePU");
 		EntityManager manager = factory.createEntityManager();

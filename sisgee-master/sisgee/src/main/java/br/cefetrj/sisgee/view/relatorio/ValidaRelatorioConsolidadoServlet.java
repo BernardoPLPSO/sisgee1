@@ -37,8 +37,14 @@ public class ValidaRelatorioConsolidadoServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String dataDeInicio = request.getParameter("dataDeInicio");
 		String dataDeTermino = request.getParameter("dataDeTermino");

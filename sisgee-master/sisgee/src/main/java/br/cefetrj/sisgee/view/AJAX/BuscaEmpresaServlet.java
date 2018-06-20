@@ -32,6 +32,10 @@ public class BuscaEmpresaServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      * response)
      */
