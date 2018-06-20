@@ -80,6 +80,7 @@ public class IncluirCadastroEmpresaServlet extends HttpServlet {
                 PessoaJuridicaServices.incluirConvenio(J);
 
                 msg = messages.getString("br.cefetrj.sisgee.incluir_cadastro_empresa_servlet.msg_empresa_cadastrada");
+                msg = msg +  "\n com número: " + J.getNumeroConvenio();
                 request.setAttribute("msg", msg);
                 lg.info(msg);
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
@@ -111,6 +112,7 @@ public class IncluirCadastroEmpresaServlet extends HttpServlet {
                 PessoaFisicaServices.incluirConvenio(F);
 
                 msg = messages.getString("br.cefetrj.sisgee.incluir_cadastro_empresa_servlet.msg_empresa_cadastrada");
+                msg = msg +  "\n com número: " + F.getNumeroConvenio();
                 request.setAttribute("msg", msg);
                 lg.info(msg);
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
