@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.cefetrj.sisgee.view.relatorio;
+package br.cefetrj.sisgee.view.empresa_agente;
 
 import br.cefetrj.sisgee.view.utils.ItemRelatorio;
 import java.io.IOException;
@@ -18,15 +18,15 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author daniel
  */
-public class ImprimeRelatorioConsolidadoServlet extends HttpServlet {
+public class ImprimeConveniosVencerServlet extends HttpServlet {
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        List<ItemRelatorio> listaItemRelatorio = (List) request.getAttribute("relatorio");
+        List<ItemRelatorio> listaItemRelatorio = (List) request.getAttribute("Resultado");
         
-        request.setAttribute("relatorio", listaItemRelatorio);
-        request.getRequestDispatcher("/relatorio_consolidado_lista.jsp").forward(request, response);
-        request.getSession().setAttribute("relatorio", null);
+        request.setAttribute("Resultado", listaItemRelatorio);
+        request.getRequestDispatcher("/form_convenioVencerRelatorio.jsp").forward(request, response);
+        request.getSession().setAttribute("Resultado", null);
     }
     
 }
