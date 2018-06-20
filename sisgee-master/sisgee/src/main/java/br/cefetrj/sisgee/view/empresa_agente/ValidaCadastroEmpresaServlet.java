@@ -261,6 +261,7 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
             } else {
                 nomePessoaMsg = messages.getString(nomePessoaMsg);
                 request.setAttribute("nomePessoaMsg", nomePessoaMsg);
+                System.out.println("NomePessoaMsg: "+nomePessoaMsg);
                 isValid = false;
             }
 
@@ -331,7 +332,7 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
                     request.setAttribute("email", email);
 
                 } else {
-                    EmailMsg = ServletUtils.mensagemFormatada(EmailMsg, locale, tamanho);
+                    EmailMsg = messages.getString(EmailMsg);
                     request.setAttribute("EmailMsg", EmailMsg);
                     isValid = false;
                 }
@@ -349,9 +350,9 @@ public class ValidaCadastroEmpresaServlet extends HttpServlet {
          */
         telefone = telefone.replaceAll("\\D", "");
         telefone = telefone.trim();
-
+        System.out.println("Telefone "+telefone);
         String telefoneMsg = "";
-        telefoneMsg = ValidaUtils.validaTamanho("telefone", 11, telefone);
+        telefoneMsg = ValidaUtils.validaTamanhoTelefone("telefone", telefone);
         if (telefoneMsg.trim().isEmpty()) {
             telefoneMsg = ValidaUtils.validaInteger("telefone", telefone);
             if (telefoneMsg.trim().isEmpty()) {

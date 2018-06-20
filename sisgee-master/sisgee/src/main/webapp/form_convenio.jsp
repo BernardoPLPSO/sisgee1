@@ -90,7 +90,7 @@
 
                         <div class="form-group col-md-6">
                             <label for="pessoaContato"><fmt:message key = "br.cefetrj.sisgee.resources.form.pessoaContato"/></label>
-                            <input type="text" class="form-control ${ not empty pessoaContatoMsg ? 'is-invalid': 'is-valid' }" id="pessoaContato" name="pessoaContato" maxlength="100"  value="${ param.pessoaContato }">
+                            <input type="text" class="form-control ${ not empty pessoaContatoMsg ? 'is-invalid': 'is-valid' }" id="pessoaContato" name="pessoaContato" maxlength="50"  value="${ param.pessoaContato }">
                             <c:if test="${ not empty pessoaContatoMsg }">
                                 <div class="invalid-feedback">${ pessoaContatoMsg }</div>
                             </c:if>

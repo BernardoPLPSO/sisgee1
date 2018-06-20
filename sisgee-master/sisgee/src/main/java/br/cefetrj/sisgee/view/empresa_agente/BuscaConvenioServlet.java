@@ -5,6 +5,7 @@
  */
 package br.cefetrj.sisgee.view.empresa_agente;
 
+import antlr.StringUtils;
 import br.cefetrj.sisgee.control.PessoaFisicaServices;
 import br.cefetrj.sisgee.control.PessoaJuridicaServices;
 import br.cefetrj.sisgee.model.entity.PessoaFisica;
@@ -28,83 +29,75 @@ import org.apache.log4j.Logger;
  */
 @WebServlet("/BuscaConvenioServlet")
 public class BuscaConvenioServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
-  @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-        
+
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         boolean validado = false;
         Locale locale = ServletUtils.getLocale(request);
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale);
-        
+
         String buscaNumero = request.getParameter("buscaNumero");
         String buscaRazaoNome = request.getParameter("buscaRazaoNome");
-        System.out.println("Busca Numero: "+buscaNumero);
-        System.out.println("Busca Razao Nome: "+ buscaRazaoNome);
-        
+        System.out.println("Busca Numero: " + buscaNumero);
+        System.out.println("Busca Razao Nome: " + buscaRazaoNome);
+
         String buscaNumeroMsg;
         String buscaRazaoNomeMsg;
-        String msg;
-         
-       if (buscaNumero.isEmpty() && buscaRazaoNome.isEmpty()){
-         
-              msg = messages.getString("br.cefetrj.sisgee.resources.form.busca.nenhumCampo");
-              buscaRazaoNomeMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.nenhumCampo");
-              buscaNumeroMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.nenhumCampo");        
-              request.setAttribute("msg", msg);
-              request.setAttribute("buscaRazaoNomeMsg", buscaRazaoNomeMsg);
-              request.setAttribute("buscaNumeroMsg", buscaNumeroMsg);
-              validado = false;
-              
-          
-        }else if(!buscaNumero.isEmpty() && !buscaRazaoNome.isEmpty()){
-                
-                    msg = messages.getString("br.cefetrj.sisgee.resources.form.busca.doisCampos");
-                    buscaRazaoNomeMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.doisCampos");
-                    buscaNumeroMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.doisCampos");        
-                    request.setAttribute("msg", msg);
-                    request.setAttribute("buscaRazaoNomeMsg", buscaRazaoNomeMsg);
-                    request.setAttribute("buscaNumeroMsg", buscaNumeroMsg);
-                    validado = false;
-                
-        }else{ 
-            if (!buscaNumero.isEmpty()) {
-               if (buscaNumero.contains("\\D")){
-                   buscaNumeroMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.campoNumerico");
-                    request.setAttribute("buscaNumeroMsg", buscaNumeroMsg);
-                    validado = false;
-                    
-               }else {
-                   validado = true;
-                   request.setAttribute("buscaNumero", buscaNumero);
-                   
-               }
-          
-               
-           }else if (!buscaRazaoNome.isEmpty()) {
-                   validado = true;
-                   request.setAttribute("buscaRazaoNome", buscaRazaoNome);
-                   
-                   }else {
-                      buscaRazaoNomeMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.nenhumCampo");
-                      request.setAttribute("buscaRazaoNomeMsg", buscaRazaoNomeMsg);
-                      validado = false;
-                      
-                   }                  
-       }   
-               
-               
-          
-           
+        String msg = "";
 
-        if(validado){
+        if (buscaNumero.isEmpty() && buscaRazaoNome.isEmpty()) {
+
+            msg = messages.getString("br.cefetrj.sisgee.resources.form.busca.nenhumCampo");
+            buscaRazaoNomeMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.nenhumCampo");
+            buscaNumeroMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.nenhumCampo");
+            request.setAttribute("msg", msg);
+            request.setAttribute("buscaRazaoNomeMsg", buscaRazaoNomeMsg);
+            request.setAttribute("buscaNumeroMsg", buscaNumeroMsg);
+            validado = false;
+
+        } else if (!buscaNumero.isEmpty() && !buscaRazaoNome.isEmpty()) {
+
+            msg = messages.getString("br.cefetrj.sisgee.resources.form.busca.doisCampos");
+            buscaRazaoNomeMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.doisCampos");
+            buscaNumeroMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.doisCampos");
+            request.setAttribute("msg", msg);
+            request.setAttribute("buscaRazaoNomeMsg", buscaRazaoNomeMsg);
+            request.setAttribute("buscaNumeroMsg", buscaNumeroMsg);
+            validado = false;
+
+        } else {
+            if (!buscaNumero.isEmpty()) {
+                try {
+                    int numeroConvenio = Integer.parseInt(buscaNumero);
+                    validado = true;
+                    request.setAttribute("buscaNumero", buscaNumero);
+                } catch (Exception e) {
+                    buscaNumeroMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.campoNumerico");
+                    request.setAttribute("buscaNumeroMsg", buscaNumeroMsg);
+                    validado = false;
+                }
+
+            } else if (!buscaRazaoNome.isEmpty()) {
+                validado = true;
+                request.setAttribute("buscaRazaoNome", buscaRazaoNome);
+
+            } else {
+                buscaRazaoNomeMsg = messages.getString("br.cefetrj.sisgee.resources.form.busca.nenhumCampo");
+                request.setAttribute("buscaRazaoNomeMsg", buscaRazaoNomeMsg);
+                validado = false;
+
+            }
+        }
+
+        if (validado) {
+            System.out.println("MSG: " + msg);
             request.getRequestDispatcher("/RenovaConvenioServlet").forward(request, response);
-        }else{
+        } else {
             request.getRequestDispatcher("/form_renovacao.jsp").forward(request, response);
         }
-        
-        
-        
-        
-        
+
     }
 }

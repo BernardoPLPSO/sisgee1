@@ -1,24 +1,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <legend class="col-form-legend col-lg"><fmt:message key = "br.cefetrj.sisgee.resources.form.dadosEmpresaConveniada"/></legend>
 <div class="form-row">
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-auto">
         <label for="numeroConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.numeroConvenio"/></label>
         <div class="input-group">						  
-            <input type="text" class="form-control numeroConvenio" placeholder="Digite o Número" id="numeroConvenio" name="numeroConvenio" value="${ numeroConvenio }">
+            <input type="text" class="form-control form-control numeroConvenio ${ not empty numeroConvenioMsg ? 'is-invalid': 'is-valid' }" placeholder="Digite o Número" id="numeroConvenio" name="numeroConvenio" value="${ numeroConvenio }">
             <span class="input-group-btn">
                 <button class="btn btn-primary" type="button" id="btnBuscarNumeroConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
             </span>
+            <c:if test="${ not empty numeroConvenioMsg }">
+                <div class="invalid-feedback">${ numeroConvenioMsg }</div>
+            </c:if>
         </div>
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-auto">
         <label for="nomeConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.nomeConvenio"/></label>
         <div class="input-group">						  
-            <input type="text" class="form-control nomeConvenioNotAI nomeConvenio" placeholder="Digite o Nome" id="nomeConvenio" name="nomeConvenio" value="${ nomeConvenio }">
+            <input type="text" class="form-control nomeConvenioNotAI nomeConvenio ${ not empty nomeConvenioMsg ? 'is-invalid': 'is-valid' }" placeholder="Digite o Nome" id="nomeConvenio" name="nomeConvenio" value="${ nomeConvenio }">
             <span class="input-group-btn">
                 <button class="btn btn-primary" type="button" id="btnBuscarNomeConvenio"><fmt:message key = "br.cefetrj.sisgee.resources.form.buscar"/></button>
             </span>
             &nbsp;&nbsp;
             <button type="button" class="btn btn-primary addEmpresa">+</button>
+             <c:if test="${ not empty nomeConvenioMsg }">
+                <div class="form-group invalid-feedback ">${ nomeConvenioMsg }</div>
+            </c:if>
         </div>
     </div>
 </div>

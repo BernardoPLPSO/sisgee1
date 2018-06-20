@@ -137,31 +137,36 @@ public class FormTermoEstagioServlet extends HttpServlet {
          * ValidaUtils
          */
         Date dataFim = null;
-        campo = "Data de Término";
-        Boolean hasDataFim = false;
-        if (!dataFimTermoEstagio.trim().isEmpty()) {
-            String dataFimMsg = "";
+        String dataFimMsg = "";
+        campo = "Data de Fim";
+
+        dataFimMsg = ValidaUtils.validaObrigatorio(campo, dataFimTermoEstagio);
+        if (dataFimMsg.trim().isEmpty()) {
             dataFimMsg = ValidaUtils.validaDate(campo, dataFimTermoEstagio);
             if (dataFimMsg.trim().isEmpty()) {
-                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                 try {
-                    dataFim = format.parse(dataFimTermoEstagio);
+                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                    dataFim = format.parse(dataInicioTermoEstagio);
                     request.setAttribute("dataFim", dataFim);
-                    hasDataFim = true;
                 } catch (Exception e) {
                     //TODO trocar saída de console por Log
                     System.out.println("Data em formato incorreto, mesmo após validação na classe ValidaUtils");
                     isValid = false;
                 }
             } else {
-                dataFimMsg = messages.getString(dataFimMsg);
+                dataInicioMsg = messages.getString(dataFimMsg);
                 request.setAttribute("dataFimMsg", dataFimMsg);
                 isValid = false;
                 //TODO Fazer log
                 System.out.println(dataFimMsg);
             }
+        } else {
+            dataInicioMsg = messages.getString(dataFimMsg);
+            request.setAttribute("dataFimMsg", dataFimMsg);
+            isValid = false;
+            //TODO Fazer log
+            System.out.println(dataFimMsg);
         }
-        request.setAttribute("hasDataFim", hasDataFim);
 
         /**
          * Validação do período (entre o início e fim do estágio) usando o
@@ -234,7 +239,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
         if (valorBolsaMsg.trim().isEmpty()) {
             valorBolsa = valorBolsa.replace(".", "");
             valorBolsa = valorBolsa.replace(",", ".");
-            System.out.println("Valor Bolsa: "+ valorBolsa);
+            System.out.println("Valor Bolsa: " + valorBolsa);
             valorBolsaMsg = ValidaUtils.validaFloat(campo, valorBolsa);
             if (valorBolsaMsg.trim().isEmpty()) {
                 Float valor = Float.parseFloat(valorBolsa);
@@ -298,7 +303,6 @@ public class FormTermoEstagioServlet extends HttpServlet {
         String complementoEnderecoMsg = "";
         campo = "Complemento";
         tamanho = 150;
-        complementoEnderecoMsg = ValidaUtils.validaObrigatorio(campo, complementoEnderecoTermoEstagio);
         if (complementoEnderecoMsg.trim().isEmpty()) {
             complementoEnderecoMsg = ValidaUtils.validaTamanho(campo, tamanho, complementoEnderecoTermoEstagio);
             if (complementoEnderecoMsg.trim().isEmpty()) {
@@ -471,6 +475,7 @@ public class FormTermoEstagioServlet extends HttpServlet {
         String idProfessorMsg = "";
         campo = "Professor Orientador";
         Boolean hasProfessor = false;
+        idProfessorMsg = ValidaUtils.validaObrigatorio("idProfessor", idProfessorOrientador);
         if (!(idProfessorOrientador.trim().isEmpty() || idProfessorOrientador == null)) {
             idProfessorMsg = ValidaUtils.validaInteger(campo, idProfessorOrientador);
             if (idProfessorMsg.trim().isEmpty()) {
@@ -499,6 +504,12 @@ public class FormTermoEstagioServlet extends HttpServlet {
                 //TODO Fazer log
                 System.out.println(idProfessorMsg);
             }
+        } else {
+            idProfessorMsg = messages.getString(idProfessorMsg);
+            request.setAttribute("idProfessorMsg", idProfessorMsg);
+            isValid = false;
+            //TODO Fazer log
+            System.out.println(idProfessorMsg);
         }
         request.setAttribute("hasProfessor", hasProfessor);
 
@@ -588,6 +599,15 @@ public class FormTermoEstagioServlet extends HttpServlet {
             }
         }
 
+        if (numeroConvenio == null || numeroConvenio.equals("") && nomeConvenio == null || nomeConvenio.equals("")) {
+            numeroConvenioMsg = messages.getString("br.cefetrj.sisgee.form_termo_estagio_servlet.busca_convenio_vazia");
+            nomeConvenioMsg = numeroConvenioMsg;
+            request.setAttribute("numeroConvenioMsg", numeroConvenioMsg);
+            request.setAttribute("nomeConvenioMsg", nomeConvenioMsg);
+            System.out.println("NumeroConvenioMSG: " + numeroConvenioMsg);
+            isValid = false;
+        }
+
         /**
          * Validação do nome de supervisor
          */
@@ -596,15 +616,22 @@ public class FormTermoEstagioServlet extends HttpServlet {
         tamanho = 150;
         System.out.println(nomeSupervisor);
         nomeSupervisorMsg = ValidaUtils.validaTamanho(campo, tamanho, nomeSupervisor);
-        if (nomeSupervisorMsg.trim().isEmpty() && nomeSupervisorMsg.trim().equals("")) {
-            request.setAttribute("nomeSupervisor", nomeSupervisor);
+        if (!nomeSupervisor.isEmpty() && !cargoSupervisor.isEmpty() || nomeSupervisor.isEmpty() && cargoSupervisor.isEmpty() || !cargoSupervisor.isEmpty()) {
+            if (nomeSupervisorMsg.trim().isEmpty() && nomeSupervisorMsg.trim().equals("")) {
+                request.setAttribute("nomeSupervisor", nomeSupervisor);
+            } else {
+                nomeSupervisorMsg = messages.getString(nomeSupervisorMsg);
+                nomeSupervisorMsg = ServletUtils.mensagemFormatada(nomeSupervisorMsg, locale, tamanho);
+                request.setAttribute("nomeSupervisorMsg", nomeSupervisorMsg);
+                isValid = false;
+                //TODO Fazer log
+                System.out.println(nomeSupervisorMsg);
+            }
         } else {
+            nomeSupervisorMsg = "br.cefetrj.sisgee.valida_utils.msgNomeSemCargo";
             nomeSupervisorMsg = messages.getString(nomeSupervisorMsg);
             nomeSupervisorMsg = ServletUtils.mensagemFormatada(nomeSupervisorMsg, locale, tamanho);
             request.setAttribute("nomeSupervisorMsg", nomeSupervisorMsg);
-            isValid = false;
-            //TODO Fazer log
-            System.out.println(nomeSupervisorMsg);
         }
 
         /**

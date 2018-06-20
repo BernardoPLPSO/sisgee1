@@ -30,7 +30,7 @@ public class PessoaJuridica{
     @GeneratedValue
     private Integer idConvenio;
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 11, nullable = false)
     private String numeroConvenio;
     
     @OneToMany(mappedBy = "convenioPJ")

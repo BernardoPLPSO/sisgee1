@@ -26,6 +26,8 @@ import br.cefetrj.sisgee.model.entity.PessoaJuridica;
 import br.cefetrj.sisgee.model.entity.ProfessorOrientador;
 import br.cefetrj.sisgee.view.utils.ServletUtils;
 import br.cefetrj.sisgee.view.utils.UF;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +46,15 @@ public class IncluirCadastroEmpresaServlet extends HttpServlet {
 
         String tipoPessoa = request.getParameter("tipoPessoa");
 
-        Date dataAssinatura = (Date) request.getAttribute("dataAssinatura");
+        String dataAssinaturaStr = (String) request.getAttribute("dataAssinatura");
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataAssinatura = null;
+        try{
+           dataAssinatura = (Date)formatter.parse(dataAssinaturaStr);
+        }
+        catch(Exception e){
+            System.out.println("Erro data");
+        }
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
         telefone = telefone.replaceAll("\\D", "");

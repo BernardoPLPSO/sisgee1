@@ -81,6 +81,7 @@ public class ServletUtils {
         formatter.applyPattern(msg);
 
         msg = formatter.format(new Object[]{param});
+        System.out.println("Mensagem: "+msg);
         return msg;
     }
 

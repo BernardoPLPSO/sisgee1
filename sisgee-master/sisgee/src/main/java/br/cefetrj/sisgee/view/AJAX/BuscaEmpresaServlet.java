@@ -43,11 +43,13 @@ public class BuscaEmpresaServlet extends HttpServlet {
         if(request.getParameter("numeroConvenio") != null){
             numeroConvenio = request.getParameter("numeroConvenio");
         }
+        System.out.println("Numero: "+request.getParameter("numeroConvenio"));
         String idConvenio = "";
         String nomeConvenio = "";
         if(request.getParameter("nomeConvenio")!=null){
             nomeConvenio = request.getParameter("nomeConvenio");
         }
+        System.out.println("Nome: "+nomeConvenio);
         String cpfConvenio = "";
         String cnpjConvenio = "";
         String razaoSocial = "";

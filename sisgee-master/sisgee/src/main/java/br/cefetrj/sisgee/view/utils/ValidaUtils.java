@@ -41,7 +41,7 @@ public class ValidaUtils {
 	}	
 	
 	/**
-	 * Método para validar campo com tamanho restito, para valores de texto(String)
+	 * Método para validar campo com tamanho restrito, para valores de texto(String)
 	  * @param nomeCampo texto com o nome do campo.
 	 * @param tamanho tamanho do campo.
 	 * @param param valor do texto a ser testado.
@@ -51,6 +51,20 @@ public class ValidaUtils {
 		String msg = "";
 		if(param.length() != tamanho) {
 			msg = "br.cefetrj.sisgee.valida_utils.msg_valida_tamanho_exato";
+		}		
+		return msg;
+	}
+        
+        /**
+         * Método para validar o campo de telefone
+         * @param nomeCampo texto com o nome do campo.
+         * @param param
+         * @return 
+         */
+        public static String validaTamanhoTelefone(String nomeCampo, String param) {
+		String msg = "";
+		if(param.length() != 10 && param.length() != 11) {
+			msg = "br.cefetrj.sisgee.valida_utils.msg_valida_tamanho_telefone";
 		}		
 		return msg;
 	}
@@ -226,8 +240,7 @@ public class ValidaUtils {
             if(param.contains("@") &&((param.contains(".com")) || (param.contains(".br")))){
                //ta certim
             }else{
-                System.out.println("Passou no validaEmail e falhou com o param: "+param);
-                msg = "br.cefetrj.sisgee.valida_utils.msg_valida_Email";
+                msg = "br.cefetrj.sisgee.msg_valida_Email";
             }
             return msg;
         }

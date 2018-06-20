@@ -53,8 +53,8 @@
                             }
                             else{
                                 $(".nomeConvenio, #idConvenio").val("");
-                                $("#myModalLabel").html("Empresa não encontrada!");
-                                $(".modal-body").html("O CNPJ não corresponde a uma empresa cadastrada.");	        	
+                                $("#myModalLabel").html("<fmt:message key = "br.cefetrj.sisgee.form_termo_estagio_servlet_convenio_nao_encontrado"/>");
+                                $(".modal-body").html("<fmt:message key = "br.cefetrj.sisgee.form_termo_estagio_servlet_numero_convenio_nao_encontrado"/>");	        	
                                 $('#myModal').modal('show');	        	
                             }
                             if(result.isPessoa === 'PF'){
@@ -116,8 +116,8 @@
                             }
                             else{
                                 $(".nomeConvenio, #idConvenio").val("");
-                                $("#myModalLabel").html("Empresa não encontrada!");
-                                $(".modal-body").html("O CNPJ não corresponde a uma empresa cadastrada.");	        	
+                                $("#myModalLabel").html("<fmt:message key = "br.cefetrj.sisgee.form_termo_estagio_servlet_convenio_nao_encontrado"/>");
+                                $(".modal-body").html("<fmt:message key = "br.cefetrj.sisgee.form_termo_estagio_servlet_nome_convenio_nao_encontrado"/>");	        	
                                 $('#myModal').modal('show');	        	
                             }
                             if(result.isPessoa === 'PF'){
