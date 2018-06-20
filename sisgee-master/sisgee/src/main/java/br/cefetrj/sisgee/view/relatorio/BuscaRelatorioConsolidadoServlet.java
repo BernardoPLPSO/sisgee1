@@ -97,6 +97,22 @@ public class BuscaRelatorioConsolidadoServlet extends HttpServlet {
         Object[] aux = null;
         ItemRelatorio item = null;
         String stg = null;
+        /*for (TermoEstagio termo : termosEstagioLista){
+            String curso = termo.getAluno().getNomeCurso();
+            int idx = 0;
+            if(listaItemRelatorio.contains(new ItemRelatorio(curso))){
+                idx = listaItemRelatorio.indexOf(new ItemRelatorio(curso));
+                item = listaItemRelatorio.get(idx);
+                item.setQntTermoEstagio(1);
+            }
+            if(!termo.getTermosAditivos().isEmpty()){
+                item.setQntTermoAditivo(termo.getTermosAditivos().size());
+            }
+            else {
+                listaItemRelatorio.add(new ItemRelatorio(curso, 1, 0));
+            }
+            
+        }*/
         for (int i = 0; i < termosEstagioLista.size(); i++) {
 
             aux = termosEstagioLista.get(i);
@@ -118,17 +134,21 @@ public class BuscaRelatorioConsolidadoServlet extends HttpServlet {
                 // se a lista possuir o curso, entao os dados serão adicionados no index do curso já existente
                 idx = listaItemRelatorio.indexOf(new ItemRelatorio(stg));
                 item = listaItemRelatorio.get(idx);
-                item.setQntTermoEstagio(item.getQntTermoEstagio() + 1);
+                item.setQntTermoEstagio(1);
 
                 // verifica se existe aditivo
                 if (aux[3] != null) {
-                    item.setQntTermoAditivo(item.getQntTermoAditivo() + 1);
+                    item.setQntTermoAditivo(1);
                 }
 
                 item.setQntRescReg(item.getQntRescReg() + verifResc);
                 // se a lista não possuir o curso, ele é adicionado
             } else {
-                listaItemRelatorio.add(new ItemRelatorio(stg, 1, verifResc));
+                item = new ItemRelatorio(stg, 1, verifResc);
+                listaItemRelatorio.add(item);
+                if(aux[3] != null){
+                    item.setQntTermoAditivo(1);
+                }
             }
         }
 
