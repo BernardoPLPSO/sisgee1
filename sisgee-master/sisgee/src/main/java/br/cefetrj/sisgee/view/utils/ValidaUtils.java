@@ -63,9 +63,12 @@ public class ValidaUtils {
          */
         public static String validaTamanhoTelefone(String nomeCampo, String param) {
 		String msg = "";
-		if(param.length() != 10 && param.length() != 11) {
-			msg = "br.cefetrj.sisgee.valida_utils.msg_valida_tamanho_telefone";
-		}		
+                
+		if(param.length() == 10 || param.length() == 11 || param.length() == 0) {
+			
+		}else{
+                    msg = "br.cefetrj.sisgee.valida_utils.msg_valida_tamanho_telefone";
+                }		
 		return msg;
 	}
 	
@@ -77,6 +80,7 @@ public class ValidaUtils {
 	 */
 	public static String validaObrigatorio(String nomeCampo, String param) {
 		String msg = "";
+                
 		if(param == null || param.trim().isEmpty()) {
 			msg = "br.cefetrj.sisgee.valida_utils.msg_valida_obrigatorio";
 		}		
